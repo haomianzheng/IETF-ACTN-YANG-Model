@@ -1,0 +1,18 @@
+
+module: ietf-eth-te-tunnel
+  augment /te:te/te:tunnels/te:tunnel:
+    +--rw src-eth-tunnel-endpoint
+    |  +--rw vlanid?     etht-types:vlanid
+    |  +--rw tag-type?   etht-types:eth-tag-type
+    +--rw dst-eth-tunnel-endpoint
+    |  +--rw vlanid?     etht-types:vlanid
+    |  +--rw tag-type?   etht-types:eth-tag-type
+    +--rw bandwidth-profile
+       +--rw bandwidth-profile-name?   string
+       +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
+       +--rw CIR?                      uint64
+       +--rw CBS?                      uint64
+       +--rw EIR?                      uint64
+       +--rw EBS?                      uint64
+       +--rw color-aware?              boolean
+       +--rw coupling-flag?            boolean
