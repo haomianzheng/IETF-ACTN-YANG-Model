@@ -248,7 +248,7 @@ module ietf-eth-te-topology {
 						type boolean;
 						description
 							"Indicates that the ETH LTP support  VLAN service classification
-							based on the second VLAN tag."
+							based on the second VLAN tag.";
 					}
 					uses svc-vlan-classification;
 				}
@@ -269,7 +269,7 @@ module ietf-eth-te-topology {
 			}
 			container vlan-pop {
 				description
-					"Indicates VLAN pop or swap operations capabilities."
+					"Indicates VLAN pop or swap operations capabilities.";
 
 				leaf vlan-pop-operations {
 					type boolean;
@@ -277,7 +277,7 @@ module ietf-eth-te-topology {
 						"Indicates that the ETH LTP supports VLAN pop or swap operations.";
 				}
 				leaf max-pop-tags {
-					type uint8; {
+					type uint8 {
 						range "1..2";
 					}
 					description
@@ -286,7 +286,7 @@ module ietf-eth-te-topology {
 			}
 			container vlan-push {
 				description
-					"Indicates VLAN push or swap operations capabilities."
+					"Indicates VLAN push or swap operations capabilities.";
 
 				leaf vlan-push-operation {
 					type boolean;
@@ -306,7 +306,7 @@ module ietf-eth-te-topology {
 						type boolean;
 						description
 							"Indicates that the ETH LTP supports VLAN push or swap operations
-							for the second VLAN tag."
+							for the second VLAN tag.";
 					}
 					uses svc-vlan-push;
 				}
@@ -350,7 +350,7 @@ module ietf-eth-te-topology {
 			presence "client-facing LTP.";
 			
 			description
-				"ETH LTP Service attributes."
+				"ETH LTP Service attributes.";
 			uses eth-ltp-svc-attributes;
 		}
 	}

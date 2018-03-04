@@ -1,0 +1,72 @@
+
+module: ietf-eth-te-topology
+  augment /nd:networks/nd:network/nd:network-types/tet:te-topology:
+    +--rw eth-tran-topology!
+  augment /nd:networks/nd:network/lnk:link/tet:te/tet:te-link-attributes:
+    +--rw max-bandwidth?          uint64
+    +--rw available-bandwidth?    uint64
+    +--rw available-vlan-range?   etht-types:vid-range-type
+  augment /nd:networks/nd:network/nd:node/lnk:termination-point:
+    +--rw ltp-mac-address?                    yang:mac-address
+    +--rw port-vlan-id?                       etht-types:vlanid
+    +--rw maximum-frame-size?                 uint16
+    +--rw (direction)?
+    |  +--:(symmetrical)
+    |  |  +--rw ingress-egress-bandwidth-profile
+    |  |     +--rw bandwidth-profile-name?   string
+    |  |     +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
+    |  |     +--rw CIR?                      uint64
+    |  |     +--rw CBS?                      uint64
+    |  |     +--rw EIR?                      uint64
+    |  |     +--rw EBS?                      uint64
+    |  |     +--rw color-aware?              boolean
+    |  |     +--rw coupling-flag?            boolean
+    |  +--:(asymmetrical)
+    |     +--rw ingress-bandwidth-profile
+    |     |  +--rw bandwidth-profile-name?   string
+    |     |  +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
+    |     |  +--rw CIR?                      uint64
+    |     |  +--rw CBS?                      uint64
+    |     |  +--rw EIR?                      uint64
+    |     |  +--rw EBS?                      uint64
+    |     |  +--rw color-aware?              boolean
+    |     |  +--rw coupling-flag?            boolean
+    |     +--rw egress-bandwidth-profile
+    |        +--rw bandwidth-profile-name?   string
+    |        +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
+    |        +--rw CIR?                      uint64
+    |        +--rw CBS?                      uint64
+    |        +--rw EIR?                      uint64
+    |        +--rw EBS?                      uint64
+    |        +--rw color-aware?              boolean
+    |        +--rw coupling-flag?            boolean
+    +--rw svc!
+       +--rw client-facing?               boolean
+       +--rw supported-classification
+       |  +--rw port-classification?   boolean
+       |  +--rw vlan-classification
+       |     +--rw vlan-tag-classification?   boolean
+       |     +--rw outer-tag
+       |     |  +--rw supported-tag-types*   etht-types:eth-tag-classify
+       |     |  +--rw vlan-bundling?         boolean
+       |     |  +--rw vlan-range?            etht-types:vid-range-type
+       |     +--rw second-tag
+       |        +--rw second-tag-classification?   boolean
+       |        +--rw supported-tag-types*         etht-types:eth-tag-classify
+       |        +--rw vlan-bundling?               boolean
+       |        +--rw vlan-range?                  etht-types:vid-range-type
+       +--rw supported-vlan-operations
+          +--rw asymmetrical-operations?       boolean
+          +--rw transparent-vlan-operations?   boolean
+          +--rw vlan-pop
+          |  +--rw vlan-pop-operations?   boolean
+          |  +--rw max-pop-tags?          uint8
+          +--rw vlan-push
+             +--rw vlan-push-operation?   boolean
+             +--rw outer-tag
+             |  +--rw supported-tag-types*   etht-types:eth-tag-type
+             |  +--rw vlan-range?            etht-types:vid-range-type
+             +--rw second-tag
+                +--rw push-second-tag?       boolean
+                +--rw supported-tag-types*   etht-types:eth-tag-type
+                +--rw vlan-range?            etht-types:vid-range-type
