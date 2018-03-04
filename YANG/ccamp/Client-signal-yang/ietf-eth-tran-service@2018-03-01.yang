@@ -494,9 +494,9 @@ module ietf-eth-tran-service {
 		}
     leaf admin-status {
       type identityref {
-        base te-types:state-type;
+        base te-types:tunnel-state-type;
       }
-      default te-types:state-up;
+      default te-types:tunnel-state-up;
       description "ETH service administrative state.";
     }
 	}
@@ -506,14 +506,15 @@ module ietf-eth-tran-service {
       "State parameters for Ethernet services.";
 
     leaf operational-state {
-      type identityref {
-        base te-types:state-type;
+	  type identityref {
+        base te-types:tunnel-state-type;
       }
-      description "ETH service operational state.";
+      default te-types:tunnel-state-up;
+	  description "ETH service operational state.";
     }
     leaf provisioning-state {
       type identityref {
-        base te-types:prov-state-type;
+        base te-types:lsp-state-type;
       }
       description "ETH service provisioning state.";
     }
