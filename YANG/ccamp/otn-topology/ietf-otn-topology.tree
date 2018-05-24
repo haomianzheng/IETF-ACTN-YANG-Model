@@ -1,0 +1,558 @@
+
+module: ietf-otn-topology
+  augment /nw:networks/nw:network/nw:network-types/tet:te-topology:
+    +--rw otn-topology!
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes:
+    +--rw tsg?        identityref
+    +--rw distance?   uint32
+  augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te:
+    +--rw supported-payload-types* [index]
+       +--rw index           uint16
+       +--rw payload-type?   string
+  augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te/tet:interface-switching-capability/tet:max-lsp-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?   identityref
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:path-constraints/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odulist* [odu-type]
+             +--rw odu-type    identityref
+             +--rw number?     uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:path-constraints/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odulist* [odu-type]
+             +--rw odu-type    identityref
+             +--rw number?     uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:path-constraints/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro odulist* [odu-type]
+             +--ro odu-type    identityref
+             +--ro number?     uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:path-constraints/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro odulist* [odu-type]
+             +--ro odu-type    identityref
+             +--ro number?     uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:client-layer-adaptation/tet:switching-capability/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odulist* [odu-type]
+             +--rw odu-type    identityref
+             +--rw number?     uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:path-constraints/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odulist* [odu-type]
+             +--rw odu-type    identityref
+             +--rw number?     uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:local-link-connectivity/tet:path-constraints/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odulist* [odu-type]
+             +--rw odu-type    identityref
+             +--rw number?     uint16
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:interface-switching-capability/tet:max-lsp-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?   identityref
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:max-link-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odulist* [odu-type]
+             +--rw odu-type    identityref
+             +--rw number?     uint16
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:max-resv-link-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odulist* [odu-type]
+             +--rw odu-type    identityref
+             +--rw number?     uint16
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:unreserved-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odulist* [odu-type]
+             +--rw odu-type    identityref
+             +--rw number?     uint16
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:information-source-entry/tet:interface-switching-capability/tet:max-lsp-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro odu-type?   identityref
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:information-source-entry/tet:max-link-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro odulist* [odu-type]
+             +--ro odu-type    identityref
+             +--ro number?     uint16
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:information-source-entry/tet:max-resv-link-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro odulist* [odu-type]
+             +--ro odu-type    identityref
+             +--ro number?     uint16
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:information-source-entry/tet:unreserved-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro odulist* [odu-type]
+             +--ro odu-type    identityref
+             +--ro number?     uint16
+  augment /nw:networks/tet:te/tet:templates/tet:link-template/tet:te-link-attributes/tet:interface-switching-capability/tet:max-lsp-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?   identityref
+  augment /nw:networks/tet:te/tet:templates/tet:link-template/tet:te-link-attributes/tet:max-link-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odulist* [odu-type]
+             +--rw odu-type    identityref
+             +--rw number?     uint16
+  augment /nw:networks/tet:te/tet:templates/tet:link-template/tet:te-link-attributes/tet:max-resv-link-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odulist* [odu-type]
+             +--rw odu-type    identityref
+             +--rw number?     uint16
+  augment /nw:networks/tet:te/tet:templates/tet:link-template/tet:te-link-attributes/tet:unreserved-bandwidth/tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odulist* [odu-type]
+             +--rw odu-type    identityref
+             +--rw number?     uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:label-restriction:
+    +--rw otn-label-restriction
+       +--rw range-type?   identityref
+       +--rw tsg?          identityref
+       +--rw priority?     uint8
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:label-restriction/tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:label-restriction/tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:underlay/tet:primary-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:underlay/tet:backup-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-exclude-objects/tet:route-object-exclude-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-include-objects/tet:route-object-include-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:path-properties/tet:path-route-objects/tet:path-route-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:from/tet:label-restriction:
+    +--rw otn-label-restriction
+       +--rw range-type?   identityref
+       +--rw tsg?          identityref
+       +--rw priority?     uint8
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:from/tet:label-restriction/tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:from/tet:label-restriction/tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:to/tet:label-restriction:
+    +--rw otn-label-restriction
+       +--rw range-type?   identityref
+       +--rw tsg?          identityref
+       +--rw priority?     uint8
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:to/tet:label-restriction/tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:to/tet:label-restriction/tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:underlay/tet:primary-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:underlay/tet:backup-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-exclude-objects/tet:route-object-exclude-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-include-objects/tet:route-object-include-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/tet:connectivity-matrices/tet:connectivity-matrix/tet:path-properties/tet:path-route-objects/tet:path-route-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:label-restriction:
+    +--ro otn-label-restriction
+       +--ro range-type?   identityref
+       +--ro tsg?          identityref
+       +--ro priority?     uint8
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:label-restriction/tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro (otn-label-type)?
+             +--:(tributary-port)
+             |  +--ro tpn?   uint16
+             +--:(tributary-slot)
+                +--ro ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:label-restriction/tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro (otn-label-type)?
+             +--:(tributary-port)
+             |  +--ro tpn?   uint16
+             +--:(tributary-slot)
+                +--ro ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:underlay/tet:primary-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:underlay/tet:backup-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-exclude-objects/tet:route-object-exclude-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-include-objects/tet:route-object-include-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:path-properties/tet:path-route-objects/tet:path-route-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:from/tet:label-restriction:
+    +--ro otn-label-restriction
+       +--ro range-type?   identityref
+       +--ro tsg?          identityref
+       +--ro priority?     uint8
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:from/tet:label-restriction/tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro (otn-label-type)?
+             +--:(tributary-port)
+             |  +--ro tpn?   uint16
+             +--:(tributary-slot)
+                +--ro ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:from/tet:label-restriction/tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro (otn-label-type)?
+             +--:(tributary-port)
+             |  +--ro tpn?   uint16
+             +--:(tributary-slot)
+                +--ro ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:to/tet:label-restriction:
+    +--ro otn-label-restriction
+       +--ro range-type?   identityref
+       +--ro tsg?          identityref
+       +--ro priority?     uint8
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:to/tet:label-restriction/tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro (otn-label-type)?
+             +--:(tributary-port)
+             |  +--ro tpn?   uint16
+             +--:(tributary-slot)
+                +--ro ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:to/tet:label-restriction/tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro (otn-label-type)?
+             +--:(tributary-port)
+             |  +--ro tpn?   uint16
+             +--:(tributary-slot)
+                +--ro ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:underlay/tet:primary-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:underlay/tet:backup-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-exclude-objects/tet:route-object-exclude-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-include-objects/tet:route-object-include-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:information-source-entry/tet:connectivity-matrices/tet:connectivity-matrix/tet:path-properties/tet:path-route-objects/tet:path-route-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:label-restriction:
+    +--rw otn-label-restriction
+       +--rw range-type?   identityref
+       +--rw tsg?          identityref
+       +--rw priority?     uint8
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:label-restriction/tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:label-restriction/tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:underlay/tet:primary-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:underlay/tet:backup-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-exclude-objects/tet:route-object-exclude-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-include-objects/tet:route-object-include-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:path-properties/tet:path-route-objects/tet:path-route-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:local-link-connectivity/tet:label-restriction:
+    +--rw otn-label-restriction
+       +--rw range-type?   identityref
+       +--rw tsg?          identityref
+       +--rw priority?     uint8
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:local-link-connectivity/tet:label-restriction/tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:local-link-connectivity/tet:label-restriction/tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:local-link-connectivity/tet:underlay/tet:primary-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:local-link-connectivity/tet:underlay/tet:backup-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:local-link-connectivity/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-exclude-objects/tet:route-object-exclude-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:local-link-connectivity/tet:optimizations/tet:algorithm/tet:metric/tet:optimization-metric/tet:explicit-route-include-objects/tet:route-object-include-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te/tet:tunnel-termination-point/tet:local-link-connectivities/tet:local-link-connectivity/tet:path-properties/tet:path-route-objects/tet:path-route-object/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       uint16
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:underlay/tet:primary-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:underlay/tet:backup-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:label-restriction:
+    +--rw otn-label-restriction
+       +--rw range-type?   identityref
+       +--rw tsg?          identityref
+       +--rw priority?     uint8
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:label-restriction/tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:label-restriction/tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:information-source-entry/tet:label-restriction:
+    +--ro otn-label-restriction
+       +--ro range-type?   identityref
+       +--ro tsg?          identityref
+       +--ro priority?     uint8
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:information-source-entry/tet:label-restriction/tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro (otn-label-type)?
+             +--:(tributary-port)
+             |  +--ro tpn?   uint16
+             +--:(tributary-slot)
+                +--ro ts?    uint16
+  augment /nw:networks/nw:network/nt:link/tet:te/tet:information-source-entry/tet:label-restriction/tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro (otn-label-type)?
+             +--:(tributary-port)
+             |  +--ro tpn?   uint16
+             +--:(tributary-slot)
+                +--ro ts?    uint16
+  augment /nw:networks/tet:te/tet:templates/tet:link-template/tet:te-link-attributes/tet:underlay/tet:primary-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/tet:te/tet:templates/tet:link-template/tet:te-link-attributes/tet:underlay/tet:backup-path/tet:path-element/tet:type/tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       uint16
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /nw:networks/tet:te/tet:templates/tet:link-template/tet:te-link-attributes/tet:label-restriction:
+    +--rw otn-label-restriction
+       +--rw range-type?   identityref
+       +--rw tsg?          identityref
+       +--rw priority?     uint8
+  augment /nw:networks/tet:te/tet:templates/tet:link-template/tet:te-link-attributes/tet:label-restriction/tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
+  augment /nw:networks/tet:te/tet:templates/tet:link-template/tet:te-link-attributes/tet:label-restriction/tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (otn-label-type)?
+             +--:(tributary-port)
+             |  +--rw tpn?   uint16
+             +--:(tributary-slot)
+                +--rw ts?    uint16
