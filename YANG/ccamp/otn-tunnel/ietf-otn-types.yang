@@ -11,8 +11,11 @@ module ietf-otn-types {
      Editor: Haomian Zheng
              <mailto:zhenghaomian@huawei.com>
 
-     Editor: Zheyu Fan
-             <mailto:fanzheyu2@huawei.com>
+     Editor: Aihua Guo
+             <mailto:aihuaguo@huawei.com>
+
+     Editor: Italo Busi
+             <mailto:italo.busi@huawei.com>
 
      Editor: Anurag Sharma
              <mailto:ansha@google.com>
@@ -35,11 +38,11 @@ module ietf-otn-types {
   description
     "This module defines OTN types.";
 
-  revision "2017-10-30" {
+  revision "2018-05-23" {
     description
-      "Revision 0.4";
+      "Revision 0.5";
     reference
-      "draft-ietf-ccamp-otn-tunnel-model-01.txt";
+      "draft-ietf-ccamp-otn-tunnel-model-02";
   }
 
   identity tributary-slot-granularity {
@@ -230,7 +233,6 @@ module ietf-otn-types {
     description
       "1G Ethernet protocol";
   }
-
   identity prot-10GbE-LAN {
     base tributary-protocol-type;
     description
@@ -397,5 +399,176 @@ module ietf-otn-types {
     base client-signal;
     description
       "Client signal type of Fibre Connection 8G";
+  }
+
+  identity client-signal-OTU1 {
+    base client-signal;
+    description
+      "Client signal type of OTU1";
+  }
+
+  identity client-signal-OTU2 {
+    base client-signal;
+    description
+      "Client signal type of OTU2";
+  }
+
+  identity client-signal-OTU2e {
+    base client-signal;
+    description
+      "Client signal type of OTU2e";
+  }
+
+  identity client-signal-OTU3 {
+    base client-signal;
+    description
+      "Client signal type of OTU3";
+  }
+
+  identity client-signal-OTU4 {
+    base client-signal;
+    description
+      "Client signal type of OTU4";
+  }
+
+  identity otn-label-range-type {
+    description
+      "Base identity from which specific OTN label
+	   range types derived";
+  }
+
+  identity label-range-trib-slot {
+    base otn-label-range-type;
+    description
+      "Defines a range of OTN tributary slots";
+  }
+
+  identity label-range-trib-port {
+    base otn-label-range-type;
+    description
+      "Defines a range of OTN tributary ports";
+  }
+  
+  grouping otn-link-bandwidth {
+    container otn {
+      list odulist {
+        key "odu-type";
+        description
+          "OTN bandwidth definition";
+        leaf odu-type {
+          type identityref {
+            base otn-types:tributary-protocol-type;
+          }
+          description "ODU type";
+        }
+        leaf number {
+          type uint16;
+          description "Number of ODUs";
+        }
+      }
+    }
+  }
+
+  grouping otn-path-bandwidth {
+    container otn {
+      leaf odu-type {
+        type identityref {
+          base otn-types:tributary-protocol-type;
+        }
+        description "ODU type";
+      }
+    }
+  }
+
+  grouping otn-label-restriction {
+    container otn-label-restriction {
+      leaf range-type {
+	      type identityref {
+	        base otn-types:otn-label-range-type;
+	      }
+	    }
+      leaf tsg {
+        type identityref {
+          base otn-types:tributary-slot-granularity;
+        }
+        description "Tributary slot granularity.";
+        reference
+          "G.709/Y.1331, February 2016: Interfaces for the
+           Optical Transport Network (OTN)";
+      } 
+      leaf priority {
+	      type uint8;
+	      description "priority.";
+	    }
+    }
+  }
+ 
+  grouping otn-link-label {
+	  container otn {
+      choice otn-label-type {
+        description
+          "OTN label type";
+        case tributary-port {
+          leaf tpn {
+            type uint16 {
+              range "1..4095";
+            }
+            description
+              "Tributary Port Number. Applicable in case of mux services.";
+            reference
+              "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+               G.709 Optical Transport Networks.";
+          }
+        }
+        case tributary-slot {
+          leaf ts {
+            type uint16 {
+              range "1..4095";
+            }
+            description
+              "Tributary Slot Number. Applicable in case of mux services.";
+            reference
+              "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+               G.709 Optical Transport Networks.";
+          }
+        }
+      }
+    }
+  }
+
+  grouping otn-path-label {
+    container otn {
+      leaf tpn {
+        type uint16 {
+          range "1..4095";
+        }
+        description
+          "Tributary Port Number. Applicable in case of mux services.";
+        reference
+          "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+           G.709 Optical Transport Networks.";
+      }
+      leaf tsg {
+        type identityref {
+          base otn-types:tributary-slot-granularity;
+        }
+        description "Tributary slot granularity.";
+        reference
+          "G.709/Y.1331, February 2016: Interfaces for the
+           Optical Transport Network (OTN)";
+      }
+      leaf ts-list {
+        type string {
+            pattern "([1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?"
+                  + "(,[1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?)*)";
+          }
+          description
+            "A list of available tributary slots ranging
+             between 1 and 9999.
+             For example 1-20,25,50-1000";
+          reference "RFC 7139: GMPLS Signaling Extensions for Control
+                     of Evolving G.709 Optical Transport Networks";
+      }
+    }
   }
 }
