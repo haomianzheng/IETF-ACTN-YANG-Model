@@ -1,0 +1,318 @@
+
+module: ietf-otn-tunnel
+  augment /te:te/te:tunnels/te:tunnel:
+    +--rw payload-treatment?          enumeration
+    +--rw src-client-signal?          identityref
+    +--rw src-tpn?                    uint16
+    +--rw src-tsg?                    identityref
+    +--rw src-tributary-slot-count?   uint16
+    +--rw src-tributary-slots
+    |  +--rw values*   uint8
+    +--rw dst-client-signal?          identityref
+    +--rw dst-tpn?                    uint16
+    +--rw dst-tsg?                    identityref
+    +--rw dst-tributary-slot-count?   uint16
+    +--rw dst-tributary-slots
+       +--rw values*   uint8
+  augment /te:te/te:globals/te:named-path-constraints/te:named-path-constraint/te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--rw odu-type?   identityref
+  augment /te:te/te:tunnels/te:tunnel/te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--rw odu-type?   identityref
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--rw odu-type?   identityref
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:p2p-reverse-primary-path/te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--rw odu-type?   identityref
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths/te:p2p-secondary-path/te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--rw odu-type?   identityref
+  augment /te:te/te:globals/te:named-path-constraints/te:named-path-constraint/te:explicit-route-objects/te:route-object-exclude-always/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:globals/te:named-path-constraints/te:named-path-constraint/te:explicit-route-objects/te:route-object-include-exclude/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:explicit-route-objects/te:route-object-exclude-always/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:explicit-route-objects/te:route-object-include-exclude/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:optimizations/te:algorithm/te:metric/te:optimization-metric/te:explicit-route-exclude-objects/te:route-object-exclude-object/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:optimizations/te:algorithm/te:metric/te:optimization-metric/te:explicit-route-include-objects/te:route-object-include-object/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:state/te:path-properties/te:path-route-objects/te:path-computed-route-object/te:state/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:state/te:lsps/te:lsp/te:path-properties/te:path-route-objects/te:path-computed-route-object/te:state/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:p2p-reverse-primary-path/te:explicit-route-objects/te:route-object-exclude-always/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:p2p-reverse-primary-path/te:explicit-route-objects/te:route-object-include-exclude/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:p2p-reverse-primary-path/te:optimizations/te:algorithm/te:metric/te:optimization-metric/te:explicit-route-exclude-objects/te:route-object-exclude-object/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:p2p-reverse-primary-path/te:optimizations/te:algorithm/te:metric/te:optimization-metric/te:explicit-route-include-objects/te:route-object-include-object/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:p2p-reverse-primary-path/te:state/te:path-properties/te:path-route-objects/te:path-computed-route-object/te:state/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/te:p2p-primary-path/te:p2p-reverse-primary-path/te:state/te:lsps/te:lsp/te:path-properties/te:path-route-objects/te:path-computed-route-object/te:state/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths/te:p2p-secondary-path/te:explicit-route-objects/te:route-object-exclude-always/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths/te:p2p-secondary-path/te:explicit-route-objects/te:route-object-include-exclude/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths/te:p2p-secondary-path/te:optimizations/te:algorithm/te:metric/te:optimization-metric/te:explicit-route-exclude-objects/te:route-object-exclude-object/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths/te:p2p-secondary-path/te:optimizations/te:algorithm/te:metric/te:optimization-metric/te:explicit-route-include-objects/te:route-object-include-object/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths/te:p2p-secondary-path/te:state/te:path-properties/te:path-route-objects/te:path-computed-route-object/te:state/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths/te:p2p-secondary-path/te:state/te:lsps/te:lsp/te:path-properties/te:path-route-objects/te:path-computed-route-object/te:state/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
+
+  rpcs:
+    +---x otn-te-tunnel-path-compute
+       +---w input
+       |  +---w request* [id]
+       |     +---w id                          uint8
+       |     +---w type?                       identityref
+       |     +---w source?                     inet:ip-address
+       |     +---w destination?                inet:ip-address
+       |     +---w src-tp-id?                  binary
+       |     +---w dst-tp-id?                  binary
+       |     +---w switching-layer?            identityref
+       |     +---w encoding?                   identityref
+       |     +---w protection-type?            identityref
+       |     +---w restoration-type?           identityref
+       |     +---w provider-id?                te-types:te-global-id
+       |     +---w client-id?                  te-types:te-global-id
+       |     +---w te-topology-id?             te-types:te-topology-id
+       |     +---w setup-priority?             uint8
+       |     +---w hold-priority?              uint8
+       |     +---w te-path-metric-type?        identityref
+       |     +---w odu-type?                   identityref
+       |     +---w p2p-primary-paths
+       |     |  +---w p2p-primary-path* [name]
+       |     |     +---w name                      string
+       |     |     +---w te-default-metric?        uint32
+       |     |     +---w te-delay-metric?          uint32
+       |     |     +---w te-hop-metric?            uint32
+       |     |     +---w explicit-route-objects
+       |     |        +---w explicit-route-object* [index]
+       |     |           +---w explicit-route-usage?   identityref
+       |     |           +---w index                   uint32
+       |     |           +---w (type)?
+       |     |              +--:(numbered)
+       |     |              |  +---w numbered-hop
+       |     |              |     +---w address?     te-types:te-tp-id
+       |     |              |     +---w hop-type?    te-hop-type
+       |     |              |     +---w direction?   te-link-direction
+       |     |              +--:(as-number)
+       |     |              |  +---w as-number-hop
+       |     |              |     +---w as-number?   binary
+       |     |              |     +---w hop-type?    te-hop-type
+       |     |              +--:(unnumbered)
+       |     |              |  +---w unnumbered-hop
+       |     |              |     +---w node-id?      te-types:te-node-id
+       |     |              |     +---w link-tp-id?   te-types:te-tp-id
+       |     |              |     +---w hop-type?     te-hop-type
+       |     |              |     +---w direction?    te-link-direction
+       |     |              +--:(label)
+       |     |                 +---w label-hop
+       |     |                    +---w te-label
+       |     |                       +---w (technology)?
+       |     |                       |  +--:(generic)
+       |     |                       |  |  +---w generic?     rt-types:generalized-label
+       |     |                       |  +--:(otn)
+       |     |                       |     +---w tpn?         uint16
+       |     |                       |     +---w tsg?         identityref
+       |     |                       |     +---w ts-list?     string
+       |     |                       +---w direction?   te-label-direction
+       |     +---w p2p-secondary-paths
+       |     |  +---w p2p-secondary-path* [name]
+       |     |     +---w name                      string
+       |     |     +---w te-default-metric?        uint32
+       |     |     +---w te-delay-metric?          uint32
+       |     |     +---w te-hop-metric?            uint32
+       |     |     +---w explicit-route-objects
+       |     |        +---w explicit-route-object* [index]
+       |     |           +---w explicit-route-usage?   identityref
+       |     |           +---w index                   uint32
+       |     |           +---w (type)?
+       |     |              +--:(numbered)
+       |     |              |  +---w numbered-hop
+       |     |              |     +---w address?     te-types:te-tp-id
+       |     |              |     +---w hop-type?    te-hop-type
+       |     |              |     +---w direction?   te-link-direction
+       |     |              +--:(as-number)
+       |     |              |  +---w as-number-hop
+       |     |              |     +---w as-number?   binary
+       |     |              |     +---w hop-type?    te-hop-type
+       |     |              +--:(unnumbered)
+       |     |              |  +---w unnumbered-hop
+       |     |              |     +---w node-id?      te-types:te-node-id
+       |     |              |     +---w link-tp-id?   te-types:te-tp-id
+       |     |              |     +---w hop-type?     te-hop-type
+       |     |              |     +---w direction?    te-link-direction
+       |     |              +--:(label)
+       |     |                 +---w label-hop
+       |     |                    +---w te-label
+       |     |                       +---w (technology)?
+       |     |                       |  +--:(generic)
+       |     |                       |  |  +---w generic?     rt-types:generalized-label
+       |     |                       |  +--:(otn)
+       |     |                       |     +---w tpn?         uint16
+       |     |                       |     +---w tsg?         identityref
+       |     |                       |     +---w ts-list?     string
+       |     |                       +---w direction?   te-label-direction
+       |     +---w payload-treatment?          enumeration
+       |     +---w src-client-signal?          identityref
+       |     +---w src-tpn?                    uint16
+       |     +---w src-tsg?                    identityref
+       |     +---w src-tributary-slot-count?   uint16
+       |     +---w src-tributary-slots
+       |     |  +---w values*   uint8
+       |     +---w dst-client-signal?          identityref
+       |     +---w dst-tpn?                    uint16
+       |     +---w dst-tsg?                    identityref
+       |     +---w dst-tributary-slot-count?   uint16
+       |     +---w dst-tributary-slots
+       |        +---w values*   uint8
+       +--ro output
+          +--ro return-code?   enumeration
+          +--ro result* [id]
+             +--ro id                     uint8
+             +--ro p2p-primary-paths
+             |  +--ro p2p-primary-path* [name]
+             |     +--ro name                      string
+             |     +--ro te-default-metric?        uint32
+             |     +--ro te-delay-metric?          uint32
+             |     +--ro te-hop-metric?            uint32
+             |     +--ro explicit-route-objects
+             |        +--ro explicit-route-object* [index]
+             |           +--ro explicit-route-usage?   identityref
+             |           +--ro index                   uint32
+             |           +--ro (type)?
+             |              +--:(numbered)
+             |              |  +--ro numbered-hop
+             |              |     +--ro address?     te-types:te-tp-id
+             |              |     +--ro hop-type?    te-hop-type
+             |              |     +--ro direction?   te-link-direction
+             |              +--:(as-number)
+             |              |  +--ro as-number-hop
+             |              |     +--ro as-number?   binary
+             |              |     +--ro hop-type?    te-hop-type
+             |              +--:(unnumbered)
+             |              |  +--ro unnumbered-hop
+             |              |     +--ro node-id?      te-types:te-node-id
+             |              |     +--ro link-tp-id?   te-types:te-tp-id
+             |              |     +--ro hop-type?     te-hop-type
+             |              |     +--ro direction?    te-link-direction
+             |              +--:(label)
+             |                 +--ro label-hop
+             |                    +--ro te-label
+             |                       +--ro (technology)?
+             |                       |  +--:(generic)
+             |                       |  |  +--ro generic?     rt-types:generalized-label
+             |                       |  +--:(otn)
+             |                       |     +--ro tpn?         uint16
+             |                       |     +--ro tsg?         identityref
+             |                       |     +--ro ts-list?     string
+             |                       +--ro direction?   te-label-direction
+             +--ro p2p-secondary-paths
+                +--ro p2p-secondary-path* [name]
+                   +--ro name                      string
+                   +--ro te-default-metric?        uint32
+                   +--ro te-delay-metric?          uint32
+                   +--ro te-hop-metric?            uint32
+                   +--ro explicit-route-objects
+                      +--ro explicit-route-object* [index]
+                         +--ro explicit-route-usage?   identityref
+                         +--ro index                   uint32
+                         +--ro (type)?
+                            +--:(numbered)
+                            |  +--ro numbered-hop
+                            |     +--ro address?     te-types:te-tp-id
+                            |     +--ro hop-type?    te-hop-type
+                            |     +--ro direction?   te-link-direction
+                            +--:(as-number)
+                            |  +--ro as-number-hop
+                            |     +--ro as-number?   binary
+                            |     +--ro hop-type?    te-hop-type
+                            +--:(unnumbered)
+                            |  +--ro unnumbered-hop
+                            |     +--ro node-id?      te-types:te-node-id
+                            |     +--ro link-tp-id?   te-types:te-tp-id
+                            |     +--ro hop-type?     te-hop-type
+                            |     +--ro direction?    te-link-direction
+                            +--:(label)
+                               +--ro label-hop
+                                  +--ro te-label
+                                     +--ro (technology)?
+                                     |  +--:(generic)
+                                     |  |  +--ro generic?     rt-types:generalized-label
+                                     |  +--:(otn)
+                                     |     +--ro tpn?         uint16
+                                     |     +--ro tsg?         identityref
+                                     |     +--ro ts-list?     string
+                                     +--ro direction?   te-label-direction
