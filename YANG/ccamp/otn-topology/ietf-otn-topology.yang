@@ -57,7 +57,7 @@ module ietf-otn-topology {
     "This module defines a protocol independent Layer 1/ODU topology
      data model.";
 
-  revision 2018-05-23 {
+  revision 2018-06-07 {
     description
       "Revision 0.6";
     reference
@@ -104,6 +104,12 @@ module ietf-otn-topology {
           "http://www.iana.org/assignments/gmpls-sig-parameters
            /gmpls-sig-parameters.xhtml";
       }
+    }
+    leaf client-facing {
+      type boolean;
+      default 'false';
+      description
+        "Indicating if it is a client-facing TP.";
     }
   }
 
