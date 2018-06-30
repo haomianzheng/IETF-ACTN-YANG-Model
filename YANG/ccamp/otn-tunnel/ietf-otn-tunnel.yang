@@ -1016,10 +1016,8 @@ module ietf-otn-tunnel {
     }
   }
 
-  /* te tunnel model was changed, te:lsp-state not found.
-  Temporarily removed, to be discussed.  */
   /* Augment label hop of record-route of LSP */
-  /*augment "/te:te/te:lsp-state/"
+  augment "/te:te/te:lsps-state/"
         + "te:lsp/te:lsp-record-route-subobjects/"
         + "te:record-route-subobject/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
@@ -1027,7 +1025,7 @@ module ietf-otn-tunnel {
     case otn {
       uses otn-types:otn-path-label;
     }
-  } */
+  } 
   
   grouping p2p-path-ero {
     description
