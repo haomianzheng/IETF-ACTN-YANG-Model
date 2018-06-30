@@ -56,36 +56,19 @@ module ietf-otn-tunnel {
   description
     "This module defines a model for OTN Tunnel Services.";
 
-  revision "2018-06-14" {
+  revision "2018-06-30" {
     description
-      "Revision 0.5";
+      "Revision 0.6";
     reference
-      "draft-ietf-ccamp-otn-tunnel-model-02";
+      "draft-ietf-ccamp-otn-tunnel-model-03";
   }
 
  /*
   * Groupings
   */
 
-  grouping otn-tunnel-endpoint {
+  grouping otn-tunnel-attributes {
     description "Parameters for OTN tunnel";
-
-    leaf payload-treatment {
-      type enumeration {
-        enum switching {
-          description "Client signal is switched to another tunnel
-                       in this domain";
-        }
-        enum transport {
-          description "Client signal is transparently transmitted
-                       in this domain";
-        }
-      }
-      default switching;
-      description
-        "Treatment of the incoming payload. Payload can be switched
-         or transported.";
-    }
 
     leaf src-client-signal {
       type identityref {
@@ -93,35 +76,6 @@ module ietf-otn-tunnel {
       }
       description
         "Client signal at the source endpoint of the tunnel";
-    }
-
-    leaf src-tpn {
-      type uint16 {
-        range "0..4095";
-      }
-      description
-        "Tributary Port Number. Applicable in case of mux services";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-         G.709 Optical Transport Networks";
-    }
-
-    leaf src-tsg {
-      type identityref {
-        base otn-types:tributary-slot-granularity;
-      }
-      description
-        "Tributary slot granularity.
-         Applicable in case of mux services";
-      reference
-        "G.709/Y.1331, February 2016: Interfaces for the
-         Optical Transport Network (OTN)";
-    }
-
-    leaf src-tributary-slot-count {
-      type uint16;
-      description
-        "Number of tributary slots used at the source.";
     }
 
     container src-tributary-slots {
@@ -146,35 +100,6 @@ module ietf-otn-tunnel {
         "Client signal at the destination endpoint of the tunnel";
     }
 
-    leaf dst-tpn {
-      type uint16 {
-        range "0..4095";
-      }
-      description
-        "Tributary Port Number. Applicable in case of mux services";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-         G.709 Optical Transport Networks.";
-    }
-
-    leaf dst-tsg {
-      type identityref {
-        base otn-types:tributary-slot-granularity;
-      }
-      description
-        "Tributary slot granularity.
-         Applicable in case of mux services";
-      reference
-        "G.709/Y.1331, February 2016: Interfaces for the
-         Optical Transport Network (OTN)";
-    }
-
-    leaf dst-tributary-slot-count {
-      type uint16;
-      description
-        "Number of tributary slots used at the destination.";
-    }
-
     container dst-tributary-slots {
       description
         "A list of tributary slots used by the client service.
@@ -190,11 +115,6 @@ module ietf-otn-tunnel {
     }
   }
 
-  /*
-  Note: Comment has been given to authors of TE Tunnel model to add
-  list of endpoints under config to support P2MP tunnel.
-  */
-
  /*
   * Data nodes
   */
@@ -202,7 +122,7 @@ module ietf-otn-tunnel {
   augment "/te:te/te:tunnels/te:tunnel" {
     description
       "Augment with additional parameters required for OTN service";
-    uses otn-tunnel-endpoint;
+    uses otn-tunnel-attributes;
   }
 
   /*
@@ -285,134 +205,28 @@ module ietf-otn-tunnel {
     }
   }
 
-  /* Augment label restrictions for the forwarding direction of path-in-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-in-segment/"
-        + "te:forward/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
 
-  /* Augment label restrictions start for the forwarding direction of path-in-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-in-segment/"
-        + "te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
+  /* Augment label hop of route-object-exclude-always of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:explicit-route-objects/"
+        + "te:route-object-exclude-always/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses otn-types:otn-path-label;
     }
   }
 
-  /* Augment label restrictions end for the forwarding direction of path-in-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-in-segment/"
-        + "te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
+  /* Augment label hop of route-object-include-exclude of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:explicit-route-objects/"
+        + "te:route-object-include-exclude/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions for the reverse direction of path-in-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-in-segment/"
-        + "te:reverse/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the reverse direction of path-in-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-in-segment/"
-        + "te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the reverse direction of path-in-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-in-segment/"
-        + "te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions for the forwarding direction of path-out-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-out-segment/"
-        + "te:forward/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-  /* Augment label restrictions start for the forwarding direction of path-out-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-out-segment/"
-        + "te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the forwarding direction of path-out-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-out-segment/"
-        + "te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions for the reverse direction of path-out-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-out-segment/"
-        + "te:reverse/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the reverse direction of path-out-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-out-segment/"
-        + "te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the reverse direction of path-out-segment of named-path-constraints */
-  augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:path-out-segment/"
-        + "te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
+      uses otn-types:otn-path-label;
     }
   }
 
@@ -442,162 +256,6 @@ module ietf-otn-tunnel {
     }
   }
 
-  /* Augment label hop of route-object-exclude-always of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:explicit-route-objects/"
-        + "te:route-object-exclude-always/te:type/te:label/"
-        + "te:label-hop/te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-path-label;
-    }
-  }
-
-  /* Augment label hop of route-object-include-exclude of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:explicit-route-objects/"
-        + "te:route-object-include-exclude/te:type/te:label/"
-        + "te:label-hop/te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-path-label;
-    }
-  }
-
-  /* Augment label restrictions for the forwarding direction of path-in-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-in-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the forwarding direction of path-in-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-in-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the forwarding direction of path-in-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-in-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions for the reverse direction of path-in-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-in-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the reverse direction of path-in-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-in-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the reverse direction of path-in-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-in-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions for the forwarding direction of path-out-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-out-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the forwarding direction of path-out-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-out-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the forwarding direction of path-out-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-out-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions for the reverse direction of path-out-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-out-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the reverse direction of path-out-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-out-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the reverse direction of path-out-segment of primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:path-out-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
   /* Augment label hop of path-route of primary path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-primary-paths/te:p2p-primary-path/"
@@ -611,17 +269,19 @@ module ietf-otn-tunnel {
     }
   }
 
-  /* Augment label hop of record-route of primary LSP */
+  /*
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:state/te:lsps/te:lsp/te:lsp-record-route-subobjects/"
-        + "te:record-route-subobject/te:type/te:label/"
+        + "te:state/te:lsps/te:lsp/te:record-route-subobjects/"
+		+ "te:record-route-subobject/"
+		+ "te:state/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
-    }
+	  uses otn-types:otn-path-label;
+	}
   }
+  */
 
   /* Augment label hop of path-route of primary LSP */
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -629,34 +289,6 @@ module ietf-otn-tunnel {
         + "te:state/te:lsps/te:lsp/te:path-properties/"
         + "te:path-route-objects/te:path-computed-route-object/"
         + "te:state/te:type/te:label/"
-        + "te:label-hop/te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-path-label;
-    }
-  }
-
-  /* Augment label hop of route-exclude of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:optimizations/te:algorithm/te:metric/"
-        + "te:optimization-metric/te:explicit-route-exclude-objects/"
-        + "te:route-object-exclude-object/te:type/te:label/"
-        + "te:label-hop/te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-path-label;
-    }
-  }
-
-  /* Augment label hop of route-include of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:optimizations/te:algorithm/te:metric/"
-        + "te:optimization-metric/te:explicit-route-include-objects/"
-        + "te:route-object-include-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
@@ -692,151 +324,35 @@ module ietf-otn-tunnel {
     }
   }
 
-  /* Augment label restrictions for the forwarding direction of path-in-segment of reverse primary path */
+  /* Augment label hop of route-exclude of reverse primary path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-primary-paths/te:p2p-primary-path/"
         + "te:p2p-reverse-primary-path/"
-        + "te:path-in-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the forwarding direction of path-in-segment of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:path-in-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:route-object-exclude-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses otn-types:otn-path-label;
     }
   }
 
-  /* Augment label restrictions end for the forwarding direction of path-in-segment of reverse primary path */
+  /* Augment label hop of route-include of reverse primary path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-primary-paths/te:p2p-primary-path/"
         + "te:p2p-reverse-primary-path/"
-        + "te:path-in-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:route-object-include-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses otn-types:otn-path-label;
     }
   }
 
-  /* Augment label restrictions for the reverse direction of path-in-segment of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:path-in-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the reverse direction of path-in-segment of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:path-in-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the reverse direction of path-in-segment of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:path-in-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions for the forwarding direction of path-out-segment of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:path-out-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the forwarding direction of path-out-segment of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:path-out-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the forwarding direction of path-out-segment of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:path-out-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions for the reverse direction of path-out-segment of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:path-out-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the reverse direction of path-out-segment of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:path-out-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the reverse direction of path-out-segment of reverse primary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
-        + "te:path-out-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label hop of path-route of reverse primary path */
+  /* Augment label hop of label hop of path-route of reverse primary path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-primary-paths/te:p2p-primary-path/"
         + "te:p2p-reverse-primary-path/"
@@ -850,18 +366,20 @@ module ietf-otn-tunnel {
     }
   }
 
-  /* Augment label hop of record-route of reverse primary LSP */
+  /*
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:p2p-reverse-primary-path/"
+		+ "te:p2p-reverse-primary-path/"
         + "te:state/te:lsps/te:lsp/te:lsp-record-route-subobjects/"
-        + "te:record-route-subobject/te:type/te:label/"
+		+ "te:record-route-subobject/"
+		+ "te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
-    }
+	  uses otn-types:otn-path-label;
+	}
   }
+  */
 
   /* Augment label hop of path-route of reverse primary LSP */
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -870,6 +388,30 @@ module ietf-otn-tunnel {
         + "te:state/te:lsps/te:lsp/te:path-properties/"
         + "te:path-route-objects/te:path-computed-route-object/"
         + "te:state/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-object-exclude-always of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:explicit-route-objects/"
+        + "te:route-object-exclude-always/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-object-include-exclude of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:explicit-route-objects/"
+        + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
@@ -903,163 +445,7 @@ module ietf-otn-tunnel {
     }
   }
 
-  /* Augment label hop of route-object-exclude-always of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:explicit-route-objects/"
-        + "te:route-object-exclude-always/te:type/te:label/"
-        + "te:label-hop/te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-path-label;
-    }
-  }
-
-  /* Augment label hop of route-object-include-exclude of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:explicit-route-objects/"
-        + "te:route-object-include-exclude/te:type/te:label/"
-        + "te:label-hop/te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-path-label;
-    }
-  }
-
-  /* Augment label restrictions for the forwarding direction of path-in-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-in-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the forwarding direction of path-in-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-in-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the forwarding direction of path-in-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-in-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions for the reverse direction of path-in-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-in-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the reverse direction of path-in-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-in-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the reverse direction of path-in-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-in-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions for the forwarding direction of path-out-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-out-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the forwarding direction of path-out-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-out-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the forwarding direction of path-out-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-out-segment/te:forward/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions for the reverse direction of path-out-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-out-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction" {
-    description "OTN label.";
-    uses otn-types:otn-label-restriction;
-  }
-
-  /* Augment label restrictions start for the reverse direction of path-out-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-out-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-start/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label restrictions end for the reverse direction of path-out-segment of secondary path */
-  augment "/te:te/te:tunnels/te:tunnel/"
-        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:path-out-segment/te:reverse/te:label-restrictions/"
-        + "te:label-restriction/te:label-end/"
-        + "te:te-label/te:technology" {
-    description "OTN label.";
-    case otn {
-      uses otn-types:otn-link-label;
-    }
-  }
-
-  /* Augment label hop of path-route of secondary path */
+  /* Augment label hop of label hop of path-route of secondary path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-secondary-paths/te:p2p-secondary-path/"
         + "te:state/te:path-properties/te:path-route-objects/" 
@@ -1071,17 +457,19 @@ module ietf-otn-tunnel {
     }
   }
 
-  /* Augment label hop of record-route of secondary LSP */
+  /*
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-secondary-paths/te:p2p-secondary-path/"
         + "te:state/te:lsps/te:lsp/te:lsp-record-route-subobjects/"
-        + "te:record-route-subobject/te:type/te:label/"
+		+ "te:record-route-subobject/"
+		+ "te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
-    }
+	  uses otn-types:otn-path-label;
+	}
   }
+  */
 
   /* Augment label hop of path-route of secondary LSP */
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1096,17 +484,18 @@ module ietf-otn-tunnel {
     }
   }
 
-
-  /* Augment label hop of record-route of LSP */
-  augment "/te:te/te:lsps-state/"
-        + "te:lsp/te:lsp-record-route-subobjects/"
-        + "te:record-route-subobject/te:type/te:label/"
-        + "te:label-hop/te:te-label/te:technology" {
+  /*
+  augment "/te:te/te:lsp-state/"
+        + "te:lsp-record-route-subobjects/te:lsp-record-route-subobject/" 
+		+ "te:record-route-subobject/" 
+		+ "te:type/te:label/te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
-    }
+	  uses otn-types:otn-path-label;
+	}
   }
+  */
+  
   
   grouping p2p-path-ero {
     description
