@@ -1,17 +1,10 @@
 
 module: ietf-otn-tunnel
   augment /te:te/te:tunnels/te:tunnel:
-    +--rw payload-treatment?          enumeration
-    +--rw src-client-signal?          identityref
-    +--rw src-tpn?                    uint16
-    +--rw src-tsg?                    identityref
-    +--rw src-tributary-slot-count?   uint16
+    +--rw src-client-signal?     identityref
     +--rw src-tributary-slots
     |  +--rw values*   uint8
-    +--rw dst-client-signal?          identityref
-    +--rw dst-tpn?                    uint16
-    +--rw dst-tsg?                    identityref
-    +--rw dst-tributary-slot-count?   uint16
+    +--rw dst-client-signal?     identityref
     +--rw dst-tributary-slots
        +--rw values*   uint8
   augment /te:te/te:globals/te:named-path-constraints/te:named-path-constraint/te:te-bandwidth/te:technology:
@@ -432,33 +425,28 @@ module: ietf-otn-tunnel
        +--ro tpn?       uint16
        +--ro tsg?       identityref
        +--ro ts-list?   string
-  augment /te:te/te:lsps-state/te:lsp/te:lsp-record-route-subobjects/te:record-route-subobject/te:type/te:label/te:label-hop/te:te-label/te:technology:
-    +--:(otn)
-       +--ro tpn?       uint16
-       +--ro tsg?       identityref
-       +--ro ts-list?   string
 
   rpcs:
     +---x otn-te-tunnel-path-compute
        +---w input
        |  +---w request* [id]
-       |     +---w id                          uint8
-       |     +---w type?                       identityref
-       |     +---w source?                     inet:ip-address
-       |     +---w destination?                inet:ip-address
-       |     +---w src-tp-id?                  binary
-       |     +---w dst-tp-id?                  binary
-       |     +---w switching-layer?            identityref
-       |     +---w encoding?                   identityref
-       |     +---w protection-type?            identityref
-       |     +---w restoration-type?           identityref
-       |     +---w provider-id?                te-types:te-global-id
-       |     +---w client-id?                  te-types:te-global-id
-       |     +---w te-topology-id?             te-types:te-topology-id
-       |     +---w setup-priority?             uint8
-       |     +---w hold-priority?              uint8
-       |     +---w te-path-metric-type?        identityref
-       |     +---w odu-type?                   identityref
+       |     +---w id                     uint8
+       |     +---w type?                  identityref
+       |     +---w source?                inet:ip-address
+       |     +---w destination?           inet:ip-address
+       |     +---w src-tp-id?             binary
+       |     +---w dst-tp-id?             binary
+       |     +---w switching-layer?       identityref
+       |     +---w encoding?              identityref
+       |     +---w protection-type?       identityref
+       |     +---w restoration-type?      identityref
+       |     +---w provider-id?           te-types:te-global-id
+       |     +---w client-id?             te-types:te-global-id
+       |     +---w te-topology-id?        te-types:te-topology-id
+       |     +---w setup-priority?        uint8
+       |     +---w hold-priority?         uint8
+       |     +---w te-path-metric-type?   identityref
+       |     +---w odu-type?              identityref
        |     +---w p2p-primary-paths
        |     |  +---w p2p-primary-path* [name]
        |     |     +---w name                      string
@@ -485,12 +473,12 @@ module: ietf-otn-tunnel
        |     |                    +---w te-label
        |     |                       +---w (technology)?
        |     |                       |  +--:(generic)
-       |     |                       |  |  +---w generic?     rt-types:generalized-label
+       |     |                       |  |  +---w generic?   rt-types:generalized-label
        |     |                       |  +--:(otn)
-       |     |                       |     +---w tpn?         uint16
-       |     |                       |     +---w tsg?         identityref
-       |     |                       |     +---w ts-list?     string
-       |     |                       +---w direction?   te-label-direction
+       |     |                       |     +---w tpn?       uint16
+       |     |                       |     +---w tsg?       identityref
+       |     |                       |     +---w ts-list?   string
+       |     |                       +---w direction?       te-label-direction
        |     +---w p2p-secondary-paths
        |     |  +---w p2p-secondary-path* [name]
        |     |     +---w name                      string
@@ -517,23 +505,16 @@ module: ietf-otn-tunnel
        |     |                    +---w te-label
        |     |                       +---w (technology)?
        |     |                       |  +--:(generic)
-       |     |                       |  |  +---w generic?     rt-types:generalized-label
+       |     |                       |  |  +---w generic?   rt-types:generalized-label
        |     |                       |  +--:(otn)
-       |     |                       |     +---w tpn?         uint16
-       |     |                       |     +---w tsg?         identityref
-       |     |                       |     +---w ts-list?     string
-       |     |                       +---w direction?   te-label-direction
-       |     +---w payload-treatment?          enumeration
-       |     +---w src-client-signal?          identityref
-       |     +---w src-tpn?                    uint16
-       |     +---w src-tsg?                    identityref
-       |     +---w src-tributary-slot-count?   uint16
+       |     |                       |     +---w tpn?       uint16
+       |     |                       |     +---w tsg?       identityref
+       |     |                       |     +---w ts-list?   string
+       |     |                       +---w direction?       te-label-direction
+       |     +---w src-client-signal?     identityref
        |     +---w src-tributary-slots
        |     |  +---w values*   uint8
-       |     +---w dst-client-signal?          identityref
-       |     +---w dst-tpn?                    uint16
-       |     +---w dst-tsg?                    identityref
-       |     +---w dst-tributary-slot-count?   uint16
+       |     +---w dst-client-signal?     identityref
        |     +---w dst-tributary-slots
        |        +---w values*   uint8
        +--ro output
@@ -566,12 +547,12 @@ module: ietf-otn-tunnel
              |                    +--ro te-label
              |                       +--ro (technology)?
              |                       |  +--:(generic)
-             |                       |  |  +--ro generic?     rt-types:generalized-label
+             |                       |  |  +--ro generic?   rt-types:generalized-label
              |                       |  +--:(otn)
-             |                       |     +--ro tpn?         uint16
-             |                       |     +--ro tsg?         identityref
-             |                       |     +--ro ts-list?     string
-             |                       +--ro direction?   te-label-direction
+             |                       |     +--ro tpn?       uint16
+             |                       |     +--ro tsg?       identityref
+             |                       |     +--ro ts-list?   string
+             |                       +--ro direction?       te-label-direction
              +--ro p2p-secondary-paths
                 +--ro p2p-secondary-path* [name]
                    +--ro name                      string
@@ -598,9 +579,9 @@ module: ietf-otn-tunnel
                                   +--ro te-label
                                      +--ro (technology)?
                                      |  +--:(generic)
-                                     |  |  +--ro generic?     rt-types:generalized-label
+                                     |  |  +--ro generic?   rt-types:generalized-label
                                      |  +--:(otn)
-                                     |     +--ro tpn?         uint16
-                                     |     +--ro tsg?         identityref
-                                     |     +--ro ts-list?     string
-                                     +--ro direction?   te-label-direction
+                                     |     +--ro tpn?       uint16
+                                     |     +--ro tsg?       identityref
+                                     |     +--ro ts-list?   string
+                                     +--ro direction?       te-label-direction
