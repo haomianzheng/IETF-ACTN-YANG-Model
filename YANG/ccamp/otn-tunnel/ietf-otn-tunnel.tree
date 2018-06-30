@@ -425,6 +425,11 @@ module: ietf-otn-tunnel
        +--ro tpn?       uint16
        +--ro tsg?       identityref
        +--ro ts-list?   string
+  augment /te:te/te:lsps-state/te:lsp/te:lsp-record-route-subobjects/te:record-route-subobject/te:type/te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
 
   rpcs:
     +---x otn-te-tunnel-path-compute
