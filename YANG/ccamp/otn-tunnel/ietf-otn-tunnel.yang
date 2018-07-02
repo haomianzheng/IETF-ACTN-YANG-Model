@@ -78,20 +78,6 @@ module ietf-otn-tunnel {
         "Client signal at the source endpoint of the tunnel";
     }
 
-    container src-tributary-slots {
-      description
-        "A list of tributary slots used by the client service.
-         Applicable in case of mux services";
-      leaf-list values {
-        type uint8;
-          description
-            "Tributary tributary slot value";
-          reference
-            "G.709/Y.1331, February 2016: Interfaces for the
-             Optical Transport Network (OTN)";
-      }
-    }
-
     leaf dst-client-signal {
       type identityref {
         base otn-types:client-signal;
@@ -100,19 +86,6 @@ module ietf-otn-tunnel {
         "Client signal at the destination endpoint of the tunnel";
     }
 
-    container dst-tributary-slots {
-      description
-        "A list of tributary slots used by the client service.
-         Applicable in case of mux services";
-      leaf-list values {
-        type uint8;
-        description
-          "Tributary slot value";
-        reference
-          "G.709/Y.1331, February 2016: Interfaces for the
-           Optical Transport Network (OTN)";
-      }
-    }
   }
 
  /*
