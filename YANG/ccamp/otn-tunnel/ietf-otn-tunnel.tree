@@ -2,11 +2,7 @@
 module: ietf-otn-tunnel
   augment /te:te/te:tunnels/te:tunnel:
     +--rw src-client-signal?     identityref
-    +--rw src-tributary-slots
-    |  +--rw values*   uint8
     +--rw dst-client-signal?     identityref
-    +--rw dst-tributary-slots
-       +--rw values*   uint8
   augment /te:te/te:globals/te:named-path-constraints/te:named-path-constraint/te:te-bandwidth/te:technology:
     +--:(otn)
        +--rw odu-type?   identityref
