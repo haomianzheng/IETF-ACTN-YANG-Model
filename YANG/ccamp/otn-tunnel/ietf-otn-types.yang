@@ -473,6 +473,7 @@ Comment 2: need to better align the term with other models, like L1CSM.
   }
   
   grouping otn-link-bandwidth {
+    description "link bandwidth attributes for OTN";
     list odulist {
       key "odu-type";
       description
@@ -491,6 +492,7 @@ Comment 2: need to better align the term with other models, like L1CSM.
   }
 
   grouping otn-path-bandwidth {
+  	description "path bandwidth attributes for OTN";
     leaf odu-type {
       type identityref {
         base otn-types:tributary-protocol-type;
@@ -500,10 +502,12 @@ Comment 2: need to better align the term with other models, like L1CSM.
   }
 
   grouping otn-label-restriction {
+  	description "label restriction information for OTN";
     leaf range-type {
       type identityref {
         base otn-types:otn-label-range-type;
       }
+      description "type for range";
     }
     leaf tsg {
       type identityref {
@@ -522,6 +526,7 @@ Comment 2: need to better align the term with other models, like L1CSM.
  
 
   grouping otn-link-label {
+    description "link label information for OTN";
     choice otn-label-type {
       description
         "OTN label type";
@@ -553,6 +558,7 @@ Comment 2: need to better align the term with other models, like L1CSM.
   }
 
   grouping otn-path-label {
+    description "path label information for OTN";
     leaf tpn {
       type uint16 {
         range "1..4095";
