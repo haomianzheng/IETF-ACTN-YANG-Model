@@ -56,7 +56,7 @@ module ietf-otn-tunnel {
   description
     "This module defines a model for OTN Tunnel Services.";
 
-  revision "2018-06-30" {
+  revision "2018-07-02" {
     description
       "Revision 0.6";
     reference
@@ -86,7 +86,7 @@ module ietf-otn-tunnel {
         "Client signal at the destination endpoint of the tunnel";
     }
 
-  }
+ }
 
  /*
   * Data nodes
@@ -102,7 +102,7 @@ module ietf-otn-tunnel {
    * Augment TE bandwidth
    */
 
-	 /* Augment bandwidth of named-path-constraints */
+         /* Augment bandwidth of named-path-constraints */
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/"
         + "te:te-bandwidth/te:technology" {
@@ -150,8 +150,9 @@ module ietf-otn-tunnel {
     case otn {
       uses otn-types:otn-path-bandwidth;
     }
+
   }
-  
+
   /*
    * Augment TE label.
    */
@@ -247,6 +248,7 @@ module ietf-otn-tunnel {
   /* Augment label restrictions for the forwarding direction of path-out-segment of named-path-constraints */
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/te:path-out-segment/"
+
         + "te:forward/te:label-restrictions/"
         + "te:label-restriction" {
     description "OTN label.";
@@ -295,6 +297,7 @@ module ietf-otn-tunnel {
     case otn {
       uses otn-types:otn-link-label;
     }
+
   }
 
   /* Augment label restrictions end for the reverse direction of path-out-segment of named-path-constraints */
@@ -343,6 +346,7 @@ module ietf-otn-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
+
       uses otn-types:otn-path-label;
     }
   }
@@ -440,6 +444,7 @@ module ietf-otn-tunnel {
         + "te:path-out-segment/te:forward/te:label-restrictions/"
         + "te:label-restriction/te:label-start/"
         + "te:te-label/te:technology" {
+
     description "OTN label.";
     case otn {
       uses otn-types:otn-link-label;
@@ -488,6 +493,7 @@ module ietf-otn-tunnel {
     description "OTN label.";
     case otn {
       uses otn-types:otn-link-label;
+
     }
   }
 
@@ -536,6 +542,7 @@ module ietf-otn-tunnel {
         + "te:optimizations/te:algorithm/te:metric/"
         + "te:optimization-metric/te:explicit-route-exclude-objects/"
         + "te:route-object-exclude-object/te:type/te:label/"
+
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
@@ -633,6 +640,7 @@ module ietf-otn-tunnel {
 
   /* Augment label restrictions start for the reverse direction of path-in-segment of reverse primary path */
   augment "/te:te/te:tunnels/te:tunnel/"
+
         + "te:p2p-primary-paths/te:p2p-primary-path/"
         + "te:p2p-reverse-primary-path/"
         + "te:path-in-segment/te:reverse/te:label-restrictions/"
@@ -681,6 +689,7 @@ module ietf-otn-tunnel {
   }
 
   /* Augment label restrictions end for the forwarding direction of path-out-segment of reverse primary path */
+
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-primary-paths/te:p2p-primary-path/"
         + "te:p2p-reverse-primary-path/"
@@ -777,6 +786,7 @@ module ietf-otn-tunnel {
         + "te:optimization-metric/te:explicit-route-exclude-objects/"
         + "te:route-object-exclude-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
+
     description "OTN label.";
     case otn {
       uses otn-types:otn-path-label;
@@ -825,6 +835,7 @@ module ietf-otn-tunnel {
         + "te:p2p-secondary-paths/te:p2p-secondary-path/"
         + "te:path-in-segment/te:forward/te:label-restrictions/"
         + "te:label-restriction" {
+
     description "OTN label.";
     uses otn-types:otn-label-restriction;
   }
@@ -922,6 +933,7 @@ module ietf-otn-tunnel {
   /* Augment label restrictions for the reverse direction of path-out-segment of secondary path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+
         + "te:path-out-segment/te:reverse/te:label-restrictions/"
         + "te:label-restriction" {
     description "OTN label.";
@@ -955,8 +967,8 @@ module ietf-otn-tunnel {
   /* Augment label hop of path-route of secondary path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-        + "te:state/te:path-properties/te:path-route-objects/" 
-        + "te:path-computed-route-object/te:state/te:type/te:label/" 
+        + "te:state/te:path-properties/te:path-route-objects/"
+        + "te:path-computed-route-object/te:state/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
@@ -970,6 +982,7 @@ module ietf-otn-tunnel {
         + "te:state/te:lsps/te:lsp/te:lsp-record-route-subobjects/"
         + "te:record-route-subobject/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
+
     description "OTN label.";
     case otn {
       uses otn-types:otn-path-label;
@@ -981,7 +994,7 @@ module ietf-otn-tunnel {
         + "te:p2p-secondary-paths/te:p2p-secondary-path/"
         + "te:state/te:lsps/te:lsp/te:path-properties/"
         + "te:path-route-objects/"
-        + "te:path-computed-route-object/te:state/te:type/te:label/" 
+        + "te:path-computed-route-object/te:state/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
     case otn {
@@ -998,8 +1011,8 @@ module ietf-otn-tunnel {
     case otn {
       uses otn-types:otn-path-label;
     }
-  } 
-  
+  }
+
   grouping p2p-path-ero {
     description
       "TE tunnel ERO configuration grouping";
@@ -1018,6 +1031,7 @@ module ietf-otn-tunnel {
       type uint32;
       description
         "Traffic engineering hop metric.";
+
     }
     container explicit-route-objects {
       description "Explicit route objects container";
@@ -1032,13 +1046,13 @@ module ietf-otn-tunnel {
           description "An explicit-route hop action.";
         }
         uses te-types:explicit-route-hop {
-		  augment "type/label/label-hop/te-label/technology" {
-		    description "OTN label.";
+                  augment "type/label/label-hop/te-label/technology" {
+                    description "OTN label.";
             case otn {
-	          uses otn-types:otn-path-label;
-	        }
-		  }
-		}
+                  uses otn-types:otn-path-label;
+                }
+                  }
+                }
       }
     }
   }
@@ -1066,6 +1080,7 @@ module ietf-otn-tunnel {
           description
             "TE tunnel source address.";
         }
+
         leaf destination {
           type inet:ip-address;
           description
@@ -1114,6 +1129,7 @@ module ietf-otn-tunnel {
         leaf client-id {
           type te-types:te-global-id;
           description
+
             "An identifier to uniquely identify a client.";
         }
         leaf te-topology-id {
@@ -1148,7 +1164,7 @@ module ietf-otn-tunnel {
 
         leaf odu-type {
           type identityref{
-            base otn-types:tributary-protocol-type;
+            base otn-types:odu-type;
           }
           description "Type of ODU";
         }
@@ -1162,6 +1178,7 @@ module ietf-otn-tunnel {
               type string;
               description "TE path name";
             }
+
             uses p2p-path-ero;
           }
         }
@@ -1210,6 +1227,7 @@ module ietf-otn-tunnel {
           }
           enum source-not-found {
             description "source-not-found";
+
           }
           enum topology-error {
             description "topology-error";
