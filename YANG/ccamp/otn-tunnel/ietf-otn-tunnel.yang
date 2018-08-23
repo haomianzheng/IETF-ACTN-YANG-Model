@@ -6,18 +6,27 @@ module ietf-otn-tunnel {
 
   import ietf-te {
     prefix "te";
+    reference 
+    "I-D.ietf-teas-yang-te: A YANG Data Model for Traffic Engineering 
+    Tunnels and Interfaces";
   }
 
   import ietf-otn-types {
     prefix "otn-types";
+    reference 
+    "module ietf-otn-types in this Document";
   }
 
   import ietf-te-types {
     prefix "te-types";
+    reference 
+    "I-D.ietf-teas-yang-te: A YANG Data Model for Traffic Engineering 
+    Tunnels and Interfaces";
   }
 
   import ietf-inet-types {
     prefix "inet";
+    reference "RFC 6991: Common YANG Data Types";
   }
 
   organization
@@ -54,13 +63,25 @@ module ietf-otn-tunnel {
              <mailto:xuyunbin@ritt.cn>";
 
   description
-    "This module defines a model for OTN Tunnel Services.";
+    "This module defines a model for OTN Tunnel Services.
+    
+    Copyright (c) 2018 IETF Trust and the persons
+ 	  identified as authors of the code.  All rights reserved.
 
-  revision "2018-07-02" {
+  	Redistribution and use in source and binary forms, with or
+  	without modification, is permitted pursuant to, and subject
+  	to the license terms contained in, the Simplified BSD License
+  	set forth in Section 4.c of the IETF Trust's Legal Provisions
+  	Relating to IETF Documents
+  	(https://trustee.ietf.org/license-info).";
+
+  revision "2018-08-23" {
     description
-      "Revision 0.6";
+      "Initial Revision";
     reference
-      "draft-ietf-ccamp-otn-tunnel-model-03";
+      "RFC XXXX: OTN Tunnel YANG Model";
+    // RFC Ed.: replace XXXX with actual RFC number, update date 
+    // information and remove this note
   }
 
  /*

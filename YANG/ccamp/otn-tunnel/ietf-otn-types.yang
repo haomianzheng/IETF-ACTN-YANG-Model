@@ -38,11 +38,13 @@ module ietf-otn-types {
   description
     "This module defines OTN types.";
 
-  revision "2018-08-06" {
+  revision "2018-08-23" {
     description
-      "Revision 0.8";
+      "Initial Revision";
     reference
-      "draft-ietf-ccamp-otn-tunnel-model-04";
+      "RFC XXXX: OTN Tunnel YANG Model";
+    // RFC Ed.: replace XXXX with actual RFC number, update date 
+    // information and remove this note
   }
 
   identity tributary-slot-granularity {
@@ -223,70 +225,6 @@ module ietf-otn-types {
       "Client signal type of OC768 & STM-256";
   }
 
-/* FIX ME: remove the redundant ODUk */
-  identity client-signal-ODU0 {
-    base client-signal;
-    description
-      "Client signal type of ODU0 (1.24G)";
-  }
-
-/*
-  identity client-signal-ODU1 {
-    base client-signal;
-    description
-      "ODU1 protocol (2.49G)";
-  }
-
-  identity client-signal-ODU2 {
-    base client-signal;
-    description
-      "Client signal type of ODU2 (10.03G)";
-  }
-
-  identity client-signal-ODU2e {
-    base client-signal;
-    description
-      "Client signal type of ODU2e (10.39G)";
-  }
-
-  identity client-signal-ODU3 {
-    base client-signal;
-    description
-      "Client signal type of ODU3 (40.31G)";
-  }
-
-  identity client-signal-ODU3e2 {
-    base client-signal;
-    description
-      "Client signal type of ODU3e2 (41.78G)";
-  }
-
-  identity client-signal-ODU4 {
-    base client-signal;
-    description
-      "Client signal type of ODU4 (104.79G)";
-  }
-
-  identity client-signal-ODUflex-cbr {
-    base client-signal;
-    description
-      "Client signal type of ODU Flex CBR";
-  }
-
-  identity client-signal-ODUflex-gfp {
-    base client-signal;
-    description
-      "Client signal type of ODU Flex GFP";
-  }
-
-  identity client-signal-ODUCn {
-    base client-signal;
-    description
-      "Client signal type of ODUCn (beyond 100G)";
-  }
-*/
-
-
   identity FC-100 {
     base client-signal;
     description
@@ -340,40 +278,6 @@ module ietf-otn-types {
     description
       "Client signal type of Fibre Connection 8G";
   }
-
-
-/* FIX ME: remove client-signal-OTUx */
-/*
-  identity client-signal-OTU1 {
-    base client-signal;
-    description
-      "Client signal type of OTU1";
-  }
-
-  identity client-signal-OTU2 {
-    base client-signal;
-    description
-      "Client signal type of OTU2";
-  }
-
-  identity client-signal-OTU2e {
-    base client-signal;
-    description
-      "Client signal type of OTU2e";
-  }
-
-  identity client-signal-OTU3 {
-    base client-signal;
-    description
-      "Client signal type of OTU3";
-  }
-
-  identity client-signal-OTU4 {
-    base client-signal;
-    description
-      "Client signal type of OTU4";
-  }
-*/
 
   identity otn-label-range-type {
     description
@@ -445,7 +349,7 @@ module ietf-otn-types {
     }
   }
  
-/* FIX ME: Suggest to be changed as otn-label-range; 
+/* Note: Suggest to be changed as otn-label-range; 
 otn-topology/tunnel also need change */
   grouping otn-link-label {
     description "link label information for OTN, for label-start/end";
@@ -479,7 +383,7 @@ otn-topology/tunnel also need change */
     }
   }
 
-/* FIX ME: Suggest to be changed as otn-label; 
+/* Note: Suggest to be changed as otn-label; 
 otn-topology/tunnel also need change */
   grouping otn-path-label {
     description "label information for OTN, for label-hop";
