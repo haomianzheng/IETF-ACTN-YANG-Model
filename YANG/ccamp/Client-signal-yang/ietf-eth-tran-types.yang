@@ -23,11 +23,11 @@ module ietf-eth-tran-types {
 	description
 		"This module defines the ETH transport types.";
 
-	revision 2018-03-01 {
+	revision 2018-08-30 {
 		description
 			"Initial revision";
 		reference
-			"draft-zheng-ccamp-otn-client-signal-yang";
+			"draft-zheng-ccamp-client-signal-yang";
 	}
 
 	/*
