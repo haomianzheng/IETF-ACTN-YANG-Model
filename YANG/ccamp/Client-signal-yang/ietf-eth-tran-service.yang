@@ -1,6 +1,6 @@
 module ietf-eth-tran-service {
 
-  namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-svc";
+  namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-service";
 
   prefix "ethtsvc";
 
@@ -169,6 +169,32 @@ module ietf-eth-tran-service {
     }
   }
 
+  grouping named-or-value-bandwidth-profile {
+    description
+      "A grouping to configure a bandwdith profile either by
+       referencing a named bandwidth profile or by
+       configuring the values of the bandwidth profile attributes.";
+    choice style {
+      description
+        "Whether the bandwidth profile is named or defined by value";
+
+      case named {
+        description
+          "Named bandwidth profile.";
+        leaf bandwidth-profile-name {
+          type "string";
+          description
+            "Name of the bandwidth profile.";
+        }
+      }
+      case value {
+        description
+          "Bandwidth profile configured by value.";
+        uses etht-types:etht-bandwidth-profiles;
+      }
+    }
+  }
+
   grouping bandwidth-profiles {
     description
       "A grouping which represent bandwidth profile configuration.";
@@ -179,71 +205,26 @@ module ietf-eth-tran-service {
          asymmetrical";
       case symmetrical {
         description
-          "The same bandwidth profile is used to describe the ingress
-          and the egress bandwidth profile.";
-
-        choice style {
+          "The same bandwidth profile is used to describe both 
+           the ingress and the egress bandwidth profile.";
+        container ingress-egress-bandwidth-profile {
           description
-            "Whether the bandwidth profile used in
-             both the ingress and egress direction 
-             is named or defined by value"
-
-          case named {
-            leaf ingress-egress-bandwidth-profile-name {
-              type "string";
-              description
-                "Name of the bandwidth profile used in 
-                 both the ingress and egress direction.";
-            }
-          }
-          case value {
-            container ingress-egress-bandwidth-profile {
-              uses etht-types:etht-bandwidth-profiles;
-            }
-          }
+            "The bandwdith profile used in both directions.";
+          uses named-or-value-bandwidth-profile;
         }
       }
       case asymmetrical {
         description
           "Ingress and egress bandwidth profiles can be specified.";
-        /* Ingress bandwdith profile */
-        choice style {
+        container ingress-bandwidth-profile {
           description
-            "Whether the bandwidth profile used in the ingress
-             direction is named or defined by value"
-
-          case named {
-            leaf ingress-bandwidth-profile-name {
-              type "string";
-              description
-                "Name of the bandwidth profile used in
-                 the ingress direction.";
-            }
-          }
-          case value {
-            container ingress-bandwidth-profile {
-              uses etht-types:etht-bandwidth-profiles;
-            }
-          }
+            "The bandwdith profile used in the ingress direction.";
+          uses named-or-value-bandwidth-profile;
         }
-        /* Egress bandwidth profile */
-        choice style {
+        container egress-bandwidth-profile {
           description
-            "Whether the bandwidth profile used in the egress
-             direction is named or defined by value"
-          case named {
-            leaf egress-bandwidth-profile-name {
-              type "string";
-              description
-                "Name of the bandwidth profile used in
-                 the egress direction.";
-            }
-          }
-          case value {
-            container egress-bandwidth-profile {
-              uses etht-types:etht-bandwidth-profiles;
-            }
-          }
+            "The bandwdith profile used in the egress direction.";
+          uses named-or-value-bandwidth-profile;
         }
       }
     }
@@ -332,6 +313,8 @@ module ietf-eth-tran-service {
     uses bandwidth-profiles;
 
     container vlan-operations {
+      description
+        "Configuration of VLAN operations.";
       choice direction {
         description
           "Whether the VLAN operations are symmetrical or
@@ -410,25 +393,6 @@ module ietf-eth-tran-service {
     leaf dst-split-horizon-group {
       type string;
       description "Identify a split horizon group at the Tunnel destination TTP";
-    }
-  }
-
-  grouping te-topology-identifier {
-    leaf access-provider-id {
-      type te-types:te-global-id;
-      description
-        "An identifier to uniquely identify a provider.";
-    }
-    leaf access-client-id {
-      type te-types:te-global-id;
-      description
-        "An identifier to uniquely identify a client.";
-    }
-    leaf access-topology-id {
-      type te-types:te-topology-id;
-      description
-        "Identifies the topology the
-        service access ports belong to.";
     }
   }
 
@@ -526,7 +490,7 @@ module ietf-eth-tran-service {
       /* Add default as installed  */
     }
 
-    uses te-topology-identifier;
+    uses te-types:te-topology-identifier;
 
     list etht-svc-access-ports {
       key access-port-id;
@@ -614,6 +578,8 @@ module ietf-eth-tran-service {
       "ETH transport services.";
 
     container globals {
+      description
+        "Globals Ethernet configuration data container";
       list named-bandwidth-profiles {
         key bandwidth-profile-name;
         description
