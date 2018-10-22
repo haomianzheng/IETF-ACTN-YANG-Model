@@ -9,8 +9,8 @@ module ietf-trans-client-service {
     prefix "te-types";
   }
 
-  import ietf-otn-types {
-    prefix "otn-types";
+  import ietf-l1-service-types {
+    prefix "l1-svc-types";
   }
 
   organization
@@ -32,16 +32,17 @@ module ietf-trans-client-service {
     "This module defines a YANG data model for describing
      simple transport client services.";
 
-  revision 2018-02-09 {
+  revision 2018-10-19 {
     description
       "Initial version";
     reference
-      "ADD REFERENCE HERE";
+      "draft-zheng-ccamp-client-signal-yang";
   }
 
   /*
    * Groupings
    */
+
   grouping client-svc-access-parameters {
     description
       "Transport client services access parameters";
@@ -52,22 +53,20 @@ module ietf-trans-client-service {
         "The identifier of the access node in the underlying
          transport topology.";
     }
-
     leaf access-ltp-id {
       type te-types:te-tp-id;
       description
         "The TE link termination point identifier, used together with
          access-node-id to identify the access LTP.";
     }
-
     leaf client-signal {
       type identityref {
-        base otn-types:client-signal;
+        base l1-svc-types:protocol-type;
       }
       description
         "Identifiies the client signal type associated with this port";
-                }
     }
+  }
 
   grouping client-svc-tunnel-parameters {
     description
@@ -80,28 +79,6 @@ module ietf-trans-client-service {
     }
   }
 
-  grouping te-topology-identifier {
-    description
-      "description";
-    leaf access-provider-id {
-      type te-types:te-global-id;
-      description
-        "An identifier to uniquely identify a provider.";
-    }
-
-    leaf access-client-id {
-      type te-types:te-global-id;
-      description
-        "An identifier to uniquely identify a client.";
-    }
-
-    leaf access-topology-id {
-      type te-types:te-topology-id;
-      description
-        "Identifies the topology the service access ports belong to.";
-    }
-  }
-
   grouping  client-svc-instance_config {
     description
       "Configuraiton parameters for client services.";
@@ -111,15 +88,28 @@ module ietf-trans-client-service {
       description
         "Name of the p2p transport client service.";
     }
-
     leaf client-svc-descr {
       type string;
       description
         "Description of the transport client service.";
     }
-
-        uses te-topology-identifier;
-
+    uses te-types:te-topology-identifier;
+    container src-access-ports {
+      description
+        "Source access port of a client service.";
+      uses client-svc-access-parameters;
+    }
+    container dst-access-ports {
+      description
+        "Destination access port of a client service.";
+      uses client-svc-access-parameters;
+    }
+    list svc-tunnels {
+      key tunnel-name;
+      description
+        "List of the TE Tunnels supporting the client service.";
+      uses client-svc-tunnel-parameters;
+    }
     leaf admin-status {
       type identityref {
         base te-types:tunnel-state-type;
@@ -127,25 +117,6 @@ module ietf-trans-client-service {
       default te-types:tunnel-state-up;
       description "Client service administrative state.";
     }
-
-    container src-access-ports {
-      description
-        "Source access port of a client service.";
-      uses client-svc-access-parameters;
-    }
-
-        container dst-access-ports {
-          description
-                "Destination access port of a client service.";
-          uses client-svc-access-parameters;
-        }
-
-        list svc-tunnels {
-          key tunnel-name;
-          description
-                "List of the TE Tunnels supporting the client service.";
-          uses client-svc-tunnel-parameters;
-        }
   }
 
   grouping  client-svc-instance_state {
