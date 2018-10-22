@@ -1,12 +1,12 @@
 module ietf-eth-tran-service {
 
-  namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-svc";
+  namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-service";
 
   prefix "ethtsvc";
 
-	import ietf-yang-types {
-		prefix "yang";
-	}
+  import ietf-yang-types {
+    prefix "yang";
+  }
 
   import ietf-te-types {
     prefix "te-types";
@@ -16,8 +16,8 @@ module ietf-eth-tran-service {
     prefix "etht-types";
   }
 
-	organization
-		"Internet Engineering Task Force (IETF) CCAMP WG";
+  organization
+    "Internet Engineering Task Force (IETF) CCAMP WG";
   contact
     "
       WG List: <mailto:ccamp@ietf.org>
@@ -36,16 +36,16 @@ module ietf-eth-tran-service {
     "This module defines a YANG data model for describing
      the Ethernet transport services.";
 
-	revision 2018-08-30 {
-		description
-			"Initial revision";
-		reference
-			"draft-zheng-ccamp-otn-client-signal-yang";
-	}
+  revision 2018-10-18 {
+    description
+      "Initial revision";
+    reference
+      "draft-zheng-ccamp-otn-client-signal-yang";
+  }
 
   /*
-  Groupings
-  */
+   * Groupings
+   */
 
   grouping vlan-classification {
     description
@@ -94,6 +94,19 @@ module ietf-eth-tran-service {
       description
         "The VLAN ID value to push/swap.";
     }
+/*
+ * To be added: this attribute is used when:
+ * a) the ETH service has only one CoS (as in current version)
+ * b) as a default when a mapping between a given CoS value
+ *    and the PCP value is not defined (in future versions)
+ */
+    leaf default-pcp {
+      type uint8 {
+        range "0..7";
+      }
+      description
+        "The default Priority Code Point (PCP) value to push/swap";
+    }
   }
 
   grouping vlan-operations {
@@ -125,8 +138,8 @@ module ietf-eth-tran-service {
       }
       container second-tag {
         must
-					'../outer-tag/tag-type = "etht-types:s-vlan-tag-type" and ' +
-					'tag-type = "etht-types:c-vlan-tag-type"'
+          '../outer-tag/tag-type = "etht-types:s-vlan-tag-type" and ' +
+          'tag-type = "etht-types:c-vlan-tag-type"'
         {
 
           error-message
@@ -156,6 +169,32 @@ module ietf-eth-tran-service {
     }
   }
 
+  grouping named-or-value-bandwidth-profile {
+    description
+      "A grouping to configure a bandwdith profile either by
+       referencing a named bandwidth profile or by
+       configuring the values of the bandwidth profile attributes.";
+    choice style {
+      description
+        "Whether the bandwidth profile is named or defined by value";
+
+      case named {
+        description
+          "Named bandwidth profile.";
+        leaf bandwidth-profile-name {
+          type "string";
+          description
+            "Name of the bandwidth profile.";
+        }
+      }
+      case value {
+        description
+          "Bandwidth profile configured by value.";
+        uses etht-types:etht-bandwidth-profiles;
+      }
+    }
+  }
+
   grouping bandwidth-profiles {
     description
       "A grouping which represent bandwidth profile configuration.";
@@ -166,29 +205,26 @@ module ietf-eth-tran-service {
          asymmetrical";
       case symmetrical {
         description
-          "The same bandwidth profile is used to describe the ingress
-          and the egress bandwidth profile.";
-
-        leaf ingress-egress-bandwidth-profile-name {
-          type "string";
+          "The same bandwidth profile is used to describe both 
+           the ingress and the egress bandwidth profile.";
+        container ingress-egress-bandwidth-profile {
           description
-            "Name of the bandwidth profile.";
+            "The bandwdith profile used in both directions.";
+          uses named-or-value-bandwidth-profile;
         }
       }
       case asymmetrical {
         description
           "Ingress and egress bandwidth profiles can be specified.";
-        leaf ingress-bandwidth-profile-name {
-          type "string";
+        container ingress-bandwidth-profile {
           description
-            "Name of the bandwidth profile used in
-             the ingress direction.";
+            "The bandwdith profile used in the ingress direction.";
+          uses named-or-value-bandwidth-profile;
         }
-        leaf egress-bandwidth-profile-name {
-          type "string";
+        container egress-bandwidth-profile {
           description
-            "Name of the bandwidth profile used in
-             the egress direction.";
+            "The bandwdith profile used in the egress direction.";
+          uses named-or-value-bandwidth-profile;
         }
       }
     }
@@ -238,8 +274,8 @@ module ietf-eth-tran-service {
         }
         container second-tag {
           must
-						'../outer-tag/tag-type = "etht-types:classify-s-vlan" and ' +
-						'tag-type = "etht-types:classify-c-vlan"'
+            '../outer-tag/tag-type = "etht-types:classify-s-vlan" and ' +
+            'tag-type = "etht-types:classify-c-vlan"'
           {
 
             error-message
@@ -267,16 +303,18 @@ module ietf-eth-tran-service {
     }
 
 /*
-	Open issue: can we constraints it to be used only with mp services?
-*/
-		leaf split-horizon-group {
-			type string;
-			description "Identify a split horizon group";
-		}
+ * Open issue: can we constraints it to be used only with mp services?
+ */
+    leaf split-horizon-group {
+      type string;
+      description "Identify a split horizon group";
+    }
 
     uses bandwidth-profiles;
 
     container vlan-operations {
+      description
+        "Configuration of VLAN operations.";
       choice direction {
         description
           "Whether the VLAN operations are symmetrical or
@@ -325,11 +363,11 @@ module ietf-eth-tran-service {
          placeholder to support proprietary multiplexing
          (for further discussion)
         */
-			}
+      }
 
       case none {
         /* no additional information is needed */
-			}
+      }
 
       case vlan-tag {
         /*
@@ -338,96 +376,77 @@ module ietf-eth-tran-service {
           by the VLAN classification and operations configured in the
           etht-svc-access-parameters grouping
         */
-			}
+      }
 
       case pw {
         /* to be completed (for further discussion) */
-			}
+      }
     }
 
 /*
-	Open issue: can we constraints it to be used only with mp services?
-*/
-		leaf src-split-horizon-group {
-			type string;
-			description "Identify a split horizon group at the Tunnel source TTP";
-		}
-		leaf dst-split-horizon-group {
-			type string;
-			description "Identify a split horizon group at the Tunnel destination TTP";
-		}
-  }
-
-  grouping te-topology-identifier {
-    leaf access-provider-id {
-      type te-types:te-global-id;
-      description
-        "An identifier to uniquely identify a provider.";
+ * Open issue: can we constraints it to be used only with mp services?
+ */
+    leaf src-split-horizon-group {
+      type string;
+      description "Identify a split horizon group at the Tunnel source TTP";
     }
-    leaf access-client-id {
-      type te-types:te-global-id;
-      description
-        "An identifier to uniquely identify a client.";
-    }
-    leaf access-topology-id {
-      type te-types:te-topology-id;
-      description
-        "Identifies the topology the
-        service access ports belong to.";
+    leaf dst-split-horizon-group {
+      type string;
+      description "Identify a split horizon group at the Tunnel destination TTP";
     }
   }
 
-	grouping  etht-svc-pm-threshold_config {
-		description
-			"Configuraiton parameters for Ethernet service PM thresholds.";
+  grouping  etht-svc-pm-threshold_config {
+    description
+      "Configuraiton parameters for Ethernet service PM thresholds.";
 
-		leaf sending-rate-high {
-			type uint64;
-			description
-				"High threshold of packet sending rate in kbps.";
-		}
-		leaf sending-rate-low {
-			type uint64;
-			description
-				"Low threshold of packet sending rate in kbps.";
-		}
-		leaf receiving-rate-high {
-			type uint64;
-			description
-				"High threshold of packet receiving rate in kbps.";
-		}
-		leaf receiving-rate-low {
-			type uint64;
-			description
-				"Low threshold of packet receiving rate in kbps.";
-		}
-	}	
+    leaf sending-rate-high {
+      type uint64;
+      description
+        "High threshold of packet sending rate in kbps.";
+    }
+    leaf sending-rate-low {
+      type uint64;
+      description
+        "Low threshold of packet sending rate in kbps.";
+    }
+    leaf receiving-rate-high {
+      type uint64;
+      description
+        "High threshold of packet receiving rate in kbps.";
+    }
+    leaf receiving-rate-low {
+      type uint64;
+      description
+        "Low threshold of packet receiving rate in kbps.";
+    }
+  }
 
-	grouping  etht-svc-pm-stats {
-		description
-			"Ethernet service PM statistics.";
+  grouping  etht-svc-pm-stats {
+    description
+      "Ethernet service PM statistics.";
 
-		leaf sending-rate-too-high {
-			type uint32;
-			description
-				"Counter that indicates the number of times the sending rate is above the high threshold";
-		}
-		leaf sending-rate-too-low {
-			type uint32;
-			description
-				"Counter that indicates the number of times the sending rate is below the low threshold";
-		}
-		leaf receiving-rate-too-high {
-			type uint32;
-			description
-				"Counter that indicates the number of times the receiving rate is above the high threshold";
-		}
-		leaf receiving-rate-too-low {
-			type uint32;
-			description
-				"Counter that indicates the number of times the receiving rate is below the low threshold";
-		}
-	}	
+    leaf sending-rate-too-high {
+      type uint32;
+      description
+        "Counter that indicates the number of times the sending rate is above the high threshold";
+    }
+    leaf sending-rate-too-low {
+      type uint32;
+      description
+        "Counter that indicates the number of times the sending rate is below the low threshold";
+    }
+    leaf receiving-rate-too-high {
+      type uint32;
+      description
+        "Counter that indicates the number of times the receiving rate is above the high threshold";
+    }
+    leaf receiving-rate-too-low {
+      type uint32;
+      description
+        "Counter that indicates the number of times the receiving rate is below the low threshold";
+    }
+  }  
 
   grouping  etht-svc-instance_config {
     description
@@ -436,32 +455,51 @@ module ietf-eth-tran-service {
     leaf etht-svc-name {
       type string;
       description
-        "Name of the p2p ETH transport service.";
+        "Name of the ETH transport service.";
     }
 
-		leaf etht-svc-descr {
-			type string;
-			description
-				"Description of the ETH transport service.";
-		}
+    leaf etht-svc-id {
+      type yang:uuid;
+      description
+        "Universally Unique IDentifier (UUID) of the ETH transport service.";
+    }
 
- 		leaf etht-svc-type {
-			type etht-types:service-type;
-			description
-				"Type of Ethernet service (p2p, mp2mp or rmp).";
-			/* Add default as p2p */
-		}
+    leaf etht-svc-descr {
+      type string;
+      description
+        "Description of the ETH transport service.";
+    }
 
-		uses te-topology-identifier;
+    leaf etht-svc-customer {
+      type string;
+      description
+        "Customer of the ETH transport service.";
+    }
+
+     leaf etht-svc-type {
+      type etht-types:service-type;
+      description
+        "Type of ETH transport service (p2p, mp2mp or rmp).";
+      /* Add default as p2p */
+    }
+
+     leaf etht-svc-lifecycle {
+      type etht-types:lifecycle-status;
+      description
+        "Lifecycle state of ETH transport service.";
+      /* Add default as installed  */
+    }
+
+    uses te-types:te-topology-identifier;
 
     list etht-svc-access-ports {
       key access-port-id;
       min-elements "1";
 /*
-	Open Issue:
-		Is it possible to limit the max-elements only for p2p services?
+  Open Issue:
+    Is it possible to limit the max-elements only for p2p services?
 
-			max-elements "2";
+      max-elements "2";
 */
       description
         "List of the ETH trasport services access port instances.";
@@ -481,17 +519,17 @@ module ietf-eth-tran-service {
 
       uses etht-svc-tunnel-parameters;
     }
-		container pm-config {
-			description
-				"ETH service performance monitoring";
-				 
-			leaf pm-enable {
-				type boolean;
-				description 
-					"Boolean value indicating whether PM is enabled.";
-			}
-			uses etht-svc-pm-threshold_config;	
-		}
+    container pm-config {
+      description
+        "ETH service performance monitoring";
+         
+      leaf pm-enable {
+        type boolean;
+        description 
+          "Boolean value indicating whether PM is enabled.";
+      }
+      uses etht-svc-pm-threshold_config;  
+    }
     leaf admin-status {
       type identityref {
         base te-types:tunnel-state-type;
@@ -499,18 +537,18 @@ module ietf-eth-tran-service {
       default te-types:tunnel-state-up;
       description "ETH service administrative state.";
     }
-	}
+  }
 
   grouping  etht-svc-instance_state {
     description
       "State parameters for Ethernet services.";
 
     leaf operational-state {
-	  type identityref {
+    type identityref {
         base te-types:tunnel-state-type;
       }
       default te-types:tunnel-state-up;
-	  description "ETH service operational state.";
+    description "ETH service operational state.";
     }
     leaf provisioning-state {
       type identityref {
@@ -518,34 +556,41 @@ module ietf-eth-tran-service {
       }
       description "ETH service provisioning state.";
     }
-		leaf creation-time {
-			type yang:date-and-time;
-			description
-				"Time of ETH service creation.";
-		}
-		leaf last-updated-time {
-			type yang:date-and-time;
-			description
-				"Time of ETH service last update.";
-		}
-		uses etht-svc-pm-stats;
+    leaf creation-time {
+      type yang:date-and-time;
+      description
+        "Time of ETH service creation.";
+    }
+    leaf last-updated-time {
+      type yang:date-and-time;
+      description
+        "Time of ETH service last update.";
+    }
+    uses etht-svc-pm-stats;
   }
 
   /*
-  Data nodes
-  */
+   * Data nodes
+   */
 
   container etht-svc {
     description
       "ETH transport services.";
 
     container globals {
-      list etht-svc-bandwidth-profiles {
+      description
+        "Globals Ethernet configuration data container";
+      list named-bandwidth-profiles {
         key bandwidth-profile-name;
         description
-          "List of bandwidth profile templates used by
+          "List of named bandwidth profiles used by
            Ethernet services.";
 
+        leaf bandwidth-profile-name {
+          type string;
+          description
+            "Name of the bandwidth profile.";
+        }
         uses etht-types:etht-bandwidth-profiles;
       }
     }
