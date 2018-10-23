@@ -25,7 +25,7 @@ module ietf-trans-client-service {
         Yunbin Xu (xuyunbin@ritt.cn);
         Yang Zhao (zhaoyangyjy@chinamobile.com);
         Xufeng Liu (Xufeng_Liu@jabil.com);
-        Giuseppe Fioccola (giuseppe.fioccola@telecomitalia.it);
+        Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
     ";
 
   description
