@@ -38,12 +38,12 @@ module ietf-otn-types {
   description
     "This module defines OTN types.";
 
-  revision "2018-08-23" {
+  revision "2018-12-05" {
     description
       "Initial Revision";
     reference
       "RFC XXXX: OTN Tunnel YANG Model";
-    // RFC Ed.: replace XXXX with actual RFC number, update date 
+    // RFC Ed.: replace XXXX with actual RFC number, update date
     // information and remove this note
   }
 
@@ -71,7 +71,6 @@ module ietf-otn-types {
     description
       "Base identity for protocol framing used by tributary signals";
   }
-
 
   identity ODU0 {
     base odu-type;
@@ -164,7 +163,7 @@ module ietf-otn-types {
       "Base identity from which specific client signals for the
        tunnel are derived";
   }
-  
+
   identity ETH-1Gb {
     base client-signal;
     description
@@ -248,13 +247,13 @@ module ietf-otn-types {
     description
       "Client signal type of Fibre Channel FC-800";
   }
-  
+
   identity FC-1200 {
     base client-signal;
     description
       "Client signal type of Fibre Channel FC-1200";
   }
-  
+
   identity FC-1600 {
     base client-signal;
     description
@@ -266,7 +265,7 @@ module ietf-otn-types {
     description
       "Client signal type of Fibre Channel FC-3200";
   }
-  
+
   identity FICON-4G {
     base client-signal;
     description
@@ -282,7 +281,7 @@ module ietf-otn-types {
   identity otn-label-range-type {
     description
       "Base identity from which specific OTN label
-	   range types derived";
+           range types derived";
   }
 
   identity label-range-trib-slot {
@@ -296,7 +295,7 @@ module ietf-otn-types {
     description
       "Defines a range of OTN tributary ports";
   }
-  
+
   grouping otn-link-bandwidth {
     description "link bandwidth attributes for OTN";
     list odulist {
@@ -317,7 +316,7 @@ module ietf-otn-types {
   }
 
   grouping otn-path-bandwidth {
-  	description "path bandwidth attributes for OTN";
+        description "path bandwidth attributes for OTN";
     leaf odu-type {
       type identityref {
         base otn-types:odu-type;
@@ -327,7 +326,7 @@ module ietf-otn-types {
   }
 
   grouping otn-label-restriction {
-  	description "label restriction information for OTN";
+        description "label restriction information for OTN";
     leaf range-type {
       type identityref {
         base otn-types:otn-label-range-type;
@@ -342,14 +341,14 @@ module ietf-otn-types {
       reference
         "G.709/Y.1331, February 2016: Interfaces for the
          Optical Transport Network (OTN)";
-    } 
+    }
     leaf priority {
       type uint8;
       description "priority.";
     }
   }
- 
-/* Note: Suggest to be changed as otn-label-range; 
+
+/* Note: Suggest to be changed as otn-label-range;
 otn-topology/tunnel also need change */
   grouping otn-link-label {
     description "link label information for OTN, for label-start/end";
@@ -383,7 +382,7 @@ otn-topology/tunnel also need change */
     }
   }
 
-/* Note: Suggest to be changed as otn-label; 
+/* Note: Suggest to be changed as otn-label;
 otn-topology/tunnel also need change */
   grouping otn-path-label {
     description "label information for OTN, for label-hop";
@@ -419,4 +418,21 @@ otn-topology/tunnel also need change */
                    of Evolving G.709 Optical Transport Networks";
     }
   }
+
+  grouping otn-label-step {
+    description "Label step for OTN";
+    leaf otn-step {
+      type uint16 {
+        range "1..4095";
+      }
+	  default 1;
+      description
+        "Label step which represent possible increments for 
+		 tributary port or tributary slot.";
+      reference
+        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+         G.709 Optical Transport Networks.";
+    }
+  }
+  
 }
