@@ -15,6 +15,10 @@ module ietf-eth-tran-service {
   import ietf-eth-tran-types {
     prefix "etht-types";
   }
+  
+  import ietf-routing-types {
+    prefix "rt-types";
+  }
 
   organization
     "Internet Engineering Task Force (IETF) CCAMP WG";
@@ -36,9 +40,10 @@ module ietf-eth-tran-service {
     "This module defines a YANG data model for describing
      the Ethernet transport services.";
 
-  revision 2018-10-18 {
+  revision 2018-12-17 {
     description
-      "Initial revision";
+      "Initial revision
+      2018-12-17: adding PW attributes. ";
     reference
       "draft-zheng-ccamp-otn-client-signal-yang";
   }
@@ -371,6 +376,7 @@ module ietf-eth-tran-service {
 
       case vlan-tag {
         /*
+          This is used for Native Ethernet. 
           No additional information is needed
           The C-Tag or S-Tag used for service mulitplexing is defined
           by the VLAN classification and operations configured in the
@@ -378,8 +384,9 @@ module ietf-eth-tran-service {
         */
       }
 
-      case pw {
-        /* to be completed (for further discussion) */
+      case pw-segment {
+        /* This is used for PW and MPLS-TP tunnel. */
+        uses pw-segment-grouping;
       }
     }
 
@@ -611,4 +618,75 @@ module ietf-eth-tran-service {
       }
     }
   }
+  
+  grouping pw-segment-grouping {
+    description "used to describe the attributes in a PW segment.";
+  
+	leaf pw-id {
+	  mandatory true;
+	  type string;
+	  description "The identifier of pw. ";
+	}
+	
+	leaf pw-name {
+	  type string;
+	  description "The name of pw. ";
+	}
+	
+	leaf transmit-label {
+	  type rt-types:mpls-label;
+	  description "The transmit label.";
+	}
+	
+	leaf receive-label {
+	  type rt-types:mpls-label;
+	  description "The receive label.";
+	}
+	
+	leaf encaplate-type {
+	  type identityref {
+	    base etht-types:encaplate-type;
+	  }
+	  description 
+	  	"The encapsulation promise a VLAN tag after progessing.";
+	}
+	
+	leaf oper-status {
+      type identityref {
+        base te-types:tunnel-state-type;
+      }
+      default te-types:tunnel-state-up;
+	  config false;
+	  description "operational status of pw. ";
+	}
+	
+	container ingress-bandwidth-profile {
+	  description 
+	  	"The bandwidth profile used in the ingress direction.";
+	  uses ingress-bandwidth-profile-grouping;
+	}
+  }
+  
+  grouping ingress-bandwidth-profile-grouping {
+	choice style {
+	  description 
+	  	"A grouping which represents the bandwidth profile(s) for PW.";
+		
+	  case named {
+		leaf bandwidth-profile-name {
+		  type leafref {
+			path "/ethtsvc:etht-svc/ethtsvc:globals/ethtsvc:named-bandwidth-profiles/ethtsvc:bandwidth-profile-name";
+			require-instance false;
+		  }
+		  description "The name of bandwidth-profile-name. ";
+		}
+		description "When the grouping is tracked by name. ";
+	  }
+		
+	  case value {
+			description "When the grouping is tracked by value. ";
+		uses etht-types:etht-bandwidth-profiles-grouping;
+	  }
+	}
+  }  
 }

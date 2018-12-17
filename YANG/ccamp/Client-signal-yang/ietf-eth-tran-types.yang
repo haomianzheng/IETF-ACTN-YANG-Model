@@ -23,9 +23,10 @@ module ietf-eth-tran-types {
   description
     "This module defines the ETH transport types.";
 
-  revision 2018-10-18 {
+  revision 2018-12-17 {
     description
-      "Initial Revision";
+      "Initial Revision
+      2018-12-17: add encaplate-types for PW. ";
     reference
       "draft-zheng-ccamp-client-signal-yang";
   }
@@ -245,6 +246,29 @@ module ietf-eth-tran-types {
   grouping etht-bandwidth-profiles {
     description
       "Bandwidth profile configuration paramters.";
+	  
+	uses etht-bandwidth-profiles-grouping;
+	  
+    leaf color-aware {
+      type boolean;
+      description
+        "Indicates weather the color-mode is color-aware or color-blind.";
+    }
+    leaf coupling-flag {
+      type boolean;
+      /* Need to indicate that Coupling Flag is defined only for MEF 10
+
+      must
+        '../bw-profile-type = "mef-10-bwp"'
+      */
+      description
+        "Coupling Flag.";
+    }
+  }
+  
+  grouping etht-bandwidth-profiles-grouping {
+    description
+      "Bandwidth profile configuration paramters.";
 
     leaf bandwidth-profile-type {
       type etht-types:bandwidth-profile-type;
@@ -283,20 +307,26 @@ module ietf-eth-tran-types {
         "Excess Burst Size in KBytes.
           In case of RFC 2698, PBS = CBS + EBS";
     }
-    leaf color-aware {
-      type boolean;
-      description
-        "Indicates weather the color-mode is color-aware or color-blind.";
-    }
-    leaf coupling-flag {
-      type boolean;
-      /* Need to indicate that Coupling Flag is defined only for MEF 10
-
-      must
-        '../bw-profile-type = "mef-10-bwp"'
-      */
-      description
-        "Coupling Flag.";
-    }
+  }
+  
+  identity encaplate-type {
+	description 
+		"The encapsulation promise a VLAN tag after progessing.
+		Raw (no-tag) and tag modes are specified as follow.	
+		Both the modes and the tag operation need to be configured. ";
+  }
+  
+  dentity eth-raw {
+	description 
+		"Raw from a user role requests no additional action; 
+		Raw from a service role requests a pop on VLAN-tage. ";
+	base encaplate-type;
+  }
+	
+  identity eth-tag {
+	description 
+			"Tag from a user role requests a push on VLAN-tag; 
+		Tag from a service role requests a swap on VLAN-tag. ";
+	base encaplate-type;
   }
 }
