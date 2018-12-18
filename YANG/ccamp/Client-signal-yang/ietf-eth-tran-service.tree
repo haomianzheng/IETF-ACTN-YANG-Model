@@ -1,4 +1,4 @@
-module: ietf-eth-tran-service
+module: ietf-eth-tran-service 
    +--rw etht-svc
       +--rw globals
       |  +--rw named-bandwidth-profiles* [bandwidth-profile-name]
