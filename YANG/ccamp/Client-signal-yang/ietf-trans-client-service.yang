@@ -32,7 +32,7 @@ module ietf-trans-client-service {
     "This module defines a YANG data model for describing
      simple transport client services.";
 
-  revision 2018-10-19 {
+  revision 2019-01-04 {
     description
       "Initial version";
     reference
@@ -120,22 +120,33 @@ module ietf-trans-client-service {
   }
 
   grouping  client-svc-instance_state {
-        description
-          "State parameters for client services.";
-        leaf operational-state {
-          type identityref {
-                base te-types:tunnel-state-type;
-          }
-          config false;
-          description "Client service operational state.";
-        }
-        leaf provisioning-state {
-          type identityref {
-                base te-types:lsp-state-type;
-          }
-          config false;
-          description "Client service provisioning state.";
-        }
+    description
+      "State parameters for client services.";
+
+    leaf operational-state {
+      type identityref {
+        base te-types:tunnel-state-type;
+      }
+      config false;
+      description "Client service operational state.";
+    }
+    leaf provisioning-state {
+      type identityref {
+        base te-types:lsp-state-type;
+      }
+      config false;
+      description "Client service provisioning state.";
+    }
+    leaf creation-time {
+      type yang:date-and-time;
+      description
+        "Time of Client service creation.";
+    }
+    leaf last-updated-time {
+      type yang:date-and-time;
+      description
+        "Time of Client service last update.";
+    }
   }
 
   /*
