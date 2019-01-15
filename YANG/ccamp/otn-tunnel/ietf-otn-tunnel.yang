@@ -75,7 +75,7 @@ module ietf-otn-tunnel {
         Relating to IETF Documents
         (https://trustee.ietf.org/license-info).";
 
-  revision "2018-12-05" {
+  revision "2019-01-15" {
     description
       "Initial Revision";
     reference
@@ -386,7 +386,7 @@ module ietf-otn-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-primary-paths/te:p2p-primary-path/"
         + "te:state/te:computed-paths-properties/"
-		+ "te:computed-path-properties/te:path-properties/"
+        + "te:computed-path-properties/te:path-properties/"
         + "te:path-route-objects/te:path-computed-route-object/"
         + "te:state/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
@@ -556,7 +556,7 @@ module ietf-otn-tunnel {
         + "te:p2p-primary-paths/te:p2p-primary-path/"
         + "te:p2p-reverse-primary-path/"
         + "te:state/te:computed-paths-properties/"
-		+ "te:computed-path-properties/te:path-properties/"
+        + "te:computed-path-properties/te:path-properties/"
         + "te:path-route-objects/te:path-computed-route-object/"
         + "te:state/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
@@ -714,8 +714,8 @@ module ietf-otn-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-secondary-paths/te:p2p-secondary-path/"
         + "te:state/te:computed-paths-properties/"
-		+ "te:computed-path-properties/te:path-properties/"
-		+ "te:path-route-objects/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/"
         + "te:path-computed-route-object/te:state/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
@@ -793,10 +793,10 @@ module ietf-otn-tunnel {
           }
           description "An explicit-route hop action.";
         }
-		leaf index {
-		  type uint32;
-		  description "ERO subobject index";
-		}
+        leaf index {
+          type uint32;
+          description "ERO subobject index";
+        }
         uses te-types:explicit-route-hop {
                   augment "type/label/label-hop/te-label/technology" {
                     description "OTN label.";
