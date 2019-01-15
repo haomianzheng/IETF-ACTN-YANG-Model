@@ -38,7 +38,7 @@ module ietf-otn-types {
   description
     "This module defines OTN types.";
 
-  revision "2018-12-05" {
+  revision "2019-01-15" {
     description
       "Initial Revision";
     reference
@@ -418,21 +418,39 @@ otn-topology/tunnel also need change */
                    of Evolving G.709 Optical Transport Networks";
     }
   }
-
   grouping otn-label-step {
     description "Label step for OTN";
-    leaf otn-step {
-      type uint16 {
-        range "1..4095";
-      }
-	  default 1;
+    choice otn-label-type {
       description
-        "Label step which represent possible increments for 
-		 tributary port or tributary slot.";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-         G.709 Optical Transport Networks.";
+        "OTN label range type, either TPN range or TS range";
+      case tributary-port {
+        leaf tpn-step {
+          type uint16 {
+            range "1..4095";
+          }
+          default 1;
+          description
+            "Label step which represents possible increments for 
+             Tributary Port Number.";
+          reference
+            "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+             G.709 Optical Transport Networks.";
+        }
+      }
+      case tributary-slot {
+        leaf ts {
+          type uint16 {
+            range "1..4095";
+          }
+          default 1;
+          description
+            "Label step which represents possible increments for 
+             Tributary Slot Number.";
+          reference
+            "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+             G.709 Optical Transport Networks.";
+        }
+      }
     }
   }
-  
 }
