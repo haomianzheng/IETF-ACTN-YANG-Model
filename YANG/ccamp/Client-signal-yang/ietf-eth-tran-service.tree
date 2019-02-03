@@ -1,4 +1,4 @@
-module: ietf-eth-tran-service 
+module: ietf-eth-tran-service
    +--rw etht-svc
       +--rw globals
       |  +--rw named-bandwidth-profiles* [bandwidth-profile-name]
@@ -12,7 +12,7 @@ module: ietf-eth-tran-service
       |     +--rw coupling-flag?            boolean
       +--rw etht-svc-instances* [etht-svc-name]
          +--rw etht-svc-name             string
-         +--rw etht-svc-id?              yang:uuid
+         +--rw etht-svc-id?              string
          +--rw etht-svc-descr?           string
          +--rw etht-svc-customer?        string
          +--rw etht-svc-type?            etht-types:service-type
@@ -21,10 +21,28 @@ module: ietf-eth-tran-service
          |  +--rw provider-id?   te-global-id
          |  +--rw client-id?     te-global-id
          |  +--rw topology-id?   te-topology-id
-         +--rw etht-svc-access-ports* [access-port-id]
-         |  +--rw access-port-id                      uint16
-         |  +--rw access-node-id?                     te-types:te-node-id
-         |  +--rw access-ltp-id?                      te-types:te-tp-id
+         +--rw resilience
+         +--rw etht-svc-end-points* [etht-svc-end-point-name]
+         |  +--rw etht-svc-end-point-name             string
+         |  +--rw etht-svc-end-point-id?              string
+         |  +--rw etht-svc-end-point-descr?           string
+         |  +--rw topology-role?                      identityref
+         |  +--rw resilience?                         identityref
+         |  +--rw etht-svc-access-points* [access-point-id]
+         |  |  +--rw access-point-id    string
+         |  |  +--rw access-node-id?    te-types:te-node-id
+         |  |  +--rw access-ltp-id?     te-types:te-tp-id
+         |  |  +--rw access-role?       identityref
+         |  |  +--rw pm-config
+         |  |  |  +--rw pm-enable?             boolean
+         |  |  |  +--rw sending-rate-high?     uint64
+         |  |  |  +--rw sending-rate-low?      uint64
+         |  |  |  +--rw receiving-rate-high?   uint64
+         |  |  |  +--rw receiving-rate-low?    uint64
+         |  |  +--ro state
+         |  |  |  +--ro operational-state?    identityref
+         |  |  |  +--ro provisioning-state?   identityref
+         |  |  +--ro performance?       identityref
          |  +--rw service-classification-type?        identityref
          |  +--rw (service-classification)?
          |  |  +--:(port-classification)
@@ -128,7 +146,7 @@ module: ietf-eth-tran-service
          |  |  +--:(none)
          |  |  +--:(vlan-tag)
          |  |  +--:(pw-segment)
-         |  |     +--rw pw-id                        string
+         |  |     +--rw pw-id?                       string
          |  |     +--rw pw-name?                     string
          |  |     +--rw transmit-label?              rt-types:mpls-label
          |  |     +--rw receive-label?               rt-types:mpls-label
@@ -146,19 +164,9 @@ module: ietf-eth-tran-service
          |  |              +--rw EBS?                      uint64
          |  +--rw src-split-horizon-group?     string
          |  +--rw dst-split-horizon-group?     string
-         +--rw pm-config
-         |  +--rw pm-enable?             boolean
-         |  +--rw sending-rate-high?     uint64
-         |  +--rw sending-rate-low?      uint64
-         |  +--rw receiving-rate-high?   uint64
-         |  +--rw receiving-rate-low?    uint64
          +--rw admin-status?             identityref
          +--ro state
-            +--ro operational-state?         identityref
-            +--ro provisioning-state?        identityref
-            +--ro creation-time?             yang:date-and-time
-            +--ro last-updated-time?         yang:date-and-time
-            +--ro sending-rate-too-high?     uint32
-            +--ro sending-rate-too-low?      uint32
-            +--ro receiving-rate-too-high?   uint32
-            +--ro receiving-rate-too-low?    uint32
+            +--ro operational-state?    identityref
+            +--ro provisioning-state?   identityref
+            +--ro creation-time?        yang:date-and-time
+            +--ro last-updated-time?    yang:date-and-time
