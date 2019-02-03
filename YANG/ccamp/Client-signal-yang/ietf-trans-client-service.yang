@@ -9,15 +9,18 @@ module ietf-trans-client-service {
     prefix "te-types";
   }
 
-  import ietf-l1-service-types {
-    prefix "l1-svc-types";
+  import ietf-otn-types {
+    prefix "otn-types";
+  }
+
+  import ietf-yang-types {
+    prefix "yang";
   }
 
   organization
     "Internet Engineering Task Force (IETF) CCAMP WG";
   contact
     "
-
       ID-draft editor:
         Aihua Guo (aihuaguo@huawei.com);
         Haomian Zheng (zhenghaomian@huawei.com);
@@ -32,17 +35,16 @@ module ietf-trans-client-service {
     "This module defines a YANG data model for describing
      simple transport client services.";
 
-  revision 2018-10-19 {
+  revision 2019-02-03 {
     description
       "Initial version";
     reference
-      "draft-zheng-ccamp-client-signal-yang";
+      "ADD REFERENCE HERE";
   }
 
   /*
    * Groupings
    */
-
   grouping client-svc-access-parameters {
     description
       "Transport client services access parameters";
@@ -53,20 +55,22 @@ module ietf-trans-client-service {
         "The identifier of the access node in the underlying
          transport topology.";
     }
+
     leaf access-ltp-id {
       type te-types:te-tp-id;
       description
         "The TE link termination point identifier, used together with
          access-node-id to identify the access LTP.";
     }
+
     leaf client-signal {
       type identityref {
-        base l1-svc-types:protocol-type;
+        base otn-types:client-signal;
       }
       description
         "Identifiies the client signal type associated with this port";
+                }
     }
-  }
 
   grouping client-svc-tunnel-parameters {
     description
@@ -79,37 +83,45 @@ module ietf-trans-client-service {
     }
   }
 
+  grouping te-topology-identifier {
+    description
+      "description";
+    leaf access-provider-id {
+      type te-types:te-global-id;
+      description
+        "An identifier to uniquely identify a provider.";
+    }
+
+    leaf access-client-id {
+      type te-types:te-global-id;
+      description
+        "An identifier to uniquely identify a client.";
+    }
+
+    leaf access-topology-id {
+      type te-types:te-topology-id;
+      description
+        "Identifies the topology the service access ports belong to.";
+    }
+  }
+
   grouping  client-svc-instance_config {
     description
       "Configuraiton parameters for client services.";
-
     leaf client-svc-name {
       type string;
       description
         "Name of the p2p transport client service.";
     }
+
     leaf client-svc-descr {
       type string;
       description
         "Description of the transport client service.";
     }
-    uses te-types:te-topology-identifier;
-    container src-access-ports {
-      description
-        "Source access port of a client service.";
-      uses client-svc-access-parameters;
-    }
-    container dst-access-ports {
-      description
-        "Destination access port of a client service.";
-      uses client-svc-access-parameters;
-    }
-    list svc-tunnels {
-      key tunnel-name;
-      description
-        "List of the TE Tunnels supporting the client service.";
-      uses client-svc-tunnel-parameters;
-    }
+
+        uses te-topology-identifier;
+
     leaf admin-status {
       type identityref {
         base te-types:tunnel-state-type;
@@ -117,6 +129,25 @@ module ietf-trans-client-service {
       default te-types:tunnel-state-up;
       description "Client service administrative state.";
     }
+
+    container src-access-ports {
+      description
+        "Source access port of a client service.";
+      uses client-svc-access-parameters;
+    }
+
+        container dst-access-ports {
+          description
+                "Destination access port of a client service.";
+          uses client-svc-access-parameters;
+        }
+
+        list svc-tunnels {
+          key tunnel-name;
+          description
+                "List of the TE Tunnels supporting the client service.";
+          uses client-svc-tunnel-parameters;
+        }
   }
 
   grouping  client-svc-instance_state {
@@ -135,6 +166,16 @@ module ietf-trans-client-service {
           }
           config false;
           description "Client service provisioning state.";
+        }
+        leaf creation-time {
+          type yang:date-and-time;
+          config false;
+          description "The time of the service be created.";
+        }
+        leaf last-updated-time {
+          type yang:date-and-time;
+          config false;
+          description "The time of the service's latest update.";
         }
   }
 
