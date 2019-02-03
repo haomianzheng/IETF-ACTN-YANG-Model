@@ -23,10 +23,9 @@ module ietf-eth-tran-types {
   description
     "This module defines the ETH transport types.";
 
-  revision 2018-12-17 {
+  revision 2019-02-03 {
     description
-      "Initial Revision
-      2018-12-17: add encaplate-types for PW. ";
+      "Initial Revision";
     reference
       "draft-zheng-ccamp-client-signal-yang";
   }
@@ -84,7 +83,7 @@ module ietf-eth-tran-types {
   identity classify-s-vlan {
     base eth-vlan-tag-classify;
     description
-      "Classify 802.1Q Service VLAN (QinQ) tag. 
+      "Classify 802.1Q Service VLAN (QinQ) tag.
        Only S-tag type is accepted";
   }
 
@@ -206,9 +205,8 @@ module ietf-eth-tran-types {
     description
       "A list of VLAN Ids, or non overlapping VLAN ranges, in
        ascending order, between 1 and 4094.
-
        This type is used to match an ordered list of VLAN Ids, or
-       contiguous ranges of VLAN Ids. Valid VLAN Ids must be in the 
+       contiguous ranges of VLAN Ids. Valid VLAN Ids must be in the
        range 1 to 4094, and included in the list in non overlapping
        ascending order.
 
@@ -244,29 +242,6 @@ module ietf-eth-tran-types {
    */
 
   grouping etht-bandwidth-profiles {
-    description
-      "Bandwidth profile configuration paramters.";
-	  
-	uses etht-bandwidth-profiles-grouping;
-	  
-    leaf color-aware {
-      type boolean;
-      description
-        "Indicates weather the color-mode is color-aware or color-blind.";
-    }
-    leaf coupling-flag {
-      type boolean;
-      /* Need to indicate that Coupling Flag is defined only for MEF 10
-
-      must
-        '../bw-profile-type = "mef-10-bwp"'
-      */
-      description
-        "Coupling Flag.";
-    }
-  }
-  
-  grouping etht-bandwidth-profiles-grouping {
     description
       "Bandwidth profile configuration paramters.";
 
@@ -307,26 +282,85 @@ module ietf-eth-tran-types {
         "Excess Burst Size in KBytes.
           In case of RFC 2698, PBS = CBS + EBS";
     }
+    leaf color-aware {
+      type boolean;
+      description
+        "Indicates weather the color-mode is color-aware or color-blind.";
+    }
+    leaf coupling-flag {
+      type boolean;
+      /* Need to indicate that Coupling Flag is defined only for MEF 10
+
+      must
+        '../bw-profile-type = "mef-10-bwp"'
+      */
+      description
+        "Coupling Flag.";
+    }
+  }
+  
+  identity topology-role {
+    description 
+	"The rold of underlay topology, e.g., hub, spoke, any-to-any. ";
+  }
+  
+  identity resilience {
+    description 
+	"Placeholder for resilience information in data plane, for future study. ";
+  }
+  
+  identity access-role {
+    description 
+	"Indicating whether the access is a working or protection access.";
+  }
+  
+  identity performance {
+    description 
+	"Placeholder for performace information, for future study.";
   }
   
   identity encaplate-type {
-	description 
-		"The encapsulation promise a VLAN tag after progessing.
-		Raw (no-tag) and tag modes are specified as follow.	
-		Both the modes and the tag operation need to be configured. ";
+    description 
+	"Indicating how the service is encapsulated (to PW), e.g, raw or tag. ";
   }
   
-  dentity eth-raw {
-	description 
-		"Raw from a user role requests no additional action; 
-		Raw from a service role requests a pop on VLAN-tage. ";
-	base encaplate-type;
-  }
-	
-  identity eth-tag {
-	description 
-			"Tag from a user role requests a push on VLAN-tag; 
-		Tag from a service role requests a swap on VLAN-tag. ";
-	base encaplate-type;
+  grouping pw-segement-bandwidth-profile-grouping {
+    leaf bandwidth-profile-type {
+      type etht-types:bandwidth-profile-type;
+      description
+        "The type of bandwidth profile.";
+    }
+    leaf CIR {
+      type uint64;
+      description
+        "Committed Information Rate in Kbps";
+    }
+    leaf CBS {
+      type uint64;
+      description
+        "Committed Burst Size in in KBytes";
+    }
+    leaf EIR {
+      type uint64;
+      /* Need to indicate that EIR is not supported by RFC 2697
+
+      must
+        '../bw-profile-type = "mef-10-bwp" or ' +
+        '../bw-profile-type = "rfc-2698-bwp" or ' +
+        '../bw-profile-type = "rfc-4115-bwp"'
+
+      must
+        '../bw-profile-type != "rfc-2697-bwp"'
+      */
+      description
+        "Excess Information Rate in Kbps
+         In case of RFC 2698, PIR = CIR + EIR";
+    }
+    leaf EBS {
+      type uint64;
+      description
+        "Excess Burst Size in KBytes.
+          In case of RFC 2698, PBS = CBS + EBS";
+    }
   }
 }
