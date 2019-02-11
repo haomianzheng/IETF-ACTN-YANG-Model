@@ -39,7 +39,10 @@ module ietf-trans-client-service {
     description
       "Initial version";
     reference
-      "ADD REFERENCE HERE";
+      "RFC XXXX: A YANG Data Model for Transport Network Client Signals";
+  // Note: The RFC Editor will replace XXXX with the number
+  // assigned to the RFC once this draft (draft-zheng-ccamp-client-signal-yang) 
+  // becomes an RFC.
   }
 
   /*
