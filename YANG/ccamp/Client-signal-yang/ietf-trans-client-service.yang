@@ -21,10 +21,12 @@ module ietf-trans-client-service {
     "Internet Engineering Task Force (IETF) CCAMP WG";
   contact
     "
+
       ID-draft editor:
-        Aihua Guo (aihuaguo@huawei.com);
         Haomian Zheng (zhenghaomian@huawei.com);
+        Aihua Guo (aihuaguo@huawei.com);
         Italo Busi (italo.busi@huawei.com);
+        Anton Snitser (antons@sedonasys.com)
         Yunbin Xu (xuyunbin@ritt.cn);
         Yang Zhao (zhaoyangyjy@chinamobile.com);
         Xufeng Liu (Xufeng_Liu@jabil.com);
@@ -33,16 +35,13 @@ module ietf-trans-client-service {
 
   description
     "This module defines a YANG data model for describing
-     simple transport client services.";
+     transport client services.";
 
-  revision 2019-02-03 {
+  revision 2019-02-14 {
     description
-      "Initial version";
+      "version -04 as an I-D";
     reference
-      "RFC XXXX: A YANG Data Model for Transport Network Client Signals";
-  // Note: The RFC Editor will replace XXXX with the number
-  // assigned to the RFC once this draft (draft-zheng-ccamp-client-signal-yang) 
-  // becomes an RFC.
+      "draft-zheng-ccamp-client-signal-yang";
   }
 
   /*
@@ -86,32 +85,16 @@ module ietf-trans-client-service {
     }
   }
 
-  grouping te-topology-identifier {
-    description
-      "description";
-    leaf access-provider-id {
-      type te-types:te-global-id;
-      description
-        "An identifier to uniquely identify a provider.";
-    }
-
-    leaf access-client-id {
-      type te-types:te-global-id;
-      description
-        "An identifier to uniquely identify a client.";
-    }
-
-    leaf access-topology-id {
-      type te-types:te-topology-id;
-      description
-        "Identifies the topology the service access ports belong to.";
-    }
-  }
-
   grouping  client-svc-instance_config {
     description
       "Configuraiton parameters for client services.";
     leaf client-svc-name {
+      type string;
+      description
+        "Identifier of the p2p transport client service.";
+    }
+    
+    leaf client-svc-id {
       type string;
       description
         "Name of the p2p transport client service.";
@@ -122,14 +105,24 @@ module ietf-trans-client-service {
       description
         "Description of the transport client service.";
     }
+    
+    leaf client-svc-customer {
+      type string;
+      description
+        "Customer of the transport client service.";
+    }
+    
+    container resilience {
+      description "";
+    }
 
-        uses te-topology-identifier;
+    uses te-types:te-topology-identifier;
 
     leaf admin-status {
       type identityref {
-        base te-types:tunnel-state-type;
+        base te-types:tunnel-admin-state-type;
       }
-      default te-types:tunnel-state-up;
+      default te-types:tunnel-admin-state-up;
       description "Client service administrative state.";
     }
 
