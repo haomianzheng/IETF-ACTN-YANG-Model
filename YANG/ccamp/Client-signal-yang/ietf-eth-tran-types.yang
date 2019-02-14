@@ -14,6 +14,7 @@ module ietf-eth-tran-types {
         Haomian Zheng (zhenghaomian@huawei.com);
         Italo Busi (italo.busi@huawei.com);
         Aihua Guo (aihuaguo@huawei.com);
+        Anton Snitser (antons@sedonasys.com)
         Yunbin Xu (xuyunbin@ritt.cn);
         Yang Zhao (zhaoyangyjy@chinamobile.com);
         Xufeng Liu (Xufeng_Liu@jabil.com);
@@ -23,9 +24,9 @@ module ietf-eth-tran-types {
   description
     "This module defines the ETH transport types.";
 
-  revision 2019-02-03 {
+  revision 2019-02-14 {
     description
-      "Initial Revision";
+      "version -04 as an I-D";
     reference
       "draft-zheng-ccamp-client-signal-yang";
   }
@@ -301,30 +302,32 @@ module ietf-eth-tran-types {
   
   identity topology-role {
     description 
-	"The rold of underlay topology, e.g., hub, spoke, any-to-any. ";
+    "The rold of underlay topology, e.g., hub, spoke, any-to-any. ";
   }
   
   identity resilience {
     description 
-	"Placeholder for resilience information in data plane, for future study. ";
+    "Placeholder for resilience information in data plane, for future study. ";
   }
   
   identity access-role {
     description 
-	"Indicating whether the access is a working or protection access.";
+    "Indicating whether the access is a working or protection access.";
   }
   
   identity performance {
     description 
-	"Placeholder for performace information, for future study.";
+    "Placeholder for performace information, for future study.";
   }
   
   identity encaplate-type {
     description 
-	"Indicating how the service is encapsulated (to PW), e.g, raw or tag. ";
+    "Indicating how the service is encapsulated (to PW), e.g, raw or tag. ";
   }
   
   grouping pw-segement-bandwidth-profile-grouping {
+    description
+      "bandwidth profile grouping for PW segment. ";
     leaf bandwidth-profile-type {
       type etht-types:bandwidth-profile-type;
       description
