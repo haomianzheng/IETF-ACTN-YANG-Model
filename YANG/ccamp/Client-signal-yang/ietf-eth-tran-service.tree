@@ -27,7 +27,7 @@ module: ietf-eth-tran-service
          |  +--rw etht-svc-end-point-id?              string
          |  +--rw etht-svc-end-point-descr?           string
          |  +--rw topology-role?                      identityref
-         |  +--rw resilience?                         identityref
+         |  +--rw resilience
          |  +--rw etht-svc-access-points* [access-point-id]
          |  |  +--rw access-point-id    string
          |  |  +--rw access-node-id?    te-types:te-node-id
