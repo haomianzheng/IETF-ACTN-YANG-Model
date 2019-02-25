@@ -24,8 +24,7 @@ module ietf-otn-topology {
   import ietf-otn-types {
     prefix "otn-types";
     reference
-         "I-D.ietf-teas-yang-te: A YANG Data Model for Traffic
-          Engineering Tunnels and Interfaces";
+         "I-D.ietf-ccamp-otn-tunnel-model: OTN Tunnel YANG Model";
   }
 
   organization
@@ -65,7 +64,7 @@ module ietf-otn-topology {
     "This module defines a protocol independent Layer 1/ODU topology
      data model.
 
-    Copyright (c) 2018 IETF Trust and the persons
+    Copyright (c) 2019 IETF Trust and the persons
           identified as authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -75,7 +74,7 @@ module ietf-otn-topology {
         Relating to IETF Documents
         (https://trustee.ietf.org/license-info).";
 
-  revision 2018-12-05 {
+  revision 2019-02-25 {
     description
       "Initial Revision";
     reference
