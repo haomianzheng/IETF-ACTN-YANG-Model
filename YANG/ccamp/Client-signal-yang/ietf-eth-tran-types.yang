@@ -14,6 +14,8 @@ module ietf-eth-tran-types {
         Haomian Zheng (zhenghaomian@huawei.com);
         Italo Busi (italo.busi@huawei.com);
         Aihua Guo (aihuaguo@huawei.com);
+        Anton Snitser (antons@sedonasys.com);
+        Francesco Lazzeri (francesco.lazzeri@ericsson.com);
         Yunbin Xu (xuyunbin@ritt.cn);
         Yang Zhao (zhaoyangyjy@chinamobile.com);
         Xufeng Liu (Xufeng_Liu@jabil.com);
@@ -21,11 +23,21 @@ module ietf-eth-tran-types {
     ";
 
   description
-    "This module defines the ETH transport types.";
+    "This module defines the ETH transport types.
+    
+     Copyright (c) 2019 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
 
-  revision 2018-10-18 {
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).";
+
+  revision 2019-03-11 {
     description
-      "Initial Revision";
+      "version -06 as an I-D";
     reference
       "draft-zheng-ccamp-client-signal-yang";
   }
@@ -83,7 +95,7 @@ module ietf-eth-tran-types {
   identity classify-s-vlan {
     base eth-vlan-tag-classify;
     description
-      "Classify 802.1Q Service VLAN (QinQ) tag. 
+      "Classify 802.1Q Service VLAN (QinQ) tag.
        Only S-tag type is accepted";
   }
 
@@ -205,9 +217,8 @@ module ietf-eth-tran-types {
     description
       "A list of VLAN Ids, or non overlapping VLAN ranges, in
        ascending order, between 1 and 4094.
-
        This type is used to match an ordered list of VLAN Ids, or
-       contiguous ranges of VLAN Ids. Valid VLAN Ids must be in the 
+       contiguous ranges of VLAN Ids. Valid VLAN Ids must be in the
        range 1 to 4094, and included in the list in non overlapping
        ascending order.
 
@@ -297,6 +308,123 @@ module ietf-eth-tran-types {
       */
       description
         "Coupling Flag.";
+    }
+  }
+  
+  identity topology-role {
+    description 
+    "The rold of underlay topology, e.g., hub, spoke, any-to-any. ";
+  }
+  
+  identity resilience {
+    description 
+    "Placeholder for resilience information in data plane, for future study. ";
+  }
+  
+  identity access-role {
+    description 
+    "Indicating whether the access is a working or protection access.";
+  }
+  
+  identity performance {
+    description 
+    "Placeholder for performace information, for future study.";
+  }
+  
+  identity encaplate-type {
+    description 
+    "Indicating how the service is encapsulated (to PW), e.g, raw or tag. ";
+  }
+  
+  grouping pw-segement-bandwidth-profile-grouping {
+    description
+      "bandwidth profile grouping for PW segment. ";
+    leaf bandwidth-profile-type {
+      type etht-types:bandwidth-profile-type;
+      description
+        "The type of bandwidth profile.";
+    }
+    leaf CIR {
+      type uint64;
+      description
+        "Committed Information Rate in Kbps";
+    }
+    leaf CBS {
+      type uint64;
+      description
+        "Committed Burst Size in in KBytes";
+    }
+    leaf EIR {
+      type uint64;
+      /* Need to indicate that EIR is not supported by RFC 2697
+
+      must
+        '../bw-profile-type = "mef-10-bwp" or ' +
+        '../bw-profile-type = "rfc-2698-bwp" or ' +
+        '../bw-profile-type = "rfc-4115-bwp"'
+
+      must
+        '../bw-profile-type != "rfc-2697-bwp"'
+      */
+      description
+        "Excess Information Rate in Kbps
+         In case of RFC 2698, PIR = CIR + EIR";
+    }
+    leaf EBS {
+      type uint64;
+      description
+        "Excess Burst Size in KBytes.
+          In case of RFC 2698, PBS = CBS + EBS";
+    }
+  }
+      grouping eth-bandwidth {
+      description
+        "Available bandwith for ethernet.";
+      leaf eth-bandwidth {
+        type uint64{
+          range "0..10000000000";
+        }
+        units "Kbps";
+        description
+          "Available bandwith value expressed in kilobits per second";
+      }
+    }
+    
+    grouping eth-label-restriction {
+      description
+        "Label Restriction for ethernet.";
+      leaf tag-type {
+        type etht-types:eth-tag-type;
+        description "VLAN tag type.";
+      }
+      leaf priority {
+        type uint8;
+        description "priority.";
+      }
+    }
+
+    grouping eth-label {
+      description
+        "Label for ethernet.";
+      leaf vlanid {
+        type etht-types:vlanid;
+          description
+            "VLAN tag id.";
+      }
+    }
+    
+    grouping eth-label-step {
+      description "Label step for Ethernet VLAN";
+      leaf eth-step {
+        type uint16 {
+          range "1..4095";
+      }
+      default 1;
+      description
+        "Label step which represent possible increments for 
+         an Ethernet VLAN tag.";
+      reference
+        "IEEE 802.1ad: Provider Bridges.";
     }
   }
 }
