@@ -7,26 +7,29 @@ module ietf-trans-client-service {
 
   import ietf-te-types {
     prefix "te-types";
+    //reference "RFC XXXX - Traffic Engineering Common YANG Types";
   }
 
   import ietf-otn-types {
     prefix "otn-types";
+    //reference "RFC XXXX - OTN Tunnel YANG Model";
   }
 
   import ietf-yang-types {
     prefix "yang";
+    //reference "RFC 6991 - Common YANG Data Types";
   }
 
   organization
     "Internet Engineering Task Force (IETF) CCAMP WG";
   contact
     "
-
       ID-draft editor:
         Haomian Zheng (zhenghaomian@huawei.com);
         Aihua Guo (aihuaguo@huawei.com);
         Italo Busi (italo.busi@huawei.com);
-        Anton Snitser (antons@sedonasys.com)
+        Anton Snitser (antons@sedonasys.com);
+        Francesco Lazzeri (francesco.lazzeri@ericsson.com);
         Yunbin Xu (xuyunbin@ritt.cn);
         Yang Zhao (zhaoyangyjy@chinamobile.com);
         Xufeng Liu (Xufeng_Liu@jabil.com);
@@ -35,11 +38,21 @@ module ietf-trans-client-service {
 
   description
     "This module defines a YANG data model for describing
-     transport client services.";
+     transport client services.
+     
+     Copyright (c) 2019 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
 
-  revision 2019-02-14 {
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).";
+
+  revision 2019-03-11 {
     description
-      "version -04 as an I-D";
+      "version -06 as an I-D";
     reference
       "draft-zheng-ccamp-client-signal-yang";
   }
