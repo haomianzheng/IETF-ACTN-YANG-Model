@@ -1,29 +1,29 @@
 module ietf-eth-tran-service {
-
+  yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-service";
 
   prefix "ethtsvc";
 
   import ietf-yang-types {
     prefix "yang";
-    //reference "RFC 6991 - Common YANG Data Types";
+    reference "RFC 6991 - Common YANG Data Types";
 
   }
 
   import ietf-te-types {
     prefix "te-types";
-    //reference "RFC XXXX - Traffic Engineering Common YANG Types";
+    reference "RFC YYYY - Traffic Engineering Common YANG Types";
   }
 
   import ietf-eth-tran-types {
     prefix "etht-types";
-    //reference "RFC XXXX - This Document.";
+    reference "RFC XXXX - A YANG Data Model for Transport Network Client Signals";
   }
   
   import ietf-routing-types {
     prefix "rt-types";
-    //reference "RFC 8294 - Common YANG Data Types for the
-                  //Routing Area";
+    reference "RFC 8294 - Common YANG Data Types for the
+                  Routing Area";
 
   }
 
@@ -59,9 +59,9 @@ module ietf-eth-tran-service {
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).";
 
-  revision 2019-03-11 {
+  revision 2019-03-27 {
     description
-      "version -06 as an I-D";
+      "version -07 as an I-D";
     reference
       "draft-zheng-ccamp-client-signal-yang";
   }
@@ -325,7 +325,7 @@ module ietf-eth-tran-service {
     leaf tunnel-name {
       type string;
       description
-        "TE service tunnel instance name.";
+        "Underlying TE tunnel instance name.";
     }
     choice svc-multiplexing-tag {
       description
