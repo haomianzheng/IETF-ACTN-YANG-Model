@@ -1,5 +1,5 @@
 module ietf-eth-tran-types {
-
+  yang-version 1.1; 
   namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-types";
 
   prefix "etht-types";
@@ -23,7 +23,7 @@ module ietf-eth-tran-types {
     ";
 
   description
-    "This module defines the ETH transport types.
+    "This module defines the ETH types.
     
      Copyright (c) 2019 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
@@ -35,9 +35,9 @@ module ietf-eth-tran-types {
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).";
 
-  revision 2019-03-11 {
+  revision 2019-03-27 {
     description
-      "version -06 as an I-D";
+      "version -07 as an I-D";
     reference
       "draft-zheng-ccamp-client-signal-yang";
   }
