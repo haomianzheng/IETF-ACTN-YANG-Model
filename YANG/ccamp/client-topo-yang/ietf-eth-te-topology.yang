@@ -1,357 +1,1778 @@
-module ietf-eth-te-topology {
+module ietf-otn-topology {
+  yang-version 1.1;
 
-	namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-topology";
+  namespace "urn:ietf:params:xml:ns:yang:ietf-otn-topology";
+  prefix "otntopo";
 
-	prefix "ethtetopo";
+  import ietf-network {
+    prefix "nw";
+    reference "RFC 8345: A YANG Data Model for Network Topologies";
+  }
 
-	import ietf-network {
-		prefix "nd";
-	}
+  import ietf-network-topology {
+    prefix "nt";
+    reference "RFC 8345: A YANG Data Model for Network Topologies";
+  }
 
-	import ietf-network-topology {
-		prefix "lnk";
-	}
+  import ietf-te-topology {
+    prefix "tet";
+    reference
+      "I-D.ietf-teas-yang-te-topo: YANG Data Model for
+       Traffic Engineering (TE) Topologies";
+  }
 
-	import ietf-te-topology {
-		prefix "tet";
-	}
+  import ietf-otn-types {
+    prefix "otn-types";
+    reference
+      "I-D.ietf-ccamp-otn-tunnel-model: OTN Tunnel YANG Model";
+  }
 
-	import ietf-yang-types {
-		prefix "yang";
-	}
-
-	import ietf-eth-tran-types {
-		prefix "etht-types";
-	}
-
-	organization
-		"Internet Engineering Task Force (IETF) CCAMP WG";
+  organization
+    "IETF CCAMP Working Group";
   contact
-    "
-      WG List: <mailto:ccamp@ietf.org>
+    "WG Web: <http://tools.ietf.org/wg/ccamp/>
+     WG List: <mailto:ccamp@ietf.org>
 
-      ID-draft editor:
-        Haomian Zheng (zhenghaomian@huawei.com);
-        Italo Busi (italo.busi@huawei.com);
-        Aihua Guo (aihuaguo@huawei.com);
-        Yunbin Xu (xuyunbin@ritt.cn);
-        Yang Zhao (zhaoyangyjy@chinamobile.com);
-        Xufeng Liu (Xufeng_Liu@jabil.com);
-        Giuseppe Fioccola (giuseppe.fioccola@telecomitalia.it);
-    ";
+     Editor: Haomian Zheng
+             <mailto:zhenghaomian@huawei.com>
 
-	description
-		"This module defines a YANG data model for describing
-		layer-2 Ethernet transport topologies.";
+     Editor: Aihua Guo
+             <mailto:aihuaguo@huawei.com>
 
-	revision 2018-03-01 {
-		description
-			"Initial revision";
-		reference
-			"draft-zheng-ccamp-client-topo-yang";
-	}
+     Editor: Italo Busi
+             <mailto:italo.busi@huawei.com>
 
-	/*
-	Groupings
-	*/
+     Editor: Anurag Sharma
+             <mailto:ansha@google.com>
 
-	grouping eth-tran-topology-type {
-		description
-			"Identifies the Ethernet Transport topology type";
+     Editor: Xufeng Liu
+             <mailto:xufeng.liu.ietf@gmail.com>
 
-		container eth-tran-topology {
-			presence "indicates a topology type of Ethernet
-								Transport Network.";
-			description "Eth transport topology type";
-		}
-	}
+     Editor: Sergio Belotti
+             <mailto:sergio.belotti@nokia.com>
 
-	grouping eth-link-te-attributes {
-		description "Ethernet TE link attributes";
+     Editor: Yunbin Xu
+             <mailto:xuyunbin@ritt.cn>
 
-		leaf max-bandwidth {
-			type uint64{
-				range "0..10000000000";
-			}
-			units "Kbps";
-			description
-				"Maximum bandwith value expressed in kilobits per second";
-		}
+     Editor: Lei Wang
+             <mailto:wangleiyj@chinamobile.com>
 
-		leaf available-bandwidth {
-			type uint64{
-				range "0..10000000000";
-			}
-			units "Kbps";
-			description
-				"Available bandwith value expressed in kilobits per second";
-		}
+     Editor: Oscar Gonzalez de Dios
+             <mailto:oscar.gonzalezdedios@telefonica.com>";
 
-		leaf available-vlan-range {
-			type etht-types:vid-range-type;
-			description
-				"The range of the VLAN values that are available.";
-		}
-	}
+  description
+    "This module defines a protocol independent Layer 1/ODU topology
+     data model.
 
-	grouping ltp-bandwidth-profiles {
-		description
-			"A grouping which represents the bandwidt profile(s) for the ETH LTP.";
+    Copyright (c) 2019 IETF Trust and the persons
+          identified as authors of the code.  All rights reserved.
 
-		choice direction {
-			description
-				"Whether the bandwidth profiles are symmetrical or
-				 asymmetrical";
-			case symmetrical {
-				description
-					"The same bandwidth profile is used to describe the ingress
-					and the egress bandwidth profile.";
+        Redistribution and use in source and binary forms, with or
+        without modification, is permitted pursuant to, and subject
+        to the license terms contained in, the Simplified BSD License
+        set forth in Section 4.c of the IETF Trust's Legal Provisions
+        Relating to IETF Documents
+        (https://trustee.ietf.org/license-info).";
 
-				container ingress-egress-bandwidth-profile {
-					description
-						"The bandwith profile used in the ingress and egress direction.";
-					uses etht-types:etht-bandwidth-profiles;
-				}
-			}
-			case asymmetrical {
-				description
-					"Different ingress and egress bandwidth profiles
-					can be specified.";
-				container ingress-bandwidth-profile {
-					description
-						"The bandwidth profile used in the ingress direction.";
-					uses etht-types:etht-bandwidth-profiles;
-				}
-				container egress-bandwidth-profile {
-					description
-						"The bandwidth profile used in the egress direction.";
-					uses etht-types:etht-bandwidth-profiles;
-				}
-			}
-		}
-	}
+  revision 2019-05-29 {
+    description
+      "Initial Revision";
+    reference
+      "RFC XXXX: A YANG Data Model for Optical Transport Network Topology";
+    // RFC Ed.: replace XXXX with actual RFC number, update date
+    // information and remove this note
+  }
 
-	grouping eth-ltp-attributes {
-		description
-			"Ethernet transport link termination point attributes";
+ /*
+  * Groupings
+  */
 
-		/* 
-			Open Issue: should we remove this attribute (duplicates with I2RS L2 attributes)?
-		*/
-		leaf ltp-mac-address {
-			type yang:mac-address;
-			description "the MAC address of the LTP.";
-		}
-		/* 
-			Open Issue: should we remove this attribute (duplicates with I2RS L2 attributes)?
-		*/
-		leaf port-vlan-id {
-			type etht-types:vlanid;
-			description "the port VLAN ID of the LTP.";
-		}
-		/*
-			Open Issue: should we remove this attribute (duplicates with I2RS L2 attributes)?
-		*/
-		leaf maximum-frame-size {
-			type uint16 {
-				range "64 .. 65535";
-			}
-			description
-				"Maximum frame size";
-		}
-		uses ltp-bandwidth-profiles;
-	}
+  grouping otn-link-attributes {
+    description "link attributes for OTN";
 
-	grouping svc-vlan-classification {
-		description
-			"Grouping defining the capabilities for VLAN classification.";
-			
-		leaf-list supported-tag-types {
-			type etht-types:eth-tag-classify;
-			description
-				"List of VLAN tag types that can be used for the VLAN classification.
-				In case VLAN classification is not supported, the list is empty.";
-		}
-		leaf vlan-bundling {
-			type boolean;
-			description
-				"In case VLAN classification is supported, indicates whether VLAN bundling classification is also supported.";
-		}
-		leaf vlan-range {
-			type etht-types:vid-range-type;
-			description
-				"In case VLAN classification is supported, indicates the of available VLAN ID values.";
-		}
-	}
+    leaf tsg {
+      type identityref {
+        base otn-types:tributary-slot-granularity;
+      }
+      description "Tributary slot granularity.";
+      reference
+        "G.709/Y.1331, February 2016: Interfaces for the
+         Optical Transport Network (OTN)";
+    }
+    leaf distance {
+      type uint32;
+      description "distance in the unit of kilometers";
+    }
+  }
 
-	grouping svc-vlan-push {
-		description
-			"Grouping defining the capabilities for VLAN push or swap operations.";
-		
-		leaf-list supported-tag-types {
-			type etht-types:eth-tag-type;
-			description
-				"List of VLAN tag types that can be used to push or swap a VLAN tag.
-				In case VLAN push/swap is not supported, the list is empty.";
-		}
-		leaf vlan-range {
-			type etht-types:vid-range-type;
-			description
-				"In case VLAN push/swap operation is supported, the range of available VLAN ID values.";
-		}
-	}
+  /*
+   * Open issue: move to otn-types to allow reuse in WSON and Flexi-grid topology models?
+   */
+  grouping otn-tp-attributes {
+    description "tp attributes for OTN";
 
-	grouping eth-ltp-svc-attributes {
-		description
-			"Ethernet link termination point (LTP) service attributes.";
-		
-		leaf client-facing {
-			type boolean;
-			description
-				"indicates whether this LTP is a client-facing ltp.";
-		}
+    container client-svc {
+      presence "client-facing LTP.";
+      description
+        "OTN LTP Service attributes.";
 
-		container supported-classification {
-			description
-				"Service classification capabilities supported by the ETH LTP.";
-			
-			leaf port-classification {
-				type boolean;
-				description
-					"Indicates that the ETH LTP support port-based service classification.";
-			}
-			container vlan-classification {
-				description
-					"Service classification capabilities based on the VLAN tag(s)
-					supported by the ETH LTP.";
-			
-				leaf vlan-tag-classification {
-					type boolean;
-					description
-						"Indicates that the ETH LTP supports VLAN service classification.";
-				}
-				container outer-tag {
-					description
-						"Service classification capabilities based on the outer VLAN tag,
-						supported by the ETH LTP.";
-					uses svc-vlan-classification;
-				}
-				container second-tag {
-					description
-						"Service classification capabilities based on the second VLAN tag,
-						supported by the ETH LTP.";
-					/*
-						Open issue: indicates that second-tag-classification can be True only if
-						outer-tag-classification is also True.
-					*/
-					leaf second-tag-classification {
-						type boolean;
-						description
-							"Indicates that the ETH LTP support  VLAN service classification
-							based on the second VLAN tag.";
-					}
-					uses svc-vlan-classification;
-				}
-			}
-		}
+      leaf client-facing {
+        type boolean;
+        default 'false';
+        description
+          "Indicates whether this LTP is a client-facing LTP.";
+      }
+      leaf-list supported-client-signal {
+        type identityref {
+          base otn-types:client-signal;
+        }
+        description
+          "List of client signal types supported by the LTP.";
+      }
+    }
+  }
 
-		container supported-vlan-operations {
-			leaf asymmetrical-operations {
-				type boolean;
-				description
-					"Indicates whether the ETH LTP supports also asymmetrical VLAN operations.
-					It is assumed that symmetrical VLAN operations are alwyas supported.";
-			}
-			leaf transparent-vlan-operations {
-				type boolean;
-				description
-					"Indicates that the ETH LTP supports transparent operations.";
-			}
-			container vlan-pop {
-				description
-					"Indicates VLAN pop or swap operations capabilities.";
+ /*
+  * Data nodes
+  */
+  augment "/nw:networks/nw:network/nw:network-types/"
+        + "tet:te-topology" {
+    container otn-topology {
+      presence "indicates a topology type of Optical Transport
+                Network (OTN)-electrical layer.";
+      description "otn topology type";
+    }
+    description "augment network types to include otn newtork";
+  }
 
-				leaf vlan-pop-operations {
-					type boolean;
-					description
-						"Indicates that the ETH LTP supports VLAN pop or swap operations.";
-				}
-				leaf max-pop-tags {
-					type uint8 {
-						range "1..2";
-					}
-					description
-						"Indicates the maximum number of tags that can be popped/swapped.";
-				}
-			}
-			container vlan-push {
-				description
-					"Indicates VLAN push or swap operations capabilities.";
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes" {
+    when "../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment only for otn network.";
+    }
+    description "Augment link configuration";
+    uses otn-link-attributes;
+  }
 
-				leaf vlan-push-operation {
-					type boolean;
-					description
-						"Indicates that the ETH LTP supports VLAN push or swap operations.";
-				}
-				container outer-tag {
-					description
-						"Indicates the supported VLAN operation capabilities on the outer VLAN tag.";
-					uses svc-vlan-push;
-				}
-				container second-tag {
-					description
-						"Indicates the supported VLAN operation capabilities on the second VLAN tag.";
+  augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
+        + "tet:te" {
+    when "../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment only for otn network";
+    }
+    description "OTN TP attributes config in ODU topology.";
+    uses otn-tp-attributes;
+  }
 
-					leaf push-second-tag {
-						type boolean;
-						description
-							"Indicates that the ETH LTP supports VLAN push or swap operations
-							for the second VLAN tag.";
-					}
-					uses svc-vlan-push;
-				}
-			}
-		}
-	}
+  /*
+   * Augment TE bandwidth
+   */
 
+  /* Augment maximum LSP bandwidth of link terminationpoint (LTP) */
+  augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
+        + "tet:te/"
+        + "tet:interface-switching-capability/tet:max-lsp-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE bandwidth";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-path-bandwidth;
+    }
+  }
+  /* Augment bandwidth path constraints of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE bandwidth";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
 
-	/*
-	Data nodes
-	*/
+  /* Augment bandwidth path constraints of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE bandwidth";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
 
-	augment "/nd:networks/nd:network/nd:network-types/tet:te-topology" {
-		description
-			"Augment network types to include ETH transport newtork";
+  /* Augment bandwidth path constraints of connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE bandwidth";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
 
-		uses eth-tran-topology-type;
-	}
+  /* Augment bandwidth path constraints of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE bandwidth";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
 
-	augment "/nd:networks/nd:network/lnk:link/tet:te/tet:te-link-attributes" {
-		when "../../../nd:network-types/tet:te-topology/eth-tran-topology" {
-			description
-				"Augment only for ETH transport network.";
-		}
-		description
-			"Augment ETH transport link config attributes";
+  /* Augment client bandwidth of tunnel termination point (TTP) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:client-layer-adaptation/tet:switching-capability/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE bandwidth";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
 
-		uses eth-link-te-attributes;
-	}
+  /* Augment bandwidth path constraints of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/tet:path-constraints/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE bandwidth";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
 
-	augment "/nd:networks/nd:network/nd:node/lnk:termination-point" {
-		when "../../nd:network-types/tet:te-topology/eth-tran-topology" {
-			description
-				"Augment only for ETH transport network";
-		}
-		description
-			"Augment ETH LTP attributes";
+  /* Augment bandwidth path constraints of local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/tet:path-constraints/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE bandwidth";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
 
-		uses eth-ltp-attributes;
-		container svc {
-			presence "client-facing LTP.";
-			
-			description
-				"ETH LTP Service attributes.";
-			uses eth-ltp-svc-attributes;
-		}
-	}
+  /* Augment maximum LSP bandwidth of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:interface-switching-capability/tet:max-lsp-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-path-bandwidth;
+    }
+  }
+
+  /* Augment maximum bandwidth of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:max-link-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
+
+  /* Augment maximum reservable bandwidth of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:max-resv-link-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
+
+  /* Augment unreserved bandwidth of TE Link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:unreserved-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
+  /* Augment maximum LSP bandwidth of TE link information-source */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:interface-switching-capability/"
+        + "tet:max-lsp-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-path-bandwidth;
+    }
+  }
+
+  /* Augment maximum bandwidth of TE link information-source */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:max-link-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
+
+  /* Augment maximum reservable bandwidth of TE link information-source */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:max-resv-link-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
+
+  /* Augment unreserved bandwidth of TE link information-source */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:unreserved-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
+
+  /* Augment maximum LSP bandwidth of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:interface-switching-capability/"
+        + "tet:max-lsp-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+/*
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+*/
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-path-bandwidth;
+    }
+  }
+
+  /* Augment maximum bandwidth of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:max-link-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+/*
+    when "../../../../../nw:network-types/tet:te-topology/"
+        + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+*/
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
+
+  /* Augment maximum reservable bandwidth of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:max-resv-link-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+/*
+    when "../../../../../nw:network-types/tet:te-topology/"
+        + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+*/
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
+
+  /* Augment unreserved bandwidth of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:unreserved-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+/*
+    when "../../../../../../nw:network-types/tet:te-topology/"
+        + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+*/
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-types:otn-link-bandwidth;
+    }
+  }
+
+  /*
+   * Augment TE label.
+   */
+
+  /* Augment label restrictions of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:label-restrictions/tet:label-restriction" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label restriction.";
+    uses otn-types:otn-label-restriction;
+  }
+
+  /* Augment label restrictions start of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-start/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions end of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-end/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions step of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-step/"
+        + "tet:technology" {
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-label-step;
+    }
+  }
+  
+  /* Augment label hop of underlay primary path of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:underlay/tet:primary-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+  /* Augment label hop of underlay backup path of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:underlay/tet:backup-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-exclude of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-include of connectivity-matrices (added) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of path-route of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology"{
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment ingress label restrictions of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:from/"
+        + "tet:label-restrictions/tet:label-restriction" {
+    when "../../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    uses otn-types:otn-label-restriction;
+  }
+
+  /* Augment ingress label restrictions start of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:from/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-start/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment ingress label restrictions end of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:from/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-end/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment ingress label restrictions step of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:from/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-step/"
+        + "tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-label-step;
+    }
+  }
+
+  /* Augment egress label restrictions of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:to/"
+        + "tet:label-restrictions/tet:label-restriction" {
+    when "../../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    uses otn-types:otn-label-restriction;
+  }
+
+  /* Augment egress label restrictions start of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:to/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-start/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment egress label restrictions end of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:to/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-end/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment egress label restrictions step of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:to/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-step/"
+        + "tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-label-step;
+    }
+  }
+
+  /* Augment label hop of underlay primary path of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:underlay/tet:primary-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of underlay backup path of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:underlay/tet:backup-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-exclude of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:optimizations/"
+        + "tet:algorithm/tet:metric/tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-include of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:optimizations/"
+        + "tet:algorithm/tet:metric/tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of path-route of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label restrictions of connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:connectivity-matrices/tet:label-restrictions/tet:label-restriction" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    uses otn-types:otn-label-restriction;
+  }
+
+  /* Augment label restrictions start of connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:connectivity-matrices/tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/tet:te-label/tet:technology" {
+    when "../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions end of connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:connectivity-matrices/tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-end/tet:te-label/tet:technology" {
+    when "../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions step of connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:connectivity-matrices/tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-step/tet:technology" {
+    when "../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-label-step;
+    }
+  }
+
+  /* Augment label hop of underlay primary path of connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of underlay backup path of connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-exclude of connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-include of connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of path-route of connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment ingress label restrictions of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:from/tet:label-restrictions/tet:label-restriction" {
+    when "../../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    uses otn-types:otn-label-restriction;
+  }
+
+  /* Augment ingress label restrictions start of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:from/tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment ingress label restrictions end of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:from/tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-end/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment ingress label restrictions step of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:from/tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-step/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-label-step;
+    }
+  }
+
+  /* Augment egress label restrictions of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:to/tet:label-restrictions/tet:label-restriction" {
+    when "../../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    uses otn-types:otn-label-restriction;
+  }
+
+  /* Augment egress label restrictions start of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:to/tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment egress label restrictions end of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:to/tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-end/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment egress label restrictions step of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:to/tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-step/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-label-step;
+    }
+  }
+
+  /* Augment label hop of underlay primary path of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of underlay backup path of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-exclude of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-include of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of path-route of connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+  /* Augment label restrictions of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:label-restrictions/tet:label-restriction" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    uses otn-types:otn-label-restriction;
+  }
+
+  /* Augment label restrictions start of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-start/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions end of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-end/"
+        + "tet:te-label/tet:technology"{
+    when "../../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions step of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:label-restrictions/tet:label-restriction/tet:label-step/"
+        + "tet:technology"{
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-label-step;
+    }
+  }
+
+  /* Augment label hop of underlay primary path of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of underlay backup path of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-exclude of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-include of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of path-route of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label restrictions of local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:label-restrictions/tet:label-restriction" {
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    uses otn-types:otn-label-restriction;
+  }
+
+  /* Augment label restrictions start of local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions end of local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-end/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions step of local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-step/tet:technology" {
+    when "../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-label-step;
+    }
+  }
+
+  /* Augment label hop of underlay primary path of local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of underlay backup path of local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-exclude of local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of route-include of local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of path-route of local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of underlay primary path of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of underlay backup path of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label restrictions of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:label-restrictions/tet:label-restriction" {
+    when "../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    uses otn-types:otn-label-restriction;
+  }
+
+  /* Augment label restrictions start of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/tet:te-label/tet:technology" {
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions end of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-end/tet:te-label/tet:technology" {
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions step of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-step/tet:technology" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-label-step;
+    }
+  }
+
+  /* Augment label restrictions of TE link information-source */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:label-restrictions/tet:label-restriction" {
+    when "../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    uses otn-types:otn-label-restriction;
+  }
+
+  /* Augment label restrictions start of TE link information-source */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/tet:te-label/tet:technology" {
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+  /* Augment label restrictions end of TE link information-source */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-end/tet:te-label/tet:technology" {
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions step of TE link information-source */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:information-source-entry/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-step/tet:technology" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-label-step;
+    }
+  }
+
+  /* Augment label hop of underlay primary path of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+/*
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+                         description "Augment OTN TE label";
+    }
+*/
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label hop of underlay backup path of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+/*
+    when "../../../../../../../../../../nw:network-types/tet:te-topology/"
+        + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+*/
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-path-label;
+    }
+  }
+
+  /* Augment label restrictions of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:label-restrictions/tet:label-restriction" {
+/*
+    when "../../../../../nw:network-types/tet:te-topology/"
+        + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+*/
+    description "OTN label.";
+    uses otn-types:otn-label-restriction;
+  }
+
+  /* Augment label restrictions start of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/tet:te-label/tet:technology" {
+/*
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+        + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+*/
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions end of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-end/tet:te-label/tet:technology" {
+/*
+    when "../../../../../../../nw:network-types/tet:te-topology/"
+        + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+*/
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-link-label;
+    }
+  }
+
+  /* Augment label restrictions step of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-step/tet:technology" {
+/*
+    when "../../../../../../nw:network-types/tet:te-topology/"
+        + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+*/
+    description "OTN label.";
+    case otn {
+      uses otn-types:otn-label-step;
+    }
+  }
 }
