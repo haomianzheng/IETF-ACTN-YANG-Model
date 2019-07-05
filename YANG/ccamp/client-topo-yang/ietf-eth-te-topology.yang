@@ -43,7 +43,7 @@ module ietf-eth-te-topology {
     "This module defines a YANG data model for describing
      layer-2 Ethernet transport topologies.";
 
-  revision 2019-07-01 {
+  revision 2019-07-03 {
     description
       "Initial Revision";
     reference
@@ -228,6 +228,9 @@ module ietf-eth-te-topology {
     }
 
     container supported-vlan-operations {
+      description
+        "Reports the VLAN operations supported by the ETH LTP.";
+
       leaf asymmetrical-operations {
         type boolean;
         description
@@ -1934,3 +1937,4 @@ module ietf-eth-te-topology {
   }
 
 }
+
