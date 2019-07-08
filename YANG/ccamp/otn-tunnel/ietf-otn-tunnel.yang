@@ -1,6 +1,5 @@
 module ietf-otn-tunnel {
   yang-version 1.1;
-
   namespace "urn:ietf:params:xml:ns:yang:ietf-otn-tunnel";
   prefix "otn-tunnel";
 
@@ -8,13 +7,13 @@ module ietf-otn-tunnel {
     prefix "te";
     reference 
     "I-D.ietf-teas-yang-te: A YANG Data Model for Traffic Engineering 
-    Tunnels and Interfaces";
+    Tunnels and Interfaces. ";
   }
 
   import ietf-layer1-types {
     prefix "layer1-types";
     reference 
-    "module ietf-otn-types in this Document";
+    "I-D.ietf-ccamp-layer1-types: A YANG Data Model for Layer 1 Types. ";
   }
 
   organization
@@ -84,7 +83,7 @@ module ietf-otn-tunnel {
         base layer1-types:client-signal;
       }
       description
-        "Client signal at the source endpoint of the tunnel";
+        "Client signal at the source endpoint of the tunnel. ";
     }
 
     leaf dst-client-signal {
@@ -372,7 +371,8 @@ module ietf-otn-tunnel {
   /* Augment label hop of path-route of primary path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-primary-paths/te:p2p-primary-path/"
-        + "te:computed-paths-properties/te:computed-path-properties/te:path-properties/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
         + "te:path-route-objects/te:path-computed-route-object/"
         + "te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
@@ -698,7 +698,7 @@ module ietf-otn-tunnel {
   /* Augment label hop of path-route of secondary path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:p2p-secondary-paths/te:p2p-secondary-path/"
-		+ "te:te:computed-paths-properties/te:computed-path-properties/"
+		+ "te:computed-paths-properties/te:computed-path-properties/"
         + "te:path-properties/te:path-route-objects/"
         + "te:path-computed-route-object/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
