@@ -17,14 +17,14 @@ module ietf-otn-topology {
   import ietf-te-topology {
     prefix "tet";
     reference
-    "I-D.ietf-teas-yang-te-topo: YANG Data Model for
-    Traffic Engineering (TE) Topologies";
+      "I-D.ietf-teas-yang-te-topo: YANG Data Model for
+       Traffic Engineering (TE) Topologies";
   }
 
-  import ietf-otn-types {
-    prefix "otn-types";
+  import ietf-layer1-types {
+    prefix "layer1-types";
     reference
-         "I-D.ietf-ccamp-otn-tunnel-model: OTN Tunnel YANG Model";
+      "I-D.ietf-ccamp-layer1-types: A YANG Data Model for Layer 1 Types";
   }
 
   organization
@@ -74,7 +74,7 @@ module ietf-otn-topology {
         Relating to IETF Documents
         (https://trustee.ietf.org/license-info).";
 
-  revision 2019-02-25 {
+  revision 2019-07-07 {
     description
       "Initial Revision";
     reference
@@ -92,7 +92,7 @@ module ietf-otn-topology {
 
     leaf tsg {
       type identityref {
-        base otn-types:tributary-slot-granularity;
+        base layer1-types:tributary-slot-granularity;
       }
       description "Tributary slot granularity.";
       reference
@@ -105,30 +105,30 @@ module ietf-otn-topology {
     }
   }
 
+  /*
+   * Open issue: move to otn-types to allow reuse in WSON and Flexi-grid topology models?
+   */
   grouping otn-tp-attributes {
     description "tp attributes for OTN";
-    list supported-payload-types {
-      key "index";
+
+    container client-svc {
+      presence "client-facing LTP.";
       description
-        "Supported payload types of a TP. The payload type is defined
-         as the generalized PIDs in GMPLS.";
-      leaf index {
-        type uint16;
-        description "payload type index";
+        "OTN LTP Service attributes.";
+
+      leaf client-facing {
+        type boolean;
+        default 'false';
+        description
+          "Indicates whether this LTP is a client-facing LTP.";
       }
-      leaf payload-type {
-        type string;
-        description "the payload type supported by this client tp";
-        reference
-          "http://www.iana.org/assignments/gmpls-sig-parameters
-           /gmpls-sig-parameters.xhtml";
+      leaf-list supported-client-signal {
+        type identityref {
+          base layer1-types:client-signal;
+        }
+        description
+          "List of client signal types supported by the LTP.";
       }
-    }
-    leaf client-facing {
-      type boolean;
-      default 'false';
-      description
-        "Indicating if it is a client-facing TP.";
     }
   }
 
@@ -180,7 +180,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-path-bandwidth;
+      uses layer1-types:otn-path-bandwidth;
     }
   }
   /* Augment bandwidth path constraints of connectivity-matrices */
@@ -193,7 +193,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -208,7 +208,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -222,7 +222,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -237,7 +237,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -252,7 +252,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -267,7 +267,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -283,7 +283,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -298,7 +298,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-path-bandwidth;
+      uses layer1-types:otn-path-bandwidth;
     }
   }
 
@@ -313,7 +313,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -328,7 +328,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -343,7 +343,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
   /* Augment maximum LSP bandwidth of TE link information-source */
@@ -358,7 +358,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-path-bandwidth;
+      uses layer1-types:otn-path-bandwidth;
     }
   }
 
@@ -373,7 +373,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -388,7 +388,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -403,7 +403,7 @@ module ietf-otn-topology {
     }
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -421,7 +421,7 @@ module ietf-otn-topology {
 */
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-path-bandwidth;
+      uses layer1-types:otn-path-bandwidth;
     }
   }
 
@@ -438,7 +438,7 @@ module ietf-otn-topology {
 */
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -455,7 +455,7 @@ module ietf-otn-topology {
 */
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -472,7 +472,7 @@ module ietf-otn-topology {
 */
     description "OTN bandwidth.";
     case otn {
-      uses otn-types:otn-link-bandwidth;
+      uses layer1-types:otn-link-bandwidth;
     }
   }
 
@@ -489,7 +489,7 @@ module ietf-otn-topology {
       description "Augment OTN TE label";
     }
     description "OTN label restriction.";
-    uses otn-types:otn-label-restriction;
+    uses layer1-types:otn-label-restriction;
   }
 
   /* Augment label restrictions start of connectivity-matrices */
@@ -503,7 +503,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -518,7 +518,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -533,7 +533,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-label-step;
+      uses layer1-types:otn-label-step;
     }
   }
   
@@ -550,7 +550,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
   /* Augment label hop of underlay backup path of connectivity-matrices */
@@ -566,7 +566,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -586,7 +586,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -606,7 +606,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -623,7 +623,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -637,7 +637,7 @@ module ietf-otn-topology {
       description "Augment OTN TE label";
     }
     description "OTN label.";
-    uses otn-types:otn-label-restriction;
+    uses layer1-types:otn-label-restriction;
   }
 
   /* Augment ingress label restrictions start of connectivity-matrix */
@@ -653,7 +653,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -670,7 +670,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -687,7 +687,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-label-step;
+      uses layer1-types:otn-label-step;
     }
   }
 
@@ -701,7 +701,7 @@ module ietf-otn-topology {
       description "Augment OTN TE label";
     }
     description "OTN label.";
-    uses otn-types:otn-label-restriction;
+    uses layer1-types:otn-label-restriction;
   }
 
   /* Augment egress label restrictions start of connectivity-matrix */
@@ -717,7 +717,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -734,7 +734,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -751,7 +751,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-label-step;
+      uses layer1-types:otn-label-step;
     }
   }
 
@@ -769,7 +769,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -787,7 +787,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -806,7 +806,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -825,7 +825,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -843,7 +843,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -856,7 +856,7 @@ module ietf-otn-topology {
       description "Augment OTN TE label";
     }
     description "OTN label.";
-    uses otn-types:otn-label-restriction;
+    uses layer1-types:otn-label-restriction;
   }
 
   /* Augment label restrictions start of connectivity-matrices information-source */
@@ -871,7 +871,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -887,7 +887,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -903,7 +903,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-label-step;
+      uses layer1-types:otn-label-step;
     }
   }
 
@@ -919,7 +919,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -935,7 +935,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -954,7 +954,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -973,7 +973,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -990,7 +990,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1004,7 +1004,7 @@ module ietf-otn-topology {
       description "Augment OTN TE label";
     }
     description "OTN label.";
-    uses otn-types:otn-label-restriction;
+    uses layer1-types:otn-label-restriction;
   }
 
   /* Augment ingress label restrictions start of connectivity-matrix information-source */
@@ -1020,7 +1020,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1037,7 +1037,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1054,7 +1054,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-label-step;
+      uses layer1-types:otn-label-step;
     }
   }
 
@@ -1068,7 +1068,7 @@ module ietf-otn-topology {
       description "Augment OTN TE label";
     }
     description "OTN label.";
-    uses otn-types:otn-label-restriction;
+    uses layer1-types:otn-label-restriction;
   }
 
   /* Augment egress label restrictions start of connectivity-matrix information-source */
@@ -1084,7 +1084,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1101,7 +1101,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1118,7 +1118,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-label-step;
+      uses layer1-types:otn-label-step;
     }
   }
 
@@ -1135,7 +1135,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1152,7 +1152,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1172,7 +1172,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1192,7 +1192,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1210,7 +1210,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
   /* Augment label restrictions of local-link-connectivities */
@@ -1223,7 +1223,7 @@ module ietf-otn-topology {
       description "Augment OTN TE label";
     }
     description "OTN label.";
-    uses otn-types:otn-label-restriction;
+    uses layer1-types:otn-label-restriction;
   }
 
   /* Augment label restrictions start of local-link-connectivities */
@@ -1238,7 +1238,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1254,7 +1254,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1270,7 +1270,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-label-step;
+      uses layer1-types:otn-label-step;
     }
   }
 
@@ -1287,7 +1287,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1304,7 +1304,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1324,7 +1324,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1344,7 +1344,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1362,7 +1362,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1377,7 +1377,7 @@ module ietf-otn-topology {
       description "Augment OTN TE label";
     }
     description "OTN label.";
-    uses otn-types:otn-label-restriction;
+    uses layer1-types:otn-label-restriction;
   }
 
   /* Augment label restrictions start of local-link-connectivity (LLC) */
@@ -1394,7 +1394,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1412,7 +1412,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1430,7 +1430,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-label-step;
+      uses layer1-types:otn-label-step;
     }
   }
 
@@ -1448,7 +1448,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1466,7 +1466,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1487,7 +1487,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1508,7 +1508,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1527,7 +1527,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1543,7 +1543,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1559,7 +1559,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1572,7 +1572,7 @@ module ietf-otn-topology {
       description "Augment OTN TE label";
     }
     description "OTN label.";
-    uses otn-types:otn-label-restriction;
+    uses layer1-types:otn-label-restriction;
   }
 
   /* Augment label restrictions start of TE link */
@@ -1586,7 +1586,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1601,7 +1601,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1616,7 +1616,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-label-step;
+      uses layer1-types:otn-label-step;
     }
   }
 
@@ -1629,7 +1629,7 @@ module ietf-otn-topology {
       description "Augment OTN TE label";
     }
     description "OTN label.";
-    uses otn-types:otn-label-restriction;
+    uses layer1-types:otn-label-restriction;
   }
 
   /* Augment label restrictions start of TE link information-source */
@@ -1643,7 +1643,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
   /* Augment label restrictions end of TE link information-source */
@@ -1657,7 +1657,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1672,7 +1672,7 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses otn-types:otn-label-step;
+      uses layer1-types:otn-label-step;
     }
   }
 
@@ -1690,7 +1690,7 @@ module ietf-otn-topology {
 */
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1707,7 +1707,7 @@ module ietf-otn-topology {
 */
     description "OTN label.";
     case otn {
-      uses otn-types:otn-path-label;
+      uses layer1-types:otn-path-label;
     }
   }
 
@@ -1722,7 +1722,7 @@ module ietf-otn-topology {
     }
 */
     description "OTN label.";
-    uses otn-types:otn-label-restriction;
+    uses layer1-types:otn-label-restriction;
   }
 
   /* Augment label restrictions start of TE link template */
@@ -1738,7 +1738,7 @@ module ietf-otn-topology {
 */
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1755,7 +1755,7 @@ module ietf-otn-topology {
 */
     description "OTN label.";
     case otn {
-      uses otn-types:otn-link-label;
+      uses layer1-types:otn-link-label;
     }
   }
 
@@ -1772,8 +1772,7 @@ module ietf-otn-topology {
 */
     description "OTN label.";
     case otn {
-      uses otn-types:otn-label-step;
+      uses layer1-types:otn-label-step;
     }
   }
-  
 }
