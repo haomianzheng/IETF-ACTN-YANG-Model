@@ -6,25 +6,31 @@ module ietf-eth-tran-service {
 
   import ietf-yang-types {
     prefix "yang";
-    reference "RFC 6991 - Common YANG Data Types";
-
+	reference "RFC 6991 - Common YANG Data Types";
   }
 
   import ietf-te-types {
     prefix "te-types";
-    reference "RFC YYYY - Traffic Engineering Common YANG Types";
+	reference "RFC YYYY - Traffic Engineering Common YANG Types";
   }
 
   import ietf-eth-tran-types {
     prefix "etht-types";
-    reference "RFC XXXX - A YANG Data Model for Transport Network Client Signals";
+	reference "RFC XXXX - A YANG Data Model for Transport
+        Network Client Signals";
   }
   
   import ietf-routing-types {
     prefix "rt-types";
-    reference "RFC 8294 - Common YANG Data Types for the
+	reference "RFC 8294 - Common YANG Data Types for the
                   Routing Area";
 
+  }
+
+  import ietf-te {
+    prefix "te";
+	reference "RFC YYYY - A YANG Data Model for Traffic 
+	           Engineering Tunnels and Interfaces";
   }
 
   organization
@@ -36,12 +42,12 @@ module ietf-eth-tran-service {
       ID-draft editor:
         Haomian Zheng (zhenghaomian@huawei.com);
         Italo Busi (italo.busi@huawei.com);
-        Aihua Guo (aihuaguo@huawei.com);
-        Anton Snitser (antons@sedonasys.com);
-        Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-        Yunbin Xu (xuyunbin@ritt.cn);
+        Aihua Guo (aihuaguo.ietf@gmail.com);
+        Anton Snitser (antons@sedonasys.com);0
+		Francesco Lazzeri (francesco.lazzeri@ericsson.com);
+        Yunbin Xu (xuyunbin@caict.ac.cn);
         Yang Zhao (zhaoyangyjy@chinamobile.com);
-        Xufeng Liu (Xufeng_Liu@jabil.com);
+        Xufeng Liu (xufeng.liu.ietf@gmail.com);
         Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
     ";
 
@@ -59,11 +65,11 @@ module ietf-eth-tran-service {
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).";
 
-  revision 2019-03-27 {
+  revision 2019-10-31 {
     description
-      "version -07 as an I-D";
+      "version -01 as an WG document";
     reference
-      "draft-zheng-ccamp-client-signal-yang";
+      "draft-ietf-ccamp-client-signal-yang";
   }
 
   /*
@@ -320,39 +326,39 @@ module ietf-eth-tran-service {
 
   grouping etht-svc-tunnel-parameters {
     description
-      "ETH services tunnel parameters";
-
-    leaf tunnel-name {
-      type string;
-      description
-        "Underlying TE tunnel instance name.";
-    }
-    choice svc-multiplexing-tag {
+      "ETH services tunnel parameters.";
+    choice technology {
       description
         "Service multiplexing is optional and flexible.";
 
-      case other {
+      case native-ethernet {
         /*
          placeholder to support proprietary multiplexing
          (for further discussion)
         */
+		list eth-tunnels {
+		  key name;
+		  description
+            "ETH Tunnel list in native Ethernet scenario.";		  
+		  uses tunnels-grouping;
+		}
       }
 
-      case none {
-        /* no additional information is needed */
+      case frame-base {
+        list otn-tunnels {
+		  key name;
+		  description
+            "OTN Tunnel list in Frame-based scenario.";		  
+		  uses tunnels-grouping;
+		}
       }
 
-      case vlan-tag {
-        /*
-          No additional information is needed
-          The C-Tag or S-Tag used for service mulitplexing is defined
-          by the VLAN classification and operations configured in the
-          etht-svc-access-parameters grouping
-        */
-      }
-
-      case pw-segment {
-        uses pw-segment-grouping;
+      case mpls-tp {
+	    container pw {
+		  description
+            "Pseudowire information for Ethernet over MPLS-TP.";
+		  uses pw-segment-grouping;
+		}    
       }
     }
 
@@ -371,7 +377,7 @@ module ietf-eth-tran-service {
     }
   }
 
-  grouping  etht-svc-pm-threshold_config {
+  grouping  etht-svc-pm-threshold-config {
     description
       "Configuraiton parameters for Ethernet service PM thresholds.";
 
@@ -423,7 +429,7 @@ module ietf-eth-tran-service {
     }
   }
 
-  grouping  etht-svc-instance_config {
+  grouping  etht-svc-instance-config {
     description
       "Configuraiton parameters for Ethernet services.";
 
@@ -471,18 +477,15 @@ module ietf-eth-tran-service {
     list etht-svc-end-points {
       key etht-svc-end-point-name;
       description
-      "The logical end point for the ETH service. "; 
+        "The logical end point for the ETH service. "; 
       uses etht-svc-end-point-grouping;
     }
     
     
-    list etht-svc-tunnels {
-      key tunnel-name;
+    container underlay {
       description
-        "List of the TE Tunnels supporting the ETH
-        service.";
-
-      uses etht-svc-tunnel-parameters;
+        "The unterlay tunnel information that carrying the ETH service. "; 
+	  uses etht-svc-tunnel-parameters;
     }
 
     leaf admin-status {
@@ -494,7 +497,7 @@ module ietf-eth-tran-service {
     }
   }
 
-  grouping  etht-svc-instance_state {
+  grouping  etht-svc-instance-state {
     description
       "State parameters for Ethernet services.";
 
@@ -555,14 +558,14 @@ module ietf-eth-tran-service {
       description
         "The list of p2p ETH service instances";
 
-      uses etht-svc-instance_config;
+      uses etht-svc-instance-config;
 
       container state {
         config false;
         description
           "Ethernet Service states.";
 
-        uses etht-svc-instance_state;
+        uses etht-svc-instance-state;
       }
     }
   }
@@ -575,6 +578,7 @@ module ietf-eth-tran-service {
       "To configure the data plane protection parameters, 
       currently a placeholder only, future candidate attributes
       include, Revert, WTR, Hold-off Timer, ...";
+      uses te:protection-restoration-properties;
     }
   }
   
@@ -618,7 +622,6 @@ module ietf-eth-tran-service {
 /*
   Open Issue:
     Is it possible to limit the max-elements only for p2p services?
-
       max-elements "2";
 */
       description
@@ -813,6 +816,31 @@ module ietf-eth-tran-service {
         "Bandwidth Profile for ingress. "; 
       uses pw-segment-named-or-value-bandwidth-profile;
     }
+
+	list pw-paths {
+	  key path-id;
+	  description 
+        "A list of pw paths. "; 	  
+	  
+	  leaf path-id {
+	    type uint8;
+		description 
+          "The identifier of pw paths. "; 
+	    
+	  }
+	  
+	  list tp-tunnels {
+        key name;
+		description
+          "Names of TP Tunnel underlay";        
+        leaf name {
+		  type string;
+		  description
+            "Names of TP Tunnel underlay";          
+          }
+      }
+	}
+    
   }
   
   grouping pw-segment-named-or-value-bandwidth-profile {
@@ -840,5 +868,31 @@ module ietf-eth-tran-service {
         uses etht-types:pw-segement-bandwidth-profile-grouping;
       }
     }
+  }
+  
+  grouping tunnels-grouping {
+    description
+      "A group of tunnels. ";
+	leaf name {
+	  type leafref {
+		path "/te:te/te:tunnels/te:tunnel/te:name";
+		require-instance false;
+	  }
+	  description "Dependency tunnel name";
+	}
+	leaf encoding {
+	  type identityref {
+		base te-types:lsp-encoding-types;
+	  }
+	  description "LSP encoding type";
+	  reference "RFC3945";
+	}
+	leaf switching-type {
+	  type identityref {
+		base te-types:switching-capabilities;
+	  }
+	  description "LSP switching type";
+	  reference "RFC3945";
+	}
   }
 }

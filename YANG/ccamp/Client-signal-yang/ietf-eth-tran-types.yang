@@ -13,12 +13,12 @@ module ietf-eth-tran-types {
       ID-draft editor:
         Haomian Zheng (zhenghaomian@huawei.com);
         Italo Busi (italo.busi@huawei.com);
-        Aihua Guo (aihuaguo@huawei.com);
-        Anton Snitser (antons@sedonasys.com);
-        Francesco Lazzeri (francesco.lazzeri@ericsson.com);
-        Yunbin Xu (xuyunbin@ritt.cn);
+        Aihua Guo (aihuaguo.ietf@gmail.com);
+        Anton Snitser (antons@sedonasys.com);0
+		Francesco Lazzeri (francesco.lazzeri@ericsson.com);
+        Yunbin Xu (xuyunbin@caict.ac.cn);
         Yang Zhao (zhaoyangyjy@chinamobile.com);
-        Xufeng Liu (Xufeng_Liu@jabil.com);
+        Xufeng Liu (xufeng.liu.ietf@gmail.com);
         Giuseppe Fioccola (giuseppe.fioccola@huawei.com);
     ";
 
