@@ -1,0 +1,832 @@
+module: ietf-eth-te-topology
+  augment /nw:networks/nw:network/nw:network-types
+            /tet:te-topology:
+    +--rw eth-tran-topology!
+  augment /nw:networks/nw:network/nw:node
+            /nt:termination-point:
+    +--rw ltp-mac-address?
+    |       yang:mac-address
+    +--rw port-vlan-id?
+    |       etht-types:vlanid
+    +--rw maximum-frame-size?                       uint16
+    +--rw (direction)?
+    |  +--:(symmetrical)
+    |  |  +--rw ingress-egress-bandwidth-profile
+    |  |     +--rw bandwidth-profile-type?
+    |  |     |       etht-types:bandwidth-profile-type
+    |  |     +--rw CIR?                      uint64
+    |  |     +--rw CBS?                      uint64
+    |  |     +--rw EIR?                      uint64
+    |  |     +--rw EBS?                      uint64
+    |  |     +--rw color-aware?              boolean
+    |  |     +--rw coupling-flag?            boolean
+    |  +--:(asymmetrical)
+    |     +--rw ingress-bandwidth-profile
+    |     |  +--rw bandwidth-profile-type?
+    |     |  |       etht-types:bandwidth-profile-type
+    |     |  +--rw CIR?                      uint64
+    |     |  +--rw CBS?                      uint64
+    |     |  +--rw EIR?                      uint64
+    |     |  +--rw EBS?                      uint64
+    |     |  +--rw color-aware?              boolean
+    |     |  +--rw coupling-flag?            boolean
+    |     +--rw egress-bandwidth-profile
+    |        +--rw bandwidth-profile-type?
+    |        |       etht-types:bandwidth-profile-type
+    |        +--rw CIR?                      uint64
+    |        +--rw CBS?                      uint64
+    |        +--rw EIR?                      uint64
+    |        +--rw EBS?                      uint64
+    |        +--rw color-aware?              boolean
+    |        +--rw coupling-flag?            boolean
+    +--rw eth-svc!
+       +--rw client-facing?               boolean
+       +--rw supported-classification
+       |  +--rw port-classification?   boolean
+       |  +--rw vlan-classification
+       |     +--rw vlan-tag-classification?   boolean
+       |     +--rw outer-tag
+       |     |  +--rw supported-tag-types*
+       |     |  |       etht-types:eth-tag-classify
+       |     |  +--rw vlan-bundling?         boolean
+       |     |  +--rw vlan-range?
+       |     |          etht-types:vid-range-type
+       |     +--rw second-tag
+       |        +--rw second-tag-classification?   boolean
+       |        +--rw supported-tag-types*
+       |        |       etht-types:eth-tag-classify
+       |        +--rw vlan-bundling?               boolean
+       |        +--rw vlan-range?
+       |                etht-types:vid-range-type
+       +--rw supported-vlan-operations
+          +--rw asymmetrical-operations?       boolean
+          +--rw transparent-vlan-operations?   boolean
+          +--rw vlan-pop
+          |  +--rw vlan-pop-operations?   boolean
+          |  +--rw max-pop-tags?          uint8
+          +--rw vlan-push
+             +--rw vlan-push-operation?   boolean
+             +--rw outer-tag
+             |  +--rw supported-tag-types*
+             |  |       etht-types:eth-tag-type
+             |  +--rw vlan-range?
+             |          etht-types:vid-range-type
+             +--rw second-tag
+                +--rw push-second-tag?       boolean
+                +--rw supported-tag-types*
+                |       etht-types:eth-tag-type
+                +--rw vlan-range?
+                        etht-types:vid-range-type
+  augment /nw:networks/nw:network/nw:node
+            /nt:termination-point/tet:te
+            /tet:interface-switching-capability
+            /tet:max-lsp-bandwidth/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices/tet:path-constraints
+            /tet:te-bandwidth/tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:path-constraints
+            /tet:te-bandwidth/tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices/tet:path-constraints
+            /tet:te-bandwidth/tet:technology:
+    +--:(eth)
+       +--ro eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:path-constraints
+            /tet:te-bandwidth/tet:technology:
+    +--:(eth)
+       +--ro eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:client-layer-adaptation
+            /tet:switching-capability/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:path-constraints/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity
+            /tet:path-constraints/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes
+            /tet:interface-switching-capability
+            /tet:max-lsp-bandwidth/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:max-link-bandwidth
+            /tet:te-bandwidth/tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes
+            /tet:max-resv-link-bandwidth/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:unreserved-bandwidth
+            /tet:te-bandwidth/tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:information-source-entry
+            /tet:interface-switching-capability
+            /tet:max-lsp-bandwidth/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--ro eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:information-source-entry
+            /tet:max-link-bandwidth/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--ro eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:information-source-entry
+            /tet:max-resv-link-bandwidth/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--ro eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:information-source-entry
+            /tet:unreserved-bandwidth/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--ro eth-bandwidth?   uint64
+  augment /nw:networks/tet:te/tet:templates
+            /tet:link-template/tet:te-link-attributes
+            /tet:interface-switching-capability
+            /tet:max-lsp-bandwidth/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/tet:te/tet:templates
+            /tet:link-template/tet:te-link-attributes
+            /tet:max-link-bandwidth/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/tet:te/tet:templates
+            /tet:link-template/tet:te-link-attributes
+            /tet:max-resv-link-bandwidth/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/tet:te/tet:templates
+            /tet:link-template/tet:te-link-attributes
+            /tet:unreserved-bandwidth/tet:te-bandwidth
+            /tet:technology:
+    +--:(eth)
+       +--rw eth-bandwidth?   uint64
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:label-restrictions/tet:label-restriction:
+    +--rw tag-type?   etht-types:eth-tag-type
+    +--rw priority?   uint8
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-start/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-end/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-step/tet:technology:
+    +--:(eth)
+       +--rw eth-step?   uint16
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices/tet:underlay
+            /tet:primary-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices/tet:underlay
+            /tet:backup-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices/tet:path-properties
+            /tet:path-route-objects/tet:path-route-object
+            /tet:type/tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:from
+            /tet:label-restrictions/tet:label-restriction:
+    +--rw tag-type?   etht-types:eth-tag-type
+    +--rw priority?   uint8
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:from
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-start/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:from
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-end/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:from
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-step/tet:technology:
+    +--:(eth)
+       +--rw eth-step?   uint16
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:to
+            /tet:label-restrictions/tet:label-restriction:
+    +--rw tag-type?   etht-types:eth-tag-type
+    +--rw priority?   uint8
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:to
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-start/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:to
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-end/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:to
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-step/tet:technology:
+    +--:(eth)
+       +--rw eth-step?   uint16
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:underlay
+            /tet:primary-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:underlay
+            /tet:backup-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:path-properties
+            /tet:path-route-objects/tet:path-route-object
+            /tet:type/tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:label-restrictions/tet:label-restriction:
+    +--ro tag-type?   etht-types:eth-tag-type
+    +--ro priority?   uint8
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-start/tet:te-label/tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-end/tet:te-label/tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-step/tet:technology:
+    +--:(eth)
+       +--ro eth-step?   uint16
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices/tet:underlay
+            /tet:primary-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices/tet:underlay
+            /tet:backup-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices/tet:path-properties
+            /tet:path-route-objects/tet:path-route-object
+            /tet:type/tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:from
+            /tet:label-restrictions/tet:label-restriction:
+    +--ro tag-type?   etht-types:eth-tag-type
+    +--ro priority?   uint8
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:from
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-start/tet:te-label/tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:from
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-end/tet:te-label/tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:from
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-step/tet:technology:
+    +--:(eth)
+       +--ro eth-step?   uint16
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:to
+            /tet:label-restrictions/tet:label-restriction:
+    +--ro tag-type?   etht-types:eth-tag-type
+    +--ro priority?   uint8
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:to
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-start/tet:te-label/tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:to
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-end/tet:te-label/tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:to
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-step/tet:technology:
+    +--:(eth)
+       +--ro eth-step?   uint16
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:underlay
+            /tet:primary-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:underlay
+            /tet:backup-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry
+            /tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:path-properties
+            /tet:path-route-objects/tet:path-route-object
+            /tet:type/tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:label-restrictions/tet:label-restriction:
+    +--rw tag-type?   etht-types:eth-tag-type
+    +--rw priority?   uint8
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-start/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-end/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-step/tet:technology:
+    +--:(eth)
+       +--rw eth-step?   uint16
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:underlay
+            /tet:primary-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:underlay
+            /tet:backup-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:path-properties/tet:path-route-objects
+            /tet:path-route-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity
+            /tet:label-restrictions/tet:label-restriction:
+    +--rw tag-type?   etht-types:eth-tag-type
+    +--rw priority?   uint8
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-start/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-end/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-step/tet:technology:
+    +--:(eth)
+       +--rw eth-step?   uint16
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity/tet:underlay
+            /tet:primary-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity/tet:underlay
+            /tet:backup-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity/tet:path-properties
+            /tet:path-route-objects/tet:path-route-object
+            /tet:type/tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:underlay
+            /tet:primary-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:underlay
+            /tet:backup-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:label-restrictions
+            /tet:label-restriction:
+    +--rw tag-type?   etht-types:eth-tag-type
+    +--rw priority?   uint8
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:label-restrictions
+            /tet:label-restriction/tet:label-start
+            /tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:label-restrictions
+            /tet:label-restriction/tet:label-end
+            /tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:label-restrictions
+            /tet:label-restriction/tet:label-step
+            /tet:technology:
+    +--:(eth)
+       +--rw eth-step?   uint16
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:information-source-entry
+            /tet:label-restrictions/tet:label-restriction:
+    +--ro tag-type?   etht-types:eth-tag-type
+    +--ro priority?   uint8
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:information-source-entry
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-start/tet:te-label/tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:information-source-entry
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-end/tet:te-label/tet:technology:
+    +--:(eth)
+       +--ro vlanid?   etht-types:vlanid
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:information-source-entry
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-step/tet:technology:
+    +--:(eth)
+       +--ro eth-step?   uint16
+  augment /nw:networks/tet:te/tet:templates
+            /tet:link-template/tet:te-link-attributes
+            /tet:underlay/tet:primary-path/tet:path-element
+            /tet:type/tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/tet:te/tet:templates
+            /tet:link-template/tet:te-link-attributes
+            /tet:underlay/tet:backup-path/tet:path-element
+            /tet:type/tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/tet:te/tet:templates
+            /tet:link-template/tet:te-link-attributes
+            /tet:label-restrictions/tet:label-restriction:
+    +--rw tag-type?   etht-types:eth-tag-type
+    +--rw priority?   uint8
+  augment /nw:networks/tet:te/tet:templates
+            /tet:link-template/tet:te-link-attributes
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-start/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/tet:te/tet:templates
+            /tet:link-template/tet:te-link-attributes
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-end/tet:te-label/tet:technology:
+    +--:(eth)
+       +--rw vlanid?   etht-types:vlanid
+  augment /nw:networks/tet:te/tet:templates
+            /tet:link-template/tet:te-link-attributes
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-step/tet:technology:
+    +--:(eth)
+       +--rw eth-step?   uint16
+
