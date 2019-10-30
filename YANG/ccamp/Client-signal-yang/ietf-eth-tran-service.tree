@@ -1,266 +1,199 @@
 module: ietf-eth-tran-service
-  +--rw etht-svc
-     +--rw globals
-     |  +--rw named-bandwidth-profiles*
-     |          [bandwidth-profile-name]
-     |     +--rw bandwidth-profile-name    string
-     |     +--rw bandwidth-profile-type?
-     |     |       etht-types:bandwidth-profile-type
-     |     +--rw CIR?                      uint64
-     |     +--rw CBS?                      uint64
-     |     +--rw EIR?                      uint64
-     |     +--rw EBS?                      uint64
-     |     +--rw color-aware?              boolean
-     |     +--rw coupling-flag?            boolean
-     +--rw etht-svc-instances* [etht-svc-name]
-        +--rw etht-svc-name             string
-        +--rw etht-svc-id?              string
-        +--rw etht-svc-descr?           string
-        +--rw etht-svc-customer?        string
-        +--rw etht-svc-type?
-        |       etht-types:service-type
-        +--rw etht-svc-lifecycle?
-        |       etht-types:lifecycle-status
-        +--rw te-topology-identifier
-        |  +--rw provider-id?   te-global-id
-        |  +--rw client-id?     te-global-id
-        |  +--rw topology-id?   te-topology-id
-        +--rw resilience
-        |  +--rw protection
-        |  |  +--rw enable?                         boolean
-        |  |  +--rw protection-type?
-        |  |  |       identityref
-        |  |  +--rw protection-reversion-disable?   boolean
-        |  |  +--rw hold-off-time?                  uint32
-        |  |  +--rw wait-to-revert?                 uint16
-        |  |  +--rw aps-signal-id?                  uint8
-        |  +--rw restoration
-        |     +--rw enable?                          boolean
-        |     +--rw restoration-type?
-        |     |       identityref
-        |     +--rw restoration-scheme?
-        |     |       identityref
-        |     +--rw restoration-reversion-disable?   boolean
-        |     +--rw hold-off-time?                   uint32
-        |     +--rw wait-to-restore?                 uint16
-        |     +--rw wait-to-revert?                  uint16
-        +--rw etht-svc-end-points* [etht-svc-end-point-name]
-        |  +--rw etht-svc-end-point-name
-        |  |       string
-        |  +--rw etht-svc-end-point-id?
-        |  |       string
-        |  +--rw etht-svc-end-point-descr?
-        |  |       string
-        |  +--rw topology-role?
-        |  |       identityref
-        |  +--rw resilience
-        |  +--rw etht-svc-access-points* [access-point-id]
-        |  |  +--rw access-point-id    string
-        |  |  +--rw access-node-id?    te-types:te-node-id
-        |  |  +--rw access-ltp-id?     te-types:te-tp-id
-        |  |  +--rw access-role?       identityref
-        |  |  +--rw pm-config
-        |  |  |  +--rw pm-enable?             boolean
-        |  |  |  +--rw sending-rate-high?     uint64
-        |  |  |  +--rw sending-rate-low?      uint64
-        |  |  |  +--rw receiving-rate-high?   uint64
-        |  |  |  +--rw receiving-rate-low?    uint64
-        |  |  +--ro state
-        |  |  |  +--ro operational-state?    identityref
-        |  |  |  +--ro provisioning-state?   identityref
-        |  |  +--ro performance?       identityref
-        |  +--rw service-classification-type?
-        |  |       identityref
-        |  +--rw (service-classification)?
-        |  |  +--:(port-classification)
-        |  |  +--:(vlan-classification)
-        |  |     +--rw outer-tag!
-        |  |     |  +--rw tag-type?
-        |  |     |  |       etht-types:eth-tag-classify
-        |  |     |  +--rw (individual-bundling-vlan)?
-        |  |     |     +--:(individual-vlan)
-        |  |     |     |  +--rw vlan-value?
-        |  |     |     |          etht-types:vlanid
-        |  |     |     +--:(vlan-bundling)
-        |  |     |        +--rw vlan-range?
-        |  |     |                etht-types:vid-range-type
-        |  |     +--rw second-tag!
-        |  |        +--rw tag-type?
-        |  |        |       etht-types:eth-tag-classify
-        |  |        +--rw (individual-bundling-vlan)?
-        |  |           +--:(individual-vlan)
-        |  |           |  +--rw vlan-value?
-        |  |           |          etht-types:vlanid
-        |  |           +--:(vlan-bundling)
-        |  |              +--rw vlan-range?
-        |  |                      etht-types:vid-range-type
-        |  +--rw split-horizon-group?
-        |  |       string
-        |  +--rw (direction)?
-        |  |  +--:(symmetrical)
-        |  |  |  +--rw ingress-egress-bandwidth-profile
-        |  |  |     +--rw (style)?
-        |  |  |        +--:(named)
-        |  |  |        |  +--rw bandwidth-profile-name?
-        |  |  |        |          string
-        |  |  |        +--:(value)
-        |  |  |           +--rw bandwidth-profile-type?
-        |  |  |           |       etht-types:bandwidth-profile-type
-        |  |  |           +--rw CIR?
-        |  |  |           |       uint64
-        |  |  |           +--rw CBS?
-        |  |  |           |       uint64
-        |  |  |           +--rw EIR?
-        |  |  |           |       uint64
-        |  |  |           +--rw EBS?
-        |  |  |           |       uint64
-        |  |  |           +--rw color-aware?
-        |  |  |           |       boolean
-        |  |  |           +--rw coupling-flag?
-        |  |  |                   boolean
-        |  |  +--:(asymmetrical)
-        |  |     +--rw ingress-bandwidth-profile
-        |  |     |  +--rw (style)?
-        |  |     |     +--:(named)
-        |  |     |     |  +--rw bandwidth-profile-name?
-        |  |     |     |          string
-        |  |     |     +--:(value)
-        |  |     |        +--rw bandwidth-profile-type?
-        |  |     |        |       etht-types:bandwidth-profile-type
-        |  |     |        +--rw CIR?
-        |  |     |        |       uint64
-        |  |     |        +--rw CBS?
-        |  |     |        |       uint64
-        |  |     |        +--rw EIR?
-        |  |     |        |       uint64
-        |  |     |        +--rw EBS?
-        |  |     |        |       uint64
-        |  |     |        +--rw color-aware?
-        |  |     |        |       boolean
-        |  |     |        +--rw coupling-flag?
-        |  |     |                boolean
-        |  |     +--rw egress-bandwidth-profile
-        |  |        +--rw (style)?
-        |  |           +--:(named)
-        |  |           |  +--rw bandwidth-profile-name?
-        |  |           |          string
-        |  |           +--:(value)
-        |  |              +--rw bandwidth-profile-type?
-        |  |              |       etht-types:bandwidth-profile-type
-        |  |              +--rw CIR?
-        |  |              |       uint64
-        |  |              +--rw CBS?
-        |  |              |       uint64
-        |  |              +--rw EIR?
-        |  |              |       uint64
-        |  |              +--rw EBS?
-        |  |              |       uint64
-        |  |              +--rw color-aware?
-        |  |              |       boolean
-        |  |              +--rw coupling-flag?
-        |  |                      boolean
-        |  +--rw vlan-operations
-        |     +--rw (direction)?
-        |        +--:(symmetrical)
-        |        |  +--rw symmetrical-operation
-        |        |     +--rw pop-tags?    uint8
-        |        |     +--rw push-tags
-        |        |        +--rw outer-tag!
-        |        |        |  +--rw tag-type?
-        |        |        |  |       etht-types:eth-tag-type
-        |        |        |  +--rw vlan-value?
-        |        |        |  |       etht-types:vlanid
-        |        |        |  +--rw default-pcp?   uint8
-        |        |        +--rw second-tag!
-        |        |           +--rw tag-type?
-        |        |           |       etht-types:eth-tag-type
-        |        |           +--rw vlan-value?
-        |        |           |       etht-types:vlanid
-        |        |           +--rw default-pcp?   uint8
-        |        +--:(asymmetrical)
-        |           +--rw asymmetrical-operation
-        |              +--rw ingress
-        |              |  +--rw pop-tags?    uint8
-        |              |  +--rw push-tags
-        |              |     +--rw outer-tag!
-        |              |     |  +--rw tag-type?
-        |              |     |  |       etht-types:eth-tag-type
-        |              |     |  +--rw vlan-value?
-        |              |     |  |       etht-types:vlanid
-        |              |     |  +--rw default-pcp?   uint8
-        |              |     +--rw second-tag!
-        |              |        +--rw tag-type?
-        |              |        |       etht-types:eth-tag-type
-        |              |        +--rw vlan-value?
-        |              |        |       etht-types:vlanid
-        |              |        +--rw default-pcp?   uint8
-        |              +--rw egress
-        |                 +--rw pop-tags?    uint8
-        |                 +--rw push-tags
-        |                    +--rw outer-tag!
-        |                    |  +--rw tag-type?
-        |                    |  |       etht-types:eth-tag-type
-        |                    |  +--rw vlan-value?
-        |                    |  |       etht-types:vlanid
-        |                    |  +--rw default-pcp?   uint8
-        |                    +--rw second-tag!
-        |                       +--rw tag-type?
-        |                       |       etht-types:eth-tag-type
-        |                       +--rw vlan-value?
-        |                       |       etht-types:vlanid
-        |                       +--rw default-pcp?   uint8
-        +--rw underlay
-        |  +--rw (technology)?
-        |  |  +--:(native-ethernet)
-        |  |  |  +--rw eth-tunnels* [name]
-        |  |  |     +--rw name
-        |  |  |     |       -> /te:te/tunnels/tunnel/name
-        |  |  |     +--rw encoding?         identityref
-        |  |  |     +--rw switching-type?   identityref
-        |  |  +--:(frame-base)
-        |  |  |  +--rw otn-tunnels* [name]
-        |  |  |     +--rw name
-        |  |  |     |       -> /te:te/tunnels/tunnel/name
-        |  |  |     +--rw encoding?         identityref
-        |  |  |     +--rw switching-type?   identityref
-        |  |  +--:(mpls-tp)
-        |  |     +--rw pw
-        |  |        +--rw pw-id?
-        |  |        |       string
-        |  |        +--rw pw-name?
-        |  |        |       string
-        |  |        +--rw transmit-label?
-        |  |        |       rt-types:mpls-label
-        |  |        +--rw receive-label?
-        |  |        |       rt-types:mpls-label
-        |  |        +--rw encaplate-type?
-        |  |        |       identityref
-        |  |        +--ro oper-status?
-        |  |        |       identityref
-        |  |        +--rw ingress-bandwidth-profile
-        |  |        |  +--rw (style)?
-        |  |        |     +--:(named)
-        |  |        |     |  +--rw bandwidth-profile-name?   leafref
-        |  |        |     +--:(value)
-        |  |        |        +--rw bandwidth-profile-type?
-        |  |        |        |       etht-types:bandwidth-profile-type
-        |  |        |        +--rw CIR?
-        |  |        |        |       uint64
-        |  |        |        +--rw CBS?
-        |  |        |        |       uint64
-        |  |        |        +--rw EIR?
-        |  |        |        |       uint64
-        |  |        |        +--rw EBS?
-        |  |        |                uint64
-        |  |        +--rw pw-paths* [path-id]
-        |  |           +--rw path-id       uint8
-        |  |           +--rw tp-tunnels* [name]
-        |  |              +--rw name    string
-        |  +--rw src-split-horizon-group?   string
-        |  +--rw dst-split-horizon-group?   string
-        +--rw admin-status?             identityref
-        +--ro state
-           +--ro operational-state?    identityref
-           +--ro provisioning-state?   identityref
-           +--ro creation-time?        yang:date-and-time
-           +--ro last-updated-time?    yang:date-and-time
+   +--rw etht-svc
+      +--rw globals
+      |  +--rw named-bandwidth-profiles* [bandwidth-profile-name]
+      |     +--rw bandwidth-profile-name    string
+      |     +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
+      |     +--rw CIR?                      uint64
+      |     +--rw CBS?                      uint64
+      |     +--rw EIR?                      uint64
+      |     +--rw EBS?                      uint64
+      |     +--rw color-aware?              boolean
+      |     +--rw coupling-flag?            boolean
+      +--rw etht-svc-instances* [etht-svc-name]
+         +--rw etht-svc-name             string
+         +--rw etht-svc-id?              string
+         +--rw etht-svc-descr?           string
+         +--rw etht-svc-customer?        string
+         +--rw etht-svc-type?            etht-types:service-type
+         +--rw etht-svc-lifecycle?       etht-types:lifecycle-status
+         +--rw te-topology-identifier
+         |  +--rw provider-id?   te-types:te-global-id
+         |  +--rw client-id?     te-types:te-global-id
+         |  +--rw topology-id?   te-types:te-topology-id
+         +--rw resilience
+         |  +--rw protection
+         |  |  +--rw enable?                         boolean
+         |  |  +--rw protection-type?                identityref
+         |  |  +--rw protection-reversion-disable?   boolean
+         |  |  +--rw hold-off-time?                  uint32
+         |  |  +--rw wait-to-revert?                 uint32
+         |  |  +--rw aps-signal-id?                  uint8
+         |  |  +--rw segment-protect?                boolean
+         |  +--rw restoration
+         |     +--rw enable?                          boolean
+         |     +--rw restoration-type?                identityref
+         |     +--rw restoration-scheme?              identityref
+         |     +--rw restoration-reversion-disable?   boolean
+         |     +--rw hold-off-time?                   uint32
+         |     +--rw wait-to-restore?                 uint16
+         |     +--rw wait-to-revert?                  uint16
+         +--rw etht-svc-end-points* [etht-svc-end-point-name]
+         |  +--rw etht-svc-end-point-name             string
+         |  +--rw etht-svc-end-point-id?              string
+         |  +--rw etht-svc-end-point-descr?           string
+         |  +--rw topology-role?                      identityref
+         |  +--rw resilience
+         |  +--rw etht-svc-access-points* [access-point-id]
+         |  |  +--rw access-point-id    string
+         |  |  +--rw access-node-id?    te-types:te-node-id
+         |  |  +--rw access-ltp-id?     te-types:te-tp-id
+         |  |  +--rw access-role?       identityref
+         |  |  +--rw pm-config
+         |  |  |  +--rw pm-enable?             boolean
+         |  |  |  +--rw sending-rate-high?     uint64
+         |  |  |  +--rw sending-rate-low?      uint64
+         |  |  |  +--rw receiving-rate-high?   uint64
+         |  |  |  +--rw receiving-rate-low?    uint64
+         |  |  +--ro state
+         |  |  |  +--ro operational-state?    identityref
+         |  |  |  +--ro provisioning-state?   identityref
+         |  |  +--ro performance?       identityref
+         |  +--rw service-classification-type?        identityref
+         |  +--rw (service-classification)?
+         |  |  +--:(port-classification)
+         |  |  +--:(vlan-classification)
+         |  |     +--rw outer-tag!
+         |  |     |  +--rw tag-type?     etht-types:eth-tag-classify
+         |  |     |  +--rw (individual-bundling-vlan)?
+         |  |     |     +--:(individual-vlan)
+         |  |     |     |  +--rw vlan-value?   etht-types:vlanid
+         |  |     |     +--:(vlan-bundling)
+         |  |     |        +--rw vlan-range?   etht-types:vid-range-type
+         |  |     +--rw second-tag!
+         |  |        +--rw tag-type?     etht-types:eth-tag-classify
+         |  |        +--rw (individual-bundling-vlan)?
+         |  |           +--:(individual-vlan)
+         |  |           |  +--rw vlan-value?   etht-types:vlanid
+         |  |           +--:(vlan-bundling)
+         |  |              +--rw vlan-range?   etht-types:vid-range-type
+         |  +--rw split-horizon-group?                string
+         |  +--rw (direction)?
+         |  |  +--:(symmetrical)
+         |  |  |  +--rw ingress-egress-bandwidth-profile
+         |  |  |     +--rw (style)?
+         |  |  |        +--:(named)
+         |  |  |        |  +--rw bandwidth-profile-name?   string
+         |  |  |        +--:(value)
+         |  |  |           +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
+         |  |  |           +--rw CIR?                      uint64
+         |  |  |           +--rw CBS?                      uint64
+         |  |  |           +--rw EIR?                      uint64
+         |  |  |           +--rw EBS?                      uint64
+         |  |  |           +--rw color-aware?              boolean
+         |  |  |           +--rw coupling-flag?            boolean
+         |  |  +--:(asymmetrical)
+         |  |     +--rw ingress-bandwidth-profile
+         |  |     |  +--rw (style)?
+         |  |     |     +--:(named)
+         |  |     |     |  +--rw bandwidth-profile-name?   string
+         |  |     |     +--:(value)
+         |  |     |        +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
+         |  |     |        +--rw CIR?                      uint64
+         |  |     |        +--rw CBS?                      uint64
+         |  |     |        +--rw EIR?                      uint64
+         |  |     |        +--rw EBS?                      uint64
+         |  |     |        +--rw color-aware?              boolean
+         |  |     |        +--rw coupling-flag?            boolean
+         |  |     +--rw egress-bandwidth-profile
+         |  |        +--rw (style)?
+         |  |           +--:(named)
+         |  |           |  +--rw bandwidth-profile-name?   string
+         |  |           +--:(value)
+         |  |              +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
+         |  |              +--rw CIR?                      uint64
+         |  |              +--rw CBS?                      uint64
+         |  |              +--rw EIR?                      uint64
+         |  |              +--rw EBS?                      uint64
+         |  |              +--rw color-aware?              boolean
+         |  |              +--rw coupling-flag?            boolean
+         |  +--rw vlan-operations
+         |     +--rw (direction)?
+         |        +--:(symmetrical)
+         |        |  +--rw symmetrical-operation
+         |        |     +--rw pop-tags?    uint8
+         |        |     +--rw push-tags
+         |        |        +--rw outer-tag!
+         |        |        |  +--rw tag-type?      etht-types:eth-tag-type
+         |        |        |  +--rw vlan-value?    etht-types:vlanid
+         |        |        |  +--rw default-pcp?   uint8
+         |        |        +--rw second-tag!
+         |        |           +--rw tag-type?      etht-types:eth-tag-type
+         |        |           +--rw vlan-value?    etht-types:vlanid
+         |        |           +--rw default-pcp?   uint8
+         |        +--:(asymmetrical)
+         |           +--rw asymmetrical-operation
+         |              +--rw ingress
+         |              |  +--rw pop-tags?    uint8
+         |              |  +--rw push-tags
+         |              |     +--rw outer-tag!
+         |              |     |  +--rw tag-type?      etht-types:eth-tag-type
+         |              |     |  +--rw vlan-value?    etht-types:vlanid
+         |              |     |  +--rw default-pcp?   uint8
+         |              |     +--rw second-tag!
+         |              |        +--rw tag-type?      etht-types:eth-tag-type
+         |              |        +--rw vlan-value?    etht-types:vlanid
+         |              |        +--rw default-pcp?   uint8
+         |              +--rw egress
+         |                 +--rw pop-tags?    uint8
+         |                 +--rw push-tags
+         |                    +--rw outer-tag!
+         |                    |  +--rw tag-type?      etht-types:eth-tag-type
+         |                    |  +--rw vlan-value?    etht-types:vlanid
+         |                    |  +--rw default-pcp?   uint8
+         |                    +--rw second-tag!
+         |                       +--rw tag-type?      etht-types:eth-tag-type
+         |                       +--rw vlan-value?    etht-types:vlanid
+         |                       +--rw default-pcp?   uint8
+         +--rw underlay
+         |  +--rw (technology)?
+         |  |  +--:(native-ethernet)
+         |  |  |  +--rw eth-tunnels* [name]
+         |  |  |     +--rw name              leafref
+         |  |  |     +--rw encoding?         identityref
+         |  |  |     +--rw switching-type?   identityref
+         |  |  +--:(frame-base)
+         |  |  |  +--rw otn-tunnels* [name]
+         |  |  |     +--rw name              leafref
+         |  |  |     +--rw encoding?         identityref
+         |  |  |     +--rw switching-type?   identityref
+         |  |  +--:(mpls-tp)
+         |  |     +--rw pw
+         |  |        +--rw pw-id?                       string
+         |  |        +--rw pw-name?                     string
+         |  |        +--rw transmit-label?              rt-types:mpls-label
+         |  |        +--rw receive-label?               rt-types:mpls-label
+         |  |        +--rw encaplate-type?              identityref
+         |  |        +--ro oper-status?                 identityref
+         |  |        +--rw ingress-bandwidth-profile
+         |  |        |  +--rw (style)?
+         |  |        |     +--:(named)
+         |  |        |     |  +--rw bandwidth-profile-name?   leafref
+         |  |        |     +--:(value)
+         |  |        |        +--rw bandwidth-profile-type?   etht-types:bandwidth-profile-type
+         |  |        |        +--rw CIR?                      uint64
+         |  |        |        +--rw CBS?                      uint64
+         |  |        |        +--rw EIR?                      uint64
+         |  |        |        +--rw EBS?                      uint64
+         |  |        +--rw pw-paths* [path-id]
+         |  |           +--rw path-id       uint8
+         |  |           +--rw tp-tunnels* [name]
+         |  |              +--rw name    string
+         |  +--rw src-split-horizon-group?   string
+         |  +--rw dst-split-horizon-group?   string
+         +--rw admin-status?             identityref
+         +--ro state
+            +--ro operational-state?    identityref
+            +--ro provisioning-state?   identityref
+            +--ro creation-time?        yang:date-and-time
+            +--ro last-updated-time?    yang:date-and-time
