@@ -322,8 +322,8 @@ module ietf-layer1-types {
     }
   }
 
-  grouping otn-label-restriction {
-        description "label restriction information for OTN";
+  grouping otn-label-range-info {
+    description "label range information for OTN";
     leaf range-type {
       type identityref {
         base layer1-types:otn-label-range-type;
@@ -431,7 +431,7 @@ module ietf-layer1-types {
       case tributary-port {
         leaf tpn {
           type uint16 {
-            range "1..80";
+            range "1..4095";
           }
           default 1;
           description
@@ -445,7 +445,7 @@ module ietf-layer1-types {
       case tributary-slot {
         leaf ts {
           type uint16 {
-            range "1..80";
+            range "1..4095";
           }
           default 1;
           description
