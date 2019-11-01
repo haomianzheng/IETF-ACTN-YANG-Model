@@ -504,9 +504,6 @@ module ietf-layer1-types {
          reference "MEF63 & IEEE802.3";
       }
 
-      /* coding func needs to expand for Fiber Channel, SONET, SDH  */
-
-  
   identity optical-interface-func {
       description
         "base identity from which optical-interface-function is
