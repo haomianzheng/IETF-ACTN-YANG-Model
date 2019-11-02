@@ -175,18 +175,32 @@ module: ietf-otn-topology
             /tet:te-node-attributes
             /tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction:
+    +--rw range-type?      identityref
+    +--rw tsg?             identityref
+    +--rw odu-type-list*   identityref
+    +--rw priority?        uint8
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction
             /tet:label-start/tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction
             /tet:label-end/tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -195,9 +209,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (otn-label-type)?
           +--:(tributary-port)
-          |  +--rw tpn-step?   uint16
+          |  +--rw tpn?   uint16
           +--:(tributary-slot)
-             +--rw ts?         uint16
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices/tet:underlay
@@ -205,6 +219,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices/tet:underlay
@@ -212,6 +229,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices/tet:optimizations
@@ -222,6 +242,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices/tet:optimizations
@@ -232,6 +255,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices/tet:path-properties
@@ -239,11 +265,18 @@ module: ietf-otn-topology
             /tet:type/tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
             /tet:connectivity-matrix/tet:from
             /tet:label-restrictions/tet:label-restriction:
+    +--rw range-type?      identityref
+    +--rw tsg?             identityref
+    +--rw odu-type-list*   identityref
+    +--rw priority?        uint8
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -251,6 +284,11 @@ module: ietf-otn-topology
             /tet:label-restrictions/tet:label-restriction
             /tet:label-start/tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -258,6 +296,11 @@ module: ietf-otn-topology
             /tet:label-restrictions/tet:label-restriction
             /tet:label-end/tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -267,14 +310,18 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (otn-label-type)?
           +--:(tributary-port)
-          |  +--rw tpn-step?   uint16
+          |  +--rw tpn?   uint16
           +--:(tributary-slot)
-             +--rw ts?         uint16
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
             /tet:connectivity-matrix/tet:to
             /tet:label-restrictions/tet:label-restriction:
+    +--rw range-type?      identityref
+    +--rw tsg?             identityref
+    +--rw odu-type-list*   identityref
+    +--rw priority?        uint8
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -282,6 +329,11 @@ module: ietf-otn-topology
             /tet:label-restrictions/tet:label-restriction
             /tet:label-start/tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -289,6 +341,11 @@ module: ietf-otn-topology
             /tet:label-restrictions/tet:label-restriction
             /tet:label-end/tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -298,9 +355,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (otn-label-type)?
           +--:(tributary-port)
-          |  +--rw tpn-step?   uint16
+          |  +--rw tpn?   uint16
           +--:(tributary-slot)
-             +--rw ts?         uint16
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -309,6 +366,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -317,6 +377,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -328,6 +391,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -339,6 +405,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes
             /tet:connectivity-matrices
@@ -347,22 +416,39 @@ module: ietf-otn-topology
             /tet:type/tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction:
+    +--ro range-type?      identityref
+    +--ro tsg?             identityref
+    +--ro odu-type-list*   identityref
+    +--ro priority?        uint8
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction
             /tet:label-start/tet:te-label/tet:technology:
     +--:(otn)
+       +--ro (otn-label-type)?
+          +--:(tributary-port)
+          |  +--ro tpn?   uint16
+          +--:(tributary-slot)
+             +--ro ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction
             /tet:label-end/tet:te-label/tet:technology:
     +--:(otn)
+       +--ro (otn-label-type)?
+          +--:(tributary-port)
+          |  +--ro tpn?   uint16
+          +--:(tributary-slot)
+             +--ro ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -371,9 +457,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (otn-label-type)?
           +--:(tributary-port)
-          |  +--ro tpn-step?   uint16
+          |  +--ro tpn?   uint16
           +--:(tributary-slot)
-             +--ro ts?         uint16
+             +--ro ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices/tet:underlay
@@ -381,6 +467,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices/tet:underlay
@@ -388,6 +477,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices/tet:optimizations
@@ -398,6 +490,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices/tet:optimizations
@@ -408,6 +503,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices/tet:path-properties
@@ -415,11 +513,18 @@ module: ietf-otn-topology
             /tet:type/tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
             /tet:connectivity-matrix/tet:from
             /tet:label-restrictions/tet:label-restriction:
+    +--ro range-type?      identityref
+    +--ro tsg?             identityref
+    +--ro odu-type-list*   identityref
+    +--ro priority?        uint8
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -427,6 +532,11 @@ module: ietf-otn-topology
             /tet:label-restrictions/tet:label-restriction
             /tet:label-start/tet:te-label/tet:technology:
     +--:(otn)
+       +--ro (otn-label-type)?
+          +--:(tributary-port)
+          |  +--ro tpn?   uint16
+          +--:(tributary-slot)
+             +--ro ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -434,6 +544,11 @@ module: ietf-otn-topology
             /tet:label-restrictions/tet:label-restriction
             /tet:label-end/tet:te-label/tet:technology:
     +--:(otn)
+       +--ro (otn-label-type)?
+          +--:(tributary-port)
+          |  +--ro tpn?   uint16
+          +--:(tributary-slot)
+             +--ro ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -443,14 +558,18 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (otn-label-type)?
           +--:(tributary-port)
-          |  +--ro tpn-step?   uint16
+          |  +--ro tpn?   uint16
           +--:(tributary-slot)
-             +--ro ts?         uint16
+             +--ro ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
             /tet:connectivity-matrix/tet:to
             /tet:label-restrictions/tet:label-restriction:
+    +--ro range-type?      identityref
+    +--ro tsg?             identityref
+    +--ro odu-type-list*   identityref
+    +--ro priority?        uint8
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -458,6 +577,11 @@ module: ietf-otn-topology
             /tet:label-restrictions/tet:label-restriction
             /tet:label-start/tet:te-label/tet:technology:
     +--:(otn)
+       +--ro (otn-label-type)?
+          +--:(tributary-port)
+          |  +--ro tpn?   uint16
+          +--:(tributary-slot)
+             +--ro ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -465,6 +589,11 @@ module: ietf-otn-topology
             /tet:label-restrictions/tet:label-restriction
             /tet:label-end/tet:te-label/tet:technology:
     +--:(otn)
+       +--ro (otn-label-type)?
+          +--:(tributary-port)
+          |  +--ro tpn?   uint16
+          +--:(tributary-slot)
+             +--ro ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -474,9 +603,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (otn-label-type)?
           +--:(tributary-port)
-          |  +--ro tpn-step?   uint16
+          |  +--ro tpn?   uint16
           +--:(tributary-slot)
-             +--ro ts?         uint16
+             +--ro ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -485,6 +614,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -493,6 +625,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -504,6 +639,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -515,6 +653,9 @@ module: ietf-otn-topology
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry
             /tet:connectivity-matrices
@@ -523,149 +664,20 @@ module: ietf-otn-topology
             /tet:type/tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
             /tet:label-restrictions/tet:label-restriction:
+    +--rw range-type?      identityref
+    +--rw tsg?             identityref
+    +--rw odu-type-list*   identityref
+    +--rw priority?        uint8
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
-            /tet:label-restrictions/tet:label-restriction
-            /tet:label-start/tet:te-label/tet:technology:
-    +--:(otn)
-  augment /nw:networks/nw:network/nw:node/tet:te
-            /tet:tunnel-termination-point
-            /tet:local-link-connectivities
-            /tet:label-restrictions/tet:label-restriction
-            /tet:label-end/tet:te-label/tet:technology:
-    +--:(otn)
-  augment /nw:networks/nw:network/nw:node/tet:te
-            /tet:tunnel-termination-point
-            /tet:local-link-connectivities
-            /tet:label-restrictions/tet:label-restriction
-            /tet:label-step/tet:technology:
-    +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn-step?   uint16
-          +--:(tributary-slot)
-             +--rw ts?         uint16
-  augment /nw:networks/nw:network/nw:node/tet:te
-            /tet:tunnel-termination-point
-            /tet:local-link-connectivities/tet:underlay
-            /tet:primary-path/tet:path-element/tet:type
-            /tet:label/tet:label-hop/tet:te-label
-            /tet:technology:
-    +--:(otn)
-  augment /nw:networks/nw:network/nw:node/tet:te
-            /tet:tunnel-termination-point
-            /tet:local-link-connectivities/tet:underlay
-            /tet:backup-path/tet:path-element/tet:type
-            /tet:label/tet:label-hop/tet:te-label
-            /tet:technology:
-    +--:(otn)
-  augment /nw:networks/nw:network/nw:node/tet:te
-            /tet:tunnel-termination-point
-            /tet:local-link-connectivities/tet:optimizations
-            /tet:algorithm/tet:metric
-            /tet:optimization-metric
-            /tet:explicit-route-exclude-objects
-            /tet:route-object-exclude-object/tet:type
-            /tet:label/tet:label-hop/tet:te-label
-            /tet:technology:
-    +--:(otn)
-  augment /nw:networks/nw:network/nw:node/tet:te
-            /tet:tunnel-termination-point
-            /tet:local-link-connectivities/tet:optimizations
-            /tet:algorithm/tet:metric
-            /tet:optimization-metric
-            /tet:explicit-route-include-objects
-            /tet:route-object-include-object/tet:type
-            /tet:label/tet:label-hop/tet:te-label
-            /tet:technology:
-    +--:(otn)
-  augment /nw:networks/nw:network/nw:node/tet:te
-            /tet:tunnel-termination-point
-            /tet:local-link-connectivities
-            /tet:path-properties/tet:path-route-objects
-            /tet:path-route-object/tet:type/tet:label
-ietf-otn-topology.yang:493: error: grouping "otn-label-range-info" not found in module ietf-layer1-types
-ietf-otn-topology.yang:507: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:522: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:554: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:570: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:590: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:610: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:627: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:641: error: grouping "otn-label-range-info" not found in module ietf-layer1-types
-ietf-otn-topology.yang:657: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:674: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:705: error: grouping "otn-label-range-info" not found in module ietf-layer1-types
-ietf-otn-topology.yang:721: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:738: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:773: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:791: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:810: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:829: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:847: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:860: error: grouping "otn-label-range-info" not found in module ietf-layer1-types
-ietf-otn-topology.yang:875: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:891: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:923: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:939: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:958: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:977: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:994: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1008: error: grouping "otn-label-range-info" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1024: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1041: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1072: error: grouping "otn-label-range-info" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1088: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1105: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1139: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1156: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1176: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1196: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1214: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1227: error: grouping "otn-label-range-info" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1242: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1258: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1291: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1308: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1328: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1348: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1366: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1381: error: grouping "otn-label-range-info" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1416: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1452: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1470: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1491: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1512: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1531: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1547: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1563: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1576: error: grouping "otn-label-range-info" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1590: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1605: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1633: error: grouping "otn-label-range-info" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1647: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1661: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1694: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1711: error: grouping "otn-label-hop" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1726: error: grouping "otn-label-range-info" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1742: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-ietf-otn-topology.yang:1759: error: grouping "otn-label-start-end" not found in module ietf-layer1-types
-            /tet:label-hop/tet:te-label/tet:technology:
-    +--:(otn)
-  augment /nw:networks/nw:network/nw:node/tet:te
-            /tet:tunnel-termination-point
-            /tet:local-link-connectivities
-            /tet:local-link-connectivity
-            /tet:label-restrictions/tet:label-restriction:
-  augment /nw:networks/nw:network/nw:node/tet:te
-            /tet:tunnel-termination-point
-            /tet:local-link-connectivities
-            /tet:local-link-connectivity
             /tet:label-restrictions/tet:label-restriction
             /tet:label-start/tet:te-label/tet:technology:
     +--:(otn)
@@ -677,10 +689,109 @@ ietf-otn-topology.yang:1759: error: grouping "otn-label-start-end" not found in 
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-end/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-step/tet:technology:
+    +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:underlay
+            /tet:primary-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:underlay
+            /tet:backup-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:optimizations
+            /tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label
+            /tet:technology:
+    +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:path-properties/tet:path-route-objects
+            /tet:path-route-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity
+            /tet:label-restrictions/tet:label-restriction:
+    +--rw range-type?      identityref
+    +--rw tsg?             identityref
+    +--rw odu-type-list*   identityref
+    +--rw priority?        uint8
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity
+            /tet:label-restrictions/tet:label-restriction
+            /tet:label-start/tet:te-label/tet:technology:
+    +--:(otn)
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
             /tet:local-link-connectivity
             /tet:label-restrictions/tet:label-restriction
             /tet:label-end/tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
@@ -690,9 +801,9 @@ ietf-otn-topology.yang:1759: error: grouping "otn-label-start-end" not found in 
     +--:(otn)
        +--rw (otn-label-type)?
           +--:(tributary-port)
-          |  +--rw tpn-step?   uint16
+          |  +--rw tpn?   uint16
           +--:(tributary-slot)
-             +--rw ts?         uint16
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
@@ -701,14 +812,21 @@ ietf-otn-topology.yang:1759: error: grouping "otn-label-start-end" not found in 
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
             /tet:local-link-connectivity/tet:underlay
             /tet:backup-path/tet:path-element/tet:type
+ietf-otn-topology.yang:1398: error: grouping "otn-link-label" not found in module ietf-layer1-types
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
@@ -720,6 +838,9 @@ ietf-otn-topology.yang:1759: error: grouping "otn-label-start-end" not found in 
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
@@ -731,6 +852,9 @@ ietf-otn-topology.yang:1759: error: grouping "otn-label-start-end" not found in 
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
@@ -739,31 +863,54 @@ ietf-otn-topology.yang:1759: error: grouping "otn-label-start-end" not found in 
             /tet:type/tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--ro tpn?       uint16
+       +--ro tsg?       identityref
+       +--ro ts-list?   string
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:underlay
             /tet:primary-path/tet:path-element/tet:type
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:underlay
             /tet:backup-path/tet:path-element/tet:type
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:label-restrictions
             /tet:label-restriction:
+    +--rw range-type?      identityref
+    +--rw tsg?             identityref
+    +--rw odu-type-list*   identityref
+    +--rw priority?        uint8
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:label-restrictions
             /tet:label-restriction/tet:label-start
             /tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:label-restrictions
             /tet:label-restriction/tet:label-end
             /tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:label-restrictions
             /tet:label-restriction/tet:label-step
@@ -771,22 +918,36 @@ ietf-otn-topology.yang:1759: error: grouping "otn-label-start-end" not found in 
     +--:(otn)
        +--rw (otn-label-type)?
           +--:(tributary-port)
-          |  +--rw tpn-step?   uint16
+          |  +--rw tpn?   uint16
           +--:(tributary-slot)
-             +--rw ts?         uint16
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:information-source-entry
             /tet:label-restrictions/tet:label-restriction:
+    +--ro range-type?      identityref
+    +--ro tsg?             identityref
+    +--ro odu-type-list*   identityref
+    +--ro priority?        uint8
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:information-source-entry
             /tet:label-restrictions/tet:label-restriction
             /tet:label-start/tet:te-label/tet:technology:
     +--:(otn)
+       +--ro (otn-label-type)?
+          +--:(tributary-port)
+          |  +--ro tpn?   uint16
+          +--:(tributary-slot)
+             +--ro ts?    uint16
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:information-source-entry
             /tet:label-restrictions/tet:label-restriction
             /tet:label-end/tet:te-label/tet:technology:
     +--:(otn)
+       +--ro (otn-label-type)?
+          +--:(tributary-port)
+          |  +--ro tpn?   uint16
+          +--:(tributary-slot)
+             +--ro ts?    uint16
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:information-source-entry
             /tet:label-restrictions/tet:label-restriction
@@ -794,34 +955,54 @@ ietf-otn-topology.yang:1759: error: grouping "otn-label-start-end" not found in 
     +--:(otn)
        +--ro (otn-label-type)?
           +--:(tributary-port)
-          |  +--ro tpn-step?   uint16
+          |  +--ro tpn?   uint16
           +--:(tributary-slot)
-             +--ro ts?         uint16
+             +--ro ts?    uint16
   augment /nw:networks/tet:te/tet:templates
             /tet:link-template/tet:te-link-attributes
             /tet:underlay/tet:primary-path/tet:path-element
             /tet:type/tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/tet:te/tet:templates
             /tet:link-template/tet:te-link-attributes
             /tet:underlay/tet:backup-path/tet:path-element
             /tet:type/tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)
+       +--rw tpn?       uint16
+       +--rw tsg?       identityref
+       +--rw ts-list?   string
   augment /nw:networks/tet:te/tet:templates
             /tet:link-template/tet:te-link-attributes
             /tet:label-restrictions/tet:label-restriction:
+    +--rw range-type?      identityref
+    +--rw tsg?             identityref
+    +--rw odu-type-list*   identityref
+    +--rw priority?        uint8
   augment /nw:networks/tet:te/tet:templates
             /tet:link-template/tet:te-link-attributes
             /tet:label-restrictions/tet:label-restriction
             /tet:label-start/tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/tet:te/tet:templates
             /tet:link-template/tet:te-link-attributes
             /tet:label-restrictions/tet:label-restriction
             /tet:label-end/tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/tet:te/tet:templates
             /tet:link-template/tet:te-link-attributes
             /tet:label-restrictions/tet:label-restriction
@@ -829,6 +1010,7 @@ ietf-otn-topology.yang:1759: error: grouping "otn-label-start-end" not found in 
     +--:(otn)
        +--rw (otn-label-type)?
           +--:(tributary-port)
-          |  +--rw tpn-step?   uint16
+          |  +--rw tpn?   uint16
           +--:(tributary-slot)
-             +--rw ts?         uint16
+             +--rw ts?    uint16
+
