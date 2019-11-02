@@ -780,6 +780,11 @@ module: ietf-otn-topology
             /tet:label-restrictions/tet:label-restriction
             /tet:label-start/tet:te-label/tet:technology:
     +--:(otn)
+       +--rw (otn-label-type)?
+          +--:(tributary-port)
+          |  +--rw tpn?   uint16
+          +--:(tributary-slot)
+             +--rw ts?    uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
@@ -820,7 +825,6 @@ module: ietf-otn-topology
             /tet:local-link-connectivities
             /tet:local-link-connectivity/tet:underlay
             /tet:backup-path/tet:path-element/tet:type
-ietf-otn-topology.yang:1398: error: grouping "otn-link-label" not found in module ietf-layer1-types
             /tet:label/tet:label-hop/tet:te-label
             /tet:technology:
     +--:(otn)

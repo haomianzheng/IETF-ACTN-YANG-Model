@@ -24,7 +24,8 @@ module ietf-otn-topology {
   import ietf-layer1-types {
     prefix "layer1-types";
     reference
-      "I-D.ietf-ccamp-layer1-types: A YANG Data Model for Layer 1 Types";
+      "I-D.ietf-ccamp-layer1-types: A YANG Data Model 
+	  for Layer 1 Types";
   }
 
   organization
@@ -36,14 +37,8 @@ module ietf-otn-topology {
      Editor: Haomian Zheng
              <mailto:zhenghaomian@huawei.com>
 
-     Editor: Aihua Guo
-             <mailto:aihuaguo@huawei.com>
-
      Editor: Italo Busi
              <mailto:italo.busi@huawei.com>
-
-     Editor: Anurag Sharma
-             <mailto:ansha@google.com>
 
      Editor: Xufeng Liu
              <mailto:xufeng.liu.ietf@gmail.com>
@@ -51,28 +46,25 @@ module ietf-otn-topology {
      Editor: Sergio Belotti
              <mailto:sergio.belotti@nokia.com>
 
-     Editor: Yunbin Xu
-             <mailto:xuyunbin@ritt.cn>
-
-     Editor: Lei Wang
-             <mailto:wangleiyj@chinamobile.com>
-
      Editor: Oscar Gonzalez de Dios
              <mailto:oscar.gonzalezdedios@telefonica.com>";
 
   description
     "This module defines a protocol independent Layer 1/ODU topology
-     data model.
+     data model. The model fully conforms
+     to the Network Management Datastore Architecture (NMDA).
 
-    Copyright (c) 2019 IETF Trust and the persons
-          identified as authors of the code.  All rights reserved.
+     Copyright (c) 2019 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
 
-        Redistribution and use in source and binary forms, with or
-        without modification, is permitted pursuant to, and subject
-        to the license terms contained in, the Simplified BSD License
-        set forth in Section 4.c of the IETF Trust's Legal Provisions
-        Relating to IETF Documents
-        (https://trustee.ietf.org/license-info).";
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+     This version of this YANG module is part of RFC XXXX; see
+     the RFC itself for full legal notices.";
 
   revision 2019-11-02 {
     description
@@ -105,9 +97,6 @@ module ietf-otn-topology {
     }
   }
 
-  /*
-   * Open issue: move to otn-types to allow reuse in WSON and Flexi-grid topology models?
-   */
   grouping otn-tp-attributes {
     description "tp attributes for OTN";
 
@@ -212,7 +201,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment bandwidth path constraints of connectivity-matrices information-source */
+  /* Augment bandwidth path constraints of 
+   * connectivity-matrices information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
@@ -226,7 +216,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment bandwidth path constraints of connectivity-matrix information-source */
+  /* Augment bandwidth path constraints of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -256,7 +247,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment bandwidth path constraints of local-link-connectivities */
+  /* Augment bandwidth path constraints of 
+   * local-link-connectivities */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/tet:path-constraints/"
@@ -271,7 +263,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment bandwidth path constraints of local-link-connectivity (LLC) */
+  /* Augment bandwidth path constraints of 
+   * local-link-connectivity (LLC) */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -496,8 +489,8 @@ module ietf-otn-topology {
   /* Augment label restrictions start of connectivity-matrices */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
-        + "tet:label-restrictions/tet:label-restriction/tet:label-start/"
-        + "tet:te-label/tet:technology" {
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/tet:te-label/tet:technology" {
     when "../../../../../../../../nw:network-types/tet:te-topology/"
        + "otntopo:otn-topology" {
       description "Augment OTN TE label";
@@ -526,8 +519,8 @@ module ietf-otn-topology {
   /* Augment label restrictions step of connectivity-matrices */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
-        + "tet:label-restrictions/tet:label-restriction/tet:label-step/"
-        + "tet:technology" {
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-step/tet:technology" {
     when "../../../../../../../nw:network-types/tet:te-topology/"
        + "otntopo:otn-topology" {
       description "Augment OTN TE label";
@@ -538,7 +531,8 @@ module ietf-otn-topology {
     }
   }
   
-  /* Augment label hop of underlay primary path of connectivity-matrices */
+  /* Augment label hop of underlay primary path 
+   * of connectivity-matrices */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:underlay/tet:primary-path/tet:path-element/"
@@ -554,7 +548,8 @@ module ietf-otn-topology {
       uses layer1-types:otn-label-hop;
     }
   }
-  /* Augment label hop of underlay backup path of connectivity-matrices */
+  /* Augment label hop of underlay backup path 
+   * of connectivity-matrices */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:underlay/tet:backup-path/tet:path-element/"
@@ -591,7 +586,7 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of route-include of connectivity-matrices (added) */
+  /* Augment label hop of route-include of connectivity-matrices */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:optimizations/tet:algorithm/tet:metric/"
@@ -641,12 +636,13 @@ module ietf-otn-topology {
     uses layer1-types:otn-label-range-info;
   }
 
-  /* Augment ingress label restrictions start of connectivity-matrix */
+  /* Augment ingress label restrictions start of 
+   * connectivity-matrix */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/tet:from/"
-        + "tet:label-restrictions/tet:label-restriction/tet:label-start/"
-        + "tet:te-label/tet:technology" {
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/tet:te-label/tet:technology" {
     when "../../../../../../../../../../"
        + "nw:network-types/tet:te-topology/"
        + "otntopo:otn-topology" {
@@ -679,8 +675,8 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/tet:from/"
-        + "tet:label-restrictions/tet:label-restriction/tet:label-step/"
-        + "tet:technology" {
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-step/tet:technology" {
     when "../../../../../../../../../"
        + "nw:network-types/tet:te-topology/"
        + "otntopo:otn-topology" {
@@ -709,8 +705,8 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/tet:to/"
-        + "tet:label-restrictions/tet:label-restriction/tet:label-start/"
-        + "tet:te-label/tet:technology" {
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/tet:te-label/tet:technology" {
     when "../../../../../../../../../../"
        + "nw:network-types/tet:te-topology/"
        + "otntopo:otn-topology" {
@@ -756,7 +752,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of underlay primary path of connectivity-matrix */
+  /* Augment label hop of underlay primary path of 
+   * connectivity-matrix */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -774,7 +771,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of underlay backup path of connectivity-matrix */
+  /* Augment label hop of underlay backup path of 
+   * connectivity-matrix */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -848,10 +846,12 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label restrictions of connectivity-matrices information-source */
+  /* Augment label range information of 
+   * connectivity-matrices information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/"
-        + "tet:connectivity-matrices/tet:label-restrictions/tet:label-restriction" {
+        + "tet:connectivity-matrices/tet:label-restrictions/"
+		+ "tet:label-restriction" {
     when "../../../../../../nw:network-types/tet:te-topology/"
        + "otntopo:otn-topology" {
       description "Augment OTN TE label";
@@ -860,10 +860,12 @@ module ietf-otn-topology {
     uses layer1-types:otn-label-range-info;
   }
 
-  /* Augment label restrictions start of connectivity-matrices information-source */
+  /* Augment label restrictions start of 
+   * connectivity-matrices information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/"
-        + "tet:connectivity-matrices/tet:label-restrictions/tet:label-restriction/"
+        + "tet:connectivity-matrices/tet:label-restrictions/"
+		+ "tet:label-restriction/"
         + "tet:label-start/tet:te-label/tet:technology" {
     when "../../../../../../../../"
        + "nw:network-types/tet:te-topology/"
@@ -876,10 +878,12 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label restrictions end of connectivity-matrices information-source */
+  /* Augment label restrictions end of 
+   * connectivity-matrices information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/"
-        + "tet:connectivity-matrices/tet:label-restrictions/tet:label-restriction/"
+        + "tet:connectivity-matrices/tet:label-restrictions/"
+		+ "tet:label-restriction/"
         + "tet:label-end/tet:te-label/tet:technology" {
     when "../../../../../../../../"
        + "nw:network-types/tet:te-topology/"
@@ -892,10 +896,12 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label restrictions step of connectivity-matrices information-source */
+  /* Augment label restrictions step of 
+   * connectivity-matrices information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/"
-        + "tet:connectivity-matrices/tet:label-restrictions/tet:label-restriction/"
+        + "tet:connectivity-matrices/tet:label-restrictions/"
+		+ "tet:label-restriction/"
         + "tet:label-step/tet:technology" {
     when "../../../../../../../"
        + "nw:network-types/tet:te-topology/"
@@ -908,7 +914,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of underlay primary path of connectivity-matrices information-source */
+  /* Augment label hop of underlay primary path of 
+   * connectivity-matrices information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
@@ -924,7 +931,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of underlay backup path of connectivity-matrices information-source */
+  /* Augment label hop of underlay backup path of 
+   * connectivity-matrices information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
@@ -940,7 +948,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of route-exclude of connectivity-matrices information-source */
+  /* Augment label hop of route-exclude of 
+   * connectivity-matrices information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:optimizations/tet:algorithm/tet:metric/"
@@ -959,7 +968,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of route-include of connectivity-matrices information-source */
+  /* Augment label hop of route-include of 
+   * connectivity-matrices information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:optimizations/tet:algorithm/tet:metric/"
@@ -978,7 +988,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of path-route of connectivity-matrices information-source */
+  /* Augment label hop of path-route of 
+   * connectivity-matrices information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:path-properties/tet:path-route-objects/"
@@ -995,7 +1006,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment ingress label restrictions of connectivity-matrix information-source */
+  /* Augment ingress label restrictions of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1008,7 +1020,8 @@ module ietf-otn-topology {
     uses layer1-types:otn-label-range-info;
   }
 
-  /* Augment ingress label restrictions start of connectivity-matrix information-source */
+  /* Augment ingress label restrictions start of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1025,7 +1038,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment ingress label restrictions end of connectivity-matrix information-source */
+  /* Augment ingress label restrictions end of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1042,7 +1056,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment ingress label restrictions step of connectivity-matrix information-source */
+  /* Augment ingress label restrictions step of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1059,7 +1074,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment egress label restrictions of connectivity-matrix information-source */
+  /* Augment egress label restrictions of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1072,7 +1088,8 @@ module ietf-otn-topology {
     uses layer1-types:otn-label-range-info;
   }
 
-  /* Augment egress label restrictions start of connectivity-matrix information-source */
+  /* Augment egress label restrictions start of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1089,7 +1106,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment egress label restrictions end of connectivity-matrix information-source */
+  /* Augment egress label restrictions end of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1106,7 +1124,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment egress label restrictions step of connectivity-matrix information-source */
+  /* Augment egress label restrictions step of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1123,7 +1142,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of underlay primary path of connectivity-matrix information-source */
+  /* Augment label hop of underlay primary path of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1140,7 +1160,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of underlay backup path of connectivity-matrix information-source */
+  /* Augment label hop of underlay backup path of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1157,7 +1178,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of route-exclude of connectivity-matrix information-source */
+  /* Augment label hop of route-exclude of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1177,7 +1199,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of route-include of connectivity-matrix information-source */
+  /* Augment label hop of route-include of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1197,7 +1220,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of path-route of connectivity-matrix information-source */
+  /* Augment label hop of path-route of 
+   * connectivity-matrix information-source */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
@@ -1231,8 +1255,8 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
-        + "tet:label-restrictions/tet:label-restriction/tet:label-start/"
-        + "tet:te-label/tet:technology" {
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/tet:te-label/tet:technology" {
     when "../../../../../../../../nw:network-types/tet:te-topology/"
        + "otntopo:otn-topology" {
       description "Augment OTN TE label";
@@ -1247,8 +1271,8 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
-        + "tet:label-restrictions/tet:label-restriction/tet:label-end/"
-        + "tet:te-label/tet:technology"{
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-end/tet:te-label/tet:technology"{
     when "../../../../../../../../nw:network-types/tet:te-topology/"
        + "otntopo:otn-topology" {
       description "Augment OTN TE label";
@@ -1263,8 +1287,8 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
-        + "tet:label-restrictions/tet:label-restriction/tet:label-step/"
-        + "tet:technology"{
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-step/tet:technology"{
     when "../../../../../../../nw:network-types/tet:te-topology/"
        + "otntopo:otn-topology" {
       description "Augment OTN TE label";
@@ -1275,7 +1299,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of underlay primary path of local-link-connectivities */
+  /* Augment label hop of underlay primary path 
+   * of local-link-connectivities */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1292,7 +1317,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of underlay backup path of local-link-connectivities */
+  /* Augment label hop of underlay backup path 
+   * of local-link-connectivities */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1309,7 +1335,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of route-exclude of local-link-connectivities */
+  /* Augment label hop of route-exclude of 
+   * local-link-connectivities */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1329,7 +1356,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of route-include of local-link-connectivities */
+  /* Augment label hop of route-include of 
+   * local-link-connectivities */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1381,7 +1409,7 @@ module ietf-otn-topology {
     uses layer1-types:otn-label-range-info;
   }
 
-  /* Augment label restrictions start of local-link-connectivity (LLC) */
+  /* Augment label start of local-link-connectivity (LLC) */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1395,11 +1423,11 @@ module ietf-otn-topology {
     }
     description "OTN label.";
     case otn {
-      uses layer1-types:otn-link-label;
+      uses layer1-types:otn-label-start-end;
     }
   }
 
-  /* Augment label restrictions end of local-link-connectivity (LLC) */
+  /* Augment label end of local-link-connectivity (LLC) */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1417,7 +1445,7 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label restrictions step of local-link-connectivity (LLC) */
+  /* Augment label step of local-link-connectivity (LLC) */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1435,7 +1463,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of underlay primary path of local-link-connectivity (LLC) */
+  /* Augment label hop of underlay primary path 
+   * of local-link-connectivity (LLC) */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1453,7 +1482,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of underlay backup path of local-link-connectivity (LLC) */
+  /* Augment label hop of underlay backup path of 
+   * local-link-connectivity (LLC) */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1471,7 +1501,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of route-exclude of local-link-connectivity (LLC) */
+  /* Augment label hop of route-exclude of 
+   * local-link-connectivity (LLC) */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1492,7 +1523,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of route-include of local-link-connectivity (LLC) */
+  /* Augment label hop of route-include of 
+   * local-link-connectivity (LLC) */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1513,7 +1545,8 @@ module ietf-otn-topology {
     }
   }
 
-  /* Augment label hop of path-route of local-link-connectivity (LLC) */
+  /* Augment label hop of path-route of 
+   * local-link-connectivity (LLC) */
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
@@ -1701,8 +1734,8 @@ module ietf-otn-topology {
         + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
 /*
-    when "../../../../../../../../../../nw:network-types/tet:te-topology/"
-        + "otntopo:otn-topology" {
+    when "../../../../../../../../../../nw:network-types/"
+        + "tet:te-topology/otntopo:otn-topology" {
       description "Augment OTN TE label";
     }
 */
