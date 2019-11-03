@@ -24,6 +24,8 @@ module ietf-eth-tran-types {
 
   description
     "This module defines the ETH types.
+	 The model fully conforms to the Network Management 
+	 Datastore Architecture (NMDA).
     
      Copyright (c) 2019 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
@@ -33,13 +35,15 @@ module ietf-eth-tran-types {
      to the license terms contained in, the Simplified BSD License
      set forth in Section 4.c of the IETF Trust's Legal Provisions
      Relating to IETF Documents
-     (https://trustee.ietf.org/license-info).";
+     (https://trustee.ietf.org/license-info).
+	 This version of this YANG module is part of RFC XXXX; see
+     the RFC itself for full legal notices.";
 
-  revision 2019-03-27 {
+  revision 2019-11-03 {
     description
-      "version -07 as an I-D";
+      "version -01 as a WG draft";
     reference
-      "draft-zheng-ccamp-client-signal-yang";
+      "draft-ietf-ccamp-client-signal-yang";
   }
 
   /*
@@ -331,7 +335,7 @@ module ietf-eth-tran-types {
     "Placeholder for performace information, for future study.";
   }
   
-  identity encaplate-type {
+  identity encapsulation-type {
     description 
     "Indicating how the service is encapsulated (to PW), e.g, raw or tag. ";
   }
