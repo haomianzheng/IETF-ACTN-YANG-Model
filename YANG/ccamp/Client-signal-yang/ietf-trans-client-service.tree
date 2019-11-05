@@ -2,14 +2,14 @@ module: ietf-trans-client-service
   +--rw client-svc
      +--rw client-svc-instances* [client-svc-name]
         +--rw client-svc-name           string
-        +--rw client-svc-id?            string
+        +--rw client-svc-title?         string
         +--rw client-svc-descr?         string
         +--rw client-svc-customer?      string
         +--rw resilience
         +--rw te-topology-identifier
-        |  +--rw provider-id?   te-types:te-global-id
-        |  +--rw client-id?     te-types:te-global-id
-        |  +--rw topology-id?   te-types:te-topology-id
+        |  +--rw provider-id?   te-global-id
+        |  +--rw client-id?     te-global-id
+        |  +--rw topology-id?   te-topology-id
         +--rw admin-status?             identityref
         +--rw src-access-ports
         |  +--rw access-node-id?   te-types:te-node-id
@@ -19,6 +19,7 @@ module: ietf-trans-client-service
         |  +--rw access-node-id?   te-types:te-node-id
         |  +--rw access-ltp-id?    te-types:te-tp-id
         |  +--rw client-signal?    identityref
+        +--rw direction?                identityref
         +--rw svc-tunnels* [tunnel-name]
         |  +--rw tunnel-name    string
         +--ro operational-state?        identityref

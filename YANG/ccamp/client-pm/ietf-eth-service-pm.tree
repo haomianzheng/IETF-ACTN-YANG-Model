@@ -1,0 +1,13 @@
+module: ietf-eth-service-pm
+  +--rw performance-monitoring
+     +--rw service-pm* [service-name]
+        +--rw service-name          leafref
+        +--rw pm-enable?            boolean
+        +--rw latency-monitoring
+        |  +--rw latency-measure-enable?   boolean
+        +--ro service-pm-state
+           +--ro start-time?            yang:date-and-time
+           +--ro last-update-time?      yang:date-and-time
+           +--ro latency?               uint32
+           +--ro error-message?         string
+           +--ro service-oper-status?   identityref
