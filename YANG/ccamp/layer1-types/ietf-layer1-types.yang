@@ -379,7 +379,8 @@ module ietf-layer1-types {
 
   grouping otn-label-start-end {
     description 
-      "The OTN label-start or label-end used to specify an OTN label range.";
+      "The OTN label-start or label-end used to specify an OTN label 
+      range.";
     choice otn-label-type {
       description
         "OTN label range type, either TPN range or TS range";
@@ -389,7 +390,7 @@ module ietf-layer1-types {
             range "1..4095";
           }
           description
-            "Tributary Port Number. Applicable in case of mux services.";
+            "Tributary Port Number applicable in case of mux services.";
           reference
             "RFC7139: GMPLS Signaling Extensions for Control of Evolving
              G.709 Optical Transport Networks.";
@@ -401,7 +402,7 @@ module ietf-layer1-types {
             range "1..4095";
           }
           description
-            "Tributary Slot Number. Applicable in case of mux services.";
+            "Tributary Slot Number applicable in case of mux services.";
           reference
             "RFC7139: GMPLS Signaling Extensions for Control of Evolving
              G.709 Optical Transport Networks.";
@@ -417,7 +418,7 @@ module ietf-layer1-types {
         range "1..4095";
       }
       description
-        "Tributary Port Number. Applicable in case of mux services.";
+        "Tributary Port Number applicable in case of mux services.";
       reference
         "RFC7139: GMPLS Signaling Extensions for Control of Evolving
          G.709 Optical Transport Networks.";
