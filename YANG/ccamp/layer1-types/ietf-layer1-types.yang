@@ -73,55 +73,64 @@ module ietf-layer1-types {
   identity ODU0 {
     base odu-type;
     description
-      "ODU0 protocol (1.24G), RFC7139/ITU-T G.709, as standard track.";
+      "ODU0 protocol (1.24G), RFC7139/ITU-T G.709, which is 
+      categorized as standards track .";
   }
 
   identity ODU1 {
     base odu-type;
     description
-      "ODU1 protocol (2.49G), RFC7139/ITU-T G.709, as standard track.";
+      "ODU1 protocol (2.49G), RFC7139/ITU-T G.709, which is 
+      categorized as standards track .";
   }
 
   identity ODU1e {
     base odu-type;
     description
-      "ODU1e protocol (10.35G), RFC7963/ITU-T G.sup43, as informational.";
+      "ODU1e protocol (10.35G), RFC7963/ITU-T G.sup43, which is 
+      categorized as informational.";
   }
 
   identity ODU2 {
     base odu-type;
     description
-      "ODU2 protocol (10.03G), RFC7139/ITU-T G.709, as standard track.";
+      "ODU2 protocol (10.03G), RFC7139/ITU-T G.709, which is 
+      categorized as standards track .";
   }
 
   identity ODU2e {
     base odu-type;
     description
-      "ODU2e protocol (10.39G), RFC7139/ITU-T G.709, as standard track.";
+      "ODU2e protocol (10.39G), RFC7139/ITU-T G.709, which is 
+      categorized as standards track .";
   }
 
   identity ODU3 {
     base odu-type;
     description
-      "ODU3 protocol (40.31G), RFC7139/ITU-T G.709, as standard track.";
+      "ODU3 protocol (40.31G), RFC7139/ITU-T G.709, which is 
+      categorized as standards track .";
   }
 
   identity ODU3e1 {
     base odu-type;
     description
-      "ODU3e1 protocol (41.77G), RFC7963/ITU-T G.sup43, as informational.";
+      "ODU3e1 protocol (41.77G), RFC7963/ITU-T G.sup43, which is 
+      categorized as informational.";
   }
 
   identity ODU3e2 {
     base odu-type;
     description
-      "ODU3e2 protocol (41.78G), RFC7963/ITU-T G.sup43, as informational.";
+      "ODU3e2 protocol (41.78G), RFC7963/ITU-T G.sup43, which is 
+      categorized as informational.";
   }
 
   identity ODU4 {
     base odu-type;
     description
-      "ODU4 protocol (104.79G), RFC7139/ITU-T G.709, as standard track.";
+      "ODU4 protocol (104.79G), RFC7139/ITU-T G.709, which is 
+      categorized as standards track .";
   }
 
   identity ODUFlex-cbr {
