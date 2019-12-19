@@ -1,6 +1,7 @@
 module ietf-layer1-types {
+  yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-layer1-types";
-  prefix "layer1-types";
+  prefix "l1-types";
 
   organization
     "IETF CCAMP Working Group";
@@ -12,7 +13,7 @@ module ietf-layer1-types {
              <mailto:zhenghaomian@huawei.com>
     
      Editor: Italo Busi
-       <mailto:Italo.Busi@huawei.com>";
+             <mailto:Italo.Busi@huawei.com>";
 
   description
     "This module defines Layer 1 types. The model fully conforms
@@ -30,7 +31,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2019-12-05" {
+  revision "2019-12-18" {
     description
       "Initial Version";
     reference
@@ -73,64 +74,64 @@ module ietf-layer1-types {
   identity ODU0 {
     base odu-type;
     description
-      "ODU0 protocol (1.24G), RFC7139/ITU-T G.709, which is 
-      categorized as standards track .";
+      "ODU0 protocol (1.24G)";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODU1 {
     base odu-type;
     description
-      "ODU1 protocol (2.49G), RFC7139/ITU-T G.709, which is 
-      categorized as standards track .";
+      "ODU1 protocol (2.49G).";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODU1e {
     base odu-type;
     description
-      "ODU1e protocol (10.35G), RFC7963/ITU-T G.sup43, which is 
-      categorized as informational.";
+      "ODU1e protocol (10.35G).";
+    reference "RFC7963/ITU-T G.sup43"; 
   }
 
   identity ODU2 {
     base odu-type;
     description
-      "ODU2 protocol (10.03G), RFC7139/ITU-T G.709, which is 
-      categorized as standards track .";
+      "ODU2 protocol (10.03G).";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODU2e {
     base odu-type;
     description
-      "ODU2e protocol (10.39G), RFC7139/ITU-T G.709, which is 
-      categorized as standards track .";
+      "ODU2e protocol (10.39G).";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODU3 {
     base odu-type;
     description
-      "ODU3 protocol (40.31G), RFC7139/ITU-T G.709, which is 
-      categorized as standards track .";
+      "ODU3 protocol (40.31G).";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODU3e1 {
     base odu-type;
     description
-      "ODU3e1 protocol (41.77G), RFC7963/ITU-T G.sup43, which is 
-      categorized as informational.";
+      "ODU3e1 protocol (41.77G).";
+    reference "RFC7963/ITU-T G.sup43"; 
   }
 
   identity ODU3e2 {
     base odu-type;
     description
-      "ODU3e2 protocol (41.78G), RFC7963/ITU-T G.sup43, which is 
-      categorized as informational.";
+      "ODU3e2 protocol (41.78G).";
+    reference "RFC7963/ITU-T G.sup43"; 
   }
 
   identity ODU4 {
     base odu-type;
     description
-      "ODU4 protocol (104.79G), RFC7139/ITU-T G.709, which is 
-      categorized as standards track .";
+      "ODU4 protocol (104.79G).";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODUFlex-cbr {
@@ -138,6 +139,7 @@ module ietf-layer1-types {
     description
       "ODU Flex CBR protocol for transporting constant bit rate
        signal";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODUFlex-gfp {
@@ -145,6 +147,7 @@ module ietf-layer1-types {
     description
       "ODU Flex GFP protocol for transporting stream of packets
        using Generic Framing Procedure";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity client-signal {
@@ -187,30 +190,35 @@ module ietf-layer1-types {
     base client-signal;
     description
       "Client signal type of STM-1";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity STM-4 {
     base client-signal;
     description
       "Client signal type of STM-4";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity STM-16 {
     base client-signal;
     description
       "Client signal type of STM-16";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity STM-64 {
     base client-signal;
     description
       "Client signal type of STM-64";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity STM-256 {
     base client-signal;
     description
       "Client signal type of STM-256";
+    reference "RFC7139/ITU-T G.709"; 
   }
   identity OC-3 {
     base client-signal;
@@ -246,54 +254,63 @@ module ietf-layer1-types {
     base client-signal;
     description
       "Client signal type of Fibre Channel FC-100";
+    reference "RFC4328/RFC7139"; 
   }
 
   identity FC-200 {
     base client-signal;
     description
       "Client signal type of Fibre Channel FC-200";
+    reference "RFC4328/RFC7139"; 
   }
 
   identity FC-400 {
     base client-signal;
     description
       "Client signal type of Fibre Channel FC-400";
+    reference "RFC4328/RFC7139"; 
   }
 
   identity FC-800 {
     base client-signal;
     description
       "Client signal type of Fibre Channel FC-800";
+    reference "RFC4328/RFC7139"; 
   }
 
   identity FC-1200 {
     base client-signal;
     description
       "Client signal type of Fibre Channel FC-1200";
+    reference "RFC4328/RFC7139"; 
   }
 
   identity FC-1600 {
     base client-signal;
     description
       "Client signal type of Fibre Channel FC-1600";
+    reference "RFC4328/RFC7139"; 
   }
 
   identity FC-3200 {
     base client-signal;
     description
       "Client signal type of Fibre Channel FC-3200";
+    reference "RFC4328/RFC7139"; 
   }
 
   identity FICON-4G {
     base client-signal;
     description
       "Client signal type of Fibre Connection 4G";
+    reference "RFC4328/RFC7139"; 
   }
 
   identity FICON-8G {
     base client-signal;
     description
       "Client signal type of Fibre Connection 8G";
+    reference "RFC4328/RFC7139"; 
   }
 
   identity otn-label-range-type {
@@ -314,6 +331,202 @@ module ietf-layer1-types {
       "Defines a range of OTN tributary ports";
   }
   
+  identity coding-func {
+    description
+    "Base identity from which coding function is derived.";
+  }
+
+  identity ETH-1000X-PCS-36 {
+    base "coding-func";
+    description
+      "PCS clause 36 coding function that corresponds to
+       1000BASE-X";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ETH-10GW-PCS-49-WIS-50 {
+    base "coding-func";
+    description
+      "PCS clause 49 and WIS clause 50 coding func that
+       corresponds to 10GBASE-W (WAN PHY)";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ETH-10GR-PCS-49 {
+    base "coding-func";
+    description
+      "PCS clause 49 coding function that corresponds to
+       10GBASE-R (LAN PHY)";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ETH-40GR-PCS-82 {
+    base "coding-func";
+    description
+      "PCS clause 82 coding function that corresponds to
+       40GBASE-R";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ETH-100GR-PCS-82 {
+    base "coding-func";
+    description
+      "PCS clause 82 coding function that corresponds to
+       100GBASE-R";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity optical-interface-func {
+    description
+      "base identity from which optical-interface-function is
+       derived.";
+  }
+
+  identity SX-PMD-clause-38 {
+    base "optical-interface-func";
+    description
+      "SX-PMD-clause-38 Optical Interface function for
+      1000BASE-X PCS-36";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity LX-PMD-clause-38 {
+    base "optical-interface-func";
+    description
+      "LX-PMD-clause-38 Optical Interface function for
+       1000BASE-X PCS-36";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity LX10-PMD-clause-59 {
+    base "optical-interface-func";
+    description
+      "LX10-PMD-clause-59 Optical Interface function for
+       1000BASE-X PCS-36";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity BX10-PMD-clause-59 {
+    base "optical-interface-func";
+    description
+      "BX10-PMD-clause-59 Optical Interface function for
+       1000BASE-X PCS-36";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity LW-PMD-clause-52 {
+    base "optical-interface-func";
+    description
+      "LW-PMD-clause-52 Optical Interface function for
+       10GBASE-W PCS-49-WIS-50";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity EW-PMD-clause-52 {
+    base "optical-interface-func";
+    description
+      "EW-PMD-clause-52 Optical Interface function for
+       10GBASE-W PCS-49-WIS-50";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity LR-PMD-clause-52 {
+    base "optical-interface-func";
+    description
+      "LR-PMD-clause-52 Optical Interface function for
+       10GBASE-R PCS-49";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ER-PMD-clause-52 {
+    base "optical-interface-func";
+    description
+      "ER-PMD-clause-52 Optical Interface function for
+       10GBASE-R PCS-49";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity LR4-PMD-clause-87 {
+    base "optical-interface-func";
+    description
+      "LR4-PMD-clause-87 Optical Interface function for
+       40GBASE-R PCS-82";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ER4-PMD-clause-87 {
+    base "optical-interface-func";
+    description
+      "ER4-PMD-clause-87 Optical Interface function for
+       40GBASE-R PCS-82";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity FR-PMD-clause-89 {
+    base "optical-interface-func";
+    description
+      "FR-PMD-clause-89 Optical Interface function for
+       40GBASE-R PCS-82";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity LR4-PMD-clause-88 {
+    base "optical-interface-func";
+    description
+      "LR4-PMD-clause-88 Optical Interface function for
+       100GBASE-R PCS-82";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ER4-PMD-clause-88 {
+    base "optical-interface-func";
+    description
+      "ER4-PMD-clause-88 Optical Interface function for
+       100GBASE-R PCS-82";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+  
+  identity service-performance-metric {
+    description 
+      "Base identity of service-specific performance metric";
+  }
+
+  identity One-way-Delay {
+    base "service-performance-metric";
+    description "one way delay.";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity One-way-Errored-Second {
+    base "service-performance-metric";
+    description "one way errored second";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity One-way-Severely-Errored-Second {
+    base "service-performance-metric";
+    description "one way severely errored second";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity One-way-Unavailable-Second {
+    base "service-performance-metric";
+    description "one way unavailable second";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity One-way-Availability {
+    base "service-performance-metric";
+    description "one way availability";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+  
+  identity network-performance-metric {
+    description 
+      "Base identity of network-specific performance metric";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+  
   grouping otn-link-bandwidth {
     description "link bandwidth attributes for OTN";
     list odulist {
@@ -322,7 +535,7 @@ module ietf-layer1-types {
         "OTN bandwidth definition";
       leaf odu-type {
         type identityref {
-          base layer1-types:odu-type;
+          base l1-types:odu-type;
         }
         description "ODU type";
       }
@@ -338,7 +551,7 @@ module ietf-layer1-types {
       "path bandwidth attributes for OTN";
     leaf odu-type {
       type identityref {
-        base layer1-types:odu-type;
+        base l1-types:odu-type;
       }
       description "ODU type";
     }
@@ -348,13 +561,13 @@ module ietf-layer1-types {
     description "label range information for OTN";
     leaf range-type {
       type identityref {
-        base layer1-types:otn-label-range-type;
+        base l1-types:otn-label-range-type;
       }
       description "type for range";
     }
     leaf tsg {
       type identityref {
-        base layer1-types:tributary-slot-granularity;
+        base l1-types:tributary-slot-granularity;
       }
       description 
         "Tributary slot granularity.";
@@ -390,7 +603,7 @@ module ietf-layer1-types {
             range "1..4095";
           }
           description
-            "Tributary Port Number applicable in case of mux services.";
+            "Tributary Port Number.";
           reference
             "RFC7139: GMPLS Signaling Extensions for Control of Evolving
              G.709 Optical Transport Networks.";
@@ -402,7 +615,7 @@ module ietf-layer1-types {
             range "1..4095";
           }
           description
-            "Tributary Slot Number applicable in case of mux services.";
+            "Tributary Slot Number.";
           reference
             "RFC7139: GMPLS Signaling Extensions for Control of Evolving
              G.709 Optical Transport Networks.";
@@ -418,14 +631,14 @@ module ietf-layer1-types {
         range "1..4095";
       }
       description
-        "Tributary Port Number applicable in case of mux services.";
+        "Tributary Port Number.";
       reference
         "RFC7139: GMPLS Signaling Extensions for Control of Evolving
          G.709 Optical Transport Networks.";
     }
     leaf tsg {
       type identityref {
-        base layer1-types:tributary-slot-granularity;
+        base l1-types:tributary-slot-granularity;
       }
       description "Tributary slot granularity.";
       reference
@@ -481,201 +694,5 @@ module ietf-layer1-types {
       }
     }
   }
-  
-  identity coding-func {
-      description
-      "base identity from which coding func is derived.";
-     }
-
-      identity ETH-1000X-PCS-36 {
-         base "coding-func";
-         description
-            "PCS clause 36 coding function that corresponds to
-             1000BASE-X";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity ETH-10GW-PCS-49-WIS-50 {
-         base "coding-func";
-         description
-            "PCS clause 49 and WIS clause 50 coding func that
-             corresponds to 10GBASE-W (WAN PHY)";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity ETH-10GR-PCS-49 {
-         base "coding-func";
-         description
-            "PCS clause 49 coding function that corresponds to
-             10GBASE-R (LAN PHY)";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity ETH-40GR-PCS-82 {
-         base "coding-func";
-         description
-            "PCS clause 82 coding function that corresponds to
-             40GBASE-R";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity ETH-100GR-PCS-82 {
-         base "coding-func";
-         description
-            "PCS clause 82 coding function that corresponds to
-             100GBASE-R";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-  identity optical-interface-func {
-      description
-        "base identity from which optical-interface-function is
-         derived.";
-     }
-
-      identity SX-PMD-clause-38 {
-         base "optical-interface-func";
-         description
-            "SX-PMD-clause-38 Optical Interface function for
-            1000BASE-X PCS-36";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity LX-PMD-clause-38 {
-         base "optical-interface-func";
-         description
-            "LX-PMD-clause-38 Optical Interface function for
-            1000BASE-X PCS-36";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity LX10-PMD-clause-59 {
-         base "optical-interface-func";
-         description
-            "LX10-PMD-clause-59 Optical Interface function for
-            1000BASE-X PCS-36";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity BX10-PMD-clause-59 {
-         base "optical-interface-func";
-         description
-            "BX10-PMD-clause-59 Optical Interface function for
-            1000BASE-X PCS-36";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity LW-PMD-clause-52 {
-         base "optical-interface-func";
-         description
-            "LW-PMD-clause-52 Optical Interface function for
-            10GBASE-W PCS-49-WIS-50";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity EW-PMD-clause-52 {
-         base "optical-interface-func";
-         description
-            "EW-PMD-clause-52 Optical Interface function for
-            10GBASE-W PCS-49-WIS-50";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity LR-PMD-clause-52 {
-         base "optical-interface-func";
-         description
-            "LR-PMD-clause-52 Optical Interface function for
-            10GBASE-R PCS-49";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity ER-PMD-clause-52 {
-         base "optical-interface-func";
-         description
-            "ER-PMD-clause-52 Optical Interface function for
-            10GBASE-R PCS-49";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity LR4-PMD-clause-87 {
-         base "optical-interface-func";
-         description
-            "LR4-PMD-clause-87 Optical Interface function for
-            40GBASE-R PCS-82";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity ER4-PMD-clause-87 {
-         base "optical-interface-func";
-         description
-            "ER4-PMD-clause-87 Optical Interface function for
-            40GBASE-R PCS-82";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity FR-PMD-clause-89 {
-         base "optical-interface-func";
-         description
-            "FR-PMD-clause-89 Optical Interface function for
-            40GBASE-R PCS-82";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity LR4-PMD-clause-88 {
-         base "optical-interface-func";
-         description
-            "LR4-PMD-clause-88 Optical Interface function for
-            100GBASE-R PCS-82";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity ER4-PMD-clause-88 {
-         base "optical-interface-func";
-         description
-            "ER4-PMD-clause-88 Optical Interface function for
-            100GBASE-R PCS-82";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-  
-   identity service-performance-metric {
-      description 
-        "list of service-specific performance metric";
-     }
-
-      identity One-way-Delay {
-         base "service-performance-metric";
-         description "one-way-delay";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity One-way-Errored-Second {
-         base "service-performance-metric";
-         description "one-way-errored-second";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity One-way-Severely-Errored-Second {
-         base "service-performance-metric";
-         description "one-way-severely-errored-second";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity One-way-Unavailable-Second {
-         base "service-performance-metric";
-         description "one-way-unavailable-second";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-
-      identity One-way-Availability {
-         base "service-performance-metric";
-         description "one-way-availability";
-         reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-      
-      identity network-performance-metric {
-        description "list of network-specific performance metric";
-        reference "MEF63: Subscriber Layer 1 Service Attributes";
-      }
-     
 
 }
