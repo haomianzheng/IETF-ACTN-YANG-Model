@@ -31,7 +31,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2019-12-18" {
+  revision "2019-12-25" {
     description
       "Initial Version";
     reference
@@ -40,6 +40,26 @@ module ietf-layer1-types {
     // information and remove this note
   }
 
+  typedef otn-tpn
+    {
+      type uint16;
+      description
+        "Tributary Port Number for OTN. ";
+      reference
+        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+             G.709 Optical Transport Networks.";
+    }
+  
+  typedef otn-ts
+    {
+      type uint16;
+      description
+        "Tributary Slot for OTN. ";
+      reference
+        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+             G.709 Optical Transport Networks.";
+    }
+  
   identity tributary-slot-granularity {
     description
       "Tributary slot granularity";
@@ -160,30 +180,35 @@ module ietf-layer1-types {
     base client-signal;
     description
       "Client signal type of 1GbE";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ETH-10Gb-LAN {
     base client-signal;
     description
-      "Client signal type of 10GbE LAN";
+      "Client signal type of ETH-10Gb-LAN (10.3 Gb/s)";
+    reference "RFC7139/ITU-T G.709/IEEE 802.3 Clause 49"; 
   }
 
   identity ETH-10Gb-WAN {
     base client-signal;
     description
-      "Client signal type of 10GbE WAN";
+      "Client signal type of ETH-10Gb-WAN (9.95 Gb/s)";
+    reference "RFC7139/ITU-T G.709/IEEE 802.3 Clause 50"; 
   }
 
   identity ETH-40Gb {
     base client-signal;
     description
       "Client signal type of 40GbE";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ETH-100Gb {
     base client-signal;
     description
       "Client signal type of 100GbE";
+    reference "RFC7139/ITU-T G.709"; 
   }
 
   identity STM-1 {
@@ -224,30 +249,35 @@ module ietf-layer1-types {
     base client-signal;
     description
       "Client signal type of OC3";
+    reference "Telcordia GR-253-CORE";
   }
 
   identity OC-12 {
     base client-signal;
     description
       "Client signal type of OC12";
+    reference "Telcordia GR-253-CORE";
   }
 
   identity OC-48 {
     base client-signal;
     description
       "Client signal type of OC48";
+    reference "Telcordia GR-253-CORE";
   }
 
   identity OC-192 {
     base client-signal;
     description
       "Client signal type of OC192";
+    reference "Telcordia GR-253-CORE";
   }
 
   identity OC-768 {
     base client-signal;
     description
       "Client signal type of OC768";
+    reference "Telcordia GR-253-CORE";
   }
 
   identity FC-100 {
@@ -336,7 +366,7 @@ module ietf-layer1-types {
     "Base identity from which coding function is derived.";
   }
 
-  identity ETH-1000X-PCS-36 {
+  identity ETH-1000X {
     base "coding-func";
     description
       "PCS clause 36 coding function that corresponds to
@@ -344,7 +374,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity ETH-10GW-PCS-49-WIS-50 {
+  identity ETH-10GW {
     base "coding-func";
     description
       "PCS clause 49 and WIS clause 50 coding func that
@@ -352,7 +382,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity ETH-10GR-PCS-49 {
+  identity ETH-10GR {
     base "coding-func";
     description
       "PCS clause 49 coding function that corresponds to
@@ -360,7 +390,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity ETH-40GR-PCS-82 {
+  identity ETH-40GR {
     base "coding-func";
     description
       "PCS clause 82 coding function that corresponds to
@@ -368,7 +398,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity ETH-100GR-PCS-82 {
+  identity ETH-100GR {
     base "coding-func";
     description
       "PCS clause 82 coding function that corresponds to
@@ -382,7 +412,7 @@ module ietf-layer1-types {
        derived.";
   }
 
-  identity SX-PMD-clause-38 {
+  identity SX-PMD-1000 {
     base "optical-interface-func";
     description
       "SX-PMD-clause-38 Optical Interface function for
@@ -390,7 +420,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity LX-PMD-clause-38 {
+  identity LX-PMD-1000 {
     base "optical-interface-func";
     description
       "LX-PMD-clause-38 Optical Interface function for
@@ -398,7 +428,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity LX10-PMD-clause-59 {
+  identity LX10-PMD-1000 {
     base "optical-interface-func";
     description
       "LX10-PMD-clause-59 Optical Interface function for
@@ -406,7 +436,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity BX10-PMD-clause-59 {
+  identity BX10-PMD-1000 {
     base "optical-interface-func";
     description
       "BX10-PMD-clause-59 Optical Interface function for
@@ -414,7 +444,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity LW-PMD-clause-52 {
+  identity LW-PMD-10G {
     base "optical-interface-func";
     description
       "LW-PMD-clause-52 Optical Interface function for
@@ -422,7 +452,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity EW-PMD-clause-52 {
+  identity EW-PMD-10G {
     base "optical-interface-func";
     description
       "EW-PMD-clause-52 Optical Interface function for
@@ -430,7 +460,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity LR-PMD-clause-52 {
+  identity LR-PMD-10G {
     base "optical-interface-func";
     description
       "LR-PMD-clause-52 Optical Interface function for
@@ -438,7 +468,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity ER-PMD-clause-52 {
+  identity ER-PMD-10G {
     base "optical-interface-func";
     description
       "ER-PMD-clause-52 Optical Interface function for
@@ -446,7 +476,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity LR4-PMD-clause-87 {
+  identity LR4-PMD-40G {
     base "optical-interface-func";
     description
       "LR4-PMD-clause-87 Optical Interface function for
@@ -454,7 +484,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity ER4-PMD-clause-87 {
+  identity ER4-PMD-40G {
     base "optical-interface-func";
     description
       "ER4-PMD-clause-87 Optical Interface function for
@@ -462,7 +492,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity FR-PMD-clause-89 {
+  identity FR-PMD-40G {
     base "optical-interface-func";
     description
       "FR-PMD-clause-89 Optical Interface function for
@@ -470,7 +500,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity LR4-PMD-clause-88 {
+  identity LR4-PMD-100G {
     base "optical-interface-func";
     description
       "LR4-PMD-clause-88 Optical Interface function for
@@ -478,7 +508,7 @@ module ietf-layer1-types {
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity ER4-PMD-clause-88 {
+  identity ER4-PMD-100G {
     base "optical-interface-func";
     description
       "ER4-PMD-clause-88 Optical Interface function for
@@ -491,39 +521,33 @@ module ietf-layer1-types {
       "Base identity of service-specific performance metric";
   }
 
-  identity One-way-Delay {
+  identity one-way-delay {
     base "service-performance-metric";
     description "one way delay.";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity One-way-Errored-Second {
+  identity one-way-errored-second {
     base "service-performance-metric";
     description "one way errored second";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity One-way-Severely-Errored-Second {
+  identity one-way-severely-errored-second {
     base "service-performance-metric";
     description "one way severely errored second";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity One-way-Unavailable-Second {
+  identity one-way-unavailable-second {
     base "service-performance-metric";
     description "one way unavailable second";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity One-way-Availability {
+  identity one-way-availability {
     base "service-performance-metric";
     description "one way availability";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-  
-  identity network-performance-metric {
-    description 
-      "Base identity of network-specific performance metric";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
   
@@ -570,7 +594,8 @@ module ietf-layer1-types {
         base l1-types:tributary-slot-granularity;
       }
       description 
-        "Tributary slot granularity.";
+        "Tributary slot granularity (TSG) to which the label range 
+        applies.";
       reference
         "G.709/Y.1331, February 2016: Interfaces for the
          Optical Transport Network (OTN)";
@@ -586,7 +611,10 @@ module ietf-layer1-types {
     } 
     leaf priority {
       type uint8;
-      description "priority.";
+      description 
+        "Priority in Interface Switching Capability 
+        Descriptor (ISCD).";
+      reference "RFC4203.";
     }
   }
 
@@ -598,10 +626,8 @@ module ietf-layer1-types {
       description
         "OTN label range type, either TPN range or TS range";
       case tributary-port {
-        leaf tpn {
-          type uint16 {
-            range "1..4095";
-          }
+        leaf otn-tpn {
+          type l1-types:otn-tpn;
           description
             "Tributary Port Number.";
           reference
@@ -610,10 +636,8 @@ module ietf-layer1-types {
         }
       }
       case tributary-slot {
-        leaf ts {
-          type uint16 {
-            range "1..4095";
-          }
+        leaf otn-ts {
+          type l1-types:otn-ts;
           description
             "Tributary Slot Number.";
           reference
@@ -625,11 +649,10 @@ module ietf-layer1-types {
   }
 
   grouping otn-label-hop {
-    description "label information for OTN, for label-hop";
-    leaf tpn {
-      type uint16 {
-        range "1..4095";
-      }
+    description "OTN Label. ";
+    reference "RFC7139, section 6. "; 
+    leaf otn-tpn {
+      type l1-types:otn-tpn;
       description
         "Tributary Port Number.";
       reference
@@ -652,10 +675,13 @@ module ietf-layer1-types {
         }
         description
           "A list of available tributary slots ranging
-           between 1 and 4095.
-           For example 1-20,25,50-1000";
-        reference "RFC 7139: GMPLS Signaling Extensions for Control
-                   of Evolving G.709 Optical Transport Networks";
+           between 1 and 4095. If multiple values or  
+           ranges are given, they all MUST be disjoint 
+           and MUST be in ascending order.
+           For example 1-20,25,50-1000. ";
+        reference 
+          "RFC 7139: GMPLS Signaling Extensions for Control
+           of Evolving G.709 Optical Transport Networks";
     }
   }
   
@@ -665,24 +691,20 @@ module ietf-layer1-types {
       description
         "OTN label range type, either TPN range or TS range";
       case tributary-port {
-        leaf tpn {
-          type uint16 {
-            range "1..4095";
-          }
+        leaf otn-tpn {
+          type l1-types:otn-tpn;
           default 1;
           description
             "Label step which represents possible increments for 
              Tributary Port Number.";
           reference
-            "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-             G.709 Optical Transport Networks.";
+            "RFC7139: GMPLS Signaling Extensions for Control of 
+             Evolving G.709 Optical Transport Networks.";
         }
       }
       case tributary-slot {
-        leaf ts {
-          type uint16 {
-            range "1..4095";
-          }
+        leaf otn-ts {
+          type l1-types:otn-ts; 
           default 1;
           description
             "Label step which represents possible increments for 
