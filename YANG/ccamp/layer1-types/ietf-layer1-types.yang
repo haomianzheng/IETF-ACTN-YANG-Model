@@ -19,7 +19,7 @@ module ietf-layer1-types {
     "This module defines Layer 1 types. The model fully conforms
      to the Network Management Datastore Architecture (NMDA).
 
-     Copyright (c) 2019 IETF Trust and the persons
+     Copyright (c) 2020 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -31,18 +31,20 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2019-12-25" {
+  revision "2020-02-24" {
     description
       "Initial Version";
     reference
       "RFC XXXX: A YANG Data Model for Layer 1 Types";
-    // RFC Ed.: replace XXXX with actual RFC number, update date
+    // RFC Editor: replace XXXX with actual RFC number, update date
     // information and remove this note
   }
 
   typedef otn-tpn
     {
-      type uint16;
+      type uint16 {
+        range "1..4095";
+      }
       description
         "Tributary Port Number for OTN. ";
       reference
@@ -52,7 +54,9 @@ module ietf-layer1-types {
   
   typedef otn-ts
     {
-      type uint16;
+      type uint16 {
+        range "1..4095";
+      }
       description
         "Tributary Slot for OTN. ";
       reference
@@ -94,63 +98,63 @@ module ietf-layer1-types {
   identity ODU0 {
     base odu-type;
     description
-      "ODU0 protocol (1.24G)";
+      "ODU0 protocol (1.24Gb/s). ";
     reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODU1 {
     base odu-type;
     description
-      "ODU1 protocol (2.49G).";
+      "ODU1 protocol (2.49Gb/s).";
     reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODU1e {
     base odu-type;
     description
-      "ODU1e protocol (10.35G).";
+      "ODU1e protocol (10.35Gb/s).";
     reference "RFC7963/ITU-T G.sup43"; 
   }
 
   identity ODU2 {
     base odu-type;
     description
-      "ODU2 protocol (10.03G).";
+      "ODU2 protocol (10.03Gb/s).";
     reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODU2e {
     base odu-type;
     description
-      "ODU2e protocol (10.39G).";
+      "ODU2e protocol (10.39Gb/s).";
     reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODU3 {
     base odu-type;
     description
-      "ODU3 protocol (40.31G).";
+      "ODU3 protocol (40.31Gb/s).";
     reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODU3e1 {
     base odu-type;
     description
-      "ODU3e1 protocol (41.77G).";
+      "ODU3e1 protocol (41.77Gb/s).";
     reference "RFC7963/ITU-T G.sup43"; 
   }
 
   identity ODU3e2 {
     base odu-type;
     description
-      "ODU3e2 protocol (41.78G).";
+      "ODU3e2 protocol (41.78Gb/s).";
     reference "RFC7963/ITU-T G.sup43"; 
   }
 
   identity ODU4 {
     base odu-type;
     description
-      "ODU4 protocol (104.79G).";
+      "ODU4 protocol (104.79Gb/s).";
     reference "RFC7139/ITU-T G.709"; 
   }
 
@@ -363,7 +367,8 @@ module ietf-layer1-types {
   
   identity coding-func {
     description
-    "Base identity from which coding function is derived.";
+      "Base identity from which coding function is derived.";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity ETH-1000X {
@@ -410,6 +415,7 @@ module ietf-layer1-types {
     description
       "base identity from which optical-interface-function is
        derived.";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity SX-PMD-1000 {
@@ -519,6 +525,7 @@ module ietf-layer1-types {
   identity service-performance-metric {
     description 
       "Base identity of service-specific performance metric";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity one-way-delay {
@@ -587,7 +594,8 @@ module ietf-layer1-types {
       type identityref {
         base l1-types:otn-label-range-type;
       }
-      description "type for range";
+      description "The type of range (e.g., TPN or TS)
+         to which the label range applies";
     }
     leaf tsg {
       type identityref {
@@ -595,7 +603,11 @@ module ietf-layer1-types {
       }
       description 
         "Tributary slot granularity (TSG) to which the label range 
-        applies.";
+        applies.
+        This leaf shall be present when the range-type is TS; 
+        This leaf can be omitted when mapping an ODUk over an OTUk
+        Link. In this case the range-type is tpn, with only one entry
+        (ODUk), and the tpn range has only one value (1). ";
       reference
         "G.709/Y.1331, February 2016: Interfaces for the
          Optical Transport Network (OTN)";
@@ -606,8 +618,8 @@ module ietf-layer1-types {
       }
       description 
         "List of ODU types to which the label range applies.
-        Empty odu-type-list means all the ODU types are applicable 
-        per label range. ";
+         An Empty odu-type-list means that the label range
+         applies to all the supported ODU types.";
     } 
     leaf priority {
       type uint8;
