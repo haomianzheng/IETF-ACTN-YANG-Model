@@ -31,7 +31,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-02-24" {
+  revision "2020-02-25" {
     description
       "Initial Version";
     reference
@@ -62,6 +62,52 @@ module ietf-layer1-types {
       reference
         "RFC7139: GMPLS Signaling Extensions for Control of Evolving
              G.709 Optical Transport Networks.";
+    }
+  
+  typedef otn-label-range-type {
+    type enumeration {
+      enum trib-slot {
+        description
+          "Defines a range of OTN tributary slots. ";
+      }
+      enum trib-port {
+        description
+          "Defines a range of OTN tributary ports. ";
+      }
+    }
+    description
+      "from which specific OTN label range types derived, 
+      TS or TPN. ";
+  }
+  
+  typedef gfp-k {
+    type enumeration {
+      enum 2 {
+        description
+          "ODUflex(GFP,n,2) of n 1.25G tributary slots, 
+          n ranges from 1 to 8. ";
+      }
+      enum 3 {
+        description
+          "ODUflex(GFP,n,3) of n 1.25G tributary slots, 
+          n ranges from 9 to 32. ";
+      }
+      enum 4 {
+        description
+          "ODUflex(GFP,n,4) of n 1.25G tributary slots, 
+          n ranges from 33 to 80. ";
+      }
+    }
+  }
+  
+  typedef flexe-client{
+    type union {
+      type uint16; 
+      type enumeration {
+        enum "10G"; 
+        enum "40G";
+        }
+      }
     }
   
   identity tributary-slot-granularity {
@@ -158,15 +204,15 @@ module ietf-layer1-types {
     reference "RFC7139/ITU-T G.709"; 
   }
 
-  identity ODUFlex-cbr {
+  identity ODUflex {
     base odu-type;
     description
-      "ODU Flex CBR protocol for transporting constant bit rate
-       signal";
+      "ODU Flex with non-GFP, including CBR, packet and 
+      FlexE (aware and client). ";
     reference "RFC7139/ITU-T G.709"; 
   }
 
-  identity ODUFlex-gfp {
+  identity ODUflex-resizable {
     base odu-type;
     description
       "ODU Flex GFP protocol for transporting stream of packets
@@ -347,24 +393,6 @@ module ietf-layer1-types {
     reference "RFC4328/RFC7139"; 
   }
 
-  identity otn-label-range-type {
-    description
-      "Base identity from which specific OTN label
-           range types derived";
-  }
-
-  identity label-range-trib-slot {
-    base otn-label-range-type;
-    description
-      "Defines a range of OTN tributary slots";
-  }
-
-  identity label-range-trib-port {
-    base otn-label-range-type;
-    description
-      "Defines a range of OTN tributary ports";
-  }
-  
   identity coding-func {
     description
       "Base identity from which coding function is derived.";
@@ -574,6 +602,61 @@ module ietf-layer1-types {
         type uint16;
         description "Number of ODUs";
       }
+    choice oduflex-type {
+        description
+          "Types of ODUflex.";
+        case generic {
+          leaf nominal-bit-rate {
+            type uint64;
+            description
+              "Nominal bit rate measured in number of bits/s.";
+          }
+        }
+        case cbr {
+          leaf client-type {
+            type identityref {
+              base l1-types:client-signal;
+            }
+            description
+              "The CBR of corresponding client signal.";
+          }
+        }
+        case gfp-n-k {
+          leaf gfp-n {
+            type uint8;
+            description
+              "GFP-n specified in G.709, with range 1-80.";
+          }
+          leaf gfp-k {
+            type l1-types:gfp-k; 
+            description
+              "GFP-k, given the GFP-n defined, should be either 
+              2, 3, or 4. "; 
+          }
+        }
+        case flexe-client {
+          leaf flexe-client {
+            type l1-types:flexe-client;
+            description
+              "The rate of FlexE-client.";
+          }
+        }
+        case flexe-aware {
+          leaf flexe-aware-n {
+            type uint16;
+            description
+              "The rate of FlexE-aware";
+          }
+        }
+        case packet {
+          leaf opuflex-payload-rate {
+            type uint64;
+            description
+              "Applies in both GFP-F and IMP, the payload rate, 
+              measured in Kbit/s.";
+          }
+        }
+      }
     }
   }
 
@@ -586,14 +669,67 @@ module ietf-layer1-types {
       }
       description "ODU type";
     }
+    choice oduflex-type {
+        description
+          "Types of ODUflex.";
+        case generic {
+          leaf nominal-bit-rate {
+            type uint64;
+            description
+              "Nominal bit rate measured in number of bits/s.";
+          }
+        }
+        case cbr {
+          leaf client-type {
+            type identityref {
+              base l1-types:client-signal;
+            }
+            description
+              "The CBR of corresponding client signal.";
+          }
+        }
+        case gfp-n-k {
+          leaf gfp-n {
+            type uint8;
+            description
+              "GFP-n specified in G.709, with range 1-80.";
+          }
+          leaf gfp-k {
+            type l1-types:gfp-k; 
+            description
+              "GFP-k, given the GFP-n defined, should be either 
+              2, 3, or 4. "; 
+          }
+        }
+        case flexe-client {
+          leaf flexe-client {
+            type l1-types:flexe-client;
+            description
+              "The rate of FlexE-client.";
+          }
+        }
+        case flexe-aware {
+          leaf flexe-aware-n {
+            type uint16;
+            description
+              "The rate of FlexE-aware";
+          }
+        }
+        case packet {
+          leaf opuflex-payload-rate {
+            type uint64;
+            description
+              "Applies in both GFP-F and IMP, the payload rate, 
+              measured in Kbit/s.";
+          }
+        }
+      }
   }
 
   grouping otn-label-range-info {
     description "label range information for OTN";
     leaf range-type {
-      type identityref {
-        base l1-types:otn-label-range-type;
-      }
+      type l1-types:otn-label-range-type;
       description "The type of range (e.g., TPN or TS)
          to which the label range applies";
     }
@@ -634,10 +770,10 @@ module ietf-layer1-types {
     description 
       "The OTN label-start or label-end used to specify an OTN label 
       range.";
-    choice otn-label-type {
+    choice range-type {
       description
         "OTN label range type, either TPN range or TS range";
-      case tributary-port {
+      case trib-port {
         leaf otn-tpn {
           type l1-types:otn-tpn;
           description
@@ -647,7 +783,7 @@ module ietf-layer1-types {
              G.709 Optical Transport Networks.";
         }
       }
-      case tributary-slot {
+      case trib-slot {
         leaf otn-ts {
           type l1-types:otn-ts;
           description
@@ -699,10 +835,10 @@ module ietf-layer1-types {
   
   grouping otn-label-step {
     description "Label step for OTN";
-    choice otn-label-type {
+    choice range-type {
       description
         "OTN label range type, either TPN range or TS range";
-      case tributary-port {
+      case trib-port {
         leaf otn-tpn {
           type l1-types:otn-tpn;
           default 1;
@@ -714,7 +850,7 @@ module ietf-layer1-types {
              Evolving G.709 Optical Transport Networks.";
         }
       }
-      case tributary-slot {
+      case trib-slot {
         leaf otn-ts {
           type l1-types:otn-ts; 
           default 1;
