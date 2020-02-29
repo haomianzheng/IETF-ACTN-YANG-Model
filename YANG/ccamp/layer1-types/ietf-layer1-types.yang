@@ -76,38 +76,55 @@ module ietf-layer1-types {
       }
     }
     description
-      "from which specific OTN label range types derived, 
-      TS or TPN. ";
+      "Defines the type of OTN label range: TS or TPN. ";
   }
   
   typedef gfp-k {
     type enumeration {
       enum 2 {
         description
-          "ODUflex(GFP,n,2) of n 1.25G tributary slots, 
-          n ranges from 1 to 8. ";
+          "The ODU2.ts rate (1,249,177.230 kbit/s) is used
+           to compute the rate of an ODUflex(GFP,n,2). ";
       }
       enum 3 {
         description
-          "ODUflex(GFP,n,3) of n 1.25G tributary slots, 
-          n ranges from 9 to 32. ";
+          "The ODU3.ts rate (1,254,470.354 kbit/s) is used
+           to compute the rate of an ODUflex(GFP,n,3). ";
       }
       enum 4 {
         description
-          "ODUflex(GFP,n,4) of n 1.25G tributary slots, 
-          n ranges from 33 to 80. ";
+          "The ODU4.ts rate (1,301,467.133 kbit/s) is used
+           to compute the rate of an ODUflex(GFP,n,4). ";
       }
     }
+    description
+      "The ODUk.ts used to compute the rate of an ODUflex(GFP,n,k)";
+    reference
+      "Table 7-8 and L-7 of G.709";
+    
   }
   
-  typedef flexe-client{
+  typedef flexe-client-rate{
     type union {
-      type uint16; 
+      type uint16;
       type enumeration {
-        enum "10G"; 
-        enum "40G";
+        enum "10G"{
+          description
+            "Represents a 10G FlexE Client signal (s=2)"; 
+        }
+        enum "40G"{
+          description
+            "Represents a 40G FlexE Client signal (s=8)";
         }
       }
+    }
+    description
+      "The FlexE Client signal rate (s × 5,156,250.000 kbit/s)
+       used to compute the rate of an ODUflex(IMP, s).
+       Valid values for s are s=2 (10G), s=4 (40G) and
+       s=5xn (nx25G)";
+    reference
+      "Table 7-8 and L-7 of G.709";
     }
   
   identity tributary-slot-granularity {
@@ -207,17 +224,18 @@ module ietf-layer1-types {
   identity ODUflex {
     base odu-type;
     description
-      "ODU Flex with non-GFP, including CBR, packet and 
-      FlexE (aware and client). ";
+      "ODUflex protocol (flexibile bit rate, not resizable).
+       It could be used for any type of ODUflex, including CBR, GFP,
+       (GFP,n,k), IMP(s), IMP and FlexE-aware.";
     reference "RFC7139/ITU-T G.709"; 
   }
 
   identity ODUflex-resizable {
     base odu-type;
     description
-      "ODU Flex GFP protocol for transporting stream of packets
-       using Generic Framing Procedure";
-    reference "RFC7139/ITU-T G.709"; 
+      "ODUflex protocol (flexibile bit rate, resizable).
+       It could be used only for (GFP,n,k).";
+    reference "RFC7139/ITU-T G.709 and ITU-T G.7044"; 
   }
 
   identity client-signal {
@@ -602,61 +620,6 @@ module ietf-layer1-types {
         type uint16;
         description "Number of ODUs";
       }
-    choice oduflex-type {
-        description
-          "Types of ODUflex.";
-        case generic {
-          leaf nominal-bit-rate {
-            type uint64;
-            description
-              "Nominal bit rate measured in number of bits/s.";
-          }
-        }
-        case cbr {
-          leaf client-type {
-            type identityref {
-              base l1-types:client-signal;
-            }
-            description
-              "The CBR of corresponding client signal.";
-          }
-        }
-        case gfp-n-k {
-          leaf gfp-n {
-            type uint8;
-            description
-              "GFP-n specified in G.709, with range 1-80.";
-          }
-          leaf gfp-k {
-            type l1-types:gfp-k; 
-            description
-              "GFP-k, given the GFP-n defined, should be either 
-              2, 3, or 4. "; 
-          }
-        }
-        case flexe-client {
-          leaf flexe-client {
-            type l1-types:flexe-client;
-            description
-              "The rate of FlexE-client.";
-          }
-        }
-        case flexe-aware {
-          leaf flexe-aware-n {
-            type uint16;
-            description
-              "The rate of FlexE-aware";
-          }
-        }
-        case packet {
-          leaf opuflex-payload-rate {
-            type uint64;
-            description
-              "Applies in both GFP-F and IMP, the payload rate, 
-              measured in Kbit/s.";
-          }
-        }
-      }
     }
   }
 
@@ -670,13 +633,18 @@ module ietf-layer1-types {
       description "ODU type";
     }
     choice oduflex-type {
+      when "odu-type = 'ODUflex' or 'ODUflex-resizable'" {
+        description 
+          "applicable when odu-type is ODUflex or ODUflex-resizable";
+      }
         description
           "Types of ODUflex.";
         case generic {
           leaf nominal-bit-rate {
             type uint64;
+            mandatory true;
             description
-              "Nominal bit rate measured in number of bits/s.";
+              "Nominal ODUflex bit rate.";
           }
         }
         case cbr {
@@ -684,6 +652,7 @@ module ietf-layer1-types {
             type identityref {
               base l1-types:client-signal;
             }
+            mandatory true;
             description
               "The CBR of corresponding client signal.";
           }
@@ -691,6 +660,7 @@ module ietf-layer1-types {
         case gfp-n-k {
           leaf gfp-n {
             type uint8;
+            mandatory true;
             description
               "GFP-n specified in G.709, with range 1-80.";
           }
@@ -703,7 +673,8 @@ module ietf-layer1-types {
         }
         case flexe-client {
           leaf flexe-client {
-            type l1-types:flexe-client;
+            type l1-types:flexe-client-rate;
+            mandatory true;
             description
               "The rate of FlexE-client.";
           }
@@ -711,6 +682,7 @@ module ietf-layer1-types {
         case flexe-aware {
           leaf flexe-aware-n {
             type uint16;
+            mandatory true;
             description
               "The rate of FlexE-aware";
           }
@@ -718,6 +690,7 @@ module ietf-layer1-types {
         case packet {
           leaf opuflex-payload-rate {
             type uint64;
+            mandatory true;
             description
               "Applies in both GFP-F and IMP, the payload rate, 
               measured in Kbit/s.";
@@ -775,6 +748,10 @@ module ietf-layer1-types {
         "OTN label range type, either TPN range or TS range";
       case trib-port {
         leaf otn-tpn {
+          when "../../../range-type = 'trib-port'" {
+            description 
+              "valid only when range-type represented by trib-slot";
+          } 
           type l1-types:otn-tpn;
           description
             "Tributary Port Number.";
@@ -785,6 +762,10 @@ module ietf-layer1-types {
       }
       case trib-slot {
         leaf otn-ts {
+          when "../../../range-type = 'trib-slot'" {
+            description 
+              "valid only when range-type represented by trib-slot";
+          } 
           type l1-types:otn-ts;
           description
             "Tributary Slot Number.";
