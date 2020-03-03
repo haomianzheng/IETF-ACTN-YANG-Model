@@ -25,7 +25,7 @@ module ietf-otn-topology {
     prefix "l1-types";
     reference
       "I-D.ietf-ccamp-layer1-types: A YANG Data Model 
-	  for Layer 1 Types";
+       for Layer 1 Types";
   }
 
   organization
