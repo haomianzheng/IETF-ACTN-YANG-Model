@@ -31,7 +31,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-02-25" {
+  revision "2020-03-03" {
     description
       "Initial Version";
     reference
@@ -119,10 +119,10 @@ module ietf-layer1-types {
       }
     }
     description
-      "The FlexE Client signal rate (s × 5,156,250.000 kbit/s)
+      "The FlexE Client signal rate (s x 5,156,250.000 kbit/s)
        used to compute the rate of an ODUflex(IMP, s).
        Valid values for s are s=2 (10G), s=4 (40G) and
-       s=5xn (nx25G)";
+       s=5 x n (n x 25G)";
     reference
       "Table 7-8 and L-7 of G.709";
     }
@@ -700,7 +700,10 @@ module ietf-layer1-types {
   }
 
   grouping otn-label-range-info {
-    description "label range information for OTN";
+    description 
+      "label range information for OTN, is dependent on the 
+      range-type, must be used together with the following 
+      groupings: otn-label-start-end and otn-label-step. ";
     leaf range-type {
       type l1-types:otn-label-range-type;
       description "The type of range (e.g., TPN or TS)
@@ -742,7 +745,9 @@ module ietf-layer1-types {
   grouping otn-label-start-end {
     description 
       "The OTN label-start or label-end used to specify an OTN label 
-      range.";
+      range. this grouping is dependent on the range-type, 
+      must be used together with the following groupings:
+      otn-label-range-info and otn-label-step. ";
     choice range-type {
       description
         "OTN label range type, either TPN range or TS range";
@@ -750,7 +755,7 @@ module ietf-layer1-types {
         leaf otn-tpn {
           when "../../../range-type = 'trib-port'" {
             description 
-              "valid only when range-type represented by trib-slot";
+              "valid only when range-type represented by trib-port";
           } 
           type l1-types:otn-tpn;
           description
@@ -815,14 +820,20 @@ module ietf-layer1-types {
   }
   
   grouping otn-label-step {
-    description "Label step for OTN";
+    description 
+      "Label step for OTN, is dependent on the range-type, 
+      must be used together with the following groupings:
+      otn-label-range-info and otn-label-start-end. ";
     choice range-type {
       description
         "OTN label range type, either TPN range or TS range";
       case trib-port {
         leaf otn-tpn {
+          when "../../../range-type = 'trib-port'" {
+            description 
+              "valid only when range-type represented by trib-port";
+          } 
           type l1-types:otn-tpn;
-          default 1;
           description
             "Label step which represents possible increments for 
              Tributary Port Number.";
@@ -833,8 +844,11 @@ module ietf-layer1-types {
       }
       case trib-slot {
         leaf otn-ts {
+          when "../../../range-type = 'trib-slot'" {
+            description 
+              "valid only when range-type represented by trib-slot";
+          } 
           type l1-types:otn-ts; 
-          default 1;
           description
             "Label step which represents possible increments for 
              Tributary Slot Number.";
