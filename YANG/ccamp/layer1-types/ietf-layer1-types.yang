@@ -227,8 +227,9 @@ module ietf-layer1-types {
     base odu-type;
     description
       "ODUflex protocol (flexibile bit rate, not resizable).
-       It could be used for any type of ODUflex, including CBR, GFP,
-       (GFP,n,k), IMP(s), IMP and FlexE-aware.";
+       It could be used for any type of ODUflex, including
+       ODUflex(CBR), ODUflex(GFP), ODUflex(GFP,n,k), ODUflex(IMP,s),
+       ODUflex(IMP) and ODUflex(FlexE-aware).";
     reference "RFC7139/ITU-T G.709"; 
   }
 
