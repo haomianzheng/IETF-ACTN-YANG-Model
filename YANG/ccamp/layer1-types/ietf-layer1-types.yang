@@ -665,7 +665,9 @@ module ietf-layer1-types {
             type uint8;
             mandatory true;
             description
-              "GFP-n specified in G.709, with range 1-80.";
+              "The value of n for an ODUflex(GFP,n,k).";
+            reference
+              "Tables 7-8 and L-7 of G.709";
           }
           leaf gfp-k {
             type l1-types:gfp-k; 
