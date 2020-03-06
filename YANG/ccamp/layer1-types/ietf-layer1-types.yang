@@ -662,7 +662,9 @@ module ietf-layer1-types {
         }
         case gfp-n-k {
           leaf gfp-n {
-            type uint8;
+            type uint8 {
+              range "1..80";
+            }
             mandatory true;
             description
               "The value of n for an ODUflex(GFP,n,k).";
