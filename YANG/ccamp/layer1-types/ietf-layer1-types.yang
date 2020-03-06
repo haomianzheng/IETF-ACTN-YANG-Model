@@ -685,7 +685,8 @@ module ietf-layer1-types {
             type uint16;
             mandatory true;
             description
-              "The rate of FlexE-aware";
+              "The rate of FlexE-aware client signal
+               for ODUflex(FlexE-aware)";
           }
         }
         case packet {
