@@ -6,33 +6,108 @@ module: ietf-otn-tunnel
             /te:named-path-constraint/te:te-bandwidth
             /te:technology:
     +--:(otn)
-       +--rw odu-type?   identityref
+       +--rw odu-type?                     identityref
+       +--rw (oduflex-type)?
+          +--:(generic)
+          |  +--rw nominal-bit-rate        uint64
+          +--:(cbr)
+          |  +--rw client-type             identityref
+          +--:(gfp-n-k)
+          |  +--rw gfp-n                   uint8
+          |  +--rw gfp-k?                  l1-types:gfp-k
+          +--:(flexe-client)
+          |  +--rw flexe-client
+          |          l1-types:flexe-client-rate
+          +--:(flexe-aware)
+          |  +--rw flexe-aware-n           uint16
+          +--:(packet)
+             +--rw opuflex-payload-rate    uint64
   augment /te:te/te:tunnels/te:tunnel/te:te-bandwidth
             /te:technology:
     +--:(otn)
-       +--rw odu-type?   identityref
+       +--rw odu-type?                     identityref
+       +--rw (oduflex-type)?
+          +--:(generic)
+          |  +--rw nominal-bit-rate        uint64
+          +--:(cbr)
+          |  +--rw client-type             identityref
+          +--:(gfp-n-k)
+          |  +--rw gfp-n                   uint8
+          |  +--rw gfp-k?                  l1-types:gfp-k
+          +--:(flexe-client)
+          |  +--rw flexe-client
+          |          l1-types:flexe-client-rate
+          +--:(flexe-aware)
+          |  +--rw flexe-aware-n           uint16
+          +--:(packet)
+             +--rw opuflex-payload-rate    uint64
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:te-bandwidth
             /te:technology:
     +--:(otn)
-       +--rw odu-type?   identityref
+       +--rw odu-type?                     identityref
+       +--rw (oduflex-type)?
+          +--:(generic)
+          |  +--rw nominal-bit-rate        uint64
+          +--:(cbr)
+          |  +--rw client-type             identityref
+          +--:(gfp-n-k)
+          |  +--rw gfp-n                   uint8
+          |  +--rw gfp-k?                  l1-types:gfp-k
+          +--:(flexe-client)
+          |  +--rw flexe-client
+          |          l1-types:flexe-client-rate
+          +--:(flexe-aware)
+          |  +--rw flexe-aware-n           uint16
+          +--:(packet)
+             +--rw opuflex-payload-rate    uint64
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:p2p-primary-reverse-path
             /te:te-bandwidth/te:technology:
     +--:(otn)
-       +--rw odu-type?   identityref
+       +--rw odu-type?                     identityref
+       +--rw (oduflex-type)?
+          +--:(generic)
+          |  +--rw nominal-bit-rate        uint64
+          +--:(cbr)
+          |  +--rw client-type             identityref
+          +--:(gfp-n-k)
+          |  +--rw gfp-n                   uint8
+          |  +--rw gfp-k?                  l1-types:gfp-k
+          +--:(flexe-client)
+          |  +--rw flexe-client
+          |          l1-types:flexe-client-rate
+          +--:(flexe-aware)
+          |  +--rw flexe-aware-n           uint16
+          +--:(packet)
+             +--rw opuflex-payload-rate    uint64
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
             /te:p2p-secondary-path/te:te-bandwidth
             /te:technology:
     +--:(otn)
-       +--rw odu-type?   identityref
+       +--rw odu-type?                     identityref
+       +--rw (oduflex-type)?
+          +--:(generic)
+          |  +--rw nominal-bit-rate        uint64
+          +--:(cbr)
+          |  +--rw client-type             identityref
+          +--:(gfp-n-k)
+          |  +--rw gfp-n                   uint8
+          |  +--rw gfp-k?                  l1-types:gfp-k
+          +--:(flexe-client)
+          |  +--rw flexe-client
+          |          l1-types:flexe-client-rate
+          +--:(flexe-aware)
+          |  +--rw flexe-aware-n           uint16
+          +--:(packet)
+             +--rw opuflex-payload-rate    uint64
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint
             /te:explicit-route-objects-always
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:globals/te:named-path-constraints
@@ -42,13 +117,13 @@ module: ietf-otn-tunnel
             /te:label/te:label-hop/te:te-label
             /te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw range-type?      identityref
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -57,25 +132,25 @@ module: ietf-otn-tunnel
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction
             /te:label-end/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw range-type?      identityref
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -84,21 +159,21 @@ module: ietf-otn-tunnel
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction
             /te:label-end/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:optimizations
             /te:algorithm/te:metric/te:optimization-metric
@@ -106,7 +181,7 @@ module: ietf-otn-tunnel
             /te:route-object-exclude-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
@@ -116,7 +191,7 @@ module: ietf-otn-tunnel
             /te:route-object-include-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
@@ -125,7 +200,7 @@ module: ietf-otn-tunnel
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
@@ -135,13 +210,13 @@ module: ietf-otn-tunnel
             /te:label/te:label-hop/te:te-label
             /te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw range-type?      identityref
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -150,25 +225,25 @@ module: ietf-otn-tunnel
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction
             /te:label-end/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw range-type?      identityref
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -177,21 +252,21 @@ module: ietf-otn-tunnel
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction
             /te:label-end/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path
             /te:computed-paths-properties
@@ -200,7 +275,7 @@ module: ietf-otn-tunnel
             /te:path-computed-route-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--ro tpn?       uint16
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
@@ -210,7 +285,7 @@ module: ietf-otn-tunnel
             /te:label/te:label-hop/te:te-label
             /te:technology:
     +--:(otn)
-       +--ro tpn?       uint16
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
@@ -219,7 +294,7 @@ module: ietf-otn-tunnel
             /te:path-computed-route-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--ro tpn?       uint16
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
@@ -230,7 +305,7 @@ module: ietf-otn-tunnel
             /te:route-object-exclude-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
@@ -241,7 +316,7 @@ module: ietf-otn-tunnel
             /te:route-object-include-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
@@ -250,7 +325,7 @@ module: ietf-otn-tunnel
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
@@ -260,14 +335,14 @@ module: ietf-otn-tunnel
             /te:label/te:label-hop/te:te-label
             /te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:p2p-primary-reverse-path
             /te:path-in-segment/te:label-restrictions
             /te:label-restriction:
-    +--rw range-type?      identityref
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -277,27 +352,27 @@ module: ietf-otn-tunnel
             /te:label-restriction/te:label-start/te:te-label
             /te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:p2p-primary-reverse-path
             /te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-end/te:te-label
             /te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:p2p-primary-reverse-path
             /te:path-out-segment/te:label-restrictions
             /te:label-restriction:
-    +--rw range-type?      identityref
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -307,22 +382,22 @@ module: ietf-otn-tunnel
             /te:label-restriction/te:label-start/te:te-label
             /te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:p2p-primary-reverse-path
             /te:path-out-segment/te:label-restrictions
             /te:label-restriction/te:label-end/te:te-label
             /te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:p2p-primary-reverse-path
             /te:computed-paths-properties
@@ -331,7 +406,7 @@ module: ietf-otn-tunnel
             /te:path-computed-route-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--ro tpn?       uint16
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
@@ -341,7 +416,7 @@ module: ietf-otn-tunnel
             /te:label/te:label-hop/te:te-label
             /te:technology:
     +--:(otn)
-       +--ro tpn?       uint16
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
@@ -351,7 +426,7 @@ module: ietf-otn-tunnel
             /te:path-computed-route-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--ro tpn?       uint16
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
@@ -361,7 +436,7 @@ module: ietf-otn-tunnel
             /te:route-object-exclude-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
@@ -371,7 +446,7 @@ module: ietf-otn-tunnel
             /te:route-object-include-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
@@ -380,7 +455,7 @@ module: ietf-otn-tunnel
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
@@ -390,13 +465,13 @@ module: ietf-otn-tunnel
             /te:label/te:label-hop/te:te-label
             /te:technology:
     +--:(otn)
-       +--rw tpn?       uint16
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
             /te:p2p-secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw range-type?      identityref
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -405,25 +480,25 @@ module: ietf-otn-tunnel
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
             /te:p2p-secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction
             /te:label-end/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
             /te:p2p-secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction:
-    +--rw range-type?      identityref
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -432,21 +507,21 @@ module: ietf-otn-tunnel
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
             /te:p2p-secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction
             /te:label-end/te:te-label/te:technology:
     +--:(otn)
-       +--rw (otn-label-type)?
-          +--:(tributary-port)
-          |  +--rw tpn?   uint16
-          +--:(tributary-slot)
-             +--rw ts?    uint16
+       +--rw (range-type)?
+          +--:(trib-port)
+          |  +--rw otn-tpn?   l1-types:otn-tpn
+          +--:(trib-slot)
+             +--rw otn-ts?    l1-types:otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
             /te:p2p-secondary-path
             /te:computed-paths-properties
@@ -455,7 +530,7 @@ module: ietf-otn-tunnel
             /te:path-computed-route-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--ro tpn?       uint16
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
@@ -465,7 +540,7 @@ module: ietf-otn-tunnel
             /te:label/te:label-hop/te:te-label
             /te:technology:
     +--:(otn)
-       +--ro tpn?       uint16
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
@@ -474,7 +549,7 @@ module: ietf-otn-tunnel
             /te:path-computed-route-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
-       +--ro tpn?       uint16
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /te:te/te:lsps-state/te:lsp
@@ -483,8 +558,7 @@ module: ietf-otn-tunnel
             /te:label/te:label-hop/te:te-label
             /te:technology:
     +--:(otn)
-       +--ro tpn?       uint16
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
-
 
