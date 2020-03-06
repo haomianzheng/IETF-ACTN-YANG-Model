@@ -237,7 +237,7 @@ module ietf-layer1-types {
     base odu-type;
     description
       "ODUflex protocol (flexibile bit rate, resizable).
-       It could be used only for (GFP,n,k).";
+       It could be used only for ODUflex(GFP,n,k).";
     reference "RFC7139/ITU-T G.709 and ITU-T G.7044"; 
   }
 
