@@ -677,8 +677,11 @@ module ietf-layer1-types {
           leaf gfp-k {
             type l1-types:gfp-k; 
             description
-              "GFP-k, given the GFP-n defined, should be either 
-              2, 3, or 4. "; 
+              "The value of k for an ODUflex(GFP,n,k).
+               If omitted, it is calculated from the value of gfp-n
+               as described in Table 7-8 of G.709";
+            reference
+              "Tables 7-8 and L-7 of G.709";
           }
         }
         case flexe-client {
