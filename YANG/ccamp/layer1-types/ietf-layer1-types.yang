@@ -111,7 +111,7 @@ module ietf-layer1-types {
           description
             "Represents a 10G FlexE Client signal (s=2)"; 
         }
-        enum "40G"{
+        enum "40G" {
           description
             "Represents a 40G FlexE Client signal (s=8)";
         }
