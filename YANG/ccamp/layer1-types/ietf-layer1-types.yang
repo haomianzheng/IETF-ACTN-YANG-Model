@@ -677,7 +677,7 @@ module ietf-layer1-types {
             type l1-types:flexe-client-rate;
             mandatory true;
             description
-              "The rate of FlexE-client.";
+              "The rate of the FlexE-client for an ODUflex(IMP,s).";
           }
         }
         case flexe-aware {
