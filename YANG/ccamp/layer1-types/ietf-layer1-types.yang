@@ -661,7 +661,7 @@ module ietf-layer1-types {
             }
             mandatory true;
             description
-              "The CBR of corresponding client signal.";
+              "The CBR client signal for an ODUflex(CBR).";
           }
         }
         case gfp-n-k {
