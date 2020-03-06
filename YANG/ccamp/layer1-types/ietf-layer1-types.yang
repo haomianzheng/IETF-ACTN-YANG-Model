@@ -690,6 +690,7 @@ module ietf-layer1-types {
         case packet {
           leaf opuflex-payload-rate {
             type uint64;
+            units "Kbps";
             mandatory true;
             description
               "Applies in both GFP-F and IMP, the payload rate, 
