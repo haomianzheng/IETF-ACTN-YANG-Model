@@ -107,7 +107,7 @@ module ietf-layer1-types {
     type union {
       type uint16;
       type enumeration {
-        enum "10G"{
+        enum "10G" {
           description
             "Represents a 10G FlexE Client signal (s=2)"; 
         }
