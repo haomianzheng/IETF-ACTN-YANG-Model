@@ -642,6 +642,7 @@ module ietf-layer1-types {
         case generic {
           leaf nominal-bit-rate {
             type uint64;
+            units "bps";
             mandatory true;
             description
               "Nominal ODUflex bit rate.";
