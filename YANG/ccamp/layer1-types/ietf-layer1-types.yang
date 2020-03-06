@@ -103,7 +103,7 @@ module ietf-layer1-types {
       "Table 7-8 and L-7 of G.709";
   }
   
-  typedef flexe-client-rate{
+  typedef flexe-client-rate {
     type union {
       type uint16;
       type enumeration {
