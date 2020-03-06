@@ -695,8 +695,9 @@ module ietf-layer1-types {
             units "Kbps";
             mandatory true;
             description
-              "Applies in both GFP-F and IMP, the payload rate, 
-              measured in Kbit/s.";
+              "Either the GFP-F encapsulated packet client nominal
+               bit rate for an ODUflex(GFP) or the 64b/66b encoded
+               packet client nominal bit rate for an ODUflex(IMP).";
           }
         }
       }
