@@ -121,9 +121,12 @@ module ietf-layer1-types {
       "The FlexE Client signal rate (s x 5,156,250.000 kbit/s)
        used to compute the rate of an ODUflex(IMP, s).
        Valid values for s are s=2 (10G), s=4 (40G) and
-       s=5 x n (n x 25G)";
+       s=5 x n (n x 25G).
+       In the first two cases an enumeration value
+       (either 10G or 40G) is used, while in the latter case
+       the value of n is used";
     reference
-      "Table 7-8 and L-7 of G.709";
+      "Table 7-2 of G.709";
     }
   
   identity tributary-slot-granularity {
