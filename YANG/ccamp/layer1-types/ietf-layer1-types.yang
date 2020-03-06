@@ -637,7 +637,10 @@ module ietf-layer1-types {
           "applicable when odu-type is ODUflex or ODUflex-resizable";
       }
         description
-          "Types of ODUflex.";
+          "Types of ODUflex used to compute the ODUflex
+           nominal bit rate.";
+        reference
+          "Table 7-2 of G.709";
         case generic {
           leaf nominal-bit-rate {
             type uint64;
