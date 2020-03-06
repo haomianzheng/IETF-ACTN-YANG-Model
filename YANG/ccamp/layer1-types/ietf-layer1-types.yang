@@ -101,7 +101,6 @@ module ietf-layer1-types {
       "The ODUk.ts used to compute the rate of an ODUflex(GFP,n,k)";
     reference
       "Table 7-8 and L-7 of G.709";
-    
   }
   
   typedef flexe-client-rate{
