@@ -55,7 +55,7 @@ module ietf-otn-tunnel {
     This version of this YANG module is part of RFC XXXX; see
     the RFC itself for full legal notices.";
 
-  revision "2020-03-03" {
+  revision "2020-03-09" {
     description
       "Initial Revision";
     reference
