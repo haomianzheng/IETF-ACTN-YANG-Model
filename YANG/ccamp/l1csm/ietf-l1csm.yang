@@ -8,29 +8,28 @@ module ietf-l1csm {
   }
 
   import ietf-layer1-types {
-    prefix "layer1-types";
+    prefix "l1-types";
   }
-		
+
   organization
     "Internet Engineering Task Force (IETF) CCAMP WG";
-			
+
   contact
                      
-    "Editor: Y. Lee (younglee_tx@gmail.com)
+    "Editor: Y. Lee (younglee.tx@gmail.com)
      Editor: K. Lee (kwangkoog.lee@kt.com)
      Editor: H. Zheng (zhenghaomian@huawei.com)
      Editor: D. Dhody (dhruv.ietf@gmail.com)
      Editor: O. G. de-Dios (oscar.gonzalezdedios@telefonica.com)
      Editor: D. Ceccarelli (daniele.ceccarelli@ericsson.com)";
 
-				
   description
     "This module describes L1 connectivity service based on MEF 63: 
-	 Subscriber Layer 1 Service Attribute Technical Specification.
-	 Refer to MEF 63 for all terms and the original references 
+     Subscriber Layer 1 Service Attribute Technical Specification.
+     Refer to MEF 63 for all terms and the original references 
      used in the module.
 
-     Copyright (c) 2019 IETF Trust and the persons identified as
+     Copyright (c) 2020 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject
@@ -42,7 +41,7 @@ module ietf-l1csm {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2019-09-09" {
+  revision "2020-03-09" {
        description "Initial revision.";
        reference "RFC XXXX: A Yang Data Model for L1 Connectivity 
                  Service Model (L1CSM)";
@@ -50,14 +49,14 @@ module ietf-l1csm {
   // assigned to the RFC once this draft becomes an RFC. 
   }  
 
-	grouping protocol-coding-optical-interface {
+    grouping protocol-coding-optical-interface {
      description
       "describes <p,c,o> where p:protocol type; c:coding
        function; o:optical interface function";
       reference "MEF 63";
       leaf protocol {
         type identityref {
-          base "layer1-types:client-signal";
+          base "l1-types:client-signal";
         }
         description
           "List of physical layer L1VC client protocol";
@@ -65,14 +64,14 @@ module ietf-l1csm {
       }
       leaf coding {
          type identityref {
-           base "layer1-types:coding-func";
+           base "l1-types:coding-func";
          }
          description "coding function";
       }
 
        leaf optical-interface {
          type identityref {
-           base "layer1-types:optical-interface-func";
+           base "l1-types:optical-interface-func";
          }
          description "optical-interface-function";
       }
@@ -94,17 +93,16 @@ module ietf-l1csm {
       leaf time-interval {
         type int32;
         units seconds;
-        description "a time interval (e.g., 2,419,200 seconds
-                     which is 28 days) that is used in
-                     conjunction wuth time-start to specify a
-                     contiguous sequence of time intervals T for
-                     determining when performance objectives are
-                     met.";
+        description 
+          "a time interval (e.g., 2,419,200 seconds which is 28 days)
+          that is used in conjunction wuth time-start to specify a 
+          contiguous sequence of time intervals T for determining 
+          when performance objectives are met.";
       }
 
       leaf-list performance-metric {
         type identityref {
-          base "layer1-types:service-performance-metric";
+          base "l1-types:service-performance-metric";
         }
         description "list of service performance metric.";
       }

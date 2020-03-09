@@ -1,21 +1,24 @@
 module: ietf-l1csm
-    +--rw l1-connectivity
-       +--rw access
-       |  +--rw unis
-       |     +--rw uni* [id]
-       |        +--rw id                   string
-       |        +--rw protocol?            identityref
-       |        +--rw coding?              identityref
-       |        +--rw optical-interface?   identityref
-       +--rw services
-          +--rw service* [service-id]
-             +--rw service-id            string
-             +--rw endpoint-1
-             |  +--rw id     string
-             |  +--rw uni    -> /l1-connectivity/access/unis/uni/id
-             +--rw endpoint-2
-             |  +--rw id     string
-             |  +--rw uni    -> /l1-connectivity/access/unis/uni/id
-             +--rw start-time?           yang:date-and-time
-             +--rw time-interval?        int32
-             +--rw performance-metric*   identityref
+  +--rw l1-connectivity
+     +--rw access
+     |  +--rw unis
+     |     +--rw uni* [id]
+     |        +--rw id                   string
+     |        +--rw protocol?            identityref
+     |        +--rw coding?              identityref
+     |        +--rw optical-interface?   identityref
+     +--rw services
+        +--rw service* [service-id]
+           +--rw service-id            string
+           +--rw endpoint-1
+           |  +--rw id     string
+           |  +--rw uni
+           |          -> /l1-connectivity/access/unis/uni/id
+           +--rw endpoint-2
+           |  +--rw id     string
+           |  +--rw uni
+           |          -> /l1-connectivity/access/unis/uni/id
+           +--rw start-time?           yang:date-and-time
+           +--rw time-interval?        int32
+           +--rw performance-metric*   identityref
+
