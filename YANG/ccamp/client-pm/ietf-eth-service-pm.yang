@@ -38,7 +38,7 @@ module ietf-eth-service-pm {
      services. The model fully conforms to the Network Management 
      Datastore Architecture (NMDA).
     
-     Copyright (c) 2019 IETF Trust and the persons
+     Copyright (c) 2020 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -50,13 +50,92 @@ module ietf-eth-service-pm {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
   
-  revision 2019-11-04 {
+  revision 2020-05-07 {
     description
       "Initial version";
     reference
       "ADD REFERENCE HERE";
   }
 
+  typedef performance-parameter
+    {
+      type union {
+        type uint32;
+		type uint64;
+		type decimal64 {
+          fraction-digits 6;
+        }
+		type string; 
+      }
+      description
+        "To represent the type of value. ";
+    }
+	
+  identity performance-type {
+    description
+      "Base type of performance monitoring. ";
+  }
+
+  identity latency {
+    base performance-type;
+    description
+      "Latency measurement for performance monitoring. ";
+  }
+
+  identity bit-error-rate {
+    base performance-type;
+    description
+      "Bit Error Rate (BER) measurement for performance monitoring.";
+  }
+  
+  identity packet-loss {
+    base performance-type;
+    description
+      "Packet loss measurement for performance monitoring. ";
+  }
+  
+  identity bandwidth {
+    base performance-type;
+    description
+      "Bandwidth measurement for performance monitoring. ";
+  }
+  
+  identity alarm-status {
+    description "indicates whether there is alarm or not";
+  }
+
+  identity alarm {
+    base alarm-status;
+	description "There is one or multiple alarms from the monitor. ";
+  }
+
+  identity no-alarm {
+    base alarm-status;
+	description "There is no alarms from the monitor. ";
+  }
+  
+  identity monitoring-state {
+    description 
+	  "The state of performance monitoring. ";
+  }
+
+  identity monitoring {
+    base monitoring-state;
+	description "The Ethernet client signal is under monitoring. ";
+  }
+
+  identity monitor-finished {
+    base monitoring-state;
+	description 
+	  "The monitoring of Ethernet client signal is finished. ";
+  }
+
+  identity monitor-failed {
+    base monitoring-state;
+	description 
+	  "The monitoring of Ethernet client signal is failed. ";
+  }
+  
   container performance-monitoring {
     description 
       "This part is for performance monitoring. ";
@@ -77,22 +156,30 @@ module ietf-eth-service-pm {
           "Indicate whether the performance monitoring 
           is enable or not.";
       }
-      
-      container latency-monitoring {
-        description 
-          "To monitor the latency of service.";
-        leaf latency-measure-enable {
-          type boolean;
-          description
-            "Indicate whether the latency measurement 
-            is enable or not.";
-        }
+	  
+	  leaf vlan-id {
+        type etht-types:vlanid;
+        description
+          "The customer VLAN Identifier of the Ethernet Client to be monitored.";
       }
       
       container service-pm-state {
         config false;
         description 
-          "The state of service performance monitoring.";
+          "The state of service performance monitoring.";		  
+		
+		list performance-data{
+	      key parameter-name; 
+	      description "The list of performance under monitor.";
+	      uses service-performance-monitor-set;
+	    }
+		
+		leaf monitor-state {
+		  type identityref {
+		    base ethsvc-pm:monitoring-state;
+		  }
+		}
+		
         leaf start-time {
           type yang:date-and-time;
           description 
@@ -103,13 +190,6 @@ module ietf-eth-service-pm {
           type yang:date-and-time;
           description 
             "The time stamp when the service is last updated.";
-        }
-        
-        leaf latency {
-          type uint32;
-          units microsecond;
-          description 
-            "The latency of service.";
         }
         
         leaf error-message {
@@ -125,7 +205,43 @@ module ietf-eth-service-pm {
           description 
             "The operational status of the services.";
         }
+		container alarm {
+		  leaf status {
+		    type identityref {
+		      base ethsvc-pm:alarm-status;
+		    }
+		  }
+		}
       }
     }
+  }
+  
+  grouping service-performance-monitor-set{
+    description "the set of parameter name, value and description.";
+    leaf parameter-name{
+	  type identityref {
+	    base performance-type;
+	  }
+	  description 
+	    "The name of parameters to be monitored. 
+		For example, latency, Bit Error Rate, Bandwidth and so on.";
+	}
+	list parameter-value {
+	  key value; 
+	  description 
+	    "The table of values of the performance and 
+		their descriptions.";
+	  leaf value {
+	    mandatory true;
+		type ethsvc-pm:performance-parameter; 
+		description 
+		  "The value of the parameter. ";
+	  }
+	  leaf value-description{
+	    type string;
+		description 
+		  "The description of previous value. ";
+	  }
+	}
   }
 }
