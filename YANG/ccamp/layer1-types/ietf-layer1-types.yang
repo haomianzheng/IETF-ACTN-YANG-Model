@@ -31,7 +31,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-03-09" {
+  revision "2020-05-06" {
     description
       "Initial Version";
     reference
@@ -40,29 +40,27 @@ module ietf-layer1-types {
     // information and remove this note
   }
 
-  typedef otn-tpn
-    {
-      type uint16 {
-        range "1..4095";
-      }
-      description
-        "Tributary Port Number for OTN. ";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-             G.709 Optical Transport Networks.";
+  typedef otn-tpn {
+    type uint16 {
+      range "1..4095";
     }
+    description
+      "Tributary Port Number for OTN. ";
+    reference
+      "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+       G.709 Optical Transport Networks.";
+  }
   
-  typedef otn-ts
-    {
-      type uint16 {
-        range "1..4095";
-      }
-      description
-        "Tributary Slot for OTN. ";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-             G.709 Optical Transport Networks.";
+  typedef otn-ts {
+    type uint16 {
+      range "1..4095";
     }
+    description
+      "Tributary Slot for OTN. ";
+    reference
+      "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+       G.709 Optical Transport Networks.";
+  }
   
   typedef otn-label-range-type {
     type enumeration {
@@ -127,8 +125,8 @@ module ietf-layer1-types {
        the value of n is used";
     reference
       "Table 7-2 of G.709";
-    }
-  
+  }
+
   identity tributary-slot-granularity {
     description
       "Tributary slot granularity";
@@ -316,6 +314,7 @@ module ietf-layer1-types {
       "Client signal type of STM-256";
     reference "RFC7139/ITU-T G.709"; 
   }
+
   identity OC-3 {
     base client-signal;
     description
@@ -640,80 +639,80 @@ module ietf-layer1-types {
         description 
           "applicable when odu-type is ODUflex or ODUflex-resizable";
       }
-        description
-          "Types of ODUflex used to compute the ODUflex
-           nominal bit rate.";
-        reference
-          "Table 7-2 of G.709";
-        case generic {
-          leaf nominal-bit-rate {
-            type uint64;
-            units "bps";
-            mandatory true;
-            description
-              "Nominal ODUflex bit rate.";
-          }
-        }
-        case cbr {
-          leaf client-type {
-            type identityref {
-              base l1-types:client-signal;
-            }
-            mandatory true;
-            description
-              "The CBR client signal for an ODUflex(CBR).";
-          }
-        }
-        case gfp-n-k {
-          leaf gfp-n {
-            type uint8 {
-              range "1..80";
-            }
-            mandatory true;
-            description
-              "The value of n for an ODUflex(GFP,n,k).";
-            reference
-              "Tables 7-8 and L-7 of G.709";
-          }
-          leaf gfp-k {
-            type l1-types:gfp-k; 
-            description
-              "The value of k for an ODUflex(GFP,n,k).
-               If omitted, it is calculated from the value of gfp-n
-               as described in Table 7-8 of G.709";
-            reference
-              "Tables 7-8 and L-7 of G.709";
-          }
-        }
-        case flexe-client {
-          leaf flexe-client {
-            type l1-types:flexe-client-rate;
-            mandatory true;
-            description
-              "The rate of the FlexE-client for an ODUflex(IMP,s).";
-          }
-        }
-        case flexe-aware {
-          leaf flexe-aware-n {
-            type uint16;
-            mandatory true;
-            description
-              "The rate of FlexE-aware client signal
-               for ODUflex(FlexE-aware)";
-          }
-        }
-        case packet {
-          leaf opuflex-payload-rate {
-            type uint64;
-            units "Kbps";
-            mandatory true;
-            description
-              "Either the GFP-F encapsulated packet client nominal
-               bit rate for an ODUflex(GFP) or the 64b/66b encoded
-               packet client nominal bit rate for an ODUflex(IMP).";
-          }
+      description
+        "Types of ODUflex used to compute the ODUflex
+         nominal bit rate.";
+      reference
+        "Table 7-2 of G.709";
+      case generic {
+        leaf nominal-bit-rate {
+          type uint64;
+          units "bps";
+          mandatory true;
+          description
+            "Nominal ODUflex bit rate.";
         }
       }
+      case cbr {
+        leaf client-type {
+          type identityref {
+            base l1-types:client-signal;
+          }
+          mandatory true;
+          description
+            "The CBR client signal for an ODUflex(CBR).";
+        }
+      }
+      case gfp-n-k {
+        leaf gfp-n {
+          type uint8 {
+            range "1..80";
+          }
+          mandatory true;
+          description
+            "The value of n for an ODUflex(GFP,n,k).";
+          reference
+            "Tables 7-8 and L-7 of G.709";
+        }
+        leaf gfp-k {
+          type l1-types:gfp-k; 
+          description
+            "The value of k for an ODUflex(GFP,n,k).
+             If omitted, it is calculated from the value of gfp-n
+             as described in Table 7-8 of G.709";
+          reference
+            "Tables 7-8 and L-7 of G.709";
+        }
+      }
+      case flexe-client {
+        leaf flexe-client {
+          type l1-types:flexe-client-rate;
+          mandatory true;
+          description
+            "The rate of the FlexE-client for an ODUflex(IMP,s).";
+        }
+      }
+      case flexe-aware {
+        leaf flexe-aware-n {
+          type uint16;
+          mandatory true;
+          description
+            "The rate of FlexE-aware client signal
+             for ODUflex(FlexE-aware)";
+        }
+      }
+      case packet {
+        leaf opuflex-payload-rate {
+          type uint64;
+          units "Kbps";
+          mandatory true;
+          description
+            "Either the GFP-F encapsulated packet client nominal
+             bit rate for an ODUflex(GFP) or the 64b/66b encoded
+             packet client nominal bit rate for an ODUflex(IMP).";
+        }
+      }
+    }
   }
 
   grouping otn-label-range-info {
@@ -876,5 +875,4 @@ module ietf-layer1-types {
       }
     }
   }
-
 }
