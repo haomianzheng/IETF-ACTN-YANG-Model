@@ -42,9 +42,9 @@ module ietf-l1csm {
      the RFC itself for full legal notices.";
 
   revision "2020-05-06" {
-       description "Initial revision.";
-       reference "RFC XXXX: A Yang Data Model for L1 Connectivity 
-                 Service Model (L1CSM)";
+    description "Initial revision.";
+    reference "RFC XXXX: A Yang Data Model for L1 Connectivity 
+               Service Model (L1CSM)";
   // Note: The RFC Editor will replace XXXX with the number  
   // assigned to the RFC once this draft becomes an RFC. 
   }  
