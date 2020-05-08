@@ -68,7 +68,7 @@ module ietf-eth-service-pm {
         type string; 
       }
       description
-        "To represent the type of value. ";
+        "A performance parameter value.";
     }
 	
   identity performance-parameter-type {
