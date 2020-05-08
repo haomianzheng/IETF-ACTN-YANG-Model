@@ -57,7 +57,7 @@ module ietf-eth-service-pm {
       "ADD REFERENCE HERE";
   }
 
-  typedef performance-parameter
+  typedef performance-parameter-value
     {
       type union {
         type uint32;
