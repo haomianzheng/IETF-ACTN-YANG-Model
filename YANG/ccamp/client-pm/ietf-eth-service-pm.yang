@@ -223,8 +223,8 @@ module ietf-eth-service-pm {
 	    base performance-type;
 	  }
 	  description 
-	    "The name of parameters to be monitored. 
-		For example, latency, Bit Error Rate, Bandwidth and so on.";
+        "The name of parameters to be monitored. 
+         For example, latency, Bit Error Rate, Bandwidth and so on.";
 	}
 	list parameter-value {
 	  key value; 
