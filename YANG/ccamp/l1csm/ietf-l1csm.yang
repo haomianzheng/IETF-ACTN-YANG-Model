@@ -41,7 +41,7 @@ module ietf-l1csm {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-05-06" {
+  revision "2020-05-08" {
     description "Initial revision.";
     reference "RFC XXXX: A Yang Data Model for L1 Connectivity 
                Service Model (L1CSM)";
@@ -57,22 +57,27 @@ module ietf-l1csm {
 
     leaf protocol {
       type identityref {
-        base "l1-types:client-signal";
+        base "l1-types:protocol";
       }
-      description
-        "List of physical layer L1VC client protocol";
+      mandatory true;
+      description "The protocol being used at the UNI.";
     }
     leaf coding {
       type identityref {
         base "l1-types:coding-func";
       }
-      description "coding function";
+      must 'derived-from(../coding, ../protocol)';
+      mandatory true;
+      description "The coding function being used at the UNI.";
     }
     leaf optical-interface {
       type identityref {
         base "l1-types:optical-interface-func";
       }
-      description "optical-interface-function";
+      mandatory true;
+      must 'derived-from(../optical-interface, ../coding)';
+      description
+        "The optical interface function being used at the UNI.";
     }
   }
 
@@ -162,7 +167,28 @@ module ietf-l1csm {
             type string;
             description "the UNI id of UNI Service Attributes";
           }
-          uses protocol-coding-optical-interface;
+          choice uni-access-type {
+            description
+              "The UNI access type can be specified either by the
+               protocol, coding function and optical interface
+               function, defined in MEF, or by the client-signal,
+               defined in ITU-T.";
+            case mef {
+              uses protocol-coding-optical-interface;
+            }
+            case itu {
+              leaf client-signal {
+                type identityref {
+                  base "l1-types:client-signal";
+                }
+                must 'not(derived-from(../client-signal, ' + 
+                     '"l1-types:coding-func"))';
+                mandatory true;
+                description
+                  "The client signal being used at the UNI";
+              }
+            }
+          }
         }
       }
     }
