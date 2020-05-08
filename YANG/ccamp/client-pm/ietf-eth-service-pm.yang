@@ -73,7 +73,7 @@ module ietf-eth-service-pm {
 	
   identity performance-type {
     description
-      "Base type of performance monitoring. ";
+      "Base type of the performance parameter being monitored. ";
   }
 
   identity latency {
