@@ -205,13 +205,13 @@ module ietf-eth-service-pm {
           description 
             "The operational status of the services.";
         }
-		container alarm {
-		  leaf status {
-		    type identityref {
-		      base ethsvc-pm:alarm-status;
-		    }
-		  }
-		}
+        container alarm {
+          leaf status {
+            type identityref {
+              base ethsvc-pm:alarm-status;
+            }
+          }
+        }
       }
     }
   }
