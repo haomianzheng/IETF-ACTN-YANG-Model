@@ -71,7 +71,7 @@ module ietf-eth-service-pm {
         "To represent the type of value. ";
     }
 	
-  identity performance-type {
+  identity performance-parameter-type {
     description
       "Base type of the performance parameter being monitored. ";
   }
