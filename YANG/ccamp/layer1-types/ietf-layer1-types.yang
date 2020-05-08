@@ -31,7 +31,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-05-06" {
+  revision "2020-05-08" {
     description
       "Initial Version";
     reference
@@ -155,7 +155,7 @@ module ietf-layer1-types {
 
   identity odu-type {
     description
-      "Base identity for protocol framing used by tributary signals.";
+      "Base identity for the type of ODU protocol.";
   }
 
   identity ODU0 {
@@ -614,7 +614,7 @@ module ietf-layer1-types {
         "OTN bandwidth definition";
       leaf odu-type {
         type identityref {
-          base l1-types:odu-type;
+          base odu-type;
         }
         description "ODU type";
       }
@@ -630,7 +630,7 @@ module ietf-layer1-types {
       "path bandwidth attributes for OTN";
     leaf odu-type {
       type identityref {
-        base l1-types:odu-type;
+        base odu-type;
       }
       description "ODU type";
     }
@@ -656,7 +656,7 @@ module ietf-layer1-types {
       case cbr {
         leaf client-type {
           type identityref {
-            base l1-types:client-signal;
+            base client-signal;
           }
           mandatory true;
           description
@@ -675,7 +675,7 @@ module ietf-layer1-types {
             "Tables 7-8 and L-7 of G.709";
         }
         leaf gfp-k {
-          type l1-types:gfp-k; 
+          type gfp-k; 
           description
             "The value of k for an ODUflex(GFP,n,k).
              If omitted, it is calculated from the value of gfp-n
@@ -686,7 +686,7 @@ module ietf-layer1-types {
       }
       case flexe-client {
         leaf flexe-client {
-          type l1-types:flexe-client-rate;
+          type flexe-client-rate;
           mandatory true;
           description
             "The rate of the FlexE-client for an ODUflex(IMP,s).";
@@ -718,24 +718,24 @@ module ietf-layer1-types {
   grouping otn-label-range-info {
     description 
       "label range information for OTN, is dependent on the 
-      range-type, must be used together with the following 
-      groupings: otn-label-start-end and otn-label-step. ";
+       range-type, must be used together with the following
+       groupings: otn-label-start-end and otn-label-step. ";
     leaf range-type {
-      type l1-types:otn-label-range-type;
+      type otn-label-range-type;
       description "The type of range (e.g., TPN or TS)
          to which the label range applies";
     }
     leaf tsg {
       type identityref {
-        base l1-types:tributary-slot-granularity;
+        base tributary-slot-granularity;
       }
       description 
         "Tributary slot granularity (TSG) to which the label range 
-        applies.
-        This leaf shall be present when the range-type is TS; 
-        This leaf can be omitted when mapping an ODUk over an OTUk
-        Link. In this case the range-type is tpn, with only one entry
-        (ODUk), and the tpn range has only one value (1). ";
+         applies.
+         This leaf shall be present when the range-type is TS;
+         This leaf can be omitted when mapping an ODUk over an OTUk
+         Link. In this case the range-type is tpn, with only one
+         entry (ODUk), and the tpn range has only one value (1).";
       reference
         "G.709/Y.1331, February 2016: Interfaces for the
          Optical Transport Network (OTN)";
@@ -753,17 +753,17 @@ module ietf-layer1-types {
       type uint8;
       description 
         "Priority in Interface Switching Capability 
-        Descriptor (ISCD).";
+         Descriptor (ISCD).";
       reference "RFC4203.";
     }
   }
 
   grouping otn-label-start-end {
     description 
-      "The OTN label-start or label-end used to specify an OTN label 
-      range. this grouping is dependent on the range-type, 
-      must be used together with the following groupings:
-      otn-label-range-info and otn-label-step. ";
+      "The OTN label-start or label-end used to specify an OTN label
+       range. this grouping is dependent on the range-type,
+       must be used together with the following groupings:
+       otn-label-range-info and otn-label-step.";
     choice range-type {
       description
         "OTN label range type, either TPN range or TS range";
@@ -773,12 +773,12 @@ module ietf-layer1-types {
             description 
               "valid only when range-type represented by trib-port";
           } 
-          type l1-types:otn-tpn;
+          type otn-tpn;
           description
             "Tributary Port Number.";
           reference
-            "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-             G.709 Optical Transport Networks.";
+            "RFC7139: GMPLS Signaling Extensions for Control of
+             Evolving G.709 Optical Transport Networks.";
         }
       }
       case trib-slot {
@@ -787,12 +787,12 @@ module ietf-layer1-types {
             description 
               "valid only when range-type represented by trib-slot";
           } 
-          type l1-types:otn-ts;
+          type otn-ts;
           description
             "Tributary Slot Number.";
           reference
-            "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-             G.709 Optical Transport Networks.";
+            "RFC7139: GMPLS Signaling Extensions for Control of
+             Evolving G.709 Optical Transport Networks.";
         }
       }
     }
@@ -802,7 +802,7 @@ module ietf-layer1-types {
     description "OTN Label. ";
     reference "RFC7139, section 6. "; 
     leaf otn-tpn {
-      type l1-types:otn-tpn;
+      type otn-tpn;
       description
         "Tributary Port Number.";
       reference
@@ -811,7 +811,7 @@ module ietf-layer1-types {
     }
     leaf tsg {
       type identityref {
-        base l1-types:tributary-slot-granularity;
+        base tributary-slot-granularity;
       }
       description "Tributary slot granularity.";
       reference
@@ -826,9 +826,9 @@ module ietf-layer1-types {
         description
           "A list of available tributary slots ranging
            between 1 and 4095. If multiple values or  
-           ranges are given, they all MUST be disjoint 
-           and MUST be in ascending order.
-           For example 1-20,25,50-1000. ";
+           ranges are given, they all must be disjoint 
+           and must be in ascending order.
+           For example 1-20,25,50-1000.";
         reference 
           "RFC 7139: GMPLS Signaling Extensions for Control
            of Evolving G.709 Optical Transport Networks";
@@ -837,9 +837,9 @@ module ietf-layer1-types {
   
   grouping otn-label-step {
     description 
-      "Label step for OTN, is dependent on the range-type, 
-      must be used together with the following groupings:
-      otn-label-range-info and otn-label-start-end. ";
+      "Label step for OTN, is dependent on the range-type,
+       must be used together with the following groupings:
+       otn-label-range-info and otn-label-start-end. ";
     choice range-type {
       description
         "OTN label range type, either TPN range or TS range";
@@ -849,7 +849,7 @@ module ietf-layer1-types {
             description 
               "valid only when range-type represented by trib-port";
           } 
-          type l1-types:otn-tpn;
+          type otn-tpn;
           description
             "Label step which represents possible increments for 
              Tributary Port Number.";
@@ -864,13 +864,13 @@ module ietf-layer1-types {
             description 
               "valid only when range-type represented by trib-slot";
           } 
-          type l1-types:otn-ts; 
+          type otn-ts; 
           description
             "Label step which represents possible increments for 
              Tributary Slot Number.";
           reference
-            "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-             G.709 Optical Transport Networks.";
+            "RFC7139: GMPLS Signaling Extensions for Control of
+             Evolving G.709 Optical Transport Networks.";
         }
       }
     }
