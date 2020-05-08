@@ -168,17 +168,17 @@ module ietf-eth-service-pm {
         description 
           "The state of service performance monitoring.";		  
 		
-		list performance-data{
-	      key parameter-name; 
-	      description "The list of performance under monitor.";
-	      uses service-performance-monitor-set;
-	    }
-		
-		leaf monitor-state {
-		  type identityref {
-		    base ethsvc-pm:monitoring-state;
-		  }
-		}
+        list performance-data{
+          key parameter-name; 
+          description "The list of performance under monitor.";
+          uses service-performance-monitor-set;
+        }
+
+        leaf monitor-state {
+          type identityref {
+            base ethsvc-pm:monitoring-state;
+          }
+        }
 		
         leaf start-time {
           type yang:date-and-time;
