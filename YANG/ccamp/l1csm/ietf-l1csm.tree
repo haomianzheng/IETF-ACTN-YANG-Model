@@ -12,13 +12,10 @@ module: ietf-l1csm
            +--rw service-id            string
            +--rw endpoint-1
            |  +--rw id     string
-           |  +--rw uni
-           |          -> /l1-connectivity/access/unis/uni/id
+           |  +--rw uni    -> /l1-connectivity/access/unis/uni/id
            +--rw endpoint-2
            |  +--rw id     string
-           |  +--rw uni
-           |          -> /l1-connectivity/access/unis/uni/id
+           |  +--rw uni    -> /l1-connectivity/access/unis/uni/id
            +--rw start-time?           yang:date-and-time
            +--rw time-interval?        int32
            +--rw performance-metric*   identityref
-
