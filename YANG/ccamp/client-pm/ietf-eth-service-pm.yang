@@ -61,11 +61,11 @@ module ietf-eth-service-pm {
     {
       type union {
         type uint32;
-		type uint64;
-		type decimal64 {
+        type uint64;
+        type decimal64 {
           fraction-digits 6;
         }
-		type string; 
+        type string; 
       }
       description
         "To represent the type of value. ";
