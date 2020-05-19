@@ -41,7 +41,7 @@ module ietf-l1csm {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-05-08" {
+  revision "2020-05-19" {
     description "Initial revision.";
     reference "RFC XXXX: A Yang Data Model for L1 Connectivity 
                Service Model (L1CSM)";
@@ -181,8 +181,6 @@ module ietf-l1csm {
                 type identityref {
                   base "l1-types:client-signal";
                 }
-                must 'not(derived-from(../client-signal, ' + 
-                     '"l1-types:coding-func"))';
                 mandatory true;
                 description
                   "The client signal being used at the UNI";
