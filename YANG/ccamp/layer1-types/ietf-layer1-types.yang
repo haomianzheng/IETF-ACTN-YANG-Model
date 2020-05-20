@@ -31,7 +31,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-05-19" {
+  revision "2020-05-20" {
     description
       "Initial Version";
     reference
@@ -242,6 +242,40 @@ module ietf-layer1-types {
     reference "RFC7139/ITU-T G.709 and ITU-T G.7044"; 
   }
 
+  identity protocol {
+    description
+      "Base identity from which specific protocol is derived.";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity Ethernet {
+    base "protocol";
+    description
+      "Ethernet protocol.";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity Fibre-Channel {
+    base "protocol";
+    description
+      "Fibre-Channel (FC) protocol.";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity SDH {
+    base "protocol";
+    description
+      "SDH protocol.";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity SONET {
+    base "protocol";
+    description
+      "SONET protocol.";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
   identity client-signal {
     description
       "Base identity from which specific client signal is derived";
@@ -326,35 +360,50 @@ module ietf-layer1-types {
     base client-signal;
     description
       "Client signal type of OC3";
-    reference "Telcordia GR-253-CORE";
+    reference 
+      "ANSI T1.105-1995, Synchronous Optical Network (SONET) 
+       Basic Description including Multiplex Structure, Rates, 
+       and Formats";
   }
 
   identity OC-12 {
     base client-signal;
     description
       "Client signal type of OC12";
-    reference "Telcordia GR-253-CORE";
+    reference 
+      "ANSI T1.105-1995, Synchronous Optical Network (SONET) 
+       Basic Description including Multiplex Structure, Rates, 
+       and Formats";
   }
 
   identity OC-48 {
     base client-signal;
     description
       "Client signal type of OC48";
-    reference "Telcordia GR-253-CORE";
+    reference 
+      "ANSI T1.105-1995, Synchronous Optical Network (SONET) 
+       Basic Description including Multiplex Structure, Rates, 
+       and Formats";
   }
 
   identity OC-192 {
     base client-signal;
     description
       "Client signal type of OC192";
-    reference "Telcordia GR-253-CORE";
+    reference 
+      "ANSI T1.105-1995, Synchronous Optical Network (SONET) 
+       Basic Description including Multiplex Structure, Rates, 
+       and Formats";
   }
 
   identity OC-768 {
     base client-signal;
     description
       "Client signal type of OC768";
-    reference "Telcordia GR-253-CORE";
+    reference 
+      "ANSI T1.105-1995, Synchronous Optical Network (SONET) 
+       Basic Description including Multiplex Structure, Rates, 
+       and Formats";
   }
 
   identity FC-100 {
@@ -418,40 +467,6 @@ module ietf-layer1-types {
     description
       "Client signal type of Fibre Connection 8G";
     reference "RFC4328/RFC7139"; 
-  }
-
-  identity protocol {
-    description
-      "Base identity from which specific protocol is derived.";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-
-  identity Ethernet {
-    base "protocol";
-    description
-      "Ethernet protocol.";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-
-  identity Fibre-Channel {
-    base "protocol";
-    description
-      "Fibre-Channel (FC) protocol.";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-
-  identity SDH {
-    base "protocol";
-    description
-      "SDH protocol.";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-
-  identity SONET {
-    base "protocol";
-    description
-      "SONET protocol.";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity coding-func {
