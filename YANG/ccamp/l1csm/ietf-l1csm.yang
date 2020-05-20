@@ -41,13 +41,17 @@ module ietf-l1csm {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-05-19" {
+  revision "2020-05-20" {
     description "Initial revision.";
     reference "RFC XXXX: A Yang Data Model for L1 Connectivity 
                Service Model (L1CSM)";
   // Note: The RFC Editor will replace XXXX with the number  
   // assigned to the RFC once this draft becomes an RFC. 
   }  
+
+  /*
+   * Identities
+   */
 
   identity service-performance-metric {
     description 
@@ -84,7 +88,11 @@ module ietf-l1csm {
     description "one way availability";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
-  
+
+  /*
+   * Groupings
+   */
+
   grouping protocol-coding-optical-interface {
     description
       "describes <p,c,o> where p:protocol type; c:coding
@@ -184,6 +192,10 @@ module ietf-l1csm {
       }
     }
   }
+
+  /*
+   * Data nodes
+   */
 
   container l1-connectivity {
     description

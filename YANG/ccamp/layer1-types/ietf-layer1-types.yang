@@ -31,7 +31,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-05-19" {
+  revision "2020-05-20" {
     description
       "Initial Version";
     reference
@@ -39,6 +39,10 @@ module ietf-layer1-types {
     // RFC Editor: replace XXXX with actual RFC number, update date
     // information and remove this note
   }
+
+  /*
+   * Typedefs
+   */
 
   typedef otn-tpn {
     type uint16 {
@@ -126,6 +130,10 @@ module ietf-layer1-types {
     reference
       "Table 7-2 of G.709";
   }
+
+  /*
+   * Identities
+   */
 
   identity tributary-slot-granularity {
     description
@@ -627,7 +635,11 @@ module ietf-layer1-types {
        100GBASE-R PCS-82";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
-  
+
+  /*
+   * Groupings
+   */
+
   grouping otn-link-bandwidth {
     description "link bandwidth attributes for OTN";
     list odulist {
