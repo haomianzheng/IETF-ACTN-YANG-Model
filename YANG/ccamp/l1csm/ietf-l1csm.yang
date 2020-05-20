@@ -15,7 +15,7 @@ module ietf-l1csm {
     "Internet Engineering Task Force (IETF) CCAMP WG";
 
   contact
-                     
+
     "Editor: Y. Lee (younglee.tx@gmail.com)
      Editor: K. Lee (kwangkoog.lee@kt.com)
      Editor: H. Zheng (zhenghaomian@huawei.com)
@@ -49,6 +49,42 @@ module ietf-l1csm {
   // assigned to the RFC once this draft becomes an RFC. 
   }  
 
+  identity service-performance-metric {
+    description 
+      "Base identity of service-specific performance metric";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity one-way-delay {
+    base "service-performance-metric";
+    description "one way delay.";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity one-way-errored-second {
+    base "service-performance-metric";
+    description "one way errored second";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity one-way-severely-errored-second {
+    base "service-performance-metric";
+    description "one way severely errored second";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity one-way-unavailable-second {
+    base "service-performance-metric";
+    description "one way unavailable second";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity one-way-availability {
+    base "service-performance-metric";
+    description "one way availability";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+  
   grouping protocol-coding-optical-interface {
     description
       "describes <p,c,o> where p:protocol type; c:coding
@@ -74,8 +110,8 @@ module ietf-l1csm {
       type identityref {
         base "l1-types:optical-interface-func";
       }
-      mandatory true;
       must 'derived-from(../optical-interface, ../coding)';
+      mandatory true;
       description
         "The optical interface function being used at the UNI.";
     }
@@ -103,7 +139,7 @@ module ietf-l1csm {
     }
     leaf-list performance-metric {
       type identityref {
-        base "l1-types:service-performance-metric";
+        base "service-performance-metric";
       }
       description "list of service performance metric.";
     }

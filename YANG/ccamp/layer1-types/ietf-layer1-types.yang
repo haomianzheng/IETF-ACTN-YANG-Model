@@ -31,7 +31,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-05-20" {
+  revision "2020-05-19" {
     description
       "Initial Version";
     reference
@@ -625,42 +625,6 @@ module ietf-layer1-types {
     description
       "ER4-PMD-clause-88 Optical Interface function for
        100GBASE-R PCS-82";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-  
-  identity service-performance-metric {
-    description 
-      "Base identity of service-specific performance metric";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-
-  identity one-way-delay {
-    base "service-performance-metric";
-    description "one way delay.";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-
-  identity one-way-errored-second {
-    base "service-performance-metric";
-    description "one way errored second";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-
-  identity one-way-severely-errored-second {
-    base "service-performance-metric";
-    description "one way severely errored second";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-
-  identity one-way-unavailable-second {
-    base "service-performance-metric";
-    description "one way unavailable second";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-
-  identity one-way-availability {
-    base "service-performance-metric";
-    description "one way availability";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
   
