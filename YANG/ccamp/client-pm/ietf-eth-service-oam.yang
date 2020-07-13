@@ -1,0 +1,340 @@
+module ietf-eth-service-oam {
+  yang-version 1.1;
+
+  namespace "urn:ietf:params:xml:ns:yang:ietf-eth-service-oam";
+  prefix "eth-oam";
+
+  import ietf-eth-tran-service {
+    prefix "ethtsvc";
+  }
+  
+  import ietf-service-pm {
+    prefix "svc-pm";
+  }
+  
+  import ietf-trans-client-service {
+    prefix "clntsvc";
+  }
+  
+  import ietf-network {
+    prefix nw;
+  }
+
+  organization
+    "Internet Engineering Task Force (IETF) CCAMP WG";
+  contact
+    "
+      WG List: <mailto:ccamp@ietf.org>
+      ID-draft editor:
+        Haomian Zheng (zhenghaomian@huawei.com);
+        Italo Busi (italo.busi@huawei.com);
+        Yanlei Zheng (zhengyanlei@chinaunicom.cn);
+    ";
+
+  description
+    "This module defines the performance monitoring for Ethernet
+     services OAM. The model fully conforms to the Network Management
+     Datastore Architecture (NMDA).
+
+     Copyright (c) 2020 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+     This version of this YANG module is part of RFC XXXX; see
+     the RFC itself for full legal notices.";
+
+  revision 2020-07-13 {
+    description
+      "Initial version";
+    reference
+      "ADD REFERENCE HERE";
+  }
+  
+  identity interval-type {
+    description "Time interval";
+  }
+  
+  identity interval-3p33ms {
+    base interval-type;
+    description "3.33 milliseconds";
+  }
+  
+  identity interval-10ms {
+    base interval-type;
+    description "10 milliseconds";
+  }
+  
+  identity interval-100ms {
+    base interval-type;
+    description "100 milliseconds";
+  }
+  
+  identity interval-1s {
+    base interval-type;
+    description "1 second";
+  }
+  
+  identity interval-10s {
+    base interval-type;
+    description "10 seconds";
+  }
+  
+  identity interval-1m {
+    base interval-type;
+    description "1 minute";
+  }
+  
+  identity interval-10m {
+    base interval-type;
+    description "10 minutes";
+  }
+  
+  grouping eth-service-oam-config {
+      container source {
+        uses mep-config;
+      }
+      container destination {
+        uses mep-config;
+      }
+      
+      uses interval-config;
+  }
+  
+  grouping interval-config {
+    leaf cc-interval {
+      description "Continuity check interval";
+      type identityref {
+        base interval-type;
+      }
+    }
+
+    leaf lm-interval {
+      description "Loss measurement interval";
+      type identityref {
+        base interval-type;
+      }
+    }
+
+    leaf dm-interval {
+      description "Delay measurement interval";
+      type identityref {
+        base interval-type;
+      }
+    }
+  }
+  
+  grouping mep-config {
+    leaf md-name {
+     type string;
+     description
+       "maintenance domain";
+    } 
+    leaf ma-name {
+     type string;
+     description
+       "An maintenance association(MA) is a part of an MD. 
+        An MD can be divided into one or more MAs. ";
+    }
+
+    leaf ma-level {
+      type string;
+    }
+
+    leaf meg-id {
+      type string;
+      description 
+        "Comply with Y.1731 term, mapping with 802.lag MA name.";
+    }
+    leaf meg-level {
+      type string;
+      description "Mapping with 802.lag MA level.";
+    }
+    
+    leaf mep-id {
+      type uint8;
+      description "0 if Abnormal";
+    }
+
+    leaf remote-mep-id {
+      type uint8;
+      description "The remote MEP ID must be specified.";
+    }
+  }
+
+
+  augment "/svc-pm:performance-monitoring/svc-pm:service-pm" {
+    description
+      "Augment with additional parameters required for Ethernet OAM";
+      
+    container oam-config {
+      uses eth-service-oam-config;
+    }
+  }
+  
+  grouping errors {
+    leaf error-code {
+      type uint32;
+    }
+    
+    leaf error-message {
+      type string;
+    }
+  }
+  
+  /*
+    * Operations
+    */
+  rpc configure-oam {
+    description "Deliver OAM configurations. ";
+    
+    input {
+      list oam-config-list {
+        key "service-name";
+        description
+          "The request list of service oam to be configed.";
+        leaf service-name {
+        mandatory true;
+        type union {
+          type leafref {
+            path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
+               + "/ethtsvc:etht-svc-name";
+          } 
+          type leafref {
+            path "/clntsvc:client-svc/clntsvc:client-svc-instances"
+               + "/clntsvc:client-svc-name";
+          } 
+        }
+      
+        description "The name of service.";
+      }
+        uses eth-service-oam-config;
+      }
+    }
+    
+    output {
+      list oam-config-list {
+        key "service-name";
+        
+        leaf service-name {
+        mandatory true;
+        type union {
+          type leafref {
+            path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
+               + "/ethtsvc:etht-svc-name";
+          } 
+          type leafref {
+            path "/clntsvc:client-svc/clntsvc:client-svc-instances"
+                     + "/clntsvc:client-svc-name";
+          } 
+        }
+      
+        description "The name of service.";
+      }
+        
+        leaf result {
+             type enumeration {
+              enum success {
+                description "success";
+              }
+              enum failure {
+                description "failure";
+              }
+            }
+        }
+        uses errors;
+      }
+    }
+    }
+    
+    rpc delete-oam-configurations {
+      description "Delete OAM configurations. ";
+    
+        input {
+          list service-list {
+            key "service-name";            
+            leaf service-name {
+              mandatory true;
+              type union {
+                type leafref {
+                  path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
+                     + "/ethtsvc:etht-svc-name";
+                } 
+                type leafref {
+                  path "/clntsvc:client-svc/clntsvc:client-svc-instances"
+                     + "/clntsvc:client-svc-name";
+                } 
+              }
+      
+              description "The name of service.";
+            }
+          }
+        }
+    
+        output {
+          list oam-config-list {
+            key "service-name";
+            
+            leaf service-name {
+              mandatory true;
+              type union {
+                type leafref {
+                  path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
+                     + "/ethtsvc:etht-svc-name";
+                } 
+                type leafref {
+                  path "/clntsvc:client-svc/clntsvc:client-svc-instances"
+                     + "/clntsvc:client-svc-name";
+                } 
+              }
+      
+              description "The name of service.";
+            }   
+            
+            leaf result {
+             type enumeration {
+              enum success {
+                description "success";
+              }
+              enum failure {
+                description "failure";
+              }
+             }
+            }
+            
+            uses errors;
+          }
+        }
+    }
+    
+    rpc get-node-eth-oam-configurations {
+      input {
+        leaf-list te-node-list {
+           type leafref {
+             path "/nw:networks/nw:network/nw:node/nw:node-id";
+           }
+          description
+            "Node identifier.  Must be same in the topology."; 
+        }
+      }
+      
+      output {
+        list oam-list {
+          leaf node-id {
+            type leafref {
+             path "/nw:networks/nw:network/nw:node/nw:node-id";
+           }
+          }
+          list mep-config-list {
+            key "md-name ma-name meg-id mep-id";
+            
+            uses mep-config;
+          }
+        }
+      }
+    }
+}
+
