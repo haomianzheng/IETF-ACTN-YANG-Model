@@ -1,4 +1,3 @@
-
 module: ietf-otn-topology
   augment /nw:networks/nw:network/nw:network-types/tet:te-topology:
     +--rw otn-topology!
@@ -23,9 +22,9 @@ module: ietf-otn-topology
           |  +--rw client-type             identityref
           +--:(gfp-n-k)
           |  +--rw gfp-n                   uint8
-          |  +--rw gfp-k?                  gfp-k
+          |  +--rw gfp-k?                  l1-types:gfp-k
           +--:(flexe-client)
-          |  +--rw flexe-client            flexe-client-rate
+          |  +--rw flexe-client            l1-types:flexe-client-rate
           +--:(flexe-aware)
           |  +--rw flexe-aware-n           uint16
           +--:(packet)
@@ -98,9 +97,9 @@ module: ietf-otn-topology
           |  +--rw client-type             identityref
           +--:(gfp-n-k)
           |  +--rw gfp-n                   uint8
-          |  +--rw gfp-k?                  gfp-k
+          |  +--rw gfp-k?                  l1-types:gfp-k
           +--:(flexe-client)
-          |  +--rw flexe-client            flexe-client-rate
+          |  +--rw flexe-client            l1-types:flexe-client-rate
           +--:(flexe-aware)
           |  +--rw flexe-aware-n           uint16
           +--:(packet)
@@ -139,9 +138,9 @@ module: ietf-otn-topology
           |  +--ro client-type             identityref
           +--:(gfp-n-k)
           |  +--ro gfp-n                   uint8
-          |  +--ro gfp-k?                  gfp-k
+          |  +--ro gfp-k?                  l1-types:gfp-k
           +--:(flexe-client)
-          |  +--ro flexe-client            flexe-client-rate
+          |  +--ro flexe-client            l1-types:flexe-client-rate
           +--:(flexe-aware)
           |  +--ro flexe-aware-n           uint16
           +--:(packet)
@@ -180,9 +179,9 @@ module: ietf-otn-topology
           |  +--rw client-type             identityref
           +--:(gfp-n-k)
           |  +--rw gfp-n                   uint8
-          |  +--rw gfp-k?                  gfp-k
+          |  +--rw gfp-k?                  l1-types:gfp-k
           +--:(flexe-client)
-          |  +--rw flexe-client            flexe-client-rate
+          |  +--rw flexe-client            l1-types:flexe-client-rate
           +--:(flexe-aware)
           |  +--rw flexe-aware-n           uint16
           +--:(packet)
@@ -211,7 +210,7 @@ module: ietf-otn-topology
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction:
-    +--rw range-type?      otn-label-range-type
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -222,9 +221,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction
@@ -232,9 +231,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction
@@ -242,15 +241,15 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:underlay/tet:primary-path/tet:path-element/tet:type
             /tet:label/tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -258,7 +257,7 @@ module: ietf-otn-topology
             /tet:underlay/tet:backup-path/tet:path-element/tet:type
             /tet:label/tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -269,7 +268,7 @@ module: ietf-otn-topology
             /tet:route-object-exclude-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -280,7 +279,7 @@ module: ietf-otn-topology
             /tet:route-object-include-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -289,14 +288,14 @@ module: ietf-otn-topology
             /tet:path-route-object/tet:type/tet:label/tet:label-hop
             /tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:from/tet:label-restrictions
             /tet:label-restriction:
-    +--rw range-type?      otn-label-range-type
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -308,9 +307,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:from/tet:label-restrictions
@@ -319,9 +318,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:from/tet:label-restrictions
@@ -329,14 +328,14 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:to/tet:label-restrictions
             /tet:label-restriction:
-    +--rw range-type?      otn-label-range-type
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -348,9 +347,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:to/tet:label-restrictions
@@ -359,9 +358,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:to/tet:label-restrictions
@@ -369,16 +368,16 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:underlay/tet:primary-path
             /tet:path-element/tet:type/tet:label/tet:label-hop
             /tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -387,7 +386,7 @@ module: ietf-otn-topology
             /tet:path-element/tet:type/tet:label/tet:label-hop
             /tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -398,7 +397,7 @@ module: ietf-otn-topology
             /tet:route-object-exclude-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -409,7 +408,7 @@ module: ietf-otn-topology
             /tet:route-object-include-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -418,13 +417,13 @@ module: ietf-otn-topology
             /tet:path-route-objects/tet:path-route-object/tet:type
             /tet:label/tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry/tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction:
-    +--ro range-type?      otn-label-range-type
+    +--ro range-type?      l1-types:otn-label-range-type
     +--ro tsg?             identityref
     +--ro odu-type-list*   identityref
     +--ro priority?        uint8
@@ -435,9 +434,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry/tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction
@@ -445,9 +444,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry/tet:connectivity-matrices
             /tet:label-restrictions/tet:label-restriction
@@ -455,15 +454,15 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry/tet:connectivity-matrices
             /tet:underlay/tet:primary-path/tet:path-element/tet:type
             /tet:label/tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -471,7 +470,7 @@ module: ietf-otn-topology
             /tet:underlay/tet:backup-path/tet:path-element/tet:type
             /tet:label/tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -482,7 +481,7 @@ module: ietf-otn-topology
             /tet:route-object-exclude-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -493,7 +492,7 @@ module: ietf-otn-topology
             /tet:route-object-include-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -502,14 +501,14 @@ module: ietf-otn-topology
             /tet:path-route-object/tet:type/tet:label/tet:label-hop
             /tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:from/tet:label-restrictions
             /tet:label-restriction:
-    +--ro range-type?      otn-label-range-type
+    +--ro range-type?      l1-types:otn-label-range-type
     +--ro tsg?             identityref
     +--ro odu-type-list*   identityref
     +--ro priority?        uint8
@@ -521,9 +520,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:from/tet:label-restrictions
@@ -532,9 +531,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:from/tet:label-restrictions
@@ -542,14 +541,14 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:to/tet:label-restrictions
             /tet:label-restriction:
-    +--ro range-type?      otn-label-range-type
+    +--ro range-type?      l1-types:otn-label-range-type
     +--ro tsg?             identityref
     +--ro odu-type-list*   identityref
     +--ro priority?        uint8
@@ -561,9 +560,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:to/tet:label-restrictions
@@ -572,9 +571,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:to/tet:label-restrictions
@@ -582,16 +581,16 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:information-source-entry/tet:connectivity-matrices
             /tet:connectivity-matrix/tet:underlay/tet:primary-path
             /tet:path-element/tet:type/tet:label/tet:label-hop
             /tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -600,7 +599,7 @@ module: ietf-otn-topology
             /tet:path-element/tet:type/tet:label/tet:label-hop
             /tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -611,7 +610,7 @@ module: ietf-otn-topology
             /tet:route-object-exclude-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -622,7 +621,7 @@ module: ietf-otn-topology
             /tet:route-object-include-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -631,14 +630,14 @@ module: ietf-otn-topology
             /tet:path-route-objects/tet:path-route-object/tet:type
             /tet:label/tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities/tet:label-restrictions
             /tet:label-restriction:
-    +--rw range-type?      otn-label-range-type
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -650,9 +649,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities/tet:label-restrictions
@@ -661,9 +660,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities/tet:label-restrictions
@@ -671,16 +670,16 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities/tet:underlay
             /tet:primary-path/tet:path-element/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -689,7 +688,7 @@ module: ietf-otn-topology
             /tet:backup-path/tet:path-element/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -700,7 +699,7 @@ module: ietf-otn-topology
             /tet:route-object-exclude-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -711,7 +710,7 @@ module: ietf-otn-topology
             /tet:route-object-include-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -720,7 +719,7 @@ module: ietf-otn-topology
             /tet:path-route-objects/tet:path-route-object/tet:type
             /tet:label/tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -728,7 +727,7 @@ module: ietf-otn-topology
             /tet:local-link-connectivities
             /tet:local-link-connectivity/tet:label-restrictions
             /tet:label-restriction:
-    +--rw range-type?      otn-label-range-type
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -741,9 +740,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
@@ -753,9 +752,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
@@ -764,9 +763,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:tunnel-termination-point
             /tet:local-link-connectivities
@@ -774,7 +773,7 @@ module: ietf-otn-topology
             /tet:primary-path/tet:path-element/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -784,7 +783,7 @@ module: ietf-otn-topology
             /tet:path-element/tet:type/tet:label/tet:label-hop
             /tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -796,7 +795,7 @@ module: ietf-otn-topology
             /tet:route-object-exclude-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -808,7 +807,7 @@ module: ietf-otn-topology
             /tet:route-object-include-object/tet:type/tet:label
             /tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nw:node/tet:te
@@ -818,7 +817,7 @@ module: ietf-otn-topology
             /tet:path-route-objects/tet:path-route-object/tet:type
             /tet:label/tet:label-hop/tet:te-label/tet:technology:
     +--:(otn)
-       +--ro otn-tpn?   otn-tpn
+       +--ro otn-tpn?   l1-types:otn-tpn
        +--ro tsg?       identityref
        +--ro ts-list?   string
   augment /nw:networks/nw:network/nt:link/tet:te
@@ -826,7 +825,7 @@ module: ietf-otn-topology
             /tet:path-element/tet:type/tet:label/tet:label-hop
             /tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nt:link/tet:te
@@ -834,13 +833,13 @@ module: ietf-otn-topology
             /tet:path-element/tet:type/tet:label/tet:label-hop
             /tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:label-restrictions
             /tet:label-restriction:
-    +--rw range-type?      otn-label-range-type
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -851,9 +850,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:label-restrictions
             /tet:label-restriction/tet:label-end/tet:te-label
@@ -861,22 +860,22 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:label-restrictions
             /tet:label-restriction/tet:label-step/tet:technology:
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:information-source-entry/tet:label-restrictions
             /tet:label-restriction:
-    +--ro range-type?      otn-label-range-type
+    +--ro range-type?      l1-types:otn-label-range-type
     +--ro tsg?             identityref
     +--ro odu-type-list*   identityref
     +--ro priority?        uint8
@@ -887,9 +886,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:information-source-entry/tet:label-restrictions
             /tet:label-restriction/tet:label-end/tet:te-label
@@ -897,24 +896,24 @@ module: ietf-otn-topology
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:information-source-entry/tet:label-restrictions
             /tet:label-restriction/tet:label-step/tet:technology:
     +--:(otn)
        +--ro (range-type)?
           +--:(trib-port)
-          |  +--ro otn-tpn?   otn-tpn
+          |  +--ro otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--ro otn-ts?    otn-ts
+             +--ro otn-ts?    l1-types:otn-ts
   augment /nw:networks/tet:te/tet:templates/tet:link-template
             /tet:te-link-attributes/tet:underlay/tet:primary-path
             /tet:path-element/tet:type/tet:label/tet:label-hop
             /tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/tet:te/tet:templates/tet:link-template
@@ -922,13 +921,13 @@ module: ietf-otn-topology
             /tet:path-element/tet:type/tet:label/tet:label-hop
             /tet:te-label/tet:technology:
     +--:(otn)
-       +--rw otn-tpn?   otn-tpn
+       +--rw otn-tpn?   l1-types:otn-tpn
        +--rw tsg?       identityref
        +--rw ts-list?   string
   augment /nw:networks/tet:te/tet:templates/tet:link-template
             /tet:te-link-attributes/tet:label-restrictions
             /tet:label-restriction:
-    +--rw range-type?      otn-label-range-type
+    +--rw range-type?      l1-types:otn-label-range-type
     +--rw tsg?             identityref
     +--rw odu-type-list*   identityref
     +--rw priority?        uint8
@@ -939,9 +938,9 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/tet:te/tet:templates/tet:link-template
             /tet:te-link-attributes/tet:label-restrictions
             /tet:label-restriction/tet:label-end/tet:te-label
@@ -949,15 +948,15 @@ module: ietf-otn-topology
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts
   augment /nw:networks/tet:te/tet:templates/tet:link-template
             /tet:te-link-attributes/tet:label-restrictions
             /tet:label-restriction/tet:label-step/tet:technology:
     +--:(otn)
        +--rw (range-type)?
           +--:(trib-port)
-          |  +--rw otn-tpn?   otn-tpn
+          |  +--rw otn-tpn?   l1-types:otn-tpn
           +--:(trib-slot)
-             +--rw otn-ts?    otn-ts
+             +--rw otn-ts?    l1-types:otn-ts

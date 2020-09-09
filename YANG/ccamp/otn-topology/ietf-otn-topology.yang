@@ -17,8 +17,8 @@ module ietf-otn-topology {
   import ietf-te-topology {
     prefix "tet";
     reference
-      "I-D.ietf-teas-yang-te-topo: YANG Data Model for
-       Traffic Engineering (TE) Topologies";
+      "RFC 8795: YANG Data Model for Traffic Engineering 
+	  (TE) Topologies";
   }
 
   import ietf-layer1-types {
@@ -66,7 +66,7 @@ module ietf-otn-topology {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2020-03-09 {
+  revision 2020-09-09 {
     description
       "Initial Revision";
     reference
