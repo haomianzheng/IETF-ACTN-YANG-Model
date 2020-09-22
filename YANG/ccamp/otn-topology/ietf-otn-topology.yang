@@ -65,7 +65,7 @@ module ietf-otn-topology {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2020-09-17 {
+  revision 2020-09-21 {
     description
       "Initial Revision";
     reference
