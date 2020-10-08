@@ -669,7 +669,7 @@ module ietf-layer1-types {
       description "ODU type";
     }
     choice oduflex-type {
-      when "odu-type = 'ODUflex' or 'ODUflex-resizable'" {
+      when "./odu-type = 'ODUflex' or 'ODUflex-resizable'" {
         description 
           "applicable when odu-type is ODUflex or ODUflex-resizable";
       }
@@ -879,7 +879,7 @@ module ietf-layer1-types {
         "OTN label range type, either TPN range or TS range";
       case trib-port {
         leaf otn-tpn {
-          when "../../../range-type = 'trib-port'" {
+          when "../../range-type = 'trib-port'" {
             description 
               "valid only when range-type represented by trib-port";
           } 
@@ -894,7 +894,7 @@ module ietf-layer1-types {
       }
       case trib-slot {
         leaf otn-ts {
-          when "../../../range-type = 'trib-slot'" {
+          when "../../range-type = 'trib-slot'" {
             description 
               "valid only when range-type represented by trib-slot";
           } 
