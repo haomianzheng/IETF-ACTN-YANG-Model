@@ -661,89 +661,96 @@ module ietf-layer1-types {
 
   grouping otn-path-bandwidth {
     description 
-      "path bandwidth attributes for OTN";
-    leaf odu-type {
-      type identityref {
-        base odu-type;
-      }
-      description "ODU type";
-    }
-    choice oduflex-type {
-      when "./odu-type = 'ODUflex' or 'ODUflex-resizable'" {
-        description 
-          "applicable when odu-type is ODUflex or ODUflex-resizable";
-      }
+	  "path bandwidth attributes grouping for OTN";
+
+    container otn {
       description
-        "Types of ODUflex used to compute the ODUflex
-         nominal bit rate.";
-      reference
-        "Table 7-2 of G.709";
-      case generic {
-        leaf nominal-bit-rate {
-          type uint64;
-          units "bps";
-          mandatory true;
-          description
-            "Nominal ODUflex bit rate.";
+        "path bandwidth attributes for OTN";
+      leaf odu-type {
+        type identityref {
+          base odu-type;
         }
+        description "ODU type";
       }
-      case cbr {
-        leaf client-type {
-          type identityref {
-            base client-signal;
+      choice oduflex-type {
+        when 'derived-from-or-self(./odu-type,"ODUflex") or
+		      derived-from-or-self(./odu-type,"ODUflex-resizable")'{
+          description
+            "applicable when odu-type is ODUflex or
+             ODUflex-resizable";
+        }
+        description
+          "Types of ODUflex used to compute the ODUflex
+           nominal bit rate.";
+        reference
+          "Table 7-2 of G.709";
+        case generic {
+          leaf nominal-bit-rate {
+            type uint64;
+            units "bps";
+            mandatory true;
+            description
+              "Nominal ODUflex bit rate.";
           }
-          mandatory true;
-          description
-            "The CBR client signal for an ODUflex(CBR).";
         }
-      }
-      case gfp-n-k {
-        leaf gfp-n {
-          type uint8 {
-            range "1..80";
+        case cbr {
+          leaf client-type {
+            type identityref {
+              base client-signal;
+            }
+            mandatory true;
+            description
+              "The CBR client signal for an ODUflex(CBR).";
           }
-          mandatory true;
-          description
-            "The value of n for an ODUflex(GFP,n,k).";
-          reference
-            "Tables 7-8 and L-7 of G.709";
         }
-        leaf gfp-k {
-          type gfp-k; 
-          description
-            "The value of k for an ODUflex(GFP,n,k).
-             If omitted, it is calculated from the value of gfp-n
-             as described in Table 7-8 of G.709";
-          reference
-            "Tables 7-8 and L-7 of G.709";
+        case gfp-n-k {
+          leaf gfp-n {
+            type uint8 {
+              range "1..80";
+            }
+            mandatory true;
+            description
+              "The value of n for an ODUflex(GFP,n,k).";
+            reference
+              "Tables 7-8 and L-7 of G.709";
+          }
+          leaf gfp-k {
+            type gfp-k;
+            description
+              "The value of k for an ODUflex(GFP,n,k).
+               If omitted, it is calculated from the value of gfp-n
+               as described in Table 7-8 of G.709";
+            reference
+              "Tables 7-8 and L-7 of G.709";
+          }
         }
-      }
-      case flexe-client {
-        leaf flexe-client {
-          type flexe-client-rate;
-          mandatory true;
-          description
-            "The rate of the FlexE-client for an ODUflex(IMP,s).";
+        case flexe-client {
+          leaf flexe-client {
+            type flexe-client-rate;
+            mandatory true;
+            description
+              "The rate of the FlexE-client for an ODUflex(IMP,s).";
+          }
         }
-      }
-      case flexe-aware {
-        leaf flexe-aware-n {
-          type uint16;
-          mandatory true;
-          description
-            "The rate of FlexE-aware client signal
-             for ODUflex(FlexE-aware)";
+        case flexe-aware {
+          leaf flexe-aware-n {
+            type uint16;
+            mandatory true;
+            description
+              "The rate of FlexE-aware client signal
+               for ODUflex(FlexE-aware)";
+          }
         }
-      }
-      case packet {
-        leaf opuflex-payload-rate {
-          type uint64;
-          units "Kbps";
-          mandatory true;
-          description
-            "Either the GFP-F encapsulated packet client nominal
-             bit rate for an ODUflex(GFP) or the 64b/66b encoded
-             packet client nominal bit rate for an ODUflex(IMP).";
+        case packet {
+          leaf opuflex-payload-rate {
+            type uint64;
+            units "Kbps";
+            mandatory true;
+            description
+              "Either the GFP-F encapsulated packet client nominal
+               bit rate for an ODUflex(GFP) or the 64b/66b encoded
+               packet client nominal bit rate for an ODUflex(IMP).";
+          }
         }
       }
     }
