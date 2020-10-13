@@ -674,7 +674,7 @@ module ietf-layer1-types {
       }
       choice oduflex-type {
         when 'derived-from-or-self(./odu-type,"ODUflex") or
-		      derived-from-or-self(./odu-type,"ODUflex-resizable")'{
+              derived-from-or-self(./odu-type,"ODUflex-resizable")'{
           description
             "applicable when odu-type is ODUflex or
              ODUflex-resizable";
