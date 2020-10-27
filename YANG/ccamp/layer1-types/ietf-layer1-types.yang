@@ -31,7 +31,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-05-20" {
+  revision "2020-10-27" {
     description
       "Initial Version";
     reference
@@ -163,8 +163,7 @@ module ietf-layer1-types {
 
   identity odu-type {
     description
-      "Base identity from which the type of ODU protocol is
-       derived.";
+      "Base identity from which specific ODU protocol is derived.";
   }
 
   identity ODU0 {
@@ -289,6 +288,13 @@ module ietf-layer1-types {
       "Base identity from which specific client signal is derived";
   }
 
+  identity coding-func {
+    description
+      "Base identity from which specific coding function
+       is derived.";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
   identity ETH-1Gb {
     base client-signal;
     description
@@ -327,9 +333,8 @@ module ietf-layer1-types {
   identity STM-1 {
     base client-signal;
     base "coding-func";
-    base SDH;
     description
-      "STM-1 client signal;
+      "Client signal type of STM-1;
        STM-1 G.707 (N=1) coding function.";
     reference
       "RFC7139/ITU-T G.709
@@ -338,129 +343,188 @@ module ietf-layer1-types {
 
   identity STM-4 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of STM-4";
-    reference "RFC7139/ITU-T G.709"; 
+      "Client signal type of STM-4;
+       STM-4 G.707 (N=4) coding function.";
+    reference
+      "RFC7139/ITU-T G.709
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity STM-16 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of STM-16";
-    reference "RFC7139/ITU-T G.709"; 
+      "Client signal type of STM-16;
+       STM-16 G.707 (N=16) coding function.";
+    reference
+      "RFC7139/ITU-T G.709
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity STM-64 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of STM-64";
-    reference "RFC7139/ITU-T G.709"; 
+      "Client signal type of STM-64;
+       STM-64 G.707 (N=64) coding function.";
+    reference
+      "RFC7139/ITU-T G.709
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity STM-256 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of STM-256";
-    reference "RFC7139/ITU-T G.709"; 
+      "Client signal type of STM-256;
+       STM-256 G.707 (N=256) coding function.";
+    reference
+      "RFC7139/ITU-T G.709
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity OC-3 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of OC3";
+      "Client signal type of OC3;
+       OC-3 GR-253-CORE (N=3) coding function.";
     reference 
       "ANSI T1.105-1995, Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
-       and Formats";
+       and Formats
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity OC-12 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of OC12";
+      "Client signal type of OC12;
+       OC-12 GR-253-CORE (N=12) coding function.";
     reference 
       "ANSI T1.105-1995, Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
-       and Formats";
+       and Formats
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity OC-48 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of OC48";
+      "Client signal type of OC48;
+       OC-48 GR-253-CORE (N=48) coding function.";
     reference 
       "ANSI T1.105-1995, Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
-       and Formats";
+       and Formats
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity OC-192 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of OC192";
+      "Client signal type of OC192;
+       OC-192 GR-253-CORE (N=192) coding function.";
     reference 
       "ANSI T1.105-1995, Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
-       and Formats";
+       and Formats
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity OC-768 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of OC768";
+      "Client signal type of OC768;
+       OC-768 GR-253-CORE (N=768) coding function.";
     reference 
       "ANSI T1.105-1995, Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
-       and Formats";
+       and Formats
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity FC-100 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of Fibre Channel FC-100";
-    reference "RFC4328/RFC7139"; 
+      "Client signal type of Fibre Channel FC-100;
+       FC-100 FC-FS-2 (1.0625 Gb/s) coding function.";
+    reference
+      "RFC7139/ITU-T G.709
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity FC-200 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of Fibre Channel FC-200";
-    reference "RFC4328/RFC7139"; 
+      "Client signal type of Fibre Channel FC-200;
+       FC-200 FC-FS-2 (2.125 Gb/s) coding function.";
+    reference
+      "RFC7139/ITU-T G.709
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity FC-400 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of Fibre Channel FC-400";
-    reference "RFC4328/RFC7139"; 
+      "Client signal type of Fibre Channel FC-400;
+       FC-400 FC-FS-2 (4.250 Gb/s) coding function.";
+    reference
+      "RFC7139/ITU-T G.709
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity FC-800 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of Fibre Channel FC-800";
-    reference "RFC4328/RFC7139"; 
+      "Client signal type of Fibre Channel FC-800;
+       FC-800 FC-FS-2 (8.500 Gb/s) coding function.";
+    reference
+      "RFC7139/ITU-T G.709
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity FC-1200 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of Fibre Channel FC-1200";
-    reference "RFC4328/RFC7139"; 
+      "Client signal type of Fibre Channel FC-1200;
+       FC-1200 FC-10GFC (10.51875 Gb/s) coding function.";
+    reference
+      "RFC7139/ITU-T G.709
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity FC-1600 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of Fibre Channel FC-1600";
-    reference "RFC4328/RFC7139"; 
+      "Client signal type of Fibre Channel FC-1600;
+       FC-1600 FC-FS-3 (14.025 Gb/s) coding function.";
+    reference
+      "RFC7139/ITU-T G.709
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity FC-3200 {
     base client-signal;
+    base "coding-func";
     description
-      "Client signal type of Fibre Channel FC-3200";
-    reference "RFC4328/RFC7139"; 
+      "Client signal type of Fibre Channel FC-3200;
+       FC-3200 FC-FS-4 (28.05 Gb/s) coding function.";
+    reference
+      "RFC7139/ITU-T G.709
+       MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity FICON-4G {
@@ -477,16 +541,8 @@ module ietf-layer1-types {
     reference "RFC4328/RFC7139"; 
   }
 
-  identity coding-func {
-    description
-      "Base identity from which coding function that is also not a
-       client-signal is derived.";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
-  }
-
   identity ETH-1000X {
     base "coding-func";
-    base Ethernet;
     description
       "1000BASE-X PCS clause 36 coding function.";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
@@ -495,45 +551,41 @@ module ietf-layer1-types {
   identity ETH-10GW {
     base "coding-func";
     description
-      "PCS clause 49 and WIS clause 50 coding func that
-       corresponds to 10GBASE-W (WAN PHY)";
+      "10GBASE-W (WAN PHY) PCS clause 49 and WIS clause 50
+       coding function.";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity ETH-10GR {
     base "coding-func";
     description
-      "PCS clause 49 coding function that corresponds to
-       10GBASE-R (LAN PHY)";
+      "10GBASE-R (LAN PHY) PCS clause 49 coding function.";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity ETH-40GR {
     base "coding-func";
     description
-      "PCS clause 82 coding function that corresponds to
-       40GBASE-R";
+      "40GBASE-R PCS clause 82 coding function.";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity ETH-100GR {
     base "coding-func";
     description
-      "PCS clause 82 coding function that corresponds to
-       100GBASE-R";
+      "100GBASE-R PCS clause 82 coding function.";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity optical-interface-func {
     description
-      "base identity from which optical-interface-function is
-       derived.";
+      "Base identity from which optical-interface-function
+       is derived.";
     reference "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity SX-PMD-1000 {
     base "optical-interface-func";
-    base "ETH-1000X";
     description
       "SX-PMD-clause-38 Optical Interface function for
       1000BASE-X PCS-36";
