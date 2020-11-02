@@ -15,21 +15,22 @@ module: ietf-otn-topology
             /tet:interface-switching-capability/tet:max-lsp-bandwidth
             /tet:te-bandwidth/tet:technology:
     +--:(otn)
-       +--rw odu-type?                     identityref
-       +--rw (oduflex-type)?
-          +--:(generic)
-          |  +--rw nominal-bit-rate        uint64
-          +--:(cbr)
-          |  +--rw client-type             identityref
-          +--:(gfp-n-k)
-          |  +--rw gfp-n                   uint8
-          |  +--rw gfp-k?                  gfp-k
-          +--:(flexe-client)
-          |  +--rw flexe-client            flexe-client-rate
-          +--:(flexe-aware)
-          |  +--rw flexe-aware-n           uint16
-          +--:(packet)
-             +--rw opuflex-payload-rate    uint64
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        uint64
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    uint64
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:path-constraints/tet:te-bandwidth/tet:technology:
@@ -90,21 +91,22 @@ module: ietf-otn-topology
             /tet:interface-switching-capability/tet:max-lsp-bandwidth
             /tet:te-bandwidth/tet:technology:
     +--:(otn)
-       +--rw odu-type?                     identityref
-       +--rw (oduflex-type)?
-          +--:(generic)
-          |  +--rw nominal-bit-rate        uint64
-          +--:(cbr)
-          |  +--rw client-type             identityref
-          +--:(gfp-n-k)
-          |  +--rw gfp-n                   uint8
-          |  +--rw gfp-k?                  gfp-k
-          +--:(flexe-client)
-          |  +--rw flexe-client            flexe-client-rate
-          +--:(flexe-aware)
-          |  +--rw flexe-aware-n           uint16
-          +--:(packet)
-             +--rw opuflex-payload-rate    uint64
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        uint64
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    uint64
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:max-link-bandwidth
             /tet:te-bandwidth/tet:technology:
@@ -131,21 +133,22 @@ module: ietf-otn-topology
             /tet:interface-switching-capability/tet:max-lsp-bandwidth
             /tet:te-bandwidth/tet:technology:
     +--:(otn)
-       +--ro odu-type?                     identityref
-       +--ro (oduflex-type)?
-          +--:(generic)
-          |  +--ro nominal-bit-rate        uint64
-          +--:(cbr)
-          |  +--ro client-type             identityref
-          +--:(gfp-n-k)
-          |  +--ro gfp-n                   uint8
-          |  +--ro gfp-k?                  gfp-k
-          +--:(flexe-client)
-          |  +--ro flexe-client            flexe-client-rate
-          +--:(flexe-aware)
-          |  +--ro flexe-aware-n           uint16
-          +--:(packet)
-             +--ro opuflex-payload-rate    uint64
+       +--ro otn
+          +--ro odu-type?                     identityref
+          +--ro (oduflex-type)?
+             +--:(generic)
+             |  +--ro nominal-bit-rate        uint64
+             +--:(cbr)
+             |  +--ro client-type             identityref
+             +--:(gfp-n-k)
+             |  +--ro gfp-n                   uint8
+             |  +--ro gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--ro flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--ro flexe-aware-n           uint16
+             +--:(packet)
+                +--ro opuflex-payload-rate    uint64
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:information-source-entry/tet:max-link-bandwidth
             /tet:te-bandwidth/tet:technology:
@@ -172,21 +175,22 @@ module: ietf-otn-topology
             /tet:interface-switching-capability/tet:max-lsp-bandwidth
             /tet:te-bandwidth/tet:technology:
     +--:(otn)
-       +--rw odu-type?                     identityref
-       +--rw (oduflex-type)?
-          +--:(generic)
-          |  +--rw nominal-bit-rate        uint64
-          +--:(cbr)
-          |  +--rw client-type             identityref
-          +--:(gfp-n-k)
-          |  +--rw gfp-n                   uint8
-          |  +--rw gfp-k?                  gfp-k
-          +--:(flexe-client)
-          |  +--rw flexe-client            flexe-client-rate
-          +--:(flexe-aware)
-          |  +--rw flexe-aware-n           uint16
-          +--:(packet)
-             +--rw opuflex-payload-rate    uint64
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        uint64
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    uint64
   augment /nw:networks/tet:te/tet:templates/tet:link-template
             /tet:te-link-attributes/tet:max-link-bandwidth
             /tet:te-bandwidth/tet:technology:
