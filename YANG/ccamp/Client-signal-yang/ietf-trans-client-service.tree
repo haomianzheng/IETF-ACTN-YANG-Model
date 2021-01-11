@@ -26,3 +26,6 @@ module: ietf-trans-client-service
         +--ro provisioning-state?       identityref
         +--ro creation-time?            yang:date-and-time
         +--ro last-updated-time?        yang:date-and-time
+        +--ro created-by?               string
+        +--ro last-updated-by?          string
+        +--ro owned-by?                 string
