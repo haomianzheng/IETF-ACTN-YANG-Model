@@ -11,7 +11,7 @@ module ietf-eth-tran-service {
 
   import ietf-te-types {
     prefix "te-types";
-	reference "RFC YYYY - Traffic Engineering Common YANG Types";
+	reference "RFC 8776 - Traffic Engineering Common YANG Types";
   }
 
   import ietf-eth-tran-types {
