@@ -89,7 +89,7 @@ module: ietf-eth-tran-service
         |  |  |  +--rw ingress-egress-bandwidth-profile
         |  |  |     +--rw (style)?
         |  |  |        +--:(named)
-        |  |  |        |  +--rw bandwidth-profile-name?   string
+        |  |  |        |  +--rw bandwidth-profile-name?   leafref
         |  |  |        +--:(value)
         |  |  |           +--rw bandwidth-profile-type?
         |  |  |           |       etht-types:bandwidth-profile-type
@@ -103,7 +103,7 @@ module: ietf-eth-tran-service
         |  |     +--rw ingress-bandwidth-profile
         |  |     |  +--rw (style)?
         |  |     |     +--:(named)
-        |  |     |     |  +--rw bandwidth-profile-name?   string
+        |  |     |     |  +--rw bandwidth-profile-name?   leafref
         |  |     |     +--:(value)
         |  |     |        +--rw bandwidth-profile-type?
         |  |     |        |       etht-types:bandwidth-profile-type
@@ -116,7 +116,7 @@ module: ietf-eth-tran-service
         |  |     +--rw egress-bandwidth-profile
         |  |        +--rw (style)?
         |  |           +--:(named)
-        |  |           |  +--rw bandwidth-profile-name?   string
+        |  |           |  +--rw bandwidth-profile-name?   leafref
         |  |           +--:(value)
         |  |              +--rw bandwidth-profile-type?
         |  |              |       etht-types:bandwidth-profile-type
@@ -224,3 +224,4 @@ module: ietf-eth-tran-service
            +--ro created-by?           string
            +--ro last-updated-by?      string
            +--ro owned-by?             string
+
