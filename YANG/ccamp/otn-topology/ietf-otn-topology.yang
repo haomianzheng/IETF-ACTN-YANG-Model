@@ -65,7 +65,7 @@ module ietf-otn-topology {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2020-09-21 {
+  revision 2020-10-20 {
     description
       "Initial Revision";
     reference
@@ -73,52 +73,6 @@ module ietf-otn-topology {
       Topology";
     // RFC Ed.: replace XXXX with actual RFC number, update date
     // information and remove this note
-  }
-
- /*
-  * Groupings
-  */
-
-  grouping otn-link-attributes {
-    description "link attributes for OTN";
-
-    leaf tsg {
-      type identityref {
-        base l1-types:tributary-slot-granularity;
-      }
-      description "Tributary slot granularity.";
-      reference
-        "G.709/Y.1331, February 2016: Interfaces for the
-         Optical Transport Network (OTN)";
-    }
-    leaf distance {
-      type uint32;
-      description "distance in the unit of kilometers";
-    }
-  }
-
-  grouping otn-tp-attributes {
-    description "tp attributes for OTN";
-
-    container client-svc {
-      presence "client-facing LTP.";
-      description
-        "OTN LTP Service attributes.";
-
-      leaf client-facing {
-        type boolean;
-        default 'false';
-        description
-          "Indicates whether this LTP is a client-facing LTP.";
-      }
-      leaf-list supported-client-signal {
-        type identityref {
-          base l1-types:client-signal;
-        }
-        description
-          "List of client signal types supported by the LTP.";
-      }
-    }
   }
 
  /*
@@ -142,7 +96,20 @@ module ietf-otn-topology {
       description "Augment only for otn network.";
     }
     description "Augment link configuration";
-    uses otn-link-attributes;
+
+    leaf tsg {
+      type identityref {
+        base l1-types:tributary-slot-granularity;
+      }
+      description "Tributary slot granularity.";
+      reference
+        "G.709/Y.1331, February 2016: Interfaces for the
+         Optical Transport Network (OTN)";
+    }
+    leaf distance {
+      type uint32;
+      description "distance in the unit of kilometers";
+    }
   }
 
   augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
@@ -152,7 +119,26 @@ module ietf-otn-topology {
       description "Augment only for otn network";
     }
     description "OTN TP attributes config in ODU topology.";
-    uses otn-tp-attributes;
+
+    container client-svc {
+      presence "client-facing LTP.";
+      description
+        "OTN LTP Service attributes.";
+
+      leaf client-facing {
+        type boolean;
+        default 'false';
+        description
+          "Indicates whether this LTP is a client-facing LTP.";
+      }
+      leaf-list supported-client-signal {
+        type identityref {
+          base l1-types:client-signal;
+        }
+        description
+          "List of client signal types supported by the LTP.";
+      }
+    }
   }
 
   /*

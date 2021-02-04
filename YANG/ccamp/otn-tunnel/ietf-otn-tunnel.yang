@@ -5,9 +5,10 @@ module ietf-otn-tunnel {
 
   import ietf-te {
     prefix "te";
+    revision-date "2019-02-15";
     reference 
-    "I-D.ietf-teas-yang-te: A YANG Data Model for Traffic Engineering 
-    Tunnels and Interfaces. ";
+    "I-D.ietf-teas-yang-te: A YANG Data Model for Traffic
+     Engineering Tunnels and Interfaces. ";
   }
 
   import ietf-layer1-types {
@@ -55,7 +56,7 @@ module ietf-otn-tunnel {
     This version of this YANG module is part of RFC XXXX; see
     the RFC itself for full legal notices.";
 
-  revision "2020-03-09" {
+  revision "2020-10-19" {
     description
       "Initial Revision";
     reference
@@ -160,7 +161,8 @@ module ietf-otn-tunnel {
   /* Augment label hop of route-object-exclude-always 
    * of named-path-constraints */
   augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:explicit-route-objects-always/"
+        + "te:named-path-constraint/"
+        + "te:explicit-route-objects-always/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
@@ -172,7 +174,8 @@ module ietf-otn-tunnel {
   /* Augment label hop of route-object-include-exclude 
    * of named-path-constraints */
   augment "/te:te/te:globals/te:named-path-constraints/"
-        + "te:named-path-constraint/te:explicit-route-objects-always/"
+        + "te:named-path-constraint/"
+        + "te:explicit-route-objects-always/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description "OTN label.";
