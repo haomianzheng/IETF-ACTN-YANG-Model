@@ -6,93 +6,98 @@ module: ietf-otn-tunnel
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:te-bandwidth/te:technology:
     +--:(otn)
-       +--rw odu-type?                     identityref
-       +--rw (oduflex-type)?
-          +--:(generic)
-          |  +--rw nominal-bit-rate        uint64
-          +--:(cbr)
-          |  +--rw client-type             identityref
-          +--:(gfp-n-k)
-          |  +--rw gfp-n                   uint8
-          |  +--rw gfp-k?                  gfp-k
-          +--:(flexe-client)
-          |  +--rw flexe-client            flexe-client-rate
-          +--:(flexe-aware)
-          |  +--rw flexe-aware-n           uint16
-          +--:(packet)
-             +--rw opuflex-payload-rate    uint64
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        uint64
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    uint64
   augment /te:te/te:tunnels/te:tunnel/te:te-bandwidth/te:technology:
     +--:(otn)
-       +--rw odu-type?                     identityref
-       +--rw (oduflex-type)?
-          +--:(generic)
-          |  +--rw nominal-bit-rate        uint64
-          +--:(cbr)
-          |  +--rw client-type             identityref
-          +--:(gfp-n-k)
-          |  +--rw gfp-n                   uint8
-          |  +--rw gfp-k?                  gfp-k
-          +--:(flexe-client)
-          |  +--rw flexe-client            flexe-client-rate
-          +--:(flexe-aware)
-          |  +--rw flexe-aware-n           uint16
-          +--:(packet)
-             +--rw opuflex-payload-rate    uint64
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        uint64
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    uint64
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:te-bandwidth/te:technology:
     +--:(otn)
-       +--rw odu-type?                     identityref
-       +--rw (oduflex-type)?
-          +--:(generic)
-          |  +--rw nominal-bit-rate        uint64
-          +--:(cbr)
-          |  +--rw client-type             identityref
-          +--:(gfp-n-k)
-          |  +--rw gfp-n                   uint8
-          |  +--rw gfp-k?                  gfp-k
-          +--:(flexe-client)
-          |  +--rw flexe-client            flexe-client-rate
-          +--:(flexe-aware)
-          |  +--rw flexe-aware-n           uint16
-          +--:(packet)
-             +--rw opuflex-payload-rate    uint64
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        uint64
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    uint64
   augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
             /te:p2p-primary-path/te:p2p-primary-reverse-path
             /te:te-bandwidth/te:technology:
     +--:(otn)
-       +--rw odu-type?                     identityref
-       +--rw (oduflex-type)?
-          +--:(generic)
-          |  +--rw nominal-bit-rate        uint64
-          +--:(cbr)
-          |  +--rw client-type             identityref
-          +--:(gfp-n-k)
-          |  +--rw gfp-n                   uint8
-          |  +--rw gfp-k?                  gfp-k
-          +--:(flexe-client)
-          |  +--rw flexe-client            flexe-client-rate
-          +--:(flexe-aware)
-          |  +--rw flexe-aware-n           uint16
-          +--:(packet)
-             +--rw opuflex-payload-rate    uint64
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        uint64
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    uint64
   augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
             /te:p2p-secondary-path/te:te-bandwidth/te:technology:
     +--:(otn)
-       +--rw odu-type?                     identityref
-       +--rw (oduflex-type)?
-          +--:(generic)
-          |  +--rw nominal-bit-rate        uint64
-          +--:(cbr)
-          |  +--rw client-type             identityref
-          +--:(gfp-n-k)
-          |  +--rw gfp-n                   uint8
-          |  +--rw gfp-k?                  gfp-k
-          +--:(flexe-client)
-          |  +--rw flexe-client            flexe-client-rate
-          +--:(flexe-aware)
-          |  +--rw flexe-aware-n           uint16
-          +--:(packet)
-             +--rw opuflex-payload-rate    uint64
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        uint64
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    uint64
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint
             /te:explicit-route-objects-always
