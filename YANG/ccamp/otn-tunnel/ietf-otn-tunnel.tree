@@ -1,8 +1,5 @@
 
 module: ietf-otn-tunnel
-  augment /te:te/te:tunnels/te:tunnel:
-    +--rw src-client-signal?   identityref
-    +--rw dst-client-signal?   identityref
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:te-bandwidth/te:technology:
     +--:(otn)
