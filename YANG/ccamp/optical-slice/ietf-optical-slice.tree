@@ -1,0 +1,304 @@
+module: ietf-optical-slice
+  augment /nw:networks/nw:network/nw:node/nt:termination-point
+            /tet:te:
+    +--rw tp-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes/tet:connectivity-matrices
+            /tet:underlay/tet:primary-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes/tet:connectivity-matrices
+            /tet:underlay/tet:backup-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes/tet:connectivity-matrices
+            /tet:optimizations/tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes/tet:connectivity-matrices
+            /tet:optimizations/tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes/tet:connectivity-matrices
+            /tet:path-properties/tet:path-route-objects
+            /tet:path-route-object/tet:type/tet:label/tet:label-hop
+            /tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes/tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:underlay/tet:primary-path
+            /tet:path-element/tet:type/tet:label/tet:label-hop
+            /tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes/tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:underlay/tet:backup-path
+            /tet:path-element/tet:type/tet:label/tet:label-hop
+            /tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes/tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:optimizations/tet:algorithm
+            /tet:metric/tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes/tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:optimizations/tet:algorithm
+            /tet:metric/tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:te-node-attributes/tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:path-properties
+            /tet:path-route-objects/tet:path-route-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry/tet:connectivity-matrices
+            /tet:underlay/tet:primary-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry/tet:connectivity-matrices
+            /tet:underlay/tet:backup-path/tet:path-element/tet:type
+            /tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry/tet:connectivity-matrices
+            /tet:optimizations/tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry/tet:connectivity-matrices
+            /tet:optimizations/tet:algorithm/tet:metric
+            /tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry/tet:connectivity-matrices
+            /tet:path-properties/tet:path-route-objects
+            /tet:path-route-object/tet:type/tet:label/tet:label-hop
+            /tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry/tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:underlay/tet:primary-path
+            /tet:path-element/tet:type/tet:label/tet:label-hop
+            /tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry/tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:underlay/tet:backup-path
+            /tet:path-element/tet:type/tet:label/tet:label-hop
+            /tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry/tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:optimizations/tet:algorithm
+            /tet:metric/tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry/tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:optimizations/tet:algorithm
+            /tet:metric/tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:information-source-entry/tet:connectivity-matrices
+            /tet:connectivity-matrix/tet:path-properties
+            /tet:path-route-objects/tet:path-route-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:underlay
+            /tet:primary-path/tet:path-element/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:underlay
+            /tet:backup-path/tet:path-element/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:optimizations
+            /tet:algorithm/tet:metric/tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:optimizations
+            /tet:algorithm/tet:metric/tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities/tet:path-properties
+            /tet:path-route-objects/tet:path-route-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity/tet:underlay
+            /tet:primary-path/tet:path-element/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity/tet:underlay/tet:backup-path
+            /tet:path-element/tet:type/tet:label/tet:label-hop
+            /tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity/tet:optimizations
+            /tet:algorithm/tet:metric/tet:optimization-metric
+            /tet:explicit-route-exclude-objects
+            /tet:route-object-exclude-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity/tet:optimizations
+            /tet:algorithm/tet:metric/tet:optimization-metric
+            /tet:explicit-route-include-objects
+            /tet:route-object-include-object/tet:type/tet:label
+            /tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nw:node/tet:te
+            /tet:tunnel-termination-point
+            /tet:local-link-connectivities
+            /tet:local-link-connectivity/tet:path-properties
+            /tet:path-route-objects/tet:path-route-object/tet:type
+            /tet:label/tet:label-hop/tet:te-label/tet:technology:
+    +--:(otn)
+       +--ro ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:underlay/tet:primary-path
+            /tet:path-element/tet:type/tet:label/tet:label-hop
+            /tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:underlay/tet:backup-path
+            /tet:path-element/tet:type/tet:label/tet:label-hop
+            /tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/tet:te/tet:templates/tet:link-template
+            /tet:te-link-attributes/tet:underlay/tet:primary-path
+            /tet:path-element/tet:type/tet:label/tet:label-hop
+            /tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/tet:te/tet:templates/tet:link-template
+            /tet:te-link-attributes/tet:underlay/tet:backup-path
+            /tet:path-element/tet:type/tet:label/tet:label-hop
+            /tet:te-label/tet:technology:
+    +--:(otn)
+       +--rw ts-slice-id?   slice-id
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:max-link-bandwidth
+            /tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw odulist* [odu-type]
+       |  +--rw odu-type    identityref
+       |  +--rw number?     uint16
+       +--rw slicelist* [slice-id]
+          +--rw slice-id       slice-id
+          +--rw odu0-number?   uint16
+  augment /nw:networks/nw:network/nt:link/tet:te
+            /tet:te-link-attributes/tet:unreserved-bandwidth
+            /tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw odulist* [odu-type]
+       |  +--rw odu-type    identityref
+       |  +--rw number?     uint16
+       +--rw slicelist* [slice-id]
+          +--rw slice-id       slice-id
+          +--rw odu0-number?   uint16
+
+  rpcs:
+    +---x create-optical-slice
+       +---w input
+       |  +---w otn-tunnel-list* [tunnel-name]
+       |  |  +---w tunnel-name         -> /te:te/tunnels/tunnel/name
+       |  |  +---w source?
+       |  |  |       -> /te:te/tunnels/tunnel/source
+       |  |  +---w destination?
+       |  |  |       -> /te:te/tunnels/tunnel/destination
+       |  |  +---w src-tunnel-tp-id?
+       |  |  |       -> /te:te/tunnels/tunnel/src-tunnel-tp-id
+       |  |  +---w dst-tunnel-tp-id?
+       |  |  |       -> /te:te/tunnels/tunnel/dst-tunnel-tp-id
+       |  |  +---w tunnel-bandwidth?   te-types:te-bandwidth
+       |  |  +---w protection-type?    identityref
+       |  +---w slice-id?          slice-id
+       +--ro output
+          +--ro transport-slice-list* [slice-id]
+             +--ro slice-id    slice-id
+             +--ro result?     enumeration

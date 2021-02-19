@@ -1,0 +1,899 @@
+module ietf-optical-slice {
+  yang-version 1.1;
+
+  namespace "urn:ietf:params:xml:ns:yang:ietf-optical-slice";
+  prefix "otnslice";
+
+  import ietf-inet-types {
+    prefix inet;
+    reference
+      "RFC 6991: Common YANG Data Types"; 
+  }
+
+  import ietf-network {
+    prefix "nw";
+  }
+
+  import ietf-network-topology {
+    prefix "nt";
+  }
+
+  import ietf-te-topology {
+    prefix "tet";
+  }
+
+  import ietf-te-types {
+    prefix "te-types";
+  }
+  
+  import ietf-te {
+     prefix "te";
+  }
+  
+  import ietf-otn-topology {
+    prefix "otntopo";
+  }
+
+  import ietf-layer1-types {
+    prefix "l1-types";
+  }
+
+  revision "2020-09-23" {
+    description
+      "Initial revision.";
+    reference
+      "RFC XXXX, optical slice";
+  }
+
+  typedef slice-id {
+    type inet:uri;
+    description
+      "An identifier for optical slice inside otn network. The precise
+       structure of the slice-id will be up to the implementation.";
+  }
+
+  /*** Groupings **/
+
+  grouping otn-slice-link-bandwidth {
+    list odulist {
+      key "odu-type";
+      description
+        "OTN bandwidth definition";
+      leaf odu-type {
+        type identityref {
+          base l1-types:odu-type;
+        }
+        description "ODU type";
+      }
+      leaf number {
+        type uint16;
+        description "Number of ODUs";
+      }
+    }
+    list slicelist {
+      key "slice-id";
+      description
+        "OTN slice id";
+      leaf slice-id {
+        type slice-id;
+        description
+           "Tunnel termination point identifier.";
+      }
+      leaf odu0-number {
+         type uint16;
+         description 
+            "Number of tributary slots, representing by ODU0";
+      }
+    }
+  }
+
+  grouping ts-slice-info {
+     description "The slice information on specific TS. ";
+     reference "RFC7139, section 6. ";
+     leaf ts-slice-id {
+       type slice-id;
+       description
+         "Used together with ts-list to indicate if a set of TS
+          belongs to any existing optical slices. For example, 
+          '1-8, slice 1; 41-80, slice 2.' ";
+       }   
+    }
+  
+  augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
+         + "tet:te" {
+     when "../../../nw:network-types/tet:te-topology/"
+        + "otntopo:otn-topology" {
+       description "Augment the slice ID only for otn network";
+     }
+     
+     leaf tp-slice-id {
+         type slice-id;
+         description 
+            "The identifier of the slice that the TP belongs.";
+       }
+   }
+   
+     /* Augment TS Slice info of underlay primary path
+   * of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:underlay/tet:primary-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+  /* Augment TS Slice info of underlay backup path
+   * of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:underlay/tet:backup-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-exclude of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-include of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of path-route of connectivity-matrices */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology"{
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+    /* Augment TS Slice info of underlay primary path of
+   * connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:underlay/tet:primary-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay backup path of
+   * connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:underlay/tet:backup-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/"
+        + "tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-exclude of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:optimizations/"
+        + "tet:algorithm/tet:metric/tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-include of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/tet:optimizations/"
+        + "tet:algorithm/tet:metric/tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of path-route of connectivity-matrix */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:te-node-attributes/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay primary path of
+   * connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay backup path of
+   * connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-exclude of
+   * connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-include of
+   * connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of path-route of
+   * connectivity-matrices information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay primary path of
+   * connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay backup path of
+   * connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-exclude of
+   * connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-include of
+   * connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of path-route of
+   * connectivity-matrix information-source */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:information-source-entry/tet:connectivity-matrices/"
+        + "tet:connectivity-matrix/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay primary path
+   * of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay backup path
+   * of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-exclude of
+   * local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-include of
+   * local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of path-route of local-link-connectivities */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay primary path
+   * of local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay backup path of
+   * local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-exclude of
+   * local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-exclude-objects/"
+        + "tet:route-object-exclude-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of route-include of
+   * local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:optimizations/tet:algorithm/tet:metric/"
+        + "tet:optimization-metric/"
+        + "tet:explicit-route-include-objects/"
+        + "tet:route-object-include-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of path-route of
+   * local-link-connectivity (LLC) */
+  augment "/nw:networks/nw:network/nw:node/tet:te/"
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:local-link-connectivity/"
+        + "tet:path-properties/tet:path-route-objects/"
+        + "tet:path-route-object/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay primary path of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay backup path of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+    when "../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay primary path of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+/*
+    when "../../../../../../../../../../"
+       + "nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+                         description "Augment OTN TE label";
+    }
+*/
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment TS Slice info of underlay backup path of TE link template */
+  augment "/nw:networks/tet:te/tet:templates/"
+        + "tet:link-template/tet:te-link-attributes/"
+        + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+/*
+    when "../../../../../../../../../../nw:network-types/"
+        + "tet:te-topology/otntopo:otn-topology" {
+      description "Augment OTN TE label";
+    }
+*/
+    description "OTN label.";
+    case otn {
+      uses ts-slice-info;
+    }
+  }
+
+  /* Augment maximum bandwidth of TE link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:max-link-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-slice-link-bandwidth;
+    }
+  }
+
+    /* Augment unreserved bandwidth of TE Link */
+  augment "/nw:networks/nw:network/nt:link/tet:te/"
+        + "tet:te-link-attributes/"
+        + "tet:unreserved-bandwidth/"
+        + "tet:te-bandwidth/tet:technology" {
+    when "../../../../../../nw:network-types/tet:te-topology/"
+       + "otntopo:otn-topology" {
+      description "OTN TE bandwidth.";
+    }
+    description "OTN bandwidth.";
+    case otn {
+      uses otn-slice-link-bandwidth;
+    }
+  }
+
+
+
+rpc create-optical-slice {
+  description
+    "Create transport slice in OTN-based optical networks. ";
+
+  input {
+    list otn-tunnel-list {
+      key "tunnel-name";
+      description
+        "The request list of tunnel(s) in the slice.";
+      leaf tunnel-name {
+        mandatory true;
+        type leafref {
+          path "/te:te/te:tunnels/te:tunnel/te:name";
+          }
+        description "The name of tunnel.";
+      }
+
+      leaf source {
+        type leafref {
+          path "/te:te/te:tunnels/te:tunnel/te:source";
+          }
+        description
+          "Specified source node for the requested slice.";
+        }
+
+      leaf destination {
+        type leafref {
+          path "/te:te/te:tunnels/te:tunnel/te:destination";
+          }
+        description
+          "Specified destination node for the requested slice.";
+        }
+
+      leaf src-tunnel-tp-id {
+        type leafref {
+          path "/te:te/te:tunnels/te:tunnel/te:src-tunnel-tp-id";
+          }
+        description
+          "Specified source TTP for the requested slice.";
+        }
+
+      leaf dst-tunnel-tp-id {
+        type leafref {
+          path "/te:te/te:tunnels/te:tunnel/te:dst-tunnel-tp-id";
+          }
+        description
+          "Specified description TTP for the requested slice.";
+        }
+
+      leaf tunnel-bandwidth{
+        type te-types:te-bandwidth;
+        description
+          "Bandwidth Requirement of Slice.";
+      }
+
+      leaf protection-type {
+        type identityref {
+          base te-types:lsp-protection-type;
+        }
+        description
+          "Protection Level Requirement of Slice.";
+      }
+/*
+      leaf slice-constraint {
+        type leafref {
+          path "/te:te/te:globals/te:named-path-constraints"
+               +"/te:named-path-constraint";
+          }
+        description
+          "Protection Level Requirement of Slice.";
+        }
+        */
+      }
+
+      leaf slice-id {
+        type slice-id;
+        description
+          "The identifier of the requested slice.";
+      }
+    }
+
+    output {
+      list transport-slice-list {
+        key "slice-id";
+        leaf slice-id {
+          mandatory true;
+          type slice-id;
+          description
+            "The identifier of the reported slice.";
+          }
+        leaf result {
+          type enumeration {
+            enum success {
+              description
+                "Success.";
+              }
+            enum failure-error {
+              description
+                "Failure because of input error. ";
+              }
+            enum failure-resource {
+              description
+                "Failure because of insufficient resources. ";
+              }
+            }
+        }
+        description
+          "The output of this RPC. ";
+      }
+    }
+  }
+}
