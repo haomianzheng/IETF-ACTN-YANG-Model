@@ -5,19 +5,24 @@ module ietf-l1csm {
   
   import ietf-yang-types {
     prefix "yang";  
+    reference
+      "RFC6991: Common YANG Data Types";
   }
 
   import ietf-layer1-types {
     prefix "l1-types";
+    reference
+      "RFCYYYY: A YANG Data Model for Layer 1 Types";
   }
 
   organization
     "Internet Engineering Task Force (IETF) CCAMP WG";
 
   contact
-
-    "Editor: Y. Lee (younglee.tx@gmail.com)
-     Editor: K. Lee (kwangkoog.lee@kt.com)
+    "WG Web: <http://tools.ietf.org/wg/ccamp/>
+     WG List: <mailto:ccamp@ietf.org>
+    
+     Editor: Y. Lee (younglee.tx@gmail.com)
      Editor: H. Zheng (zhenghaomian@huawei.com)
      Editor: D. Dhody (dhruv.ietf@gmail.com)
      Editor: O. G. de-Dios (oscar.gonzalezdedios@telefonica.com)
@@ -29,7 +34,7 @@ module ietf-l1csm {
      Refer to MEF 63 for all terms and the original references 
      used in the module.
 
-     Copyright (c) 2020 IETF Trust and the persons identified as
+     Copyright (c) 2021 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject
@@ -41,7 +46,7 @@ module ietf-l1csm {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2020-10-27" {
+  revision "2021-02-19" {
     description "Initial revision.";
     reference "RFC XXXX: A Yang Data Model for L1 Connectivity 
                Service Model (L1CSM)";
@@ -100,7 +105,7 @@ module ietf-l1csm {
 
        Valid combinations are defined in Tables 4, 5, 6 and 7
        of MEF 63.";
-    reference "MEF 63";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
 
     leaf protocol {
       type identityref {
@@ -126,22 +131,22 @@ module ietf-l1csm {
     }
   }
 
-  grouping subscriber-l1vc-sls-service-attribute {
+  grouping subscriber-l1vc-sls-service-attributes {
     description
       "The value of the Subscriber L1VC SLS (Service Level
        Specification) Service Attribute";
-    reference "MEF 63";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
 
     leaf start-time {
       type yang:date-and-time;
-      description "a time that represent the date and time
+      description "A time that represent the date and time
                    for the start of the SLS";
     }
     leaf time-interval {
       type int32;
       units seconds;
       description 
-        "a time interval (e.g., 2,419,200 seconds which is 28 days)
+        "A time interval (e.g., 2,419,200 seconds which is 28 days)
          that is used in conjunction wuth time-start to specify a 
          contiguous sequence of time intervals T for determining 
          when performance objectives are met.";
@@ -150,28 +155,28 @@ module ietf-l1csm {
       type identityref {
         base "service-performance-metric";
       }
-      description "list of service performance metric.";
+      description "List of service performance metric.";
     }
   }
 
   grouping subscriber-l1vc-endpoint-attributes {
     description
-      "subscriber layer 1 connection endpoint attributes";
-    reference "MEF 63";
+      "Subscriber layer 1 connection endpoint attributes";
+    reference "MEF63: Subscriber Layer 1 Service Attributes";
 
     container endpoint-1 {
       description "One end of UNI id's - string and id";
       leaf id {
         type string;
         mandatory true;
-        description "subscriber end point ID of one end";
+        description "Subscriber end point ID of one end";
       }
       leaf uni {
         type leafref {
           path "/l1-connectivity/access/unis/uni/id";
         }
         mandatory true;
-        description "this is one end of subscriber L1VC end point
+        description "This is one end of subscriber L1VC end point
                      ID value = UNI-1";
       }
     }
@@ -179,8 +184,12 @@ module ietf-l1csm {
       description "One end of UNI id's - string and id";
       leaf id {
         type string;
-         mandatory true;
-         description "subscriber end point ID of the other end";
+        must '. != ../../endpoint-1/id' {
+          error-message
+            "The two end points must not be equal to each other. ";
+        }
+        mandatory true;
+        description "Subscriber end point ID of the other end";
       }
       leaf uni {
         type leafref {
@@ -188,7 +197,7 @@ module ietf-l1csm {
         }
         mandatory true;
         description
-          "this is one other end of subscriber L1VC end point
+          "This is one other end of subscriber L1VC end point
            ID value = UNI-2";
       }
     }
@@ -200,21 +209,21 @@ module ietf-l1csm {
 
   container l1-connectivity {
     description
-      "serves as a top-level container for a list of layer 1
+      "Serves as a top-level container for a list of layer 1
        connection services (l1cs)";
 
     container access {
       description "UNI configurations for access networks";
 
       container unis {
-        description "the list of UNI's to be configured";
+        description "The list of UNI's to be configured";
 
         list uni {
           key "id";
           description "UNI identifier";
           leaf id {
             type string;
-            description "the UNI id of UNI Service Attributes";
+            description "The UNI id of UNI Service Attributes";
           }
           choice uni-access-type {
             description
@@ -245,16 +254,16 @@ module ietf-l1csm {
       list service {
         key "service-id";
         description
-          "an unique identifier of a subscriber L1VC service";
+          "A unique identifier of a subscriber L1VC service";
 
         leaf service-id {
           type string;
           mandatory true;
-          description "a unique service identifier for
+          description "A unique service identifier for
                        subscriber L1VC.";
         }
         uses subscriber-l1vc-endpoint-attributes;
-        uses subscriber-l1vc-sls-service-attribute;
+        uses subscriber-l1vc-sls-service-attributes;
 
       } //end of service list
     } //end of service container
