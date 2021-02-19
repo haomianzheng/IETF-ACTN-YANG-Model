@@ -19,14 +19,23 @@ module ietf-l1csm {
     "Internet Engineering Task Force (IETF) CCAMP WG";
 
   contact
-    "WG Web: <http://tools.ietf.org/wg/ccamp/>
+    "WG Web:  <http://tools.ietf.org/wg/ccamp/>
      WG List: <mailto:ccamp@ietf.org>
+
+     Editor:  Young Lee
+              <mailto:younglee.tx@gmail.com>
     
-     Editor: Y. Lee (younglee.tx@gmail.com)
-     Editor: H. Zheng (zhenghaomian@huawei.com)
-     Editor: D. Dhody (dhruv.ietf@gmail.com)
-     Editor: O. G. de-Dios (oscar.gonzalezdedios@telefonica.com)
-     Editor: D. Ceccarelli (daniele.ceccarelli@ericsson.com)";
+     Editor:  Haomian Zheng
+              <mailto:zhenghaomian@huawei.com>
+    
+     Editor:  Dhruv Dhody
+              <mailto:dhruv.ietf@gmail.com>
+
+     Editor:  Oscar Gonzalez de Dios
+              <mailto:oscar.gonzalezdedios@telefonica.com>
+
+     Editor:  Daniele Ceccarelli
+              <mailto:daniele.ceccarelli@ericsson.com>";
 
   description
     "This module describes L1 connectivity service based on MEF 63: 
@@ -47,12 +56,14 @@ module ietf-l1csm {
      the RFC itself for full legal notices.";
 
   revision "2021-02-19" {
-    description "Initial revision.";
-    reference "RFC XXXX: A Yang Data Model for L1 Connectivity 
-               Service Model (L1CSM)";
+    description
+      "Initial revision.";
+    reference
+      "RFC XXXX: A Yang Data Model for L1 Connectivity Service Model
+       (L1CSM)";
   // Note: The RFC Editor will replace XXXX with the number  
   // assigned to the RFC once this draft becomes an RFC. 
-  }  
+  }
 
   /*
    * Identities
@@ -61,37 +72,48 @@ module ietf-l1csm {
   identity service-performance-metric {
     description 
       "Base identity of service-specific performance metric";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity one-way-delay {
-    base "service-performance-metric";
-    description "one way delay.";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
+    base service-performance-metric;
+    description
+      "One way delay.";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity one-way-errored-second {
-    base "service-performance-metric";
-    description "one way errored second";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
+    base service-performance-metric;
+    description
+      "One way errored second";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity one-way-severely-errored-second {
-    base "service-performance-metric";
-    description "one way severely errored second";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
+    base service-performance-metric;
+    description
+      "One way severely errored second";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity one-way-unavailable-second {
-    base "service-performance-metric";
-    description "one way unavailable second";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
+    base service-performance-metric;
+    description
+      "One way unavailable second";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   identity one-way-availability {
-    base "service-performance-metric";
-    description "one way availability";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
+    base service-performance-metric;
+    description
+      "One way availability";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
   /*
@@ -105,25 +127,28 @@ module ietf-l1csm {
 
        Valid combinations are defined in Tables 4, 5, 6 and 7
        of MEF 63.";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
 
     leaf protocol {
       type identityref {
-        base "l1-types:protocol";
+        base l1-types:protocol;
       }
       mandatory true;
-      description "The protocol being used at the UNI.";
+      description
+        "The protocol being used at the UNI.";
     }
     leaf coding {
       type identityref {
-        base "l1-types:coding-func";
+        base l1-types:coding-func;
       }
       mandatory true;
-      description "The coding function being used at the UNI.";
+      description
+        "The coding function being used at the UNI.";
     }
     leaf optical-interface {
       type identityref {
-        base "l1-types:optical-interface-func";
+        base l1-types:optical-interface-func;
       }
       mandatory true;
       description
@@ -135,53 +160,61 @@ module ietf-l1csm {
     description
       "The value of the Subscriber L1VC SLS (Service Level
        Specification) Service Attribute";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
 
     leaf start-time {
       type yang:date-and-time;
-      description "A time that represent the date and time
-                   for the start of the SLS";
+      description
+        "A time that represent the date and time for the start of
+         the SLS";
     }
     leaf time-interval {
       type int32;
       units seconds;
       description 
         "A time interval (e.g., 2,419,200 seconds which is 28 days)
-         that is used in conjunction wuth time-start to specify a 
+         that is used in conjunction with time-start to specify a 
          contiguous sequence of time intervals T for determining 
          when performance objectives are met.";
     }
     leaf-list performance-metric {
       type identityref {
-        base "service-performance-metric";
+        base service-performance-metric;
       }
-      description "List of service performance metric.";
+      description
+        "List of service performance metric.";
     }
   }
 
   grouping subscriber-l1vc-endpoint-attributes {
     description
       "Subscriber layer 1 connection endpoint attributes";
-    reference "MEF63: Subscriber Layer 1 Service Attributes";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
 
     container endpoint-1 {
-      description "One end of UNI id's - string and id";
+      description
+        "One end of UNI id's - string and id";
       leaf id {
         type string;
         mandatory true;
-        description "Subscriber end point ID of one end";
+        description
+          "Subscriber end point ID of one end";
       }
       leaf uni {
         type leafref {
           path "/l1-connectivity/access/unis/uni/id";
         }
         mandatory true;
-        description "This is one end of subscriber L1VC end point
-                     ID value = UNI-1";
+        description
+          "This is one end of subscriber L1VC end point ID value = 
+           UNI-1";
       }
     }
     container endpoint-2 {
-      description "One end of UNI id's - string and id";
+      description
+        "One end of UNI id's - string and id";
       leaf id {
         type string;
         must '. != ../../endpoint-1/id' {
@@ -189,7 +222,8 @@ module ietf-l1csm {
             "The two end points must not be equal to each other. ";
         }
         mandatory true;
-        description "Subscriber end point ID of the other end";
+        description
+          "Subscriber end point ID of the other end";
       }
       leaf uni {
         type leafref {
@@ -213,14 +247,17 @@ module ietf-l1csm {
        connection services (l1cs)";
 
     container access {
-      description "UNI configurations for access networks";
+      description
+        "UNI configurations for access networks";
 
       container unis {
-        description "The list of UNI's to be configured";
+        description
+          "The list of UNI's to be configured";
 
         list uni {
           key "id";
-          description "UNI identifier";
+          description
+            "UNI identifier";
           leaf id {
             type string;
             description "The UNI id of UNI Service Attributes";
@@ -237,7 +274,7 @@ module ietf-l1csm {
             case itu {
               leaf client-signal {
                 type identityref {
-                  base "l1-types:client-signal";
+                  base l1-types:client-signal;
                 }
                 mandatory true;
                 description
@@ -250,7 +287,8 @@ module ietf-l1csm {
     }
 
     container services {
-      description "L1VC services";
+      description
+        "L1VC services";
       list service {
         key "service-id";
         description
@@ -259,8 +297,8 @@ module ietf-l1csm {
         leaf service-id {
           type string;
           mandatory true;
-          description "A unique service identifier for
-                       subscriber L1VC.";
+          description
+            "A unique service identifier for subscriber L1VC.";
         }
         uses subscriber-l1vc-endpoint-attributes;
         uses subscriber-l1vc-sls-service-attributes;
