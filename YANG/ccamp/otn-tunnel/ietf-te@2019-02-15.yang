@@ -9,7 +9,6 @@ module ietf-te {
   /* Import TE generic types */
   import ietf-te-types {
     prefix te-types;
-    revision-date "2019-02-06";
     reference "draft-ietf-teas-yang-te-types: A YANG Data Model for
                Common Traffic Engineering Types";
   }
