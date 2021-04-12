@@ -3,6 +3,13 @@ module ietf-otn-tunnel {
   namespace "urn:ietf:params:xml:ns:yang:ietf-otn-tunnel";
   prefix "otn-tunnel";
 
+  import ietf-te-types {
+    prefix te-types;
+    revision-date "2019-02-06";
+    reference "draft-ietf-teas-yang-te-types: A YANG Data Model for
+               Common Traffic Engineering Types";
+  }
+
   import ietf-te {
     prefix "te";
     revision-date "2019-02-15";
@@ -58,7 +65,7 @@ module ietf-otn-tunnel {
     This version of this YANG module is part of RFC XXXX; see
     the RFC itself for full legal notices.";
 
-  revision "2021-02-10" {
+  revision "2021-04-12" {
     description
       "Initial Revision";
     reference
