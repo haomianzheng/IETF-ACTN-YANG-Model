@@ -535,7 +535,7 @@ module ietf-otn-tunnel {
   }
 
   /* Augment label restrictions for the forwarding direction of
-     path-in-segment of reverse primary path */
+     path-in-segment of primary reverse path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
@@ -546,7 +546,7 @@ module ietf-otn-tunnel {
   }
 
   /* Augment label restrictions start for the forwarding direction of
-     path-in-segment of reverse primary path */
+     path-in-segment of primary reverse path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
@@ -587,7 +587,7 @@ module ietf-otn-tunnel {
   }
 
   /* Augment label restrictions for the forwarding direction of
-     path-out-segment of reverse primary path */
+     path-out-segment of primary reverse path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
@@ -598,7 +598,7 @@ module ietf-otn-tunnel {
   }
 
   /* Augment label restrictions start for the forwarding direction of
-     path-out-segment of reverse primary path */
+     path-out-segment of primary reverse path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
@@ -612,7 +612,7 @@ module ietf-otn-tunnel {
   }
 
   /* Augment label restrictions end for the forwarding direction of
-     path-out-segment of reverse primary path */
+     path-out-segment of primary reverse path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
@@ -638,7 +638,7 @@ module ietf-otn-tunnel {
     }
   }
 
-  /* Augment label hop of path-route of reverse primary path */
+  /* Augment label hop of path-route of primary reverse path */
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
