@@ -318,8 +318,8 @@ module ietf-eth-tran-types {
 
   identity topology-role {
     description
-    "The rold of underlay topology, e.g.,
-    hub, spoke, any-to-any. ";
+      "The role of underlay topology: e.g., hub, spoke,
+      any-to-any.";
   }
 
   identity resilience {
