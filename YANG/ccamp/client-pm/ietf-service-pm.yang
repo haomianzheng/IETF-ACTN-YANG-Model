@@ -11,7 +11,7 @@ module ietf-service-pm {
   import ietf-yang-types {
     prefix "yang";
   }
-  
+
   import ietf-trans-client-service {
     prefix "clntsvc";
   }
@@ -32,7 +32,7 @@ module ietf-service-pm {
      services. The model fully conforms to the Network Management
      Datastore Architecture (NMDA).
 
-     Copyright (c) 2020 IETF Trust and the persons
+     Copyright (c) 2021 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject
@@ -43,7 +43,7 @@ module ietf-service-pm {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2020-07-13 {
+  revision 2021-07-07 {
     description
       "Initial version";
     reference
@@ -93,7 +93,7 @@ module ietf-service-pm {
         type string;
         mandatory true;
         description
-          "The value unit of the parameter. 
+          "The value unit of the parameter.
            For example, second, minute and so on.";
       }
       leaf value-description{
@@ -118,49 +118,60 @@ module ietf-service-pm {
     description
       "Base type of the performance parameter being monitored.";
   }
-  
+
   identity near-frame-loss {
     base performance-parameter-type;
     description
-      "Near frame loss, using one-way eth loss measure, 
+      "Near frame loss, using one-way eth loss measure,
        the sampling point is the MEP.";
   }
-  
+
   identity far-frame-loss {
     base performance-parameter-type;
     description
-      "Far frame loss, using one-way eth loss measure, 
+      "Far frame loss, using one-way eth loss measure,
        the sampling point is the MEP.";
   }
-  
+
   identity one-way-delay {
     base performance-parameter-type;
     description
       "One way delay.";
   }
-  
+
   identity two-way-delay {
     base performance-parameter-type;
     description
       "Two way delay.";
   }
-  
+
   identity receive-packets {
     base performance-parameter-type;
     description
       "Total number of received packets.";
   }
-  
+
   identity transmit-packets {
     base performance-parameter-type;
     description
       "Total number of transmitted packets.";
   }
 
+  identity ingress-bandwidth {
+    base performance-parameter-type;
+    description
+      "Current bandwidth usage of the ingress traffic.";
+  }
+
+  identity egress-bandwidth {
+    base performance-parameter-type;
+    description
+      "Current bandwidth usage of the egress traffic.";
+  }
+
   identity alarm-status {
     description "indicates whether there is alarm or not";
   }
-
   identity alarm {
     base alarm-status;
     description "There is one or multiple alarms from the monitor. ";
@@ -170,12 +181,12 @@ module ietf-service-pm {
     base alarm-status;
     description "There is no alarms from the monitor. ";
   }
-  
+
   identity monitoring-state {
     description
       "The state of performance monitoring. ";
-  } 
-  
+  }
+
   identity monitoring {
     base monitoring-state;
     description "The Ethernet client signal is under monitoring. ";
@@ -192,44 +203,43 @@ module ietf-service-pm {
     description
       "The monitoring of Ethernet client signal is failed. ";
   }
-  
+
   identity granularity-type {
     description
       "Monitoring granularity";
   }
-  
+
   identity granularity-1min {
     base granularity-type;
     description
       "1 minute";
   }
-  
+
   identity granularity-15min {
     base granularity-type;
     description
       "15 minutes";
   }
-  
   identity granularity-24h {
     base granularity-type;
     description
       "24 hours";
   }
-  
+
   identity measure-method {
     description "Measure method.";
   }
-  
+
   identity measure-by-loopback {
     base measure-method;
     description "Loopback measure method.";
   }
-  
+
   identity measure-at-ingress {
     base measure-method;
     description "Ingress measure method.";
   }
-  
+
   container performance-monitoring {
     description
       "This part is for performance monitoring. ";
@@ -243,13 +253,13 @@ module ietf-service-pm {
           type leafref {
             path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
                + "/ethtsvc:etht-svc-name";
-          } 
+          }
           type leafref {
             path "/clntsvc:client-svc/clntsvc:client-svc-instances"
                + "/clntsvc:client-svc-name";
-          } 
+          }
         }
-      
+
         description "The name of service.";
       }
 
@@ -259,7 +269,7 @@ module ietf-service-pm {
           "Indicate whether the performance monitoring
           is enable or not.";
       }
-      
+
       leaf granularity {
         type identityref {
           base granularity-type;
@@ -267,12 +277,12 @@ module ietf-service-pm {
         description
           "Monitoring granularity";
       }
-      
+
       list performance-data-config {
         key parameter-name;
         description
           "Specify the performance parameters to be queried";
-        
+
         leaf parameter-name {
           type identityref {
             base performance-parameter-type;
@@ -299,19 +309,19 @@ module ietf-service-pm {
             type enumeration {
               enum up;
               enum down;
-            } 
+            }
           }
           leaf lm-state {
             type enumeration {
               enum up;
               enum down;
-            } 
+            }
           }
           leaf dm-state {
             type enumeration {
               enum up;
               enum down;
-            } 
+            }
           }
         }
 
@@ -320,7 +330,7 @@ module ietf-service-pm {
           description "The list of performance under monitor.";
           uses service-performance-monitor-set;
         }
-        
+
         leaf monitor-state {
           mandatory true;
           type identityref {
@@ -328,7 +338,7 @@ module ietf-service-pm {
           }
           description "The status of performance monitoring. ";
         }
-        
+
         container error-info {
           description
             "Describe the error message.";
@@ -343,7 +353,7 @@ module ietf-service-pm {
               "The message of error.";
           }
         }
-          
+
         container alarm {
           description
             "To retrieve the Alarm during performance Monitoring.";
@@ -354,10 +364,8 @@ module ietf-service-pm {
             description "The status of the alarm. ";
           }
         }
-        
       }
     }
   }
-  
-}
 
+}

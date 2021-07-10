@@ -1,5 +1,5 @@
 module ietf-eth-tran-types {
-  yang-version 1.1; 
+  yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-eth-tran-types";
 
   prefix "etht-types";
@@ -15,7 +15,7 @@ module ietf-eth-tran-types {
         Italo Busi (italo.busi@huawei.com);
         Aihua Guo (aihuaguo.ietf@gmail.com);
         Anton Snitser (antons@sedonasys.com);0
-		Francesco Lazzeri (francesco.lazzeri@ericsson.com);
+        Francesco Lazzeri (francesco.lazzeri@ericsson.com);
         Yunbin Xu (xuyunbin@caict.ac.cn);
         Yang Zhao (zhaoyangyjy@chinamobile.com);
         Xufeng Liu (xufeng.liu.ietf@gmail.com);
@@ -24,9 +24,9 @@ module ietf-eth-tran-types {
 
   description
     "This module defines the ETH types.
-	 The model fully conforms to the Network Management 
-	 Datastore Architecture (NMDA).
-    
+     The model fully conforms to the Network Management
+     Datastore Architecture (NMDA).
+
      Copyright (c) 2019 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
@@ -36,12 +36,12 @@ module ietf-eth-tran-types {
      set forth in Section 4.c of the IETF Trust's Legal Provisions
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
-	 This version of this YANG module is part of RFC XXXX; see
+     This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2019-11-03 {
+  revision 2021-07-07 {
     description
-      "version -01 as a WG draft";
+      "version -05 as a WG draft";
     reference
       "draft-ietf-ccamp-client-signal-yang";
   }
@@ -301,7 +301,8 @@ module ietf-eth-tran-types {
     leaf color-aware {
       type boolean;
       description
-        "Indicates weather the color-mode is color-aware or color-blind.";
+        "Indicates weather the color-mode is
+        color-aware or color-blind.";
     }
     leaf coupling-flag {
       type boolean;
@@ -314,32 +315,53 @@ module ietf-eth-tran-types {
         "Coupling Flag.";
     }
   }
-  
+
   identity topology-role {
-    description 
-    "The rold of underlay topology, e.g., hub, spoke, any-to-any. ";
+    description
+      "The role of underlay topology: e.g., hub, spoke,
+      any-to-any.";
   }
-  
+
   identity resilience {
-    description 
-    "Placeholder for resilience information in data plane, for future study. ";
+    description
+    "Placeholder for resilience information in data plane,
+    for future study. ";
   }
-  
+
   identity access-role {
-    description 
+    description
     "Indicating whether the access is a working or protection access.";
   }
-  
-  identity performance {
-    description 
-    "Placeholder for performace information, for future study.";
+
+  identity root-primary {
+    base access-role;
+    description
+      "Designates the primary root UNI of an E-Tree service, and may also
+	   designates the UNI access role of E-LINE and E-LAN service.";
   }
-  
+
+  identity root-backup {
+    base access-role;
+    description
+      "Designates the backup root UNI of an E-Tree service.";
+  }
+
+  identity leaf-access {
+    base access-role;
+    description
+      "Designates the leaf UNI of an E-Tree service.";
+  }
+
+  identity performance {
+    description
+    "Placeholder for performance information, for future study.";
+  }
+
   identity encapsulation-type {
-    description 
+    description
     "Indicating how the service is encapsulated (to PW), e.g, raw or tag. ";
   }
-  
+
   grouping pw-segement-bandwidth-profile-grouping {
     description
       "bandwidth profile grouping for PW segment. ";
@@ -393,7 +415,7 @@ module ietf-eth-tran-types {
           "Available bandwith value expressed in kilobits per second";
       }
     }
-    
+
     grouping eth-label-restriction {
       description
         "Label Restriction for ethernet.";
@@ -406,7 +428,6 @@ module ietf-eth-tran-types {
         description "priority.";
       }
     }
-
     grouping eth-label {
       description
         "Label for ethernet.";
@@ -416,7 +437,7 @@ module ietf-eth-tran-types {
             "VLAN tag id.";
       }
     }
-    
+
     grouping eth-label-step {
       description "Label step for Ethernet VLAN";
       leaf eth-step {
@@ -425,7 +446,7 @@ module ietf-eth-tran-types {
       }
       default 1;
       description
-        "Label step which represent possible increments for 
+        "Label step which represent possible increments for
          an Ethernet VLAN tag.";
       reference
         "IEEE 802.1ad: Provider Bridges.";
