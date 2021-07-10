@@ -25,6 +25,8 @@ module ietf-service-pm {
         Haomian Zheng (zhenghaomian@huawei.com);
         Italo Busi (italo.busi@huawei.com);
         Yanlei Zheng (zhengyanlei@chinaunicom.cn);
+        Victor Lopez (victor.lopez@nokia.com);
+        Oscar Gonzalez de Dios(oscar.gonzalezdedios@telefonica.com);
     ";
 
   description
