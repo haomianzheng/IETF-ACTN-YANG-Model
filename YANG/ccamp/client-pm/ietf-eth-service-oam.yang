@@ -96,54 +96,61 @@ module ietf-eth-service-oam {
   }
   
   grouping eth-service-oam-config {
-      container source {
-        uses mep-config;
+    container source {
+      uses mep-config;
+      description "OAM MEP configuration on source node.";
       }
-      container destination {
-        uses mep-config;
+    container destination {
+      uses mep-config;
+      description "OAM MEP configuration on destination node.";
       }
-      
-      uses interval-config;
+    uses interval-config;
+    description "OAM configuration on Eth services.";
   }
   
   grouping interval-config {
+    description "OAM Interval Configuration.";
     leaf cc-interval {
-      description "Continuity check interval";
       type identityref {
         base interval-type;
       }
+      description "Continuity check interval.";
     }
 
     leaf lm-interval {
-      description "Loss measurement interval";
       type identityref {
         base interval-type;
       }
+      description "Loss measurement interval.";
     }
 
     leaf dm-interval {
-      description "Delay measurement interval";
       type identityref {
         base interval-type;
       }
+      description "Delay measurement interval.";
     }
   }
   
   grouping mep-config {
+    description "OAM MEP Configuration.";
     leaf md-name {
      type string;
      description
-       "maintenance domain";
+       "Name of Maintenance Domain.";
     } 
     leaf ma-name {
      type string;
      description
-       "An maintenance association(MA) is a part of an MD. 
+       "Name of Maintenance Domain.
+        An maintenance association(MA) is a part of an MD. 
         An MD can be divided into one or more MAs. ";
     }
 
     leaf ma-level {
       type string;
+      description
+        "Maintenance Association Level.";
     }
 
     leaf meg-id {
@@ -173,17 +180,21 @@ module ietf-eth-service-oam {
       "Augment with additional parameters required for Ethernet OAM";
       
     container oam-config {
+      description "OAM configuration container.";
       uses eth-service-oam-config;
     }
   }
   
   grouping errors {
+    description "The grouping of error information.";
     leaf error-code {
       type uint32;
+      description "The error code.";
     }
     
     leaf error-message {
       type string;
+      description "The error message.";
     }
   }
   
@@ -197,22 +208,22 @@ module ietf-eth-service-oam {
       list oam-config-list {
         key "service-name";
         description
-          "The request list of service oam to be configed.";
+          "The request list of service oam to be configured.";
         leaf service-name {
-        mandatory true;
-        type union {
-          type leafref {
-            path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
-               + "/ethtsvc:etht-svc-name";
-          } 
-          type leafref {
-            path "/clntsvc:client-svc/clntsvc:client-svc-instances"
-               + "/clntsvc:client-svc-name";
-          } 
+          type union {
+            type leafref {
+              path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
+                 + "/ethtsvc:etht-svc-name";
+            } 
+            type leafref {
+              path "/clntsvc:client-svc/clntsvc:client-svc-instances"
+                 + "/clntsvc:client-svc-name";
+            } 
+          
+          }
+          mandatory true;
+          description "The name of service.";
         }
-      
-        description "The name of service.";
-      }
         uses eth-service-oam-config;
       }
     }
@@ -220,9 +231,7 @@ module ietf-eth-service-oam {
     output {
       list oam-config-list {
         key "service-name";
-        
         leaf service-name {
-        mandatory true;
         type union {
           type leafref {
             path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
@@ -233,33 +242,33 @@ module ietf-eth-service-oam {
                      + "/clntsvc:client-svc-name";
           } 
         }
-      
+        mandatory true;
         description "The name of service.";
       }
         
         leaf result {
-             type enumeration {
-              enum success {
-                description "success";
-              }
-              enum failure {
-                description "failure";
-              }
+          type enumeration {
+            enum success {
+              description "success";
             }
+            enum failure {
+              description "failure";
+            }
+          }
+          description "Result of OAM configuration."
         }
         uses errors;
+        description "The OAM configuration list. ";
       }
     }
     }
     
     rpc delete-oam-configurations {
       description "Delete OAM configurations. ";
-    
         input {
           list service-list {
             key "service-name";            
             leaf service-name {
-              mandatory true;
               type union {
                 type leafref {
                   path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
@@ -270,18 +279,17 @@ module ietf-eth-service-oam {
                      + "/clntsvc:client-svc-name";
                 } 
               }
-      
+              mandatory true;
               description "The name of service.";
             }
+            description "The list of service.";
           }
         }
     
         output {
           list oam-config-list {
             key "service-name";
-            
             leaf service-name {
-              mandatory true;
               type union {
                 type leafref {
                   path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
@@ -292,27 +300,30 @@ module ietf-eth-service-oam {
                      + "/clntsvc:client-svc-name";
                 } 
               }
-      
+              mandatory true;
               description "The name of service.";
             }   
             
             leaf result {
-             type enumeration {
-              enum success {
-                description "success";
+              type enumeration {
+                enum success {
+                  description "success";
+                }
+                enum failure {
+                  description "failure";
+                }
               }
-              enum failure {
-                description "failure";
-              }
-             }
+              description "The result of OAM deletion.";
             }
             
             uses errors;
+            description "The list of service.";
           }
         }
     }
     
     rpc get-node-eth-oam-configurations {
+      description "Get the Eth node OAM configuration info.";
       input {
         leaf-list te-node-list {
            type leafref {
@@ -328,13 +339,15 @@ module ietf-eth-service-oam {
           leaf node-id {
             type leafref {
              path "/nw:networks/nw:network/nw:node/nw:node-id";
-           }
+            }
+            description "The node identifier.";
           }
           list mep-config-list {
             key "md-name ma-name meg-id mep-id";
-            
             uses mep-config;
+            description "The list of MEP configuration.";
           }
+          description "The list of OAM.";
         }
       }
     }
