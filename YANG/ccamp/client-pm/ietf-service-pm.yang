@@ -250,7 +250,6 @@ module ietf-service-pm {
       description
         "The list of service to be monitored.";
       leaf service-name {
-        mandatory true;
         type union {
           type leafref {
             path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
@@ -261,7 +260,7 @@ module ietf-service-pm {
                + "/clntsvc:client-svc-name";
           }
         }
-
+        mandatory true;
         description "The name of service.";
       }
 
@@ -297,6 +296,7 @@ module ietf-service-pm {
           type identityref {
             base measure-method;
           }
+          description "Measure Methods.";
         }
       }
 
@@ -306,24 +306,43 @@ module ietf-service-pm {
           "The state of service performance monitoring.";
 
         container oam-state {
+          description "the state of OAM. ";
           leaf cc-state {
-            mandatory true;
             type enumeration {
-              enum up;
-              enum down;
+              enum up {
+                description "up";
+              }
+              enum down {
+                description "down";
+              }
             }
+            mandatory true;
+            description
+              "The state of continuity check.";
           }
           leaf lm-state {
             type enumeration {
-              enum up;
-              enum down;
+              enum up {
+                description "up";
+              }
+              enum down {
+                description "down";
+              }
             }
+            description
+              "The state of loss measurement.";
           }
           leaf dm-state {
             type enumeration {
-              enum up;
-              enum down;
+              enum up {
+                description "up";
+              }
+              enum down{
+                description "down";
+              }
             }
+            description
+              "The state of delay measurement.";
           }
         }
 
@@ -334,10 +353,10 @@ module ietf-service-pm {
         }
 
         leaf monitor-state {
-          mandatory true;
           type identityref {
             base monitoring-state;
           }
+          mandatory true;
           description "The status of performance monitoring. ";
         }
 

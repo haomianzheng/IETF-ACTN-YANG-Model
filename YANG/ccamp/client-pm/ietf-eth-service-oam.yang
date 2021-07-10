@@ -231,6 +231,7 @@ module ietf-eth-service-oam {
     output {
       list oam-config-list {
         key "service-name";
+        description "The OAM configuration list. ";        
         leaf service-name {
           type union {
             type leafref {
@@ -255,12 +256,11 @@ module ietf-eth-service-oam {
               description "failure";
             }
           }
-          description "Result of OAM configuration."
+          description "Result of OAM configuration.";
         }
         uses errors;
-        description "The OAM configuration list. ";
+        
       }
-    }
     }
     
     rpc delete-oam-configurations {
