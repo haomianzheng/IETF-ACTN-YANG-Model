@@ -232,20 +232,20 @@ module ietf-eth-service-oam {
       list oam-config-list {
         key "service-name";
         leaf service-name {
-        type union {
-          type leafref {
-            path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
-               + "/ethtsvc:etht-svc-name";
-          } 
-          type leafref {
-            path "/clntsvc:client-svc/clntsvc:client-svc-instances"
-                     + "/clntsvc:client-svc-name";
-          } 
+          type union {
+            type leafref {
+              path "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances"
+                 + "/ethtsvc:etht-svc-name";
+            } 
+            type leafref {
+              path "/clntsvc:client-svc/clntsvc:client-svc-instances"
+                       + "/clntsvc:client-svc-name";
+            } 
+          }
+          mandatory true;
+          description "The name of service.";
         }
-        mandatory true;
-        description "The name of service.";
-      }
-        
+      }  
         leaf result {
           type enumeration {
             enum success {
