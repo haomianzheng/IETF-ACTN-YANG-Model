@@ -6,8 +6,8 @@ module ietf-optical-slice {
 
   import ietf-inet-types {
     prefix inet;
-    reference
-      "RFC 6991: Common YANG Data Types"; 
+/*    reference
+      "RFC 6991: Common YANG Data Types"; */
   }
 
   import ietf-network {
@@ -34,11 +34,15 @@ module ietf-optical-slice {
     prefix "otntopo";
   }
 
-  import ietf-layer1-types {
-    prefix "l1-types";
+  import ietf-otn-types {
+    prefix "otn-types";
   }
 
-  revision "2020-09-23" {
+  import ietf-eth-tran-service {
+    prefix "ethtsvc";
+  }
+
+  revision "2020-08-21" {
     description
       "Initial revision.";
     reference
@@ -46,7 +50,7 @@ module ietf-optical-slice {
   }
 
   typedef slice-id {
-    type inet:uri;
+    type string;
     description
       "An identifier for optical slice inside otn network. The precise
        structure of the slice-id will be up to the implementation.";
@@ -54,22 +58,7 @@ module ietf-optical-slice {
 
   /*** Groupings **/
 
-  grouping otn-slice-link-bandwidth {
-    list odulist {
-      key "odu-type";
-      description
-        "OTN bandwidth definition";
-      leaf odu-type {
-        type identityref {
-          base l1-types:odu-type;
-        }
-        description "ODU type";
-      }
-      leaf number {
-        type uint16;
-        description "Number of ODUs";
-      }
-    }
+  /*** grouping otn-slice-link-bandwidth {
     list slicelist {
       key "slice-id";
       description
@@ -81,36 +70,34 @@ module ietf-optical-slice {
       }
       leaf odu0-number {
          type uint16;
-         description 
-            "Number of tributary slots, representing by ODU0";
+         description "Number of ODU0s";
       }
     }
-  }
+  } **/
 
   grouping ts-slice-info {
      description "The slice information on specific TS. ";
      reference "RFC7139, section 6. ";
-     leaf ts-slice-id {
-       type slice-id;
+     leaf ts-slice-map {
+       type string;
        description
          "Used together with ts-list to indicate if a set of TS
-          belongs to any existing optical slices. For example, 
-          '1-8, slice 1; 41-80, slice 2.' ";
+		  belongs to any existing optical slices. For example, 
+		  '1-8, slice 1; 41-80, slice 2.' ";
        }   
     }
   
   augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
          + "tet:te" {
-     when "../../../nw:network-types/tet:te-topology/"
-        + "otntopo:otn-topology" {
-       description "Augment the slice ID only for otn network";
-     }
-     
-     leaf tp-slice-id {
-         type slice-id;
-         description 
-            "The identifier of the slice that the TP belongs.";
-       }
+    when "../../../nw:network-types/tet:te-topology/otntopo:otn-topology
+       or ../../../nw:network-types/tet:te-topology/ethtetopo:eth-tran-topology" {
+            description "Augment the slice IDonly for otn network";
+      }
+    leaf-list slice-id-list {
+           type string;
+              description
+                 "List of The slice that the TP belongs.";
+    }
    }
    
      /* Augment TS Slice info of underlay primary path
@@ -754,22 +741,23 @@ module ietf-optical-slice {
   }
 
   /* Augment maximum bandwidth of TE link */
-  augment "/nw:networks/nw:network/nt:link/tet:te/"
+ /* augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:te-link-attributes/"
         + "tet:max-link-bandwidth/"
-        + "tet:te-bandwidth/tet:technology" {
+        + "tet:te-bandwidth/te-types:technology" {
     when "../../../../../../nw:network-types/tet:te-topology/"
        + "otntopo:otn-topology" {
       description "OTN TE bandwidth.";
     }
-    description "OTN bandwidth.";
-    case otn {
-      uses otn-slice-link-bandwidth;
+    description "OTN bandwidth with slicelist info.";
+    case otnslice {
+          uses otn-types:otn-link-bandwidth;
+          uses otn-slice-link-bandwidth;
     }
-  }
+  }*/
 
     /* Augment unreserved bandwidth of TE Link */
-  augment "/nw:networks/nw:network/nt:link/tet:te/"
+  /* augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:te-link-attributes/"
         + "tet:unreserved-bandwidth/"
         + "tet:te-bandwidth/tet:technology" {
@@ -777,14 +765,77 @@ module ietf-optical-slice {
        + "otntopo:otn-topology" {
       description "OTN TE bandwidth.";
     }
-    description "OTN bandwidth.";
     case otn {
-      uses otn-slice-link-bandwidth;
+          uses otn-types:otn-link-bandwidth;
+          uses otn-slice-link-bandwidth;
     }
   }
+*/
 
+/* Augment te/tunnels/tunnel */
+augment "/te:te/te:tunnels/te:tunnel" {
+    description
+      "Augment with additional parameters required for optical slice";
+        leaf slice-id {
+            description
+                "SliceId if this otn tunnel belongs to a specific otn slice";
+            type string;
+        }
+}
 
+/* Augment etht-svc/etht-svc-instances */
+augment "/ethtsvc:etht-svc/ethtsvc:etht-svc-instances" {
+    description
+      "Augment with additional parameters required for optical slice";
+    leaf slice-id {
+         description
+             "SliceId if this ethernet service belongs to a specific slice";
+         type string;
+    }
+}
 
+rpc deallocate-optical-slice{
+    description
+        "Remove transport slice in OTN-based optical networks. Assume that all the tunnels on
+         this slice are deactivate.";
+         input {
+               leaf slice-id{
+                 type slice-id;
+                 description
+                 "The identifier of the deactivating slice.";
+               }
+         }
+
+         output {
+               list transport-slice-list {
+                 description
+                    "The output of this RPC. ";
+                 key "slice-id";
+                 leaf slice-id {
+                   mandatory true;
+                   type slice-id;
+                   description
+                     "The identifier of the reported slice.";
+                   }
+                 leaf result {
+                   type enumeration {
+                     enum success {
+                       description
+                         "Success.";
+                       }
+                     enum failure-error {
+                       description
+                         "Failure because of input error.";
+                       }
+                     enum failure-resource {
+                       description
+                         "Failure because of resources utilization.";
+                       }
+                     }
+                   }
+               }
+        }
+}
 rpc create-optical-slice {
   description
     "Create transport slice in OTN-based optical networks. ";
@@ -820,7 +871,7 @@ rpc create-optical-slice {
 
       leaf src-tunnel-tp-id {
         type leafref {
-          path "/te:te/te:tunnels/te:tunnel/te:src-tunnel-tp-id";
+          path "/te:te/te:tunnels/te:tunnel/te:src-ttp-id";
           }
         description
           "Specified source TTP for the requested slice.";
@@ -828,7 +879,7 @@ rpc create-optical-slice {
 
       leaf dst-tunnel-tp-id {
         type leafref {
-          path "/te:te/te:tunnels/te:tunnel/te:dst-tunnel-tp-id";
+          path "/te:te/te:tunnels/te:tunnel/te:dst-ttp-id";
           }
         description
           "Specified description TTP for the requested slice.";
@@ -839,6 +890,8 @@ rpc create-optical-slice {
         description
           "Bandwidth Requirement of Slice.";
       }
+
+      uses te:tunnel-associations-properties;
 
       leaf protection-type {
         type identityref {
@@ -851,12 +904,12 @@ rpc create-optical-slice {
       leaf slice-constraint {
         type leafref {
           path "/te:te/te:globals/te:named-path-constraints"
-               +"/te:named-path-constraint";
+		       +"/te:named-path-constraint";
           }
         description
           "Protection Level Requirement of Slice.";
         }
-        */
+		*/
       }
 
       leaf slice-id {
