@@ -162,7 +162,7 @@ module ietf-l1csm {
   grouping subscriber-l1vc-sls-service-attributes {
     description
       "A set of service attributes on L1VC Service Level 
-      Specification (SLS) that is agreed between the service 
+      Specification (SLS) that are agreed between the service 
       provider and the subscriber. ";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
