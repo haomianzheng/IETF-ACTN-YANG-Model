@@ -55,7 +55,7 @@ module ietf-l1csm {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2021-02-19" {
+  revision "2021-12-13" {
     description
       "Initial revision.";
     reference
@@ -161,8 +161,9 @@ module ietf-l1csm {
 
   grouping subscriber-l1vc-sls-service-attributes {
     description
-      "The value of a collection of the Subscriber L1VC SLS (Service 
-       Level Specification) Service Attribute. ";
+      "A set of service attributes on L1VC Service Level 
+      Specification (SLS) that is agreed between the service 
+      provider and the subscriber. ";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
 
