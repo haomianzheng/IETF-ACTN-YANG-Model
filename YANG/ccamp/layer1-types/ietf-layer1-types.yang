@@ -1101,38 +1101,42 @@ module ietf-layer1-types {
     description "OTN Label";
     reference
       "RFC7139, section 6: GMPLS Signaling Extensions for Control of
-       Evolving G.709 Optical Transport Networks"; 
-    leaf otn-tpn {
-      type otn-tpn;
+       Evolving G.709 Optical Transport Networks";
+    container otn {
       description
-        "Tributary Port Number.";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-         G.709 Optical Transport Networks.";
-    }
-    leaf tsg {
-      type identityref {
-        base tributary-slot-granularity;
+        "TE Label for OTN.";
+      leaf otn-tpn {
+        type otn-tpn;
+        description
+          "Tributary Port Number.";
+        reference
+          "RFC7139: GMPLS Signaling Extensions for Control of
+          Evolving G.709 Optical Transport Networks.";
       }
-      description "Tributary slot granularity.";
-      reference
-        "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-         Transport Network (OTN)";
-    }
-    leaf ts-list {
-      type string {
-          pattern "([1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?"
-                + "(,[1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?)*)";
+      leaf tsg {
+        type identityref {
+          base tributary-slot-granularity;
         }
-      description
-        "A list of available tributary slots ranging
-         between 1 and 4095. If multiple values or  
-         ranges are given, they all must be disjoint 
-         and must be in ascending order.
-         For example 1-20,25,50-1000.";
-      reference 
-        "RFC 7139: GMPLS Signaling Extensions for Control
-         of Evolving G.709 Optical Transport Networks";
+        description "Tributary slot granularity.";
+        reference
+          "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+          Transport Network (OTN)";
+      }
+      leaf ts-list {
+        type string {
+            pattern "([1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?"
+                  + "(,[1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?)*)";
+          }
+        description
+          "A list of available tributary slots ranging
+          between 1 and 4095. If multiple values or  
+          ranges are given, they all must be disjoint 
+          and must be in ascending order.
+          For example 1-20,25,50-1000.";
+        reference 
+          "RFC 7139: GMPLS Signaling Extensions for Control
+          of Evolving G.709 Optical Transport Networks";
+      }
     }
   }
   
@@ -1145,9 +1149,9 @@ module ietf-layer1-types {
 
        This grouping should be used together with the
        otn-label-range-info and otn-label-start-end groupings to
-       provide OTN technology-specific label information to the models
-       which use the label-restriction-info grouping defined in the
-       module ietf-te-types.";
+       provide OTN technology-specific label information to the
+       models which use the label-restriction-info grouping defined
+       in the module ietf-te-types.";
     choice range-type {
       description
         "OTN label range type, either TPN range or TS range";
