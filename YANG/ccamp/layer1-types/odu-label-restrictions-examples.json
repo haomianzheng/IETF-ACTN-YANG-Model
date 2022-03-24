@@ -7,19 +7,24 @@
           {
             "index ": 1,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "// not-present tsg": "",
-            "odu-type-list": "[ ODU1 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "// not-present tsg": "",
+              "odu-type-list": "[ ODU1 ]",
+              "// default priority": 7
+            },
             "// tpn-range": 1,
             "// comment": "Since no TS range and no TSG are reported for ODU1, the link is an OTU1 Link. TS allocation is not needed and TPN shall be set to '1' for mapping ODU1 over OTU1. This entry is not present if the OTN Link is an HO-ODU1 Link."
           },
           {
             "index ": 2,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-slot",
-            "tsg": "tsg-1.25G",
-            "odu-type-list": "[ ODU0 ]",
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODU0 ]",
+              "// default priority": 7
+            },
             "// ts-range": "1-2",
             "// comment": "Since no TPN range is reportd for ODU0 with 1.25G TSG, the TPN allocation rule is fixed (TPN = TS#) for mapping LO-ODU0 over HO-ODU1 with 1.25G TSG. See Table 4 of [RFC7139]."
           }
@@ -33,49 +38,59 @@
           {
             "index ": 1,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "//not-present tsg": "",
-            "odu-type-list": "[ ODU2 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "//not-present tsg": "",
+              "odu-type-list": "[ ODU2 ]",
+              "// default priority": 7
+            },
             "// tpn-range": 1,
             "// comment": "Since no TS range and no TSG are reported for ODU2, the link is an OTU2 Link. TS allocation is not needed and TPN shall be set to '1' for mapping ODU2 over OTU2. This entry is not present if the OTN Link is an HO-ODU2 Link."
           },
           {
             "index ": 2,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-slot",
-            "tsg": "tsg-1.25G",
-            "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1 ]",
+              "// default priority": 7
+            },
             "// ts-range": "1-8"
           },
           {
             "index ": 3,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "tsg": "tsg-1.25G ",
-            "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G ",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0 ]",
+              "// default priority": 7
+            },
             "// tpn-range": "1-8",
             "// comment": "Since this TPN range is reported for ODUflex and ODU0 with 1.25G TSG, the TPN assignment rule is flexible within a common range for mapping LO-ODUflex and LO-ODU0 over HO-ODU2 with 1.25G TSG. See Table 4 of [RFC7139]."
           },
           {
             "index ": 4,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "tsg": "tsg-1.25G",
-            "odu-type-list": "[ ODU1 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODU1 ]",
+              "// default priority": 7
+            },
             "// tpn-range": "1-4",
             "// comment": "Since this TPN range is reported for ODU1 with 1.25G TSG, the TPN assignment rule is flexible within a common range for mapping LO-ODU1 over HO-ODU2 with 1.25G TSG. See Table 4 of [RFC7139]."
           },
           {
             "index ": 5,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-slot",
-            "tsg": "tsg-2.5G",
-            "odu-type-list": "[ ODU1 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-2.5G",
+              "odu-type-list": "[ ODU1 ]",
+              "// default priority": 7
+            },
             "// ts-range": "1-4",
             "// comment": "Since no TPN range is reported for ODU1 with 2.5G TSG, the TPN allocation rule is fixed (TPN = TS#) for mapping LO-ODU1 over HO-ODU2 with 2.5G TSG. See Table 3 of [RFC7139]."
           }
@@ -89,68 +104,82 @@
           {
             "index ": 1,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "//not-present tsg": "",
-            "odu-type-list": "[ ODU3 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "//not-present tsg": "",
+              "odu-type-list": "[ ODU3 ]",
+              "// default priority": 7
+            },
             "// tpn-range": 1,
             "// comment": "Since no TS range and no TSG are reported for ODU3, the link is an OTU3 Link. TS allocation is not needed and TPN shall be set to '1' for mapping ODU3 over OTU3. This entry is not present if the OTN Link is an HO-ODU3 Link."
           },
           {
             "index ": 2,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-slot",
-            "tsg": "tsg-1.25G",
-            "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1, ODU2, ODU2e ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1, ODU2, ODU2e ]",
+              "// default priority": 7
+            },
             "// ts-range": "1-32"
           },
           {
             "index ": 3,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "tsg": "tsg-1.25G",
-            "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU2e ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU2e ]",
+              "// default priority": 7
+            },
             "// tpn-range": "1-32",
             "// comment": "Since this TPN range is reported for ODUflex, ODU0 and ODU2e with 1.25G TSG, the TPN assignment rule is flexible within a common range for mapping LO-ODUflex, LO-ODU0 and LO-ODU2e over HO-ODU3 with 1.25G TSG. See Table 4 of [RFC7139]."
           },
           {
             "index ": 4,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "tsg": "tsg-1.25G",
-            "odu-type-list": "[ ODU1 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODU1 ]",
+              "// default priority": 7
+            },
             "// tpn-range": "1-16",
             "// comment": "Since this TPN range is reported for ODU1 with 1.25G TSG, the TPN assignment rule is flexible within a common range for mapping LO-ODU1 over HO-ODU3 with 1.25G TSG. See Table 4 of [RFC7139]."
           },
           {
             "index ": 5,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "tsg": "tsg-1.25G",
-            "odu-type-list": "[ ODU2 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODU2 ]",
+              "// default priority": 7
+            },
             "// tpn-range": "1-4",
             "// comment": "Since this TPN range is reported for ODU2 with 1.25G TSG, the TPN assignment rule is flexible within a common range for mapping LO-ODU2 over HO-ODU3 with 1.25G TSG. See Table 4 of [RFC7139]."
           },
           {
             "index ": 6,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-slot",
-            "tsg": "tsg-2.5G",
-            "odu-type-list": "[ ODU1, ODU2 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-2.5G",
+              "odu-type-list": "[ ODU1, ODU2 ]",
+              "// default priority": 7
+            },
             "// ts-range": "1-16"
           },
           {
             "index ": 7,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "tsg": "tsg-2.5G ",
-            "odu-type-list": "[ ODU2 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-2.5G ",
+              "odu-type-list": "[ ODU2 ]",
+              "// default priority": 7
+            },
             "// tpn-range": "1-4",
             "// comment": "Since this TPN range is reported for ODU2 with 2.5G TSG, the TPN assignment rule is flexible within a common range for mapping LO-ODU2 over HO-ODU3. Since no TPN range is reported for ODU1 with 2.5G TSG, the TPN allocation rule is fixed (TPN = TS#) for mapping LO-ODU1 over HO-ODU3 with 2.5G TSG. See Table 3 of [RFC7139]."
           }
@@ -164,29 +193,35 @@
           {
             "index ": 1,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "//not-present tsg": "",
-            "odu-type-list": "[ ODU4 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "//not-present tsg": "",
+              "odu-type-list": "[ ODU4 ]",
+              "// default priority": 7
+            },
             "// tpn-range": 1,
             "// comment": "Since no TS range and no TSG are reported for ODU4, the link is an OTU4 Link. TS allocation is not needed and TPN shall be set to '1' for mapping ODU4 over OTU4. This entry is not present if the OTN Link is an HO-ODU4 Link."
           },
           {
             "index ": 2,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-slot",
-            "tsg": "tsg-1.25G",
-            "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1, ODU2, ODU2e, ODU3 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1, ODU2, ODU2e, ODU3 ]",
+              "// default priority": 7
+            },
             "// ts-range": "1-80"
           },
           {
             "index ": 3,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "tsg": "tsg-1.25G",
-            "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1, ODU2, ODU2e, ODU3 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1, ODU2, ODU2e, ODU3 ]",
+              "// default priority": 7
+            },
             "// tpn-range": "1-80",
             "// comment": "Since this TPN range is reported for any LO-ODUj with 1.25G TSG, the TPN assignment rule is flexible within a common range for mapping any LO-ODUj over HO-ODU4 with 1.25G TSG. See Table 4 of [RFC7139]."
           }
@@ -200,20 +235,24 @@
           {
             "index ": 1,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-slot",
-            "tsg": "tsg-5G",
-            "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1, ODU2, ODU2e, ODU3, ODU4 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-5G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1, ODU2, ODU2e, ODU3, ODU4 ]",
+              "// default priority": 7
+            },
             "// ts-range": "1-20",
             "// comment": "Since the TS range is specified for any ODUk, the OTN Link is an ODUCn Link."
           },
           {
             "index ": 2,
             "// default restriction": "inclusive",
-            "range-type": "label-range-trib-port",
-            "tsg": "tsg-5G",
-            "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1, ODU2, ODU2e, ODU3, ODU4 ]",
-            "// default priority": 7,
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-5G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, ODU1, ODU2, ODU2e, ODU3, ODU4 ]",
+              "// default priority": 7
+            },
             "// tpn-range": "1-10",
             "// comment": "Since this TPN range is reported for any ODUk with 5G TSG, the TPN assignment rule is flexible within a common range for mapping any ODUk over ODUCn with 5G TSG."
           }
