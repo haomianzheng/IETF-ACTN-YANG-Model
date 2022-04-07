@@ -31,7 +31,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2022-03-24" {
+  revision "2022-04-07" {
     description
       "Initial Version";
     reference
@@ -1078,7 +1078,7 @@ module ietf-layer1-types {
         description
           "OTN label range type, either TPN range or TS range";
         case trib-port {
-          leaf otn-tpn {
+          leaf tpn {
             when "../../../../otn-label-range/range-type = 
                   'trib-port'" {
               description 
@@ -1087,14 +1087,14 @@ module ietf-layer1-types {
             } 
             type otn-tpn;
             description
-              "Tributary Port Number.";
+              "Tributary Port Number (TPN).";
             reference
               "RFC7139: GMPLS Signaling Extensions for Control of
               Evolving G.709 Optical Transport Networks.";
           }
         }
         case trib-slot {
-          leaf otn-ts {
+          leaf ts {
             when "../../../../otn-label-range/range-type = 
                   'trib-slot'" {
               description 
@@ -1103,7 +1103,7 @@ module ietf-layer1-types {
             } 
             type otn-ts;
             description
-              "Tributary Slot Number.";
+              "Tributary Slot (TS) number.";
             reference
               "RFC7139: GMPLS Signaling Extensions for Control of
               Evolving G.709 Optical Transport Networks";
@@ -1121,10 +1121,10 @@ module ietf-layer1-types {
     container otn {
       description
         "Label hop for OTN.";
-      leaf otn-tpn {
+      leaf tpn {
         type otn-tpn;
         description
-          "Tributary Port Number.";
+          "Tributary Port Number (TPN).";
         reference
           "RFC7139: GMPLS Signaling Extensions for Control of
           Evolving G.709 Optical Transport Networks.";
@@ -1133,7 +1133,7 @@ module ietf-layer1-types {
         type identityref {
           base tributary-slot-granularity;
         }
-        description "Tributary slot granularity.";
+        description "Tributary Slot Granularity (TSG).";
         reference
           "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
           Transport Network (OTN)";
@@ -1144,7 +1144,7 @@ module ietf-layer1-types {
                   + "(,[1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?)*)";
           }
         description
-          "A list of available tributary slots ranging
+          "A list of available Tributary Slots (TS) ranging
           between 1 and 4095. If multiple values or  
           ranges are given, they all must be disjoint 
           and must be in ascending order.
@@ -1175,7 +1175,7 @@ module ietf-layer1-types {
         description
           "OTN label range type, either TPN range or TS range";
         case trib-port {
-          leaf otn-tpn {
+          leaf tpn {
             when "../../../otn-label-range/range-type = 
                   'trib-port'" {
               description 
@@ -1185,14 +1185,14 @@ module ietf-layer1-types {
             type otn-tpn;
             description
               "Label step which represents possible increments for 
-              Tributary Port Number.";
+              Tributary Port Number (TPN).";
             reference
               "RFC7139: GMPLS Signaling Extensions for Control of 
               Evolving G.709 Optical Transport Networks.";
           }
         }
         case trib-slot {
-          leaf otn-ts {
+          leaf ts {
             when "../../../otn-label-range/range-type = 
                   'trib-slot'" {
               description 
@@ -1202,7 +1202,7 @@ module ietf-layer1-types {
             type otn-ts; 
             description
               "Label step which represents possible increments for 
-              Tributary Slot Number.";
+              Tributary Slot (TS) number.";
             reference
               "RFC7139: GMPLS Signaling Extensions for Control of
               Evolving G.709 Optical Transport Networks.";
