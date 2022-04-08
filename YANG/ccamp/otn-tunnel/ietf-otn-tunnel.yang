@@ -37,7 +37,7 @@ module ietf-otn-tunnel {
                <mailto:victor.lopezalvarez@telefonica.com>
 
      Editor:   Yunbin Xu
-               <mailto:xuyunbin@ritt.cn>";
+               <mailto:xuyunbin@caict.ac.cn>";
 
   description
     "This module defines a model for OTN Tunnel Services.
