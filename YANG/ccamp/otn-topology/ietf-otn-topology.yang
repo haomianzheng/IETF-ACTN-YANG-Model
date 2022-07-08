@@ -106,10 +106,10 @@ module ietf-otn-topology {
       leaf odtu-flex-type {
         type l1-types:odtu-flex-type;
         description
-          "The type of Optical Data Tributary Unit (ODTU) 
-          whose nominal bitrate is used to compute the number of 
-          timeslots (TS) used by the ODUflex LSPs set up on this
-          OTN Link.";
+          "The type of Optical Data Tributary Unit (ODTU)
+          whose nominal bitrate is used to compute the number of
+          Tributary Slots (TS) required by the ODUflex LSPs set up
+          on this OTN Link.";
       }
       leaf tsg {
         type identityref {
@@ -157,10 +157,10 @@ module ietf-otn-topology {
       leaf odtu-flex-type {
         type l1-types:odtu-flex-type;
         description
-          "The type of Optical Data Tributary Unit (ODTU) 
-          whose nominal bitrate is used to compute the number of 
-          Tributary Slots (TS) used by the ODUflex LSPs set up on this
-          OTN Link Termination Point (LTP).";
+          "The type of Optical Data Tributary Unit (ODTU)
+          whose nominal bitrate is used to compute the number of
+          Tributary Slots (TS) required by the ODUflex LSPs set up
+          on this OTN Link Termination Point (LTP).";
       }
     }
     container cbr-svc {
@@ -227,10 +227,11 @@ module ietf-otn-topology {
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
-              "The type of Optical Data Tributary Unit (ODTU) 
-              whose nominal bitrate is used to compute the number of 
-              Tributary Slots (TS) required by the ODUflex LSPs set up along 
-              the underlay path of this OTN connectivity matrix.";
+              "The type of Optical Data Tributary Unit (ODTU)
+              whose nominal bitrate is used to compute the number of
+              Tributary Slots (TS) required by the ODUflex LSPs
+              set up along the underlay paths of these OTN
+              connectivity matrices.";
           }
         }
       }
@@ -258,10 +259,11 @@ module ietf-otn-topology {
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
-              "The type of Optical Data Tributary Unit (ODTU) 
-              whose nominal bitrate is used to compute the number of 
-              Tributary Slots (TS) used by the ODUflex LSPs set up on this
-              OTN connectivity matrix entry.";
+              "The type of Optical Data Tributary Unit (ODTU)
+              whose nominal bitrate is used to compute the number of
+              Tributary Slots (TS) required by the ODUflex LSPs
+              set up along the underlay path of this OTN
+              connectivity matrix entry.";
           }
         }
       }
@@ -288,10 +290,11 @@ module ietf-otn-topology {
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
-              "The type of Optical Data Tributary Unit (ODTU) 
-              whose nominal bitrate is used to compute the number of 
-              Tributary Slots (TS) used by the ODUflex LSPs set up on this
-              OTN connectivity matrix.";
+              "The type of Optical Data Tributary Unit (ODTU)
+              whose nominal bitrate is used to compute the number of
+              Tributary Slots (TS) required by the ODUflex LSPs
+              set up along the underlay paths of these OTN
+              connectivity matrices.";
           }
         }
       }
@@ -319,10 +322,11 @@ module ietf-otn-topology {
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
-              "The type of Optical Data Tributary Unit (ODTU) 
-              whose nominal bitrate is used to compute the number of 
-              Tributary Slots (TS) used by the ODUflex LSPs set up on this
-              OTN connectivity matrix entry.";
+              "The type of Optical Data Tributary Unit (ODTU)
+              whose nominal bitrate is used to compute the number of
+              Tributary Slots (TS) required by the ODUflex LSPs
+              set up along the underlay path of this OTN
+              connectivity matrix entry.";
           }
         }
       }
@@ -350,10 +354,11 @@ module ietf-otn-topology {
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
-              "The type of Optical Data Tributary Unit (ODTU) 
-              whose nominal bitrate is used to compute the number of 
-              Tributary Slots (TS) used by the ODUflex LSPs set up on this
-              OTN Tunnel Termination Point (TTP).";
+              "The type of Optical Data Tributary Unit (ODTU)
+              whose nominal bitrate is used to compute the number of
+              Tributary Slots (TS) required by the ODUflex LSPs
+              terminated on this OTN Tunnel Termination Point
+              (TTP).";
           }
         }
       }
@@ -381,10 +386,11 @@ module ietf-otn-topology {
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
-              "The type of Optical Data Tributary Unit (ODTU) 
-              whose nominal bitrate is used to compute the number of 
-              Tributary Slots (TS) used by the ODUflex LSPs set up on this
-              OTN Local Link Connectivity list.";
+              "The type of Optical Data Tributary Unit (ODTU)
+              whose nominal bitrate is used to compute the number of
+              Tributary Slots (TS) required by the ODUflex LSPs
+              set up along the underlay paths of these OTN Local
+              Link Connectivities.";
           }
         }
       }
@@ -413,10 +419,11 @@ module ietf-otn-topology {
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
-              "The type of Optical Data Tributary Unit (ODTU) 
-              whose nominal bitrate is used to compute the number of 
-              Tributary Slots (TS) used by the ODUflex LSPs set up on this
-              OTN Local Link Connectivity entry.";
+              "The type of Optical Data Tributary Unit (ODTU)
+              whose nominal bitrate is used to compute the number of
+              Tributary Slots (TS) required by the ODUflex LSPs
+              set up along the underlay path of this OTN Local
+              Link Connectivyt entry.";
           }
         }
       }
@@ -438,9 +445,9 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-max-path-bandwidth {
         description
-          "The odtu-flex-type of the OTN Link is used to compute 
-          the number of Tributary Slots (TS) used by the ODUflex 
-          LSPs set up on this OTN Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on this OTN Link.";
       }
     }
   }
@@ -460,9 +467,9 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-link-bandwidth {
         description
-          "The odtu-flex-type of the OTN Link is used to compute 
-          the number of Tributary Slots (TS) used by the ODUflex 
-          LSPs set up on this OTN Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on this OTN Link.";
       }
     }
   }
@@ -482,9 +489,9 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-link-bandwidth {
         description
-          "The odtu-flex-type of the Link is used to compute the 
-          number of Tributary Slots (TS) used by the ODUflex LSPs 
-          set up on this Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on this OTN Link.";
       }
     }
   }
@@ -504,9 +511,9 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-link-bandwidth {
         description
-          "The odtu-flex-type of the Link is used to compute the 
-          number of Tributary Slots (TS) used by the ODUflex LSPs 
-          set up on this Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on this OTN Link.";
       }
     }
   }
@@ -528,9 +535,9 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-max-path-bandwidth {
         description
-          "The odtu-flex-type of the OTN Link is used to compute 
-          the number of Tributary Slots (TS) used by the ODUflex 
-          LSPs set up on this OTN Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on this OTN Link.";
       }
     }
   }
@@ -551,9 +558,9 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-link-bandwidth {
         description
-          "The odtu-flex-type of the Link is used to compute the 
-          number of Tributary Slots (TS) used by the ODUflex LSPs 
-          set up on this Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on this OTN Link.";
       }
     }
   }
@@ -574,9 +581,9 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-link-bandwidth {
         description
-          "The odtu-flex-type of the Link is used to compute the 
-          number of Tributary Slots (TS) used by the ODUflex LSPs 
-          set up on this Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on this OTN Link.";
       }
     }
   }
@@ -597,9 +604,9 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-link-bandwidth {
         description
-          "The odtu-flex-type of the Link is used to compute the 
-          number of Tributary Slots (TS) used by the ODUflex LSPs 
-          set up on this Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on this OTN Link.";
       }
     }
   }
@@ -615,10 +622,10 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-max-path-bandwidth {
         description
-          "The odtu-flex-type of the OTN Link using this Link 
-          Template is used to compute the number of Tributary 
-          Slots (TS) used by the ODUflex LSPs set up on that 
-          OTN Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on the OTN Link that uses this
+          Link Template.";
       }
     }
   }
@@ -632,10 +639,10 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-link-bandwidth {
         description
-          "The odtu-flex-type of the OTN Link using this Link 
-          Template is used to compute the number of Tributary 
-          Slots (TS) used by the ODUflex LSPs set up on that 
-          OTN Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on the OTN Link that uses this
+          Link Template.";
       }
     }
   }
@@ -650,10 +657,10 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-link-bandwidth {
         description
-          "The odtu-flex-type of the OTN Link using this Link 
-          Template is used to compute the number of Tributary 
-          Slots (TS) used by the ODUflex LSPs set up on that 
-          OTN Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on the OTN Link that uses this
+          Link Template.";
       }
     }
   }
@@ -667,10 +674,10 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-link-bandwidth {
         description
-          "The odtu-flex-type of the OTN Link using this Link 
-          Template is used to compute the number of Tributary 
-          Slots (TS) used by the ODUflex LSPs set up on that 
-          OTN Link.";
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on the OTN Link that uses this
+          Link Template.";
       }
     }
   }
