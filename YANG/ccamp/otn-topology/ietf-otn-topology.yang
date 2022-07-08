@@ -125,6 +125,19 @@ module ietf-otn-topology {
         description "distance in the unit of kilometers";
       }
     }
+    container cbr-link {
+      presence
+        "When present, indicates that the Link is a CBR Link.";
+      description
+        "Attributes of the CBR Link.";
+      leaf-list supported-cbr-signal {
+        type identityref {
+          base l1-types:cbr-signal;
+        }
+        description
+          "List of client signal types supported by the LTP.";
+      }
+    }
   }
 
   augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
@@ -146,19 +159,19 @@ module ietf-otn-topology {
         description
           "The type of Optical Data Tributary Unit (ODTU) 
           whose nominal bitrate is used to compute the number of 
-          timeslots (TS) used by the ODUflex LSPs set up on this
+          Tributary Slots (TS) used by the ODUflex LSPs set up on this
           OTN Link Termination Point (LTP).";
       }
     }
-    container client-svc {
+    container cbr-svc {
       presence
         "When present, indicates that the Link Termination Point 
         (LTP) is a transparent client capable LTP.";
       description
         "OTN LTP Service attributes.";
-      leaf-list supported-client-signal {
+      leaf-list supported-cbr-signal {
         type identityref {
-          base l1-types:client-signal;
+          base l1-types:cbr-signal;
         }
         description
           "List of client signal types supported by the LTP.";
@@ -186,9 +199,10 @@ module ietf-otn-topology {
     case otn {
       uses l1-types:otn-max-path-bandwidth {
         description
-          "The odtu-flex-type of the OTN Link Termination Point 
-          (LTP) is used to compute the number of Tributary Slots 
-          (TS) used by the ODUflex LSPs set up on this OTN LTP.";
+          "The odtu-flex-type attribute of the OTN Link Termination
+          Point (LTP) is used to compute the number of Tributary
+          Slots (TS) required by the ODUflex LSPs set up on this
+          OTN LTP.";
       }
     }
   }
@@ -215,8 +229,8 @@ module ietf-otn-topology {
             description
               "The type of Optical Data Tributary Unit (ODTU) 
               whose nominal bitrate is used to compute the number of 
-              timeslots (TS) used by the ODUflex LSPs set up on this
-              OTN connectivity matrix.";
+              Tributary Slots (TS) required by the ODUflex LSPs set up along 
+              the underlay path of this OTN connectivity matrix.";
           }
         }
       }
@@ -246,7 +260,7 @@ module ietf-otn-topology {
             description
               "The type of Optical Data Tributary Unit (ODTU) 
               whose nominal bitrate is used to compute the number of 
-              timeslots (TS) used by the ODUflex LSPs set up on this
+              Tributary Slots (TS) used by the ODUflex LSPs set up on this
               OTN connectivity matrix entry.";
           }
         }
@@ -276,7 +290,7 @@ module ietf-otn-topology {
             description
               "The type of Optical Data Tributary Unit (ODTU) 
               whose nominal bitrate is used to compute the number of 
-              timeslots (TS) used by the ODUflex LSPs set up on this
+              Tributary Slots (TS) used by the ODUflex LSPs set up on this
               OTN connectivity matrix.";
           }
         }
@@ -307,7 +321,7 @@ module ietf-otn-topology {
             description
               "The type of Optical Data Tributary Unit (ODTU) 
               whose nominal bitrate is used to compute the number of 
-              timeslots (TS) used by the ODUflex LSPs set up on this
+              Tributary Slots (TS) used by the ODUflex LSPs set up on this
               OTN connectivity matrix entry.";
           }
         }
@@ -338,7 +352,7 @@ module ietf-otn-topology {
             description
               "The type of Optical Data Tributary Unit (ODTU) 
               whose nominal bitrate is used to compute the number of 
-              timeslots (TS) used by the ODUflex LSPs set up on this
+              Tributary Slots (TS) used by the ODUflex LSPs set up on this
               OTN Tunnel Termination Point (TTP).";
           }
         }
@@ -369,7 +383,7 @@ module ietf-otn-topology {
             description
               "The type of Optical Data Tributary Unit (ODTU) 
               whose nominal bitrate is used to compute the number of 
-              timeslots (TS) used by the ODUflex LSPs set up on this
+              Tributary Slots (TS) used by the ODUflex LSPs set up on this
               OTN Local Link Connectivity list.";
           }
         }
@@ -401,7 +415,7 @@ module ietf-otn-topology {
             description
               "The type of Optical Data Tributary Unit (ODTU) 
               whose nominal bitrate is used to compute the number of 
-              timeslots (TS) used by the ODUflex LSPs set up on this
+              Tributary Slots (TS) used by the ODUflex LSPs set up on this
               OTN Local Link Connectivity entry.";
           }
         }

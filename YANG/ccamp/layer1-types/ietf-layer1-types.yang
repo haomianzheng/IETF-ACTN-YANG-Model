@@ -253,9 +253,9 @@ module ietf-layer1-types {
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity client-signal {
+  identity cbr-signal {
     description
-      "Base identity from which specific client signal is derived";
+      "Base identity from which specific CBR signal is derived";
   }
 
   identity coding-func {
@@ -267,7 +267,7 @@ module ietf-layer1-types {
   }
 
   identity ETH-1Gb {
-    base client-signal;
+    base cbr-signal;
     description
       "Client signal type of 1GbE";
     reference
@@ -279,7 +279,7 @@ module ietf-layer1-types {
   }
 
   identity ETH-10Gb-LAN {
-    base client-signal;
+    base cbr-signal;
     description
       "Client signal type of ETH-10Gb-LAN (10.3 Gb/s)";
     reference
@@ -293,7 +293,7 @@ module ietf-layer1-types {
   }
 
   identity ETH-10Gb-WAN {
-    base client-signal;
+    base cbr-signal;
     description
       "Client signal type of ETH-10Gb-WAN (9.95 Gb/s)";
     reference
@@ -307,7 +307,7 @@ module ietf-layer1-types {
   }
 
   identity ETH-40Gb {
-    base client-signal;
+    base cbr-signal;
     description
       "Client signal type of 40GbE";
     reference
@@ -319,7 +319,7 @@ module ietf-layer1-types {
   }
 
   identity ETH-100Gb {
-    base client-signal;
+    base cbr-signal;
     description
       "Client signal type of 100GbE";
     reference
@@ -331,7 +331,7 @@ module ietf-layer1-types {
   }
 
   identity STM-1 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of STM-1;
@@ -347,7 +347,7 @@ module ietf-layer1-types {
   }
 
   identity STM-4 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of STM-4;
@@ -363,7 +363,7 @@ module ietf-layer1-types {
   }
 
   identity STM-16 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of STM-16;
@@ -379,7 +379,7 @@ module ietf-layer1-types {
   }
 
   identity STM-64 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of STM-64;
@@ -395,7 +395,7 @@ module ietf-layer1-types {
   }
 
   identity STM-256 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of STM-256;
@@ -411,7 +411,7 @@ module ietf-layer1-types {
   }
 
   identity OC-3 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of OC3;
@@ -425,7 +425,7 @@ module ietf-layer1-types {
   }
 
   identity OC-12 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of OC12;
@@ -439,7 +439,7 @@ module ietf-layer1-types {
   }
 
   identity OC-48 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of OC48;
@@ -453,7 +453,7 @@ module ietf-layer1-types {
   }
 
   identity OC-192 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of OC192;
@@ -467,7 +467,7 @@ module ietf-layer1-types {
   }
 
   identity OC-768 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of OC768;
@@ -481,7 +481,7 @@ module ietf-layer1-types {
   }
 
   identity FC-100 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-100;
@@ -497,7 +497,7 @@ module ietf-layer1-types {
   }
 
   identity FC-200 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-200;
@@ -513,7 +513,7 @@ module ietf-layer1-types {
   }
 
   identity FC-400 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-400;
@@ -529,7 +529,7 @@ module ietf-layer1-types {
   }
 
   identity FC-800 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-800;
@@ -545,7 +545,7 @@ module ietf-layer1-types {
   }
 
   identity FC-1200 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-1200;
@@ -561,7 +561,7 @@ module ietf-layer1-types {
   }
 
   identity FC-1600 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-1600;
@@ -577,7 +577,7 @@ module ietf-layer1-types {
   }
 
   identity FC-3200 {
-    base client-signal;
+    base cbr-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-3200;
@@ -593,7 +593,7 @@ module ietf-layer1-types {
   }
 
   identity FICON-4G {
-    base client-signal;
+    base cbr-signal;
     description
       "Client signal type of Fibre Connection 4G";
     reference
@@ -605,7 +605,7 @@ module ietf-layer1-types {
   }
 
   identity FICON-8G {
-    base client-signal;
+    base cbr-signal;
     description
       "Client signal type of Fibre Connection 8G";
     reference
@@ -895,14 +895,45 @@ module ietf-layer1-types {
       }
     }
     description
-      "The type of Optical Data Tributary Unit (ODTU) 
-      whose nominal bitrate is used to compute the number of 
-      Tributary Slots (TS) used by an ODUflex LSP,  according to 
+      "The type of Optical Data Tributary Unit (ODTU),
+      whose nominal bitrate is used to compute the number of
+      Tributary Slots (TS) required by an ODUflex LSP, according to
       the (19-1a) and (20-1a) formulas defined in G.709.";
     reference
       "ITU-T G.709 v6.0 (06/2020), Table 7-7, clause 19.6 and 
       clause 20.5: Interfaces for the Optical Transport 
       Network (OTN)";
+  }
+
+  typedef bandwidth-scientific-notation {
+    type string {
+      pattern
+        '0(\.0?)?([eE](\+)?0?)?|'
+      + '[1-9](\.[0-9]{0,6})?[eE](\+)?(9[0-6]|[1-8][0-9]|0?[0-9])?';
+    }
+    units "bps";
+    description
+      "Bandwidth values, expressed using the scientific notation
+      in bits per second.
+      The encoding format is the external decimal-significant
+      character sequences specified in IEEE 754 and ISO/IEC C99
+      for 32-bit decimal floating-point numbers:
+      (-1)**(S) * 10**(Exponent) * (Significant),
+      where Significant uses 7 digits.
+      An implementation for this representation may use decimal32
+      or binary32. The range of the Exponent is from -95 to +96
+      for decimal32, and from -38 to +38 for binary32.
+      As a bandwidth value, the format is restricted to be
+      normalized, non-negative, and non-fraction:
+      n.dddddde{+}dd, N.DDDDDDE{+}DD, 0e0 or 0E0,
+      where 'd' and 'D' are decimal digits; 'n' and 'N' are
+      non-zeror decimal digits; 'e' and 'E' indicate a power of ten.
+      Some examples are 0e0, 1e10, and 9.953e9.";
+    reference
+      "IEEE Std 754-2008: IEEE Standard for Floating-Point
+      Arithmetic.
+      ISO/IEC C99: Information technology - Programming
+      Languages - C.";
   }
 
   /*
@@ -976,7 +1007,7 @@ module ietf-layer1-types {
            Optical Transport Network (OTN)";
         case generic {
           leaf nominal-bit-rate {
-            type uint64;
+            type l1-types:bandwidth-scientific-notation;
             units "bps";
             mandatory true;
             description
@@ -984,9 +1015,9 @@ module ietf-layer1-types {
           }
         }
         case cbr {
-          leaf client-type {
+          leaf cbr-client-type {
             type identityref {
-              base client-signal;
+              base cbr-signal;
             }
             mandatory true;
             description
@@ -1036,7 +1067,7 @@ module ietf-layer1-types {
         }
         case packet {
           leaf opuflex-payload-rate {
-            type uint64;
+            type l1-types:bandwidth-scientific-notation;
             units "Kbps";
             mandatory true;
             description
