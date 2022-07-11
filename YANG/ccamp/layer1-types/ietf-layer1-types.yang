@@ -1083,7 +1083,6 @@ module ietf-layer1-types {
               type l1-types:bandwidth-scientific-notation;
               type rt-types:bandwidth-ieee-float32;
             }
-            units "Kbps";
             mandatory true;
             description
               "Either the GFP-F encapsulated packet client nominal
