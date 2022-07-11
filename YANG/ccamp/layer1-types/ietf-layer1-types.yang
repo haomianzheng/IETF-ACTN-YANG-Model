@@ -3,6 +3,12 @@ module ietf-layer1-types {
   namespace "urn:ietf:params:xml:ns:yang:ietf-layer1-types";
   prefix "l1-types";
 
+  import ietf-routing-types {
+    prefix rt-types;
+    reference
+      "RFC 8294: Common YANG Data Types for the Routing Area";
+  }
+
   organization
     "IETF CCAMP Working Group";
   contact
@@ -916,11 +922,13 @@ module ietf-layer1-types {
     description
       "Bandwidth values, expressed using the scientific notation
       in bits per second.
+
       The encoding format is the external decimal-significant
       character sequences specified in IEEE 754 and ISO/IEC C99
       for 32-bit decimal floating-point numbers:
       (-1)**(S) * 10**(Exponent) * (Significant),
       where Significant uses 7 digits.
+
       An implementation for this representation may use decimal32
       or binary32. The range of the Exponent is from -95 to +96
       for decimal32, and from -38 to +38 for binary32.
@@ -1008,8 +1016,10 @@ module ietf-layer1-types {
            Optical Transport Network (OTN)";
         case generic {
           leaf nominal-bit-rate {
-            type l1-types:bandwidth-scientific-notation;
-            units "bps";
+            type union {
+              type l1-types:bandwidth-scientific-notation;
+              type rt-types:bandwidth-ieee-float32;
+            }
             mandatory true;
             description
               "Nominal ODUflex bit rate.";
@@ -1069,7 +1079,10 @@ module ietf-layer1-types {
         }
         case packet {
           leaf opuflex-payload-rate {
-            type l1-types:bandwidth-scientific-notation;
+            type union {
+              type l1-types:bandwidth-scientific-notation;
+              type rt-types:bandwidth-ieee-float32;
+            }
             units "Kbps";
             mandatory true;
             description
