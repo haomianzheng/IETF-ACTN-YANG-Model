@@ -3,10 +3,16 @@ module ietf-layer1-types {
   namespace "urn:ietf:params:xml:ns:yang:ietf-layer1-types";
   prefix "l1-types";
 
+  import ietf-routing-types {
+    prefix rt-types;
+    reference
+      "RFC 8294: Common YANG Data Types for the Routing Area";
+  }
+
   organization
     "IETF CCAMP Working Group";
   contact
-    "WG Web: <http://tools.ietf.org/wg/ccamp/>
+    "WG Web: <https://datatracker.ietf.org/wg/ccamp/>
      WG List: <mailto:ccamp@ietf.org>
 
      Editor: Haomian Zheng
@@ -24,14 +30,15 @@ module ietf-layer1-types {
 
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject
-     to the license terms contained in, the Simplified BSD License
+     to the license terms contained in, the Revised BSD License
      set forth in Section 4.c of the IETF Trust's Legal Provisions
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
+
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2022-04-07" {
+  revision "2022-07-11" {
     description
       "Initial Version";
     reference
@@ -254,7 +261,8 @@ module ietf-layer1-types {
 
   identity client-signal {
     description
-      "Base identity from which specific client signal is derived";
+      "Base identity from which specific Constant Bit Rate (CBR)
+      client signal is derived";
   }
 
   identity coding-func {
@@ -874,6 +882,69 @@ module ietf-layer1-types {
        Optical Transport Network (OTN)";
   }
 
+  typedef odtu-flex-type {
+    type enumeration {
+      enum "2" {
+        description
+          "The ODTU2.ts ODTU type.";
+      }
+      enum "3" {
+        description
+          "The ODTU3.ts ODTU type.";
+      }
+      enum "4" {
+        description
+          "The ODTU4.ts ODTU type.";
+      }
+      enum "Cn" {
+        description
+          "The ODTUCn.ts ODTU type.";
+      }
+    }
+    description
+      "The type of Optical Data Tributary Unit (ODTU),
+      whose nominal bitrate is used to compute the number of
+      Tributary Slots (TS) required by an ODUflex LSP, according to
+      the (19-1a) and (20-1a) formulas defined in G.709.";
+    reference
+      "ITU-T G.709 v6.0 (06/2020), Table 7-7, clause 19.6 and 
+      clause 20.5: Interfaces for the Optical Transport 
+      Network (OTN)";
+  }
+
+  typedef bandwidth-scientific-notation {
+    type string {
+      pattern
+        '0(\.0?)?([eE](\+)?0?)?|'
+      + '[1-9](\.[0-9]{0,6})?[eE](\+)?(9[0-6]|[1-8][0-9]|0?[0-9])?';
+    }
+    units "bps";
+    description
+      "Bandwidth values, expressed using the scientific notation
+      in bits per second.
+
+      The encoding format is the external decimal-significant
+      character sequences specified in IEEE 754 and ISO/IEC C99
+      for 32-bit decimal floating-point numbers:
+      (-1)**(S) * 10**(Exponent) * (Significant),
+      where Significant uses 7 digits.
+
+      An implementation for this representation may use decimal32
+      or binary32. The range of the Exponent is from -95 to +96
+      for decimal32, and from -38 to +38 for binary32.
+      As a bandwidth value, the format is restricted to be
+      normalized, non-negative, and non-fraction:
+      n.dddddde{+}dd, N.DDDDDDE{+}DD, 0e0 or 0E0,
+      where 'd' and 'D' are decimal digits; 'n' and 'N' are
+      non-zeror decimal digits; 'e' and 'E' indicate a power of ten.
+      Some examples are 0e0, 1e10, and 9.953e9.";
+    reference
+      "IEEE Std 754-2008: IEEE Standard for Floating-Point
+      Arithmetic.
+      ISO/IEC C99: Information technology - Programming
+      Languages - C.";
+  }
+
   /*
    * Groupings
    */
@@ -898,6 +969,21 @@ module ietf-layer1-types {
           type uint16;
           description "Number of ODUs";
         }
+        leaf ts-number {
+          when 'derived-from-or-self(../odu-type,"ODUflex") or
+                derived-from-or-self(../odu-type,
+                "ODUflex-resizable")' {
+            description
+              "Applicable when odu-type is ODUflex or
+              ODUflex-resizable";
+          }
+          type uint16 {
+            range "1..4095";
+          }
+          description
+            "The number of Tributary Slots (TS) that 
+            could be used by all the ODUflex LSPs.";
+        }
       }
     }
   }
@@ -916,7 +1002,8 @@ module ietf-layer1-types {
       }
       choice oduflex-type {
         when 'derived-from-or-self(./odu-type,"ODUflex") or
-              derived-from-or-self(./odu-type,"ODUflex-resizable")'{
+              derived-from-or-self(./odu-type,
+              "ODUflex-resizable")' {
           description
             "Applicable when odu-type is ODUflex or
              ODUflex-resizable";
@@ -929,8 +1016,10 @@ module ietf-layer1-types {
            Optical Transport Network (OTN)";
         case generic {
           leaf nominal-bit-rate {
-            type uint64;
-            units "bps";
+            type union {
+              type l1-types:bandwidth-scientific-notation;
+              type rt-types:bandwidth-ieee-float32;
+            }
             mandatory true;
             description
               "Nominal ODUflex bit rate.";
@@ -943,7 +1032,8 @@ module ietf-layer1-types {
             }
             mandatory true;
             description
-              "The CBR client signal for an ODUflex(CBR).";
+              "The type of Constant Bit Rate (CBR) client signal
+              of an ODUflex(CBR).";
           }
         }
         case gfp-n-k {
@@ -989,8 +1079,10 @@ module ietf-layer1-types {
         }
         case packet {
           leaf opuflex-payload-rate {
-            type uint64;
-            units "Kbps";
+            type union {
+              type l1-types:bandwidth-scientific-notation;
+              type rt-types:bandwidth-ieee-float32;
+            }
             mandatory true;
             description
               "Either the GFP-F encapsulated packet client nominal
@@ -998,6 +1090,36 @@ module ietf-layer1-types {
                packet client nominal bit rate for an ODUflex(IMP).";
           }
         }
+      }
+    }
+  }
+
+  grouping otn-max-path-bandwidth {
+    description
+      "Maximum bandwidth attributes for OTN paths.";
+    container otn {
+      description
+        "Maximum bandwidth attributes for OTN paths.";
+      leaf odu-type {
+        type identityref {
+          base odu-type;
+        }
+        description "ODU type";
+      }
+      leaf max-ts-number {
+        when 'derived-from-or-self(../odu-type,"ODUflex") or
+              derived-from-or-self(../odu-type,
+              "ODUflex-resizable")' {
+          description
+            "Applicable when odu-type is ODUflex or
+             ODUflex-resizable";
+        }
+        type uint16 {
+          range "1..4095";
+        }
+        description
+          "The maximum number of Tributary Slots (TS) that could be 
+          used  by an ODUflex LSP.";
       }
     }
   }
