@@ -66,7 +66,7 @@ module ietf-otn-topology {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2022-07-08 {
+  revision 2022-07-11 {
     description
       "Initial Revision";
     reference
@@ -125,17 +125,18 @@ module ietf-otn-topology {
         description "distance in the unit of kilometers";
       }
     }
-    container cbr-link {
+    container client-svc {
       presence
-        "When present, indicates that the Link is a CBR Link.";
+        "When present, indicates that the Link can support Costant
+        Bit Rate (CBR) client signals.";
       description
-        "Attributes of the CBR Link.";
-      leaf-list supported-cbr-signal {
+        "Attributes of the Link supporting CBR client signals.";
+      leaf-list supported-client-signal {
         type identityref {
-          base l1-types:cbr-signal;
+          base l1-types:client-signal;
         }
         description
-          "List of client signal types supported by the LTP.";
+          "List of client signal types supported by the Link.";
       }
     }
   }
@@ -163,15 +164,15 @@ module ietf-otn-topology {
           on this OTN Link Termination Point (LTP).";
       }
     }
-    container cbr-svc {
+    container client-svc {
       presence
         "When present, indicates that the Link Termination Point 
-        (LTP) is a transparent client capable LTP.";
+        (LTP) can support Costant Bit Rate (CBR) client signals.";
       description
         "OTN LTP Service attributes.";
-      leaf-list supported-cbr-signal {
+      leaf-list supported-client-signal {
         type identityref {
-          base l1-types:cbr-signal;
+          base l1-types:client-signal;
         }
         description
           "List of client signal types supported by the LTP.";

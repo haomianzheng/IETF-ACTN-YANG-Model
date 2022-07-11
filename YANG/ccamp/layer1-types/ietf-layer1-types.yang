@@ -32,7 +32,7 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2022-07-08" {
+  revision "2022-07-11" {
     description
       "Initial Version";
     reference
@@ -253,9 +253,10 @@ module ietf-layer1-types {
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
 
-  identity cbr-signal {
+  identity client-signal {
     description
-      "Base identity from which specific CBR signal is derived";
+      "Base identity from which specific Constant Bit Rate (CBR)
+      client signal is derived";
   }
 
   identity coding-func {
@@ -267,7 +268,7 @@ module ietf-layer1-types {
   }
 
   identity ETH-1Gb {
-    base cbr-signal;
+    base client-signal;
     description
       "Client signal type of 1GbE";
     reference
@@ -279,7 +280,7 @@ module ietf-layer1-types {
   }
 
   identity ETH-10Gb-LAN {
-    base cbr-signal;
+    base client-signal;
     description
       "Client signal type of ETH-10Gb-LAN (10.3 Gb/s)";
     reference
@@ -293,7 +294,7 @@ module ietf-layer1-types {
   }
 
   identity ETH-10Gb-WAN {
-    base cbr-signal;
+    base client-signal;
     description
       "Client signal type of ETH-10Gb-WAN (9.95 Gb/s)";
     reference
@@ -307,7 +308,7 @@ module ietf-layer1-types {
   }
 
   identity ETH-40Gb {
-    base cbr-signal;
+    base client-signal;
     description
       "Client signal type of 40GbE";
     reference
@@ -319,7 +320,7 @@ module ietf-layer1-types {
   }
 
   identity ETH-100Gb {
-    base cbr-signal;
+    base client-signal;
     description
       "Client signal type of 100GbE";
     reference
@@ -331,7 +332,7 @@ module ietf-layer1-types {
   }
 
   identity STM-1 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of STM-1;
@@ -347,7 +348,7 @@ module ietf-layer1-types {
   }
 
   identity STM-4 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of STM-4;
@@ -363,7 +364,7 @@ module ietf-layer1-types {
   }
 
   identity STM-16 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of STM-16;
@@ -379,7 +380,7 @@ module ietf-layer1-types {
   }
 
   identity STM-64 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of STM-64;
@@ -395,7 +396,7 @@ module ietf-layer1-types {
   }
 
   identity STM-256 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of STM-256;
@@ -411,7 +412,7 @@ module ietf-layer1-types {
   }
 
   identity OC-3 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of OC3;
@@ -425,7 +426,7 @@ module ietf-layer1-types {
   }
 
   identity OC-12 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of OC12;
@@ -439,7 +440,7 @@ module ietf-layer1-types {
   }
 
   identity OC-48 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of OC48;
@@ -453,7 +454,7 @@ module ietf-layer1-types {
   }
 
   identity OC-192 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of OC192;
@@ -467,7 +468,7 @@ module ietf-layer1-types {
   }
 
   identity OC-768 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of OC768;
@@ -481,7 +482,7 @@ module ietf-layer1-types {
   }
 
   identity FC-100 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-100;
@@ -497,7 +498,7 @@ module ietf-layer1-types {
   }
 
   identity FC-200 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-200;
@@ -513,7 +514,7 @@ module ietf-layer1-types {
   }
 
   identity FC-400 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-400;
@@ -529,7 +530,7 @@ module ietf-layer1-types {
   }
 
   identity FC-800 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-800;
@@ -545,7 +546,7 @@ module ietf-layer1-types {
   }
 
   identity FC-1200 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-1200;
@@ -561,7 +562,7 @@ module ietf-layer1-types {
   }
 
   identity FC-1600 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-1600;
@@ -577,7 +578,7 @@ module ietf-layer1-types {
   }
 
   identity FC-3200 {
-    base cbr-signal;
+    base client-signal;
     base coding-func;
     description
       "Client signal type of Fibre Channel FC-3200;
@@ -593,7 +594,7 @@ module ietf-layer1-types {
   }
 
   identity FICON-4G {
-    base cbr-signal;
+    base client-signal;
     description
       "Client signal type of Fibre Connection 4G";
     reference
@@ -605,7 +606,7 @@ module ietf-layer1-types {
   }
 
   identity FICON-8G {
-    base cbr-signal;
+    base client-signal;
     description
       "Client signal type of Fibre Connection 8G";
     reference
@@ -1015,13 +1016,14 @@ module ietf-layer1-types {
           }
         }
         case cbr {
-          leaf cbr-client-type {
+          leaf client-type {
             type identityref {
-              base cbr-signal;
+              base client-signal;
             }
             mandatory true;
             description
-              "The CBR client signal for an ODUflex(CBR).";
+              "The type of Constant Bit Rate (CBR) client signal
+              of an ODUflex(CBR).";
           }
         }
         case gfp-n-k {
