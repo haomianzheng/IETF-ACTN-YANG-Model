@@ -1035,4 +1035,3 @@ module: ietf-otn-topology
              |  +--rw tpn?   otn-tpn
              +--:(trib-slot)
                 +--rw ts?    otn-ts
-
