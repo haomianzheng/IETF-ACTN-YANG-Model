@@ -135,6 +135,7 @@ module ietf-otn-topology {
         type identityref {
           base l1-types:client-signal;
         }
+        min-elements 1;
         description
           "List of client signal types supported by the Link.";
       }
