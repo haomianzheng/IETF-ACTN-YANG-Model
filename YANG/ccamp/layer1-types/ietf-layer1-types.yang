@@ -44,7 +44,7 @@ module ietf-layer1-types {
     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
     they appear in all capitals, as shown here.";
 
-  revision "2022-10-10" {
+  revision "2022-10-12" {
     description
       "Initial Version";
     reference
