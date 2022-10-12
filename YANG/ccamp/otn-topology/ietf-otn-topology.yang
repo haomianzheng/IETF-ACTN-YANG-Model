@@ -117,8 +117,8 @@ module ietf-otn-topology {
         }
         description "Tributary slot granularity.";
         reference
-          "G.709/Y.1331, June 2016: Interfaces for the
-          Optical Transport Network (OTN)";
+          "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+          Transport Network (OTN)";
       }
       leaf distance {
         type uint32;
