@@ -66,7 +66,7 @@ module ietf-otn-topology {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2022-07-11 {
+  revision 2022-10-12 {
     description
       "Initial Revision";
     reference
@@ -117,8 +117,8 @@ module ietf-otn-topology {
         }
         description "Tributary slot granularity.";
         reference
-          "G.709/Y.1331, February 2016: Interfaces for the
-          Optical Transport Network (OTN)";
+          "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+          Transport Network (OTN)";
       }
       leaf distance {
         type uint32;
@@ -127,7 +127,7 @@ module ietf-otn-topology {
     }
     container client-svc {
       presence
-        "When present, indicates that the Link can support Costant
+        "When present, indicates that the Link supports Costant
         Bit Rate (CBR) client signals.";
       description
         "Attributes of the Link supporting CBR client signals.";
@@ -135,6 +135,7 @@ module ietf-otn-topology {
         type identityref {
           base l1-types:client-signal;
         }
+        min-elements 1;
         description
           "List of client signal types supported by the Link.";
       }
@@ -167,7 +168,7 @@ module ietf-otn-topology {
     container client-svc {
       presence
         "When present, indicates that the Link Termination Point 
-        (LTP) can support Costant Bit Rate (CBR) client signals.";
+        (LTP) supports Costant Bit Rate (CBR) client signals.";
       description
         "OTN LTP Service attributes.";
       leaf-list supported-client-signal {
