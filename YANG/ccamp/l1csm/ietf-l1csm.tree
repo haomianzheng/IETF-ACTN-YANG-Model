@@ -2,8 +2,8 @@ module: ietf-l1csm
   +--rw l1-connectivity
      +--rw access
      |  +--rw unis
-     |     +--rw uni* [id]
-     |        +--rw id                         string
+     |     +--rw uni* [uni-id]
+     |        +--rw uni-id                     string
      |        +--rw (uni-access-type)?
      |           +--:(mef)
      |           |  +--rw protocol             identityref
@@ -15,8 +15,10 @@ module: ietf-l1csm
         +--rw service* [service-id]
            +--rw service-id    string
            +--rw endpoint-1
-           |  +--rw id     string
-           |  +--rw uni    -> /l1-connectivity/access/unis/uni/id
+           |  +--rw endpoint-id    string
+           |  +--rw uni
+           |          -> /l1-connectivity/access/unis/uni/uni-id
            +--rw endpoint-2
-              +--rw id     string
-              +--rw uni    -> /l1-connectivity/access/unis/uni/id
+              +--rw endpoint-id    string
+              +--rw uni
+                      -> /l1-connectivity/access/unis/uni/uni-id
