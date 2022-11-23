@@ -170,7 +170,7 @@ module ietf-layer1-types {
   identity ODUflex {
     base odu-type;
     description
-      "ODUflex type (flexibile bit rate, not resizable).
+      "ODUflex type (flexible bit rate, not resizable).
 
        It could be used for any type of ODUflex, including
        ODUflex(CBR), ODUflex(GFP), ODUflex(GFP,n,k), ODUflex(IMP,s),
@@ -186,7 +186,7 @@ module ietf-layer1-types {
   identity ODUflex-resizable {
     base odu-type;
     description
-      "ODUflex protocol (flexibile bit rate, resizable).
+      "ODUflex protocol (flexible bit rate, resizable).
 
        It could be used only for ODUflex(GFP,n,k).";
     reference
@@ -913,7 +913,7 @@ module ietf-layer1-types {
       normalized, non-negative, and non-fraction:
       n.dddddde{+}dd, N.DDDDDDE{+}DD, 0e0 or 0E0,
       where 'd' and 'D' are decimal digits; 'n' and 'N' are
-      non-zeror decimal digits; 'e' and 'E' indicate a power of ten.
+      non-zero decimal digits; 'e' and 'E' indicate a power of ten.
       Some examples are 0e0, 1e10, and 9.953e9.";
     reference
       "IEEE Std 754-2008: IEEE Standard for Floating-Point
