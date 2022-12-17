@@ -102,7 +102,7 @@ module ietf-l1csm {
 
   grouping subscriber-l1vc-endpoint-attributes {
     description
-      "Subscriber layer 1 connection endpoint attributes";
+      "Subscriber Layer 1 connection endpoint attributes";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
 
