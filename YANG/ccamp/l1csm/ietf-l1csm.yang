@@ -156,7 +156,7 @@ module ietf-l1csm {
 
   container l1-connectivity {
     description
-      "Serves as a top-level container for a list of layer 1
+      "Serves as a top-level container for a list of Layer 1
        connection services (l1cs)";
     container access {
       description
