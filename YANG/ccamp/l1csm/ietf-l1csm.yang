@@ -132,7 +132,7 @@ module ietf-l1csm {
         type string;
         must '. != ../../endpoint-1/uni' {
           error-message
-            "The two end points must not be equal to each other. ";
+            "The two end point IDs must not be equal to each other. ";
         }
         mandatory true;
         description
