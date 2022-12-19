@@ -52,7 +52,7 @@ module ietf-l1csm {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2022-11-10" {
+  revision "2022-12-19" {
     description
       "Initial revision.";
     reference
