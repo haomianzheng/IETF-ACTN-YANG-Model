@@ -189,6 +189,9 @@ module ietf-l1csm {
                 mandatory true;
                 description
                   "The client signal being used at the UNI";
+                reference
+                  "ITU-T G.709 v6.0 (06/2020): Interfaces for the 
+                   Optical Transport Network (OTN)";
               }
             }
           }
