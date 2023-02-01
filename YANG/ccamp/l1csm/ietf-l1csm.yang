@@ -128,7 +128,7 @@ module ietf-l1csm {
           }
           mandatory true;
           description
-            "The subscriber L1VC end point ID";
+            "The UNI supporting the subscriber L1VC end point";
         }
       }
     }
