@@ -120,7 +120,7 @@ module ietf-l1csm {
           type string;
           mandatory true;
           description
-            "The subscriber L1VC end point ID of one end";
+            "The subscriber L1VC end point ID";
         }
         leaf uni {
           type leafref {
