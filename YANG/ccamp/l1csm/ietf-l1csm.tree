@@ -14,11 +14,8 @@ module: ietf-l1csm
      +--rw services
         +--rw service* [service-id]
            +--rw service-id    string
-           +--rw endpoint-1
-           |  +--rw endpoint-id    string
-           |  +--rw uni
-           |          -> /l1-connectivity/access/unis/uni/uni-id
-           +--rw endpoint-2
-              +--rw endpoint-id    string
-              +--rw uni
-                      -> /l1-connectivity/access/unis/uni/uni-id
+           +--rw endpoints
+              +--rw endpoint* [endpoint-id]
+                 +--rw endpoint-id    string
+                 +--rw uni
+                         -> /l1-connectivity/access/unis/uni/uni-id
