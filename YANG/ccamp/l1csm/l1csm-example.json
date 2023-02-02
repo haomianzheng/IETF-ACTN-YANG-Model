@@ -1,0 +1,41 @@
+{
+  "ietf-l1csm:l1-connectivity": {
+    "access": {
+      "unis": {
+        "uni": [
+          {
+            "uni-id": "MTL-HQ-Node3-Slot2-Port1",
+            "protocol": "ietf-layer1-types:Ethernet",
+            "coding": "ietf-layer1-types:ETH-10GR",
+            "optical-interface": "ietf-layer1-types:LR-PMD-10G"
+          },
+          {
+            "uni-id": "MTL-STL-Node5-Slot4-Port3",
+            "protocol": "ietf-layer1-types:Ethernet",
+            "coding": "ietf-layer1-types:ETH-10GR",
+            "optical-interface": "ietf-layer1-types:ER-PMD-10G"
+          }
+        ]
+      }
+    },
+    "services": {
+      "service": [
+        {
+          "service-id": "Sub-L1VC-1867-LT-MEGAMART",
+          "endpoints": {
+            "endpoint": [
+              {
+                "endpoint-id": "MTL-HQ_1867-MEGAMART",
+                "uni": "MTL-HQ-Node3-Slot2-Port1"
+              },
+              {
+                "endpoint-id": "MTL-STL_1867-MEGAMART",
+                "uni": "MTL-STL-Node5-Slot4-Port3"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
