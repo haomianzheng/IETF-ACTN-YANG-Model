@@ -18,10 +18,11 @@ module: ietf-otn-topology
        +--rw supported-client-signal*   identityref
   augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te
             /tet:interface-switching-capability/tet:max-lsp-bandwidth
-            /tet:te-bandwidth:
-    +--rw otn
-       +--rw odu-type?        identityref
-       +--rw max-ts-number?   uint16
+            /tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?        identityref
+          +--rw max-ts-number?   uint16
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes/tet:connectivity-matrices
             /tet:path-constraints/tet:te-bandwidth/tet:technology:
@@ -101,13 +102,14 @@ module: ietf-otn-topology
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes
             /tet:interface-switching-capability/tet:max-lsp-bandwidth
-            /tet:te-bandwidth:
-    +--rw otn
-       +--rw odu-type?        identityref
-       +--rw max-ts-number?   uint16
+            /tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?        identityref
+          +--rw max-ts-number?   uint16
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes/tet:max-link-bandwidth
-            /tet:te-bandwidth/tet:technology:
+            /tet:te-bandwidth:
     +--rw otn
        +--rw odulist* [odu-type]
           +--rw odu-type     identityref
@@ -132,10 +134,11 @@ module: ietf-otn-topology
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:information-source-entry
             /tet:interface-switching-capability/tet:max-lsp-bandwidth
-            /tet:te-bandwidth:
-    +--ro otn
-       +--ro odu-type?        identityref
-       +--ro max-ts-number?   uint16
+            /tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro odu-type?        identityref
+          +--ro max-ts-number?   uint16
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:information-source-entry/tet:max-link-bandwidth
             /tet:te-bandwidth:
@@ -163,10 +166,11 @@ module: ietf-otn-topology
   augment /nw:networks/tet:te/tet:templates/tet:link-template
             /tet:te-link-attributes
             /tet:interface-switching-capability/tet:max-lsp-bandwidth
-            /tet:te-bandwidth:
-    +--rw otn
-       +--rw odu-type?        identityref
-       +--rw max-ts-number?   uint16
+            /tet:te-bandwidth/tet:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?        identityref
+          +--rw max-ts-number?   uint16
   augment /nw:networks/tet:te/tet:templates/tet:link-template
             /tet:te-link-attributes/tet:max-link-bandwidth
             /tet:te-bandwidth:

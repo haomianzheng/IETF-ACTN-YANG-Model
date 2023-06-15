@@ -72,7 +72,7 @@ module ietf-otn-topology {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2023-04-27 {
+  revision 2023-06-15 {
     description
       "Initial Revision";
     reference
@@ -213,7 +213,7 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
         + "tet:te/"
         + "tet:interface-switching-capability/tet:max-lsp-bandwidth/"
-        + "tet:te-bandwidth" {
+        + "tet:te-bandwidth/tet:technology" {
     when "../../../../../../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
       description
@@ -223,12 +223,14 @@ module ietf-otn-topology {
     description
       "Augment maximum LSP TE bandwidth for the link termination
        point (LTP).";
-    uses l1-types:otn-max-path-bandwidth {
-      description
-        "The odtu-flex-type attribute of the OTN Link Termination
-        Point (LTP) is used to compute the number of Tributary
-        Slots (TS) required by the ODUflex LSPs set up on this
-        OTN LTP.";
+    case otn {
+      uses l1-types:otn-max-path-bandwidth {
+        description
+          "The odtu-flex-type attribute of the OTN Link Termination
+          Point (LTP) is used to compute the number of Tributary
+          Slots (TS) required by the ODUflex LSPs set up on this
+          OTN LTP.";
+      }
     }
   }
 
@@ -458,7 +460,7 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:te-link-attributes/"
         + "tet:interface-switching-capability/tet:max-lsp-bandwidth/"
-        + "tet:te-bandwidth" {
+        + "tet:te-bandwidth/tet:technology" {
     when "../../../../../../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
       description
@@ -467,18 +469,20 @@ module ietf-otn-topology {
     }
     description
       "Augment maximum LSP TE bandwidth for the TE link.";
-    uses l1-types:otn-max-path-bandwidth {
-      description
-        "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on this OTN Link.";
+    case otn {
+      uses l1-types:otn-max-path-bandwidth {
+        description
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on this OTN Link.";
+      }
     }
   }
 
   augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:te-link-attributes/"
         + "tet:max-link-bandwidth/"
-        + "tet:te-bandwidth/tet:technology" {
+        + "tet:te-bandwidth" {
     when "../../../../../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
       description
@@ -539,7 +543,7 @@ module ietf-otn-topology {
         + "tet:information-source-entry/"
         + "tet:interface-switching-capability/"
         + "tet:max-lsp-bandwidth/"
-        + "tet:te-bandwidth" {
+        + "tet:te-bandwidth/tet:technology" {
     when "../../../../../../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
       description
@@ -549,11 +553,13 @@ module ietf-otn-topology {
     description
       "Augment maximum LSP TE bandwidth for the TE link
        information source";
-    uses l1-types:otn-max-path-bandwidth {
-      description
-        "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on this OTN Link.";
+    case otn {
+      uses l1-types:otn-max-path-bandwidth {
+        description
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on this OTN Link.";
+      }
     }
   }
 
@@ -624,16 +630,18 @@ module ietf-otn-topology {
         + "tet:link-template/tet:te-link-attributes/"
         + "tet:interface-switching-capability/"
         + "tet:max-lsp-bandwidth/"
-        + "tet:te-bandwidth" {
+        + "tet:te-bandwidth/tet:technology" {
     description
       "Augment maximum LSP TE bandwidth of the TE link
        template";
-    uses l1-types:otn-max-path-bandwidth {
-      description
-        "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on the OTN Link that uses this
-        Link Template.";
+    case otn {
+      uses l1-types:otn-max-path-bandwidth {
+        description
+          "The odtu-flex-type attribute of the OTN Link is used
+          to compute the number of Tributary Slots (TS) required
+          by the ODUflex LSPs set up on the OTN Link that uses this
+          Link Template.";
+      }
     }
   }
 

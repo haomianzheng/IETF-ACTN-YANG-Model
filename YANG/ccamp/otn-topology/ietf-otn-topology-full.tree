@@ -148,11 +148,13 @@ module: ietf-te-topology
                 |     +--rw priority        uint8
                 |     +--rw te-bandwidth
                 |        +--rw (technology)?
-                |        |  +--:(generic)
-                |        |     +--rw generic?   te-bandwidth
-                |        +--rw otnt:otn
-                |           +--rw otnt:odu-type?        identityref
-                |           +--rw otnt:max-ts-number?   uint16
+                |           +--:(generic)
+                |           |  +--rw generic?    te-bandwidth
+                |           +--:(otnt:otn)
+                |              +--rw otnt:otn
+                |                 +--rw otnt:odu-type?
+                |                 |       identityref
+                |                 +--rw otnt:max-ts-number?   uint16
                 +--rw label-restrictions
                 |  +--rw label-restriction* [index]
                 |     +--rw restriction?            enumeration
@@ -2885,11 +2887,12 @@ module: ietf-te-topology
        |  |     +--rw priority        uint8
        |  |     +--rw te-bandwidth
        |  |        +--rw (technology)?
-       |  |        |  +--:(generic)
-       |  |        |     +--rw generic?   te-bandwidth
-       |  |        +--rw otnt:otn
-       |  |           +--rw otnt:odu-type?        identityref
-       |  |           +--rw otnt:max-ts-number?   uint16
+       |  |           +--:(generic)
+       |  |           |  +--rw generic?    te-bandwidth
+       |  |           +--:(otnt:otn)
+       |  |              +--rw otnt:otn
+       |  |                 +--rw otnt:odu-type?        identityref
+       |  |                 +--rw otnt:max-ts-number?   uint16
        |  +--rw label-restrictions
        |  |  +--rw label-restriction* [index]
        |  |     +--rw restriction?            enumeration
@@ -2943,14 +2946,13 @@ module: ietf-te-topology
        |  +--rw max-link-bandwidth
        |  |  +--rw te-bandwidth
        |  |     +--rw (technology)?
-       |  |        +--:(generic)
-       |  |        |  +--rw generic?    te-bandwidth
-       |  |        +--:(otnt:otn)
-       |  |           +--rw otnt:otn
-       |  |              +--rw otnt:odulist* [odu-type]
-       |  |                 +--rw otnt:odu-type     identityref
-       |  |                 +--rw otnt:number?      uint16
-       |  |                 +--rw otnt:ts-number?   uint16
+       |  |     |  +--:(generic)
+       |  |     |     +--rw generic?   te-bandwidth
+       |  |     +--rw otnt:otn
+       |  |        +--rw otnt:odulist* [odu-type]
+       |  |           +--rw otnt:odu-type     identityref
+       |  |           +--rw otnt:number?      uint16
+       |  |           +--rw otnt:ts-number?   uint16
        |  +--rw max-resv-link-bandwidth
        |  |  +--rw te-bandwidth
        |  |     +--rw (technology)?
@@ -3019,11 +3021,12 @@ module: ietf-te-topology
        |  |     +--ro priority        uint8
        |  |     +--ro te-bandwidth
        |  |        +--ro (technology)?
-       |  |        |  +--:(generic)
-       |  |        |     +--ro generic?   te-bandwidth
-       |  |        +--ro otnt:otn
-       |  |           +--ro otnt:odu-type?        identityref
-       |  |           +--ro otnt:max-ts-number?   uint16
+       |  |           +--:(generic)
+       |  |           |  +--ro generic?    te-bandwidth
+       |  |           +--:(otnt:otn)
+       |  |              +--ro otnt:otn
+       |  |                 +--ro otnt:odu-type?        identityref
+       |  |                 +--ro otnt:max-ts-number?   uint16
        |  +--ro label-restrictions
        |  |  +--ro label-restriction* [index]
        |  |     +--ro restriction?            enumeration
@@ -3151,11 +3154,12 @@ module: ietf-te-topology
        |     +--rw priority        uint8
        |     +--rw te-bandwidth
        |        +--rw (technology)?
-       |        |  +--:(generic)
-       |        |     +--rw generic?   te-bandwidth
-       |        +--rw otnt:otn
-       |           +--rw otnt:odu-type?        identityref
-       |           +--rw otnt:max-ts-number?   uint16
+       |           +--:(generic)
+       |           |  +--rw generic?    te-bandwidth
+       |           +--:(otnt:otn)
+       |              +--rw otnt:otn
+       |                 +--rw otnt:odu-type?        identityref
+       |                 +--rw otnt:max-ts-number?   uint16
        +--rw inter-domain-plug-id?             binary
        +--rw inter-layer-lock-id*              uint32
        +--ro oper-status?
@@ -3168,3 +3172,4 @@ module: ietf-te-topology
        |  +--rw otnt:odtu-flex-type?   l1-types:odtu-flex-type
        +--rw otnt:client-svc!
           +--rw otnt:supported-client-signal*   identityref
+
