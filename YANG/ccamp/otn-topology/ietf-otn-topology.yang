@@ -110,22 +110,34 @@ module ietf-otn-topology {
     container otn-topology {
       presence "indicates a topology type of Optical Transport
                 Network (OTN)-electrical layer.";
-      description "otn topology type";
+      description "OTN topology type";
     }
-    description "augment network types to include otn newtork";
+    description "augment network types to include OTN newtork";
+  }
+
+  augment "/nw:networks/nw:network/nw:node/tet:te"
+        + "/tet:te-node-attributes" {
+    when "../../../nw:network-types/tet:te-topology/"
+       + "otnt:otn-topology" {
+      description "Augment only for OTN network.";
+    }
+    description "Augment TE node attributes.";
+    container otn-node {
+      presence "The TE node is an OTN node.";
+      description
+        "Introduce new TE node type for OTN node.";
+    }
   }
 
   augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:te-link-attributes" {
     when "../../../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
-      description "Augment only for otn network.";
+      description "Augment only for OTN network.";
     }
     description "Augment link configuration";
 
     container otn-link {
-      presence
-        "When present, indicates that the Link is an OTN Link.";
       description
         "Attributes of the OTN Link.";
       leaf odtu-flex-type {
@@ -171,14 +183,11 @@ module ietf-otn-topology {
         + "tet:te" {
     when "../../../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
-      description "Augment only for otn network";
+      description "Augment only for OTN network";
     }
     description "OTN TP attributes config in ODU topology.";
 
     container otn-ltp {
-      presence
-        "When present, indicates that the Link Termination Point 
-        (LTP) is an OTN-capable LTP.";
       description
         "Attributes of the OTN Link Termination Point (LTP).";
       leaf odtu-flex-type {
