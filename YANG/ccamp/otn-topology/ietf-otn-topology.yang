@@ -72,7 +72,7 @@ module ietf-otn-topology {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2023-06-15 {
+  revision 2023-07-06 {
     description
       "Initial Revision";
     reference
@@ -88,7 +88,15 @@ module ietf-otn-topology {
 
   grouping label-range-info {
     description
-      "To be added";
+      "OTN technology-specific label range related information with 
+      a presence container indicating that the label range is an 
+      OTN technology-specific label range.
+
+      This grouping SHOULD be used together with the
+      otn-label-start-end and otn-label-step groupings to provide
+      OTN technology-specific label information to the models which
+      use the label-restriction-info grouping defined in the module
+      ietf-te-types.";
     uses l1-types:otn-label-range-info {
       refine otn-label-range {
         presence
