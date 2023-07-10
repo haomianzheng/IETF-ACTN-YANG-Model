@@ -1,0 +1,54 @@
+module: ietf-layer1-types
+
+  grouping otn-link-bandwidth:
+    +-- otn
+       +-- odulist* [odu-type]
+          +-- odu-type?    identityref
+          +-- number?      uint16
+          +-- ts-number?   uint16
+  grouping otn-path-bandwidth:
+    +-- otn
+       +-- odu-type?                     identityref
+       +-- (oduflex-type)?
+          +--:(generic)
+          |  +-- nominal-bit-rate        union
+          +--:(cbr)
+          |  +-- client-type             identityref
+          +--:(gfp-n-k)
+          |  +-- gfp-n                   uint8
+          |  +-- gfp-k?                  gfp-k
+          +--:(flexe-client)
+          |  +-- flexe-client            flexe-client-rate
+          +--:(flexe-aware)
+          |  +-- flexe-aware-n           uint16
+          +--:(packet)
+             +-- opuflex-payload-rate    union
+  grouping otn-max-path-bandwidth:
+    +-- otn
+       +-- odu-type?        identityref
+       +-- max-ts-number?   uint16
+  grouping otn-label-range-info:
+    +-- otn-label-range
+       +-- range-type?      otn-label-range-type
+       +-- tsg?             identityref
+       +-- odu-type-list*   identityref
+       +-- priority?        uint8
+  grouping otn-label-start-end:
+    +-- otn
+       +-- (range-type)?
+          +--:(trib-port)
+          |  +-- tpn?   otn-tpn
+          +--:(trib-slot)
+             +-- ts?    otn-ts
+  grouping otn-label-hop:
+    +-- otn
+       +-- tpn?       otn-tpn
+       +-- tsg?       identityref
+       +-- ts-list?   string
+  grouping otn-label-step:
+    +-- otn
+       +-- (range-type)?
+          +--:(trib-port)
+          |  +-- tpn?   otn-tpn
+          +--:(trib-slot)
+             +-- ts?    otn-ts
