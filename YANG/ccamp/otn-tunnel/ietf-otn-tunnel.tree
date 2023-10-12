@@ -7,7 +7,7 @@ module: ietf-otn-tunnel
           +--rw odu-type?                     identityref
           +--rw (oduflex-type)?
              +--:(generic)
-             |  +--rw nominal-bit-rate        uint64
+             |  +--rw nominal-bit-rate        union
              +--:(cbr)
              |  +--rw client-type             identityref
              +--:(gfp-n-k)
@@ -18,14 +18,14 @@ module: ietf-otn-tunnel
              +--:(flexe-aware)
              |  +--rw flexe-aware-n           uint16
              +--:(packet)
-                +--rw opuflex-payload-rate    uint64
+                +--rw opuflex-payload-rate    union
   augment /te:te/te:tunnels/te:tunnel/te:te-bandwidth/te:technology:
     +--:(otn)
        +--rw otn
           +--rw odu-type?                     identityref
           +--rw (oduflex-type)?
              +--:(generic)
-             |  +--rw nominal-bit-rate        uint64
+             |  +--rw nominal-bit-rate        union
              +--:(cbr)
              |  +--rw client-type             identityref
              +--:(gfp-n-k)
@@ -36,7 +36,7 @@ module: ietf-otn-tunnel
              +--:(flexe-aware)
              |  +--rw flexe-aware-n           uint16
              +--:(packet)
-                +--rw opuflex-payload-rate    uint64
+                +--rw opuflex-payload-rate    union
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:te-bandwidth/te:technology:
     +--:(otn)
@@ -44,7 +44,7 @@ module: ietf-otn-tunnel
           +--rw odu-type?                     identityref
           +--rw (oduflex-type)?
              +--:(generic)
-             |  +--rw nominal-bit-rate        uint64
+             |  +--rw nominal-bit-rate        union
              +--:(cbr)
              |  +--rw client-type             identityref
              +--:(gfp-n-k)
@@ -55,7 +55,7 @@ module: ietf-otn-tunnel
              +--:(flexe-aware)
              |  +--rw flexe-aware-n           uint16
              +--:(packet)
-                +--rw opuflex-payload-rate    uint64
+                +--rw opuflex-payload-rate    union
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
@@ -65,7 +65,7 @@ module: ietf-otn-tunnel
           +--ro odu-type?                     identityref
           +--ro (oduflex-type)?
              +--:(generic)
-             |  +--ro nominal-bit-rate        uint64
+             |  +--ro nominal-bit-rate        union
              +--:(cbr)
              |  +--ro client-type             identityref
              +--:(gfp-n-k)
@@ -76,7 +76,7 @@ module: ietf-otn-tunnel
              +--:(flexe-aware)
              |  +--ro flexe-aware-n           uint16
              +--:(packet)
-                +--ro opuflex-payload-rate    uint64
+                +--ro opuflex-payload-rate    union
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path/te:te-bandwidth
             /te:technology:
@@ -85,7 +85,7 @@ module: ietf-otn-tunnel
           +--rw odu-type?                     identityref
           +--rw (oduflex-type)?
              +--:(generic)
-             |  +--rw nominal-bit-rate        uint64
+             |  +--rw nominal-bit-rate        union
              +--:(cbr)
              |  +--rw client-type             identityref
              +--:(gfp-n-k)
@@ -96,7 +96,7 @@ module: ietf-otn-tunnel
              +--:(flexe-aware)
              |  +--rw flexe-aware-n           uint16
              +--:(packet)
-                +--rw opuflex-payload-rate    uint64
+                +--rw opuflex-payload-rate    union
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:computed-paths-properties/te:computed-path-properties
@@ -106,7 +106,7 @@ module: ietf-otn-tunnel
           +--ro odu-type?                     identityref
           +--ro (oduflex-type)?
              +--:(generic)
-             |  +--ro nominal-bit-rate        uint64
+             |  +--ro nominal-bit-rate        union
              +--:(cbr)
              |  +--ro client-type             identityref
              +--:(gfp-n-k)
@@ -117,7 +117,7 @@ module: ietf-otn-tunnel
              +--:(flexe-aware)
              |  +--ro flexe-aware-n           uint16
              +--:(packet)
-                +--ro opuflex-payload-rate    uint64
+                +--ro opuflex-payload-rate    union
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:te-bandwidth/te:technology:
     +--:(otn)
@@ -125,7 +125,7 @@ module: ietf-otn-tunnel
           +--rw odu-type?                     identityref
           +--rw (oduflex-type)?
              +--:(generic)
-             |  +--rw nominal-bit-rate        uint64
+             |  +--rw nominal-bit-rate        union
              +--:(cbr)
              |  +--rw client-type             identityref
              +--:(gfp-n-k)
@@ -136,7 +136,7 @@ module: ietf-otn-tunnel
              +--:(flexe-aware)
              |  +--rw flexe-aware-n           uint16
              +--:(packet)
-                +--rw opuflex-payload-rate    uint64
+                +--rw opuflex-payload-rate    union
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
@@ -146,7 +146,7 @@ module: ietf-otn-tunnel
           +--ro odu-type?                     identityref
           +--ro (oduflex-type)?
              +--:(generic)
-             |  +--ro nominal-bit-rate        uint64
+             |  +--ro nominal-bit-rate        union
              +--:(cbr)
              |  +--ro client-type             identityref
              +--:(gfp-n-k)
@@ -157,7 +157,7 @@ module: ietf-otn-tunnel
              +--:(flexe-aware)
              |  +--ro flexe-aware-n           uint16
              +--:(packet)
-                +--ro opuflex-payload-rate    uint64
+                +--ro opuflex-payload-rate    union
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:te-bandwidth/te:technology:
     +--:(otn)
@@ -165,7 +165,7 @@ module: ietf-otn-tunnel
           +--rw odu-type?                     identityref
           +--rw (oduflex-type)?
              +--:(generic)
-             |  +--rw nominal-bit-rate        uint64
+             |  +--rw nominal-bit-rate        union
              +--:(cbr)
              |  +--rw client-type             identityref
              +--:(gfp-n-k)
@@ -176,7 +176,7 @@ module: ietf-otn-tunnel
              +--:(flexe-aware)
              |  +--rw flexe-aware-n           uint16
              +--:(packet)
-                +--rw opuflex-payload-rate    uint64
+                +--rw opuflex-payload-rate    union
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
@@ -186,7 +186,7 @@ module: ietf-otn-tunnel
           +--ro odu-type?                     identityref
           +--ro (oduflex-type)?
              +--:(generic)
-             |  +--ro nominal-bit-rate        uint64
+             |  +--ro nominal-bit-rate        union
              +--:(cbr)
              |  +--ro client-type             identityref
              +--:(gfp-n-k)
@@ -197,7 +197,7 @@ module: ietf-otn-tunnel
              +--:(flexe-aware)
              |  +--ro flexe-aware-n           uint16
              +--:(packet)
-                +--ro opuflex-payload-rate    uint64
+                +--ro opuflex-payload-rate    union
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction:
