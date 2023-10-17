@@ -1,0 +1,2303 @@
+<?xml version="1.0" encoding="US-ASCII"?> 
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<!--  vi: set et smarttab sw=2 tabstop=4:--> 
+<?rfc toc="yes"?> 
+<?rfc tocompact="yes"?> 
+<?rfc tocdepth="3"?> 
+<?rfc tocindent="yes"?> 
+<?rfc symrefs="yes"?> 
+<?rfc sortrefs="yes"?> 
+<?rfc comments="yes"?> 
+<?rfc inline="yes"?> 
+<?rfc compact="yes"?> 
+<?rfc subcompact="no"?>
+
+<rfc category="std" docName="draft-ietf-ccamp-otn-tunnel-model-19" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en">
+ <front>
+  <title abbrev="OTN Tunnel YANG Model"> OTN Tunnel YANG Model </title> 
+ 
+  <author initials="H." surname="Zheng" fullname="Haomian Zheng">
+   <organization>Huawei Technologies</organization>
+   <address>
+    <postal>
+     <street>H1, Huawei Xiliu Beipo Village, Songshan Lake </street>
+     <city>Dongguan</city>
+     <region>Guangdong</region>
+     <code>523808</code>
+     <country>China</country>
+    </postal>
+    <email>zhenghaomian@huawei.com</email>
+   </address>
+  </author>
+
+  <author initials="I." surname="Busi" fullname="Italo Busi">
+   <organization>Huawei Technologies</organization>
+   <address>
+    <postal>
+     <street>HUAWEI TECHNOLOGIES ITALIA Srl Centro Direzionale Milano 2</street>
+     <city>Milan</city>
+     <region>Milan</region>
+     <code>20090</code>
+     <country>Italy</country>
+    </postal>
+    <email>Italo.Busi@huawei.com</email>
+   </address>
+  </author>
+
+  <author initials="S." surname="Belotti" fullname="Sergio Belotti">
+   <organization>Nokia</organization>
+   <address>
+    <postal>
+     <street></street>
+     <city></city>
+     <region></region>
+     <code></code>
+     <country></country>
+    </postal>
+    <email>sergio.belotti@nokia.com</email>
+   </address>
+  </author>
+
+  <author initials="V." surname="Lopez" fullname="Victor Lopez">
+   <organization>Nokia</organization>
+   <address>
+    <postal>
+     <street></street>
+     <city></city>
+     <region></region>
+     <code></code>
+     <country></country>
+    </postal>
+    <email>victor.lopez@nokia.com</email>
+   </address>
+  </author>
+
+  <author initials="Y." surname="Xu" fullname="Yunbin Xu">
+   <organization>CAICT</organization>
+   <address>
+    <postal>
+     <street></street>
+     <city></city>
+     <region></region>
+     <code></code>
+     <country></country>
+    </postal>
+    <email>xuyunbin@caict.ac.cn</email>
+   </address>
+  </author>
+
+  <date month="October" day="17" year="2023"></date>
+  <workgroup>CCAMP Working Group</workgroup>
+
+ <abstract>
+  <t>
+  This document describes the YANG data model for tunnels in OTN TE networks.  The model can be used to do the configuration in order to establish the tunnel in OTN network.  This work is independent with the control plane protocols.  
+  </t>
+ </abstract>
+ <!--
+ <note title="Requirements Language">
+  <t>
+  The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <xref target="RFC2119" />.
+  </t>
+ </note>
+ -->
+ </front>
+
+
+ <middle>
+ <section title="Introduction" toc="default">
+  <t>
+  OTN transport networks, specified in <xref target="ITU-Tg709" />, can carry various types of client signals. In many cases, the client signal is carried over an OTN tunnel across connected domains in a multi-domain network. 
+  </t>
+  <t>
+  This document provides YANG model for creating OTN tunnel.  The model augments the generic TE Tunnel model specified in <xref target="I-D.ietf-teas-yang-te" />.
+  </t>
+  <t>
+   The YANG module ietf-otn-tunnel defined in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <xref target="RFC8342" />.
+  </t>
+
+
+ <section title="Terminology and Notations" toc="default">
+  <t>
+   Refer to <xref target="I-D.ietf-ccamp-otn-topo-yang" /> for the OTN specific terms terms used in this document.
+  </t>  
+  <t>
+   The following terms are defined in <xref target="RFC7950" /> and are not redefined here:
+  </t>
+  <t>
+  <list style="symbols">
+  <t> client </t>
+  <t> server </t>
+  <t> augment </t>
+  <t> data model </t>
+  <t> data node </t>
+  </list>
+  </t>
+  <t>
+    The following terms are defined in <xref target="RFC6241" /> and are not redefined here:
+  </t>
+  <t>
+  <list style="symbols">
+  <t> configuration data </t>
+  <t> state data </t>
+  </list>
+  </t>
+  <t>
+    The terminology for describing YANG data models is found in <xref target="RFC7950" />. 
+  </t>
+ </section>
+ <!--  Terminology and Notation END  --> 
+ <section title="Tree Diagram">
+  <t>
+  A simplified graphical representation of the data model is used in Section 3 of this this document.  The meaning of the symbols in these diagrams is defined in <xref target="RFC8340" />.
+  </t>
+  </section>
+  <!--  Tree Diagram END  -->
+ 
+ <section title="Prefix in Data Node Names" toc="default">
+  <t>
+   In this document, names of data nodes and other data model objects are prefixed using the standard prefix associated with the corresponding YANG imported modules, as shown in the following table.
+  </t>
+    <figure>
+    <artwork>
+      <![CDATA[
+    +-------------+-------------------------+------------------------+
+    | Prefix      | YANG module             | Reference              |
+    +-------------+-------------------------+------------------------+
+    | l1-types    | ietf-layer1-types       | RFC YYYY               |
+    | otntnl      | ietf-otn-tunnel         | RFC XXXX               |
+    | te          | ietf-te                 | RFC ZZZZ               |
+    +-------------+-------------------------+------------------------+
+          Table 1: Prefixes and Corresponding YANG Modules
+     ]]>
+   </artwork>
+  </figure>
+  <t>
+  RFC Editor Note: Please replace XXXX with the number assigned to the RFC once this draft becomes an RFC. Please replace YYYY with the RFC numbers assigned to <xref target="I-D.ietf-ccamp-layer1-types" />. Please replace ZZZZ with the RFC numbers assigned to <xref target="I-D.ietf-teas-yang-te" />.
+  </t>
+ </section>
+  <!--  Prefix END  -->
+ 
+  </section>
+ <!--  Introduction END  -->
+
+ <section anchor="DM" title="OTN Tunnel Model Description" toc="default">
+  <section title="Overview of OTN Tunnel Model">
+   <t>
+   This document aims to describe the data model for OTN tunnel.  The OTN tunnel model is using TE tunnel <xref target="I-D.ietf-teas-yang-te" /> as a basic model and augments it with OTN-specific parameters, including the bandwidth information and label information. Figure 1 shows the augmentation relationship.
+   </t>
+   <figure>
+    <artwork>
+      <![CDATA[
+                        +----------------+
+           TE generic   |     ietf-te    |
+                        +----------------+
+                                 ^
+                                 |
+                                 | Augments
+                                 |
+                        +--------+--------+
+           OTN          | ietf-otn-tunnel |
+                        +-----------------+
+       Figure 1 - Relationship between OTN and TE tunnel models
+     ]]>
+   </artwork>
+  </figure>
+   <t>
+   It is also worth noting that the OTN tunnel provisioning is usually based on the OTN topology. Therefore the OTN tunnel model is usually used together with OTN topology model specified in <xref target="I-D.ietf-ccamp-otn-topo-yang" />. The OTN tunnel model also imports a few type modules, including ietf-layer1-types, ietf-te-types and ietf-inet-types. The OTN-specific attributes in <xref target="RFC7139" />, including the Tributary Slot (TS) and Tributary Port Number (TPN), can be used to represent the bandwidth and label information. These attributes have been specified in  <xref target="I-D.ietf-ccamp-layer1-types" /> and used in this document for augmentation of the generic TE tunnel model. 
+   </t>
+   <t>
+   More scenarios and model applications can be found in <xref target="I-D.ietf-ccamp-transport-nbi-app-statement" /> and <xref target="I-D.ietf-teas-actn-yang" />.
+   </t>
+  </section>
+
+  <section title="Bandwidth Augmentation">
+   <t>
+   The model augments all the occurrences of the te-bandwidth container with the OTN technology specific attributes using the otn-link-bandwidth and otn-path-bandwidth groupings defined in <xref target="I-D.ietf-ccamp-layer1-types" />.
+   </t>
+  </section>
+
+  <section title="Label Augmentation">
+   <t>
+   The model augments all the occurrences of the label-restriction list with OTN technology specific attributes using the otn-label-range-info grouping defined in <xref target="I-D.ietf-ccamp-layer1-types" />.
+   </t>
+   <t>
+   Moreover, the model augments all the occurrences of the te-label container with the OTN technology specific attributes using the otn-label-start-end, otn-label-hop and otn-label-step groupings defined in <xref target="I-D.ietf-ccamp-layer1-types" />.
+   </t>
+  </section>
+
+   </section>
+  <!--  OTN Tunnel Model Overview END  --> 
+
+  <section anchor="tree" title="OTN Tunnel YANG Tree" toc="default">
+   <t>
+   <figure anchor="treefigure" title="" suppress-title="true" align="left" alt="" width="" height="">
+    <artwork xml:space="preserve" name="" type="" align="left" alt="" width="" height="">
+<![CDATA[
+module: ietf-otn-tunnel
+
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        union
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    union
+  augment /te:te/te:tunnels/te:tunnel/te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        union
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    union
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        union
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    union
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro odu-type?                     identityref
+          +--ro (oduflex-type)?
+             +--:(generic)
+             |  +--ro nominal-bit-rate        union
+             +--:(cbr)
+             |  +--ro client-type             identityref
+             +--:(gfp-n-k)
+             |  +--ro gfp-n                   uint8
+             |  +--ro gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--ro flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--ro flexe-aware-n           uint16
+             +--:(packet)
+                +--ro opuflex-payload-rate    union
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path/te:te-bandwidth
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        union
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    union
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:computed-paths-properties/te:computed-path-properties
+            /te:path-properties/te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro odu-type?                     identityref
+          +--ro (oduflex-type)?
+             +--:(generic)
+             |  +--ro nominal-bit-rate        union
+             +--:(cbr)
+             |  +--ro client-type             identityref
+             +--:(gfp-n-k)
+             |  +--ro gfp-n                   uint8
+             |  +--ro gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--ro flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--ro flexe-aware-n           uint16
+             +--:(packet)
+                +--ro opuflex-payload-rate    union
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        union
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    union
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro odu-type?                     identityref
+          +--ro (oduflex-type)?
+             +--:(generic)
+             |  +--ro nominal-bit-rate        union
+             +--:(cbr)
+             |  +--ro client-type             identityref
+             +--:(gfp-n-k)
+             |  +--ro gfp-n                   uint8
+             |  +--ro gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--ro flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--ro flexe-aware-n           uint16
+             +--:(packet)
+                +--ro opuflex-payload-rate    union
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw odu-type?                     identityref
+          +--rw (oduflex-type)?
+             +--:(generic)
+             |  +--rw nominal-bit-rate        union
+             +--:(cbr)
+             |  +--rw client-type             identityref
+             +--:(gfp-n-k)
+             |  +--rw gfp-n                   uint8
+             |  +--rw gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--rw flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--rw flexe-aware-n           uint16
+             +--:(packet)
+                +--rw opuflex-payload-rate    union
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:te-bandwidth/te:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro odu-type?                     identityref
+          +--ro (oduflex-type)?
+             +--:(generic)
+             |  +--ro nominal-bit-rate        union
+             +--:(cbr)
+             |  +--ro client-type             identityref
+             +--:(gfp-n-k)
+             |  +--ro gfp-n                   uint8
+             |  +--ro gfp-k?                  gfp-k
+             +--:(flexe-client)
+             |  +--ro flexe-client            flexe-client-rate
+             +--:(flexe-aware)
+             |  +--ro flexe-aware-n           uint16
+             +--:(packet)
+                +--ro opuflex-payload-rate    union
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-in-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw otn-label-range
+       +--rw range-type?      otn-label-range-type
+       +--rw tsg?             identityref
+       +--rw odu-type-list*   identityref
+       +--rw priority?        uint8
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-out-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw otn-label-range
+       +--rw range-type?      otn-label-range-type
+       +--rw tsg?             identityref
+       +--rw odu-type-list*   identityref
+       +--rw priority?        uint8
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-in-segment/te:label-restrictions
+            /te:label-restriction:
+    +--rw otn-label-range
+       +--rw range-type?      otn-label-range-type
+       +--rw tsg?             identityref
+       +--rw odu-type-list*   identityref
+       +--rw priority?        uint8
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw otn-label-range
+       +--rw range-type?      otn-label-range-type
+       +--rw tsg?             identityref
+       +--rw odu-type-list*   identityref
+       +--rw priority?        uint8
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-in-segment/te:label-restrictions
+            /te:label-restriction:
+    +--rw otn-label-range
+       +--rw range-type?      otn-label-range-type
+       +--rw tsg?             identityref
+       +--rw odu-type-list*   identityref
+       +--rw priority?        uint8
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-out-segment/te:label-restrictions
+            /te:label-restriction:
+    +--rw otn-label-range
+       +--rw range-type?      otn-label-range-type
+       +--rw tsg?             identityref
+       +--rw odu-type-list*   identityref
+       +--rw priority?        uint8
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw otn-label-range
+       +--rw range-type?      otn-label-range-type
+       +--rw tsg?             identityref
+       +--rw odu-type-list*   identityref
+       +--rw priority?        uint8
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw otn-label-range
+       +--rw range-type?      otn-label-range-type
+       +--rw tsg?             identityref
+       +--rw odu-type-list*   identityref
+       +--rw priority?        uint8
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw otn-label-range
+       +--rw range-type?      otn-label-range-type
+       +--rw tsg?             identityref
+       +--rw odu-type-list*   identityref
+       +--rw priority?        uint8
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw otn-label-range
+       +--rw range-type?      otn-label-range-type
+       +--rw tsg?             identityref
+       +--rw odu-type-list*   identityref
+       +--rw priority?        uint8
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint
+            /te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint
+            /te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:optimizations/te:algorithm/te:metric
+            /te:optimization-metric/te:explicit-route-exclude-objects
+            /te:route-object-exclude-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:optimizations/te:algorithm/te:metric
+            /te:optimization-metric/te:explicit-route-include-objects
+            /te:route-object-include-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-start/te:te-label
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-end/te:te-label
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-step/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       otn-tpn
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path/te:optimizations
+            /te:algorithm/te:metric/te:optimization-metric
+            /te:explicit-route-exclude-objects
+            /te:route-object-exclude-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path/te:optimizations
+            /te:algorithm/te:metric/te:optimization-metric
+            /te:explicit-route-include-objects
+            /te:route-object-include-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-start/te:te-label
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-end/te:te-label
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-step/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-out-segment/te:label-restrictions
+            /te:label-restriction/te:label-start/te:te-label
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-out-segment/te:label-restrictions
+            /te:label-restriction/te:label-end/te:te-label
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:path-out-segment/te:label-restrictions
+            /te:label-restriction/te:label-step/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+            /te:primary-path/te:primary-reverse-path
+            /te:computed-paths-properties/te:computed-path-properties
+            /te:path-properties/te:path-route-objects
+            /te:path-route-object/te:type/te:label/te:label-hop
+            /te:te-label/te:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       otn-tpn
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:optimizations/te:algorithm
+            /te:metric/te:optimization-metric
+            /te:explicit-route-exclude-objects
+            /te:route-object-exclude-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:optimizations/te:algorithm
+            /te:metric/te:optimization-metric
+            /te:explicit-route-include-objects
+            /te:route-object-include-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+            /te:secondary-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       otn-tpn
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:optimizations/te:algorithm
+            /te:metric/te:optimization-metric
+            /te:explicit-route-exclude-objects
+            /te:route-object-exclude-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:optimizations/te:algorithm
+            /te:metric/te:optimization-metric
+            /te:explicit-route-include-objects
+            /te:route-object-include-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path
+            /te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path
+            /te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw tpn?       otn-tpn
+          +--rw tsg?       identityref
+          +--rw ts-list?   string
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-end
+            /te:te-label/te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction/te:label-step
+            /te:technology:
+    +--:(otn)
+       +--rw otn
+          +--rw (range-type)?
+             +--:(trib-port)
+             |  +--rw tpn?   otn-tpn
+             +--:(trib-slot)
+                +--rw ts?    otn-ts
+  augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+            /te:secondary-reverse-path/te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects/te:path-route-object/te:type
+            /te:label/te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       otn-tpn
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+  augment /te:te/te:lsps/te:lsp/te:lsp-record-route-information
+            /te:lsp-record-route-information/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(otn)
+       +--ro otn
+          +--ro tpn?       otn-tpn
+          +--ro tsg?       identityref
+          +--ro ts-list?   string
+
+]]> 
+    </artwork>
+   </figure>
+   </t>
+  </section>
+  <!--  tree END  --> 
+
+  <section anchor="code" title="OTN Tunnel YANG Code" toc="default">
+   <figure anchor="TheYANGCode" title="" suppress-title="true" align="left" alt="" width="" height="">
+    <artwork xml:space="preserve" name="" type="" align="left" alt="" width="" height="">
+<![CDATA[ 
+<CODE BEGINS>file "ietf-otn-tunnel@2023-10-12.yang"
+module ietf-otn-tunnel {
+  yang-version 1.1;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-otn-tunnel";
+  prefix "otn-tnl";
+
+  import ietf-te {
+    prefix "te";
+    revision-date "2021-02-20";
+    reference
+      "I-D.ietf-teas-yang-te-19: A YANG Data Model for Traffic
+      Engineering Tunnels and Interfaces. ";
+  }
+
+  import ietf-layer1-types {
+    prefix "l1-types";
+    reference 
+      "I-D.ietf-ccamp-layer1-types: 
+      A YANG Data Model for Layer 1 Types. ";
+  }
+
+  organization
+    "IETF CCAMP Working Group";
+  contact
+    "WG Web:   <http://tools.ietf.org/wg/ccamp/>
+     WG List:  <mailto:ccamp@ietf.org>
+
+     Editor:   Haomian Zheng
+               <mailto:zhenghaomian@huawei.com>
+
+     Editor:   Italo Busi
+               <mailto:italo.busi@huawei.com>
+
+     Editor:   Sergio Belotti
+               <mailto:sergio.belotti@nokia.com>
+
+     Editor:   Victor Lopez
+               <mailto:victor.lopez@nokia.com>
+
+     Editor:   Yunbin Xu
+               <mailto:xuyunbin@caict.ac.cn>";
+
+  description
+    "This module defines a model for OTN Tunnel Services.
+
+    The model fully conforms to the Network Management 
+    Datastore Architecture (NMDA).
+    
+    Copyright (c) 2023 IETF Trust and the persons
+    identified as authors of the code.  All rights reserved.
+
+    Redistribution and use in source and binary forms, with or
+    without modification, is permitted pursuant to, and subject
+    to the license terms contained in, the Revised BSD License
+    set forth in Section 4.c of the IETF Trust's Legal Provisions
+    Relating to IETF Documents
+    (https://trustee.ietf.org/license-info).
+
+    This version of this YANG module is part of RFC XXXX; see
+    the RFC itself for full legal notices.";
+
+  revision "2023-10-12" {
+    description
+      "Initial version";
+    reference
+      "RFC XXXX: OTN Tunnel YANG Model";
+    // RFC Ed.: replace XXXX with actual RFC number, update date
+    // information and remove this note
+  }
+
+ /*
+  * Data nodes
+  */
+
+  /*
+   * Augment TE bandwidth
+   */
+
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/"
+        + "te:te-bandwidth/te:technology" {
+    description
+      "Augment TE bandwidth of the named path constraint.";
+    case otn {
+      uses l1-types:otn-path-bandwidth;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:te-bandwidth/te:technology" {
+    description
+      "Augment TE bandwidth of the tunnel.";
+    case otn {
+      uses l1-types:otn-path-bandwidth;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:te-bandwidth/te:technology" {
+    description
+      "Augment TE bandwidth of the primary path.";
+    case otn {
+      uses l1-types:otn-path-bandwidth;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:te-bandwidth/te:technology" {
+    description
+      "Augment TE bandwidth of primary path's computed path
+      properties.";
+    case otn {
+      uses l1-types:otn-path-bandwidth;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:te-bandwidth/te:technology" {
+    description
+      "Augment TE bandwidth of the primary reverse path.";
+    case otn {
+      uses l1-types:otn-path-bandwidth;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:te-bandwidth/te:technology" {
+    description
+      "Augment TE bandwidth of the primary reverse path's computed
+      path properties.";
+    case otn {
+      uses l1-types:otn-path-bandwidth;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:te-bandwidth/te:technology" {
+    description
+      "Augment TE bandwidth of the secondary path.";
+    case otn {
+      uses l1-types:otn-path-bandwidth;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:te-bandwidth/te:technology" {
+    description
+      "Augment TE bandwidth of the secondary path's computed path
+      properties.";
+    case otn {
+      uses l1-types:otn-path-bandwidth;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/"
+        + "te:te-bandwidth/te:technology" {
+    description
+      "Augment TE bandwidth of the secondary reverse path.";
+    case otn {
+      uses l1-types:otn-path-bandwidth;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/"
+        + "te:secondary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:te-bandwidth/te:technology" {
+    description
+      "Augment TE bandwidth of the secondary reverse path's computed
+      path properties.";
+    case otn {
+      uses l1-types:otn-path-bandwidth;
+    }
+  }
+
+  /*
+   * Augment TE label range information
+   */
+
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-in-segment/"
+        + "te:label-restrictions/te:label-restriction" {
+    description
+      "Augment TE label range information for the ingress segment
+      of the named path constraint.";
+    uses l1-types:otn-label-range-info;
+  }
+
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-out-segment/"
+        + "te:label-restrictions/"
+        + "te:label-restriction" {
+    description
+      "Augment TE label range information for the egress segment
+      of the named path constraint.";
+    uses l1-types:otn-label-range-info;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description
+      "Augment TE label range information for the ingress segment
+      of the primay path.";
+    uses l1-types:otn-label-range-info;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description
+      "Augment TE label range information for the egress segment
+      of the primay path.";
+    uses l1-types:otn-label-range-info;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description
+      "Augment TE label range information for the ingress segment
+      of the primay reverse path.";
+    uses l1-types:otn-label-range-info;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description
+      "Augment TE label range information for the egress segment
+      of the primay reverse path.";
+    uses l1-types:otn-label-range-info;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description
+      "Augment TE label range information for the ingress segment
+      of the secondary path.";
+    uses l1-types:otn-label-range-info;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description
+      "Augment TE label range information for the egress segment
+      of the secondary path.";
+    uses l1-types:otn-label-range-info;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description
+      "Augment TE label range information for the ingress segment
+      of the secondary reverse path.";
+    uses l1-types:otn-label-range-info;
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description
+      "Augment TE label range information for the egress segment
+      of the secondary reverse path.";
+    uses l1-types:otn-label-range-info;
+  }
+
+  /*
+   * Augment TE label.
+   */
+
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-exclude-always/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the explicit route objects always
+      excluded by the path computation with the named path
+      constraint.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-include-exclude/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the explicit route objects included
+      or excluded by the path computation with the named path
+      constraint.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-in-segment/"
+        + "te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range start for the ingress segment
+      of the named path constraint.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-in-segment/"
+        + "te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range end for the ingress segment
+      of the named path constraint.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-in-segment/"
+        + "te:label-restrictions/te:label-restriction/"
+        + "te:label-step/te:technology" {
+    description
+      "Augment TE label range step for the ingress segment
+      of the named path constraint.";
+    case otn {
+      uses l1-types:otn-label-step;
+    }
+  }
+
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-out-segment/"
+        + "te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range start for the egress segment
+      of the named path constraint.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-out-segment/"
+        + "te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range end for the egress segment
+      of the named path constraint.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-out-segment/"
+        + "te:label-restrictions/te:label-restriction/"
+        + "te:label-step/te:technology" {
+    description
+      "Augment TE label range step for the egress segment
+      of the named path constraint.";
+    case otn {
+      uses l1-types:otn-label-step;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:route-object-exclude-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the optimization of the explicit
+      route objects excluded by the path computation of the primary
+      path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:route-object-include-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the optimization of the explicit
+      route objects included by the path computation of the primary
+      path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-exclude-always/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the explicit route objects always
+      excluded by the path computation of the primary path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-include-exclude/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the explicit route objects included
+      or excluded by the path computation of the primary path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range start for the ingress segment
+      of the primay path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range end for the ingress segment
+      of the primay path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-step/te:technology" {
+    description
+      "Augment TE label range step for the ingress segment
+      of the primay path.";
+    case otn {
+      uses l1-types:otn-label-step;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range start for the egress segment
+      of the primay path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range end for the egress segment
+      of the primay path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-step/te:technology" {
+    description
+      "Augment TE label range end for the egress segment
+      of the primay path.";
+    case otn {
+      uses l1-types:otn-label-step;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-route-object/"
+        + "te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the route object of the computed
+      primary path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:route-object-exclude-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the optimization of the explicit
+      route objects excluded by the path computation of the primary
+      reverse path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:route-object-include-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the optimization of the explicit
+      route objects included by the path computation of the primary
+      reverse path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-exclude-always/"
+        + "te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the explicit route objects always
+      excluded by the path computation of the primary reverse
+      path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-include-exclude/"
+        + "te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the explicit route objects included
+      or excluded by the path computation of the primary reverse
+      path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range start for the ingress segment
+      of the primay reverse path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range end for the ingress segment
+      of the primay reverse path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-step/te:technology" {
+    description
+      "Augment TE label range step for the ingress segment
+      of the primay reverse path.";
+    case otn {
+      uses l1-types:otn-label-step;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range start for the egress segment
+      of the primay reverse path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range end for the egress segment
+      of the primay reverse path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-step/te:technology" {
+    description
+      "Augment TE label range step for the egress segment
+      of the primay reverse path.";
+    case otn {
+      uses l1-types:otn-label-step;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:primary-paths/te:primary-path/"
+        + "te:primary-reverse-path/"
+        + "te:computed-paths-properties/te:computed-path-properties/"
+        + "te:path-properties/te:path-route-objects/"
+        + "te:path-route-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the route object of the computed
+      primary reverse path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:route-object-exclude-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the optimization of the explicit
+      route objects excluded by the path computation of the
+      secondary path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:route-object-include-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the optimization of the explicit
+      route objects included by the path computation of the
+      secondary path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-exclude-always/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the explicit route objects always
+      excluded by the path computation of the secondary path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-include-exclude/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the explicit route objects included
+      or excluded by the path computation of the secondary path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range start for the ingress segment
+      of the secondary path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range end for the ingress segment
+      of the secondary path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-step/te:technology" {
+    description
+      "Augment TE label range step for the ingress segment
+      of the secondary path.";
+    case otn {
+      uses l1-types:otn-label-step;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range start for the egress segment
+      of the secondary path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range end for the egress segment
+      of the secondary path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-step/te:technology" {
+    description
+      "Augment TE label range step for the egress segment
+      of the secondary path.";
+    case otn {
+      uses l1-types:otn-label-step;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-paths/te:secondary-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/"
+        + "te:path-properties/te:path-route-objects/"
+        + "te:path-route-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the route object of the computed
+      secondary path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:route-object-exclude-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the optimization of the explicit
+      route objects excluded by the path computation of the
+      secondary reverse path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:route-object-include-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the optimization of the explicit
+      route objects included by the path computation of the
+      secondary reverse path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-exclude-always/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the explicit route objects always
+      excluded by the path computation of the secondary reverse
+      path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-include-exclude/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the explicit route objects included
+      or excluded by the path computation of the secondary reverse
+      path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range start for the ingress segment
+      of the secondary reverse path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range end for the ingress segment
+      of the secondary reverse path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-step/te:technology" {
+    description
+      "Augment TE label range step for the ingress segment
+      of the secondary reverse path.";
+    case otn {
+      uses l1-types:otn-label-step;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range start for the egress segment
+      of the secondary reverse path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description
+      "Augment TE label range end for the egress segment
+      of the secondary reverse path.";
+    case otn {
+      uses l1-types:otn-label-start-end;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-step/te:technology" {
+    description
+      "Augment TE label range step for the egress segment
+      of the secondary reverse path.";
+    case otn {
+      uses l1-types:otn-label-step;
+    }
+  }
+
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+        + "te:computed-paths-properties/"
+        + "te:computed-path-properties/"
+        + "te:path-properties/te:path-route-objects/"
+        + "te:path-route-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the route object of the computed
+      secondary reverse path.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+
+  augment "/te:te/te:lsps/"
+        + "te:lsp/te:lsp-record-route-information/"
+        + "te:lsp-record-route-information/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description
+      "Augment TE label hop for the record route of the LSP.";
+    case otn {
+      uses l1-types:otn-label-hop;
+    }
+  }
+}
+
+<CODE ENDS>
+
+]]> 
+    </artwork>
+   </figure>  
+  </section>
+  <!--  YANG CODE END  --> 
+
+
+ <!--  DM END  --> 
+
+ <section anchor="Security" title="Security Considerations" toc="default">
+  <t>
+   The YANG module specified in this document defines a schema for data that is designed to be accessed via network management protocols such as NETCONF <xref target="RFC6241" /> or RESTCONF <xref target="RFC8040" />.  The lowest NETCONF layer is the secure transport layer, and the mandatory-to-implement secure transport is Secure Shell (SSH) <xref target="RFC6242" />.  The lowest RESTCONF layer is HTTPS, and the mandatory-to-implement secure transport is TLS <xref target="RFC8446" />.
+  </t>
+  <t>
+  The NETCONF access control model <xref target="RFC8341" /> provides the means to restrict access for particular NETCONF or RESTCONF users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content.
+  </t>
+  <t>
+  There are a number of data nodes defined in this YANG module that are writable/creatable/deletable (i.e., config true, which is the default).  These data nodes may be considered sensitive or vulnerable in some network environments.  Write operations (e.g., edit-config) to these data nodes without proper protection can have a negative effect on network operations.  Considerations in Section 10 of <xref target="I-D.ietf-teas-yang-te" />are also applicable to their subtrees in the module defined in this document. 
+  </t>
+  <t>
+  Some of the readable data nodes in this YANG module may be considered sensitive or vulnerable in some network environments.  It is thus important to control read access (e.g., via get, get-config, or notification) to these data nodes.  Considerations in Section 10 of <xref target="I-D.ietf-teas-yang-te" />are also applicable to their subtrees in the module defined in this document.
+  </t>
+ </section>
+ <!--  Security END  --> 
+
+ <section anchor="IANA" title="IANA Considerations" toc="default">
+  <t>
+  It is proposed that IANA should assign new URIs from the "IETF XML Registry" <xref target="RFC3688" /> as follows:
+  </t>
+  <figure>
+    <artwork>
+      <![CDATA[
+      URI: urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
+      Registrant Contact: The IESG
+      XML: N/A; the requested URI is an XML namespace.
+      ]]>
+    </artwork>
+  </figure>
+  <t> 
+   This document registers following YANG modules in the YANG Module Names registry <xref target="RFC7950" />.
+  </t>
+  <figure>
+    <artwork>
+    <![CDATA[
+   name:         ietf-otn-tunnel
+   namespace:    urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
+   prefix:       otn-tnl
+   reference:    RFC XXXX
+    ]]>
+    </artwork>
+  </figure>
+  <t> RFC Editor Note: Please replace XXXX with the number assigned to the RFC once this draft becomes an RFC.
+  </t>
+ </section>
+ <!--  IANA END  --> 
+
+ <section title="Acknowledgements" toc="default">
+  <t>
+  TBD.
+  </t>
+ </section>
+
+ <section anchor="Contributor" title="Contributors" toc="default">
+   <t>
+  Aihua Guo
+  <vspace blankLines="0" /> 
+  Futurewei
+  <vspace blankLines="0" /> 
+  Email: aihuaguo.ietf@gmail.com
+  <vspace blankLines="0" /> 
+  </t>
+  
+  <t>
+  Anurag Sharma
+  <vspace blankLines="0" /> 
+  Google
+  <vspace blankLines="0" /> 
+  Email: ansha@google.com
+  <vspace blankLines="0" /> 
+  </t>
+  
+  <t>
+  Rajan Rao
+  <vspace blankLines="0" /> 
+  Infinera
+  <vspace blankLines="0" /> 
+  Email: rrao@infinera.com
+  <vspace blankLines="0" /> 
+  </t>
+
+   <t>
+  Yunbo Li
+  <vspace blankLines="0" /> 
+  China Mobile
+  <vspace blankLines="0" /> 
+  Email: liyunbo@chinamobile.com
+  <vspace blankLines="0" /> 
+  </t>
+
+  <t>
+  Dieter Beller
+  <vspace blankLines="0" /> 
+  Nokia
+  <vspace blankLines="0" /> 
+  Email: dieter.beller@nokia.com
+  <vspace blankLines="0" /> 
+  </t>
+
+  <t>
+  Yanlei Zheng
+  <vspace blankLines="0" /> 
+  China Unicom
+  <vspace blankLines="0" /> 
+  Email: zhengyanlei@chinaunicom.cn
+  <vspace blankLines="0" /> 
+  </t>
+  
+  <t>
+  Xian Zhang
+  <vspace blankLines="0" /> 
+  Huawei Technologies
+  <vspace blankLines="0" /> 
+  Email: zhang.xian@huawei.com
+  <vspace blankLines="0" /> 
+  </t>
+  
+  <t>
+  Lei Wang
+  <vspace blankLines="0" /> 
+  China Mobile
+  <vspace blankLines="0" /> 
+  Email: wangleiyj@chinamobile.com
+  <vspace blankLines="0" /> 
+  </t>
+
+  <t>
+  Oscar Gonzalez de Dios
+  <vspace blankLines="0" /> 
+  Telefonica
+  <vspace blankLines="0" /> 
+  Email: oscar.gonzalezdedios@telefonica.com
+  <vspace blankLines="0" /> 
+  </t>
+ </section>
+ <!--  Contributor END  --> 
+ </middle>
+
+ <back>
+ <references title="Normative References">
+  <!--<?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?> --> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.3688.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8446.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.6241.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.6242.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8341.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.7139.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.7950.xml"?>
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8040.xml"?>  
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8342.xml"?> 
+  <?rfc include="reference.I-D.ietf-teas-yang-te"?>  
+  <?rfc include="reference.I-D.ietf-ccamp-otn-topo-yang"?> 
+  <?rfc include="reference.I-D.ietf-ccamp-layer1-types"?>
+  <reference anchor="ITU-Tg709">
+    <front>
+    <title>
+      Interfaces for the optical transport network  
+    </title>
+    <author>
+    <organization>International Telecommunication Union</organization>
+       </author>
+    <date month="March" year="2020"/>
+    </front>
+    <seriesInfo name="ITU-T" value="G.709"/>
+  </reference> 
+ </references>
+ <!--  Normative END  -->
+
+ <references title="Informative References">
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8340.xml"?> 
+  <?rfc include="reference.I-D.ietf-teas-actn-yang"?> 
+  <?rfc include="reference.I-D.ietf-ccamp-transport-nbi-app-statement"?>
+  </references>
+ <!--  Informative END  -->
+ 
+ </back>
+</rfc>
