@@ -164,9 +164,9 @@
     +-------------+-------------------------+------------------------+
     | Prefix      | YANG module             | Reference              |
     +-------------+-------------------------+------------------------+
-    | l1-types    | ietf-layer1-types       | RFC YYYY               |
+    | l1-types    | ietf-layer1-types       | [RFC YYYY]             |
     | otntnl      | ietf-otn-tunnel         | RFC XXXX               |
-    | te          | ietf-te                 | RFC ZZZZ               |
+    | te          | ietf-te                 | [RFC ZZZZ]             |
     +-------------+-------------------------+------------------------+
           Table 1: Prefixes and Corresponding YANG Modules
      ]]>
