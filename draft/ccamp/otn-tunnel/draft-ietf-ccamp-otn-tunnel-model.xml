@@ -12,7 +12,7 @@
 <?rfc compact="yes"?> 
 <?rfc subcompact="no"?>
 
-<rfc category="std" docName="draft-ietf-ccamp-otn-tunnel-model-19" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en">
+<rfc category="std" docName="draft-ietf-ccamp-otn-tunnel-model-20" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en">
  <front>
   <title abbrev="OTN Tunnel YANG Model"> OTN Tunnel YANG Model </title> 
  
@@ -86,7 +86,7 @@
    </address>
   </author>
 
-  <date month="October" day="17" year="2023"></date>
+  <date month="November" day="24" year="2023"></date>
   <workgroup>CCAMP Working Group</workgroup>
 
  <abstract>
@@ -165,7 +165,7 @@
     | Prefix      | YANG module             | Reference              |
     +-------------+-------------------------+------------------------+
     | l1-types    | ietf-layer1-types       | [RFC YYYY]             |
-    | otn-tnl      | ietf-otn-tunnel         | RFC XXXX               |
+    | otn-tnl     | ietf-otn-tunnel         | RFC XXXX               |
     | te          | ietf-te                 | [RFC ZZZZ]             |
     +-------------+-------------------------+------------------------+
           Table 1: Prefixes and Corresponding YANG Modules
@@ -2222,15 +2222,6 @@ module ietf-otn-tunnel {
   Email: dieter.beller@nokia.com
   <vspace blankLines="0" /> 
   </t>
-
-  <t>
-  Yanlei Zheng
-  <vspace blankLines="0" /> 
-  China Unicom
-  <vspace blankLines="0" /> 
-  Email: zhengyanlei@chinaunicom.cn
-  <vspace blankLines="0" /> 
-  </t>
   
   <t>
   Xian Zhang
@@ -2256,6 +2247,15 @@ module ietf-otn-tunnel {
   Telefonica
   <vspace blankLines="0" /> 
   Email: oscar.gonzalezdedios@telefonica.com
+  <vspace blankLines="0" /> 
+  </t>
+
+  <t>
+  Chaode Yu
+  <vspace blankLines="0" /> 
+  Huawei Technologies
+  <vspace blankLines="0" /> 
+  Email: yuchaode@huawei.com
   <vspace blankLines="0" /> 
   </t>
  </section>
