@@ -1,0 +1,2688 @@
+
+
+
+
+CCAMP Working Group                                             H. Zheng
+Internet-Draft                                                   I. Busi
+Intended status: Standards Track                     Huawei Technologies
+Expires: 27 May 2024                                          S. Belotti
+                                                                V. Lopez
+                                                                   Nokia
+                                                                   Y. Xu
+                                                                   CAICT
+                                                        24 November 2023
+
+
+                         OTN Tunnel YANG Model
+                  draft-ietf-ccamp-otn-tunnel-model-20
+
+Abstract
+
+   This document describes the YANG data model for tunnels in OTN TE
+   networks.  The model can be used to do the configuration in order to
+   establish the tunnel in OTN network.  This work is independent with
+   the control plane protocols.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 27 May 2024.
+
+Copyright Notice
+
+   Copyright (c) 2023 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+
+
+
+Zheng, et al.              Expires 27 May 2024                  [Page 1]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Terminology and Notations . . . . . . . . . . . . . . . .   2
+     1.2.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .   3
+     1.3.  Prefix in Data Node Names . . . . . . . . . . . . . . . .   3
+   2.  OTN Tunnel Model Description  . . . . . . . . . . . . . . . .   4
+     2.1.  Overview of OTN Tunnel Model  . . . . . . . . . . . . . .   4
+     2.2.  Bandwidth Augmentation  . . . . . . . . . . . . . . . . .   4
+     2.3.  Label Augmentation  . . . . . . . . . . . . . . . . . . .   5
+   3.  OTN Tunnel YANG Tree  . . . . . . . . . . . . . . . . . . . .   5
+   4.  OTN Tunnel YANG Code  . . . . . . . . . . . . . . . . . . . .  22
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  44
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  44
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  45
+   8.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  45
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  45
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  45
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  47
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  47
+
+1.  Introduction
+
+   OTN transport networks, specified in [ITU-Tg709], can carry various
+   types of client signals.  In many cases, the client signal is carried
+   over an OTN tunnel across connected domains in a multi-domain
+   network.
+
+   This document provides YANG model for creating OTN tunnel.  The model
+   augments the generic TE Tunnel model specified in
+   [I-D.ietf-teas-yang-te].
+
+   The YANG module ietf-otn-tunnel defined in this document conforms to
+   the Network Management Datastore Architecture (NMDA) defined in
+   [RFC8342].
+
+1.1.  Terminology and Notations
+
+   Refer to [I-D.ietf-ccamp-otn-topo-yang] for the OTN specific terms
+   terms used in this document.
+
+   The following terms are defined in [RFC7950] and are not redefined
+   here:
+
+
+
+
+Zheng, et al.              Expires 27 May 2024                  [Page 2]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+   *  client
+
+   *  server
+
+   *  augment
+
+   *  data model
+
+   *  data node
+
+   The following terms are defined in [RFC6241] and are not redefined
+   here:
+
+   *  configuration data
+
+   *  state data
+
+   The terminology for describing YANG data models is found in
+   [RFC7950].
+
+1.2.  Tree Diagram
+
+   A simplified graphical representation of the data model is used in
+   Section 3 of this this document.  The meaning of the symbols in these
+   diagrams is defined in [RFC8340].
+
+1.3.  Prefix in Data Node Names
+
+   In this document, names of data nodes and other data model objects
+   are prefixed using the standard prefix associated with the
+   corresponding YANG imported modules, as shown in the following table.
+
+
+      +-------------+-------------------------+------------------------+
+      | Prefix      | YANG module             | Reference              |
+      +-------------+-------------------------+------------------------+
+      | l1-types    | ietf-layer1-types       | [RFC YYYY]             |
+      | otn-tnl     | ietf-otn-tunnel         | RFC XXXX               |
+      | te          | ietf-te                 | [RFC ZZZZ]             |
+      +-------------+-------------------------+------------------------+
+            Table 1: Prefixes and Corresponding YANG Modules
+
+
+   RFC Editor Note: Please replace XXXX with the number assigned to the
+   RFC once this draft becomes an RFC.  Please replace YYYY with the RFC
+   numbers assigned to [I-D.ietf-ccamp-layer1-types].  Please replace
+   ZZZZ with the RFC numbers assigned to [I-D.ietf-teas-yang-te].
+
+
+
+
+Zheng, et al.              Expires 27 May 2024                  [Page 3]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+2.  OTN Tunnel Model Description
+
+2.1.  Overview of OTN Tunnel Model
+
+   This document aims to describe the data model for OTN tunnel.  The
+   OTN tunnel model is using TE tunnel [I-D.ietf-teas-yang-te] as a
+   basic model and augments it with OTN-specific parameters, including
+   the bandwidth information and label information.  Figure 1 shows the
+   augmentation relationship.
+
+
+                           +----------------+
+              TE generic   |     ietf-te    |
+                           +----------------+
+                                    ^
+                                    |
+                                    | Augments
+                                    |
+                           +--------+--------+
+              OTN          | ietf-otn-tunnel |
+                           +-----------------+
+          Figure 1 - Relationship between OTN and TE tunnel models
+
+
+   It is also worth noting that the OTN tunnel provisioning is usually
+   based on the OTN topology.  Therefore the OTN tunnel model is usually
+   used together with OTN topology model specified in
+   [I-D.ietf-ccamp-otn-topo-yang].  The OTN tunnel model also imports a
+   few type modules, including ietf-layer1-types, ietf-te-types and
+   ietf-inet-types.  The OTN-specific attributes in [RFC7139], including
+   the Tributary Slot (TS) and Tributary Port Number (TPN), can be used
+   to represent the bandwidth and label information.  These attributes
+   have been specified in [I-D.ietf-ccamp-layer1-types] and used in this
+   document for augmentation of the generic TE tunnel model.
+
+   More scenarios and model applications can be found in
+   [I-D.ietf-ccamp-transport-nbi-app-statement] and
+   [I-D.ietf-teas-actn-yang].
+
+2.2.  Bandwidth Augmentation
+
+   The model augments all the occurrences of the te-bandwidth container
+   with the OTN technology specific attributes using the otn-link-
+   bandwidth and otn-path-bandwidth groupings defined in
+   [I-D.ietf-ccamp-layer1-types].
+
+
+
+
+
+
+Zheng, et al.              Expires 27 May 2024                  [Page 4]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+2.3.  Label Augmentation
+
+   The model augments all the occurrences of the label-restriction list
+   with OTN technology specific attributes using the otn-label-range-
+   info grouping defined in [I-D.ietf-ccamp-layer1-types].
+
+   Moreover, the model augments all the occurrences of the te-label
+   container with the OTN technology specific attributes using the otn-
+   label-start-end, otn-label-hop and otn-label-step groupings defined
+   in [I-D.ietf-ccamp-layer1-types].
+
+3.  OTN Tunnel YANG Tree
+
+   module: ietf-otn-tunnel
+
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:te-bandwidth/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw odu-type?                     identityref
+             +--rw (oduflex-type)?
+                +--:(generic)
+                |  +--rw nominal-bit-rate        union
+                +--:(cbr)
+                |  +--rw client-type             identityref
+                +--:(gfp-n-k)
+                |  +--rw gfp-n                   uint8
+                |  +--rw gfp-k?                  gfp-k
+                +--:(flexe-client)
+                |  +--rw flexe-client            flexe-client-rate
+                +--:(flexe-aware)
+                |  +--rw flexe-aware-n           uint16
+                +--:(packet)
+                   +--rw opuflex-payload-rate    union
+     augment /te:te/te:tunnels/te:tunnel/te:te-bandwidth/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw odu-type?                     identityref
+             +--rw (oduflex-type)?
+                +--:(generic)
+                |  +--rw nominal-bit-rate        union
+                +--:(cbr)
+                |  +--rw client-type             identityref
+                +--:(gfp-n-k)
+                |  +--rw gfp-n                   uint8
+                |  +--rw gfp-k?                  gfp-k
+                +--:(flexe-client)
+                |  +--rw flexe-client            flexe-client-rate
+
+
+
+Zheng, et al.              Expires 27 May 2024                  [Page 5]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+                +--:(flexe-aware)
+                |  +--rw flexe-aware-n           uint16
+                +--:(packet)
+                   +--rw opuflex-payload-rate    union
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:te-bandwidth/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw odu-type?                     identityref
+             +--rw (oduflex-type)?
+                +--:(generic)
+                |  +--rw nominal-bit-rate        union
+                +--:(cbr)
+                |  +--rw client-type             identityref
+                +--:(gfp-n-k)
+                |  +--rw gfp-n                   uint8
+                |  +--rw gfp-k?                  gfp-k
+                +--:(flexe-client)
+                |  +--rw flexe-client            flexe-client-rate
+                +--:(flexe-aware)
+                |  +--rw flexe-aware-n           uint16
+                +--:(packet)
+                   +--rw opuflex-payload-rate    union
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:te-bandwidth/te:technology:
+       +--:(otn)
+          +--ro otn
+             +--ro odu-type?                     identityref
+             +--ro (oduflex-type)?
+                +--:(generic)
+                |  +--ro nominal-bit-rate        union
+                +--:(cbr)
+                |  +--ro client-type             identityref
+                +--:(gfp-n-k)
+                |  +--ro gfp-n                   uint8
+                |  +--ro gfp-k?                  gfp-k
+                +--:(flexe-client)
+                |  +--ro flexe-client            flexe-client-rate
+                +--:(flexe-aware)
+                |  +--ro flexe-aware-n           uint16
+                +--:(packet)
+                   +--ro opuflex-payload-rate    union
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path/te:te-bandwidth
+               /te:technology:
+       +--:(otn)
+
+
+
+Zheng, et al.              Expires 27 May 2024                  [Page 6]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+          +--rw otn
+             +--rw odu-type?                     identityref
+             +--rw (oduflex-type)?
+                +--:(generic)
+                |  +--rw nominal-bit-rate        union
+                +--:(cbr)
+                |  +--rw client-type             identityref
+                +--:(gfp-n-k)
+                |  +--rw gfp-n                   uint8
+                |  +--rw gfp-k?                  gfp-k
+                +--:(flexe-client)
+                |  +--rw flexe-client            flexe-client-rate
+                +--:(flexe-aware)
+                |  +--rw flexe-aware-n           uint16
+                +--:(packet)
+                   +--rw opuflex-payload-rate    union
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:computed-paths-properties/te:computed-path-properties
+               /te:path-properties/te:te-bandwidth/te:technology:
+       +--:(otn)
+          +--ro otn
+             +--ro odu-type?                     identityref
+             +--ro (oduflex-type)?
+                +--:(generic)
+                |  +--ro nominal-bit-rate        union
+                +--:(cbr)
+                |  +--ro client-type             identityref
+                +--:(gfp-n-k)
+                |  +--ro gfp-n                   uint8
+                |  +--ro gfp-k?                  gfp-k
+                +--:(flexe-client)
+                |  +--ro flexe-client            flexe-client-rate
+                +--:(flexe-aware)
+                |  +--ro flexe-aware-n           uint16
+                +--:(packet)
+                   +--ro opuflex-payload-rate    union
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:te-bandwidth/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw odu-type?                     identityref
+             +--rw (oduflex-type)?
+                +--:(generic)
+                |  +--rw nominal-bit-rate        union
+                +--:(cbr)
+                |  +--rw client-type             identityref
+                +--:(gfp-n-k)
+
+
+
+Zheng, et al.              Expires 27 May 2024                  [Page 7]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+                |  +--rw gfp-n                   uint8
+                |  +--rw gfp-k?                  gfp-k
+                +--:(flexe-client)
+                |  +--rw flexe-client            flexe-client-rate
+                +--:(flexe-aware)
+                |  +--rw flexe-aware-n           uint16
+                +--:(packet)
+                   +--rw opuflex-payload-rate    union
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:te-bandwidth/te:technology:
+       +--:(otn)
+          +--ro otn
+             +--ro odu-type?                     identityref
+             +--ro (oduflex-type)?
+                +--:(generic)
+                |  +--ro nominal-bit-rate        union
+                +--:(cbr)
+                |  +--ro client-type             identityref
+                +--:(gfp-n-k)
+                |  +--ro gfp-n                   uint8
+                |  +--ro gfp-k?                  gfp-k
+                +--:(flexe-client)
+                |  +--ro flexe-client            flexe-client-rate
+                +--:(flexe-aware)
+                |  +--ro flexe-aware-n           uint16
+                +--:(packet)
+                   +--ro opuflex-payload-rate    union
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:te-bandwidth/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw odu-type?                     identityref
+             +--rw (oduflex-type)?
+                +--:(generic)
+                |  +--rw nominal-bit-rate        union
+                +--:(cbr)
+                |  +--rw client-type             identityref
+                +--:(gfp-n-k)
+                |  +--rw gfp-n                   uint8
+                |  +--rw gfp-k?                  gfp-k
+                +--:(flexe-client)
+                |  +--rw flexe-client            flexe-client-rate
+                +--:(flexe-aware)
+                |  +--rw flexe-aware-n           uint16
+                +--:(packet)
+                   +--rw opuflex-payload-rate    union
+
+
+
+Zheng, et al.              Expires 27 May 2024                  [Page 8]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:te-bandwidth/te:technology:
+       +--:(otn)
+          +--ro otn
+             +--ro odu-type?                     identityref
+             +--ro (oduflex-type)?
+                +--:(generic)
+                |  +--ro nominal-bit-rate        union
+                +--:(cbr)
+                |  +--ro client-type             identityref
+                +--:(gfp-n-k)
+                |  +--ro gfp-n                   uint8
+                |  +--ro gfp-k?                  gfp-k
+                +--:(flexe-client)
+                |  +--ro flexe-client            flexe-client-rate
+                +--:(flexe-aware)
+                |  +--ro flexe-aware-n           uint16
+                +--:(packet)
+                   +--ro opuflex-payload-rate    union
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-in-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw otn-label-range
+          +--rw range-type?      otn-label-range-type
+          +--rw tsg?             identityref
+          +--rw odu-type-list*   identityref
+          +--rw priority?        uint8
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-out-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw otn-label-range
+          +--rw range-type?      otn-label-range-type
+          +--rw tsg?             identityref
+          +--rw odu-type-list*   identityref
+          +--rw priority?        uint8
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-in-segment/te:label-restrictions
+               /te:label-restriction:
+       +--rw otn-label-range
+          +--rw range-type?      otn-label-range-type
+          +--rw tsg?             identityref
+          +--rw odu-type-list*   identityref
+          +--rw priority?        uint8
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction:
+
+
+
+Zheng, et al.              Expires 27 May 2024                  [Page 9]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+       +--rw otn-label-range
+          +--rw range-type?      otn-label-range-type
+          +--rw tsg?             identityref
+          +--rw odu-type-list*   identityref
+          +--rw priority?        uint8
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-in-segment/te:label-restrictions
+               /te:label-restriction:
+       +--rw otn-label-range
+          +--rw range-type?      otn-label-range-type
+          +--rw tsg?             identityref
+          +--rw odu-type-list*   identityref
+          +--rw priority?        uint8
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-out-segment/te:label-restrictions
+               /te:label-restriction:
+       +--rw otn-label-range
+          +--rw range-type?      otn-label-range-type
+          +--rw tsg?             identityref
+          +--rw odu-type-list*   identityref
+          +--rw priority?        uint8
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw otn-label-range
+          +--rw range-type?      otn-label-range-type
+          +--rw tsg?             identityref
+          +--rw odu-type-list*   identityref
+          +--rw priority?        uint8
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw otn-label-range
+          +--rw range-type?      otn-label-range-type
+          +--rw tsg?             identityref
+          +--rw odu-type-list*   identityref
+          +--rw priority?        uint8
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw otn-label-range
+          +--rw range-type?      otn-label-range-type
+          +--rw tsg?             identityref
+          +--rw odu-type-list*   identityref
+          +--rw priority?        uint8
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 10]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+               /te:secondary-reverse-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction:
+       +--rw otn-label-range
+          +--rw range-type?      otn-label-range-type
+          +--rw tsg?             identityref
+          +--rw odu-type-list*   identityref
+          +--rw priority?        uint8
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint
+               /te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint
+               /te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-in-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 11]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+                   +--rw ts?    otn-ts
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-out-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:optimizations/te:algorithm/te:metric
+               /te:optimization-metric/te:explicit-route-exclude-objects
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 12]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+               /te:route-object-exclude-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:optimizations/te:algorithm/te:metric
+               /te:optimization-metric/te:explicit-route-include-objects
+               /te:route-object-include-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-start/te:te-label
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-in-segment/te:label-restrictions
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 13]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+               /te:label-restriction/te:label-end/te:te-label
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-step/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 14]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:label/te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--ro otn
+             +--ro tpn?       otn-tpn
+             +--ro tsg?       identityref
+             +--ro ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path/te:optimizations
+               /te:algorithm/te:metric/te:optimization-metric
+               /te:explicit-route-exclude-objects
+               /te:route-object-exclude-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path/te:optimizations
+               /te:algorithm/te:metric/te:optimization-metric
+               /te:explicit-route-include-objects
+               /te:route-object-include-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 15]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+               /te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-start/te:te-label
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-end/te:te-label
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-step/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-out-segment/te:label-restrictions
+               /te:label-restriction/te:label-start/te:te-label
+               /te:technology:
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 16]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-out-segment/te:label-restrictions
+               /te:label-restriction/te:label-end/te:te-label
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-out-segment/te:label-restrictions
+               /te:label-restriction/te:label-step/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:computed-paths-properties/te:computed-path-properties
+               /te:path-properties/te:path-route-objects
+               /te:path-route-object/te:type/te:label/te:label-hop
+               /te:te-label/te:technology:
+       +--:(otn)
+          +--ro otn
+             +--ro tpn?       otn-tpn
+             +--ro tsg?       identityref
+             +--ro ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:optimizations/te:algorithm
+               /te:metric/te:optimization-metric
+               /te:explicit-route-exclude-objects
+               /te:route-object-exclude-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 17]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:optimizations/te:algorithm
+               /te:metric/te:optimization-metric
+               /te:explicit-route-include-objects
+               /te:route-object-include-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 18]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 19]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:label/te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--ro otn
+             +--ro tpn?       otn-tpn
+             +--ro tsg?       identityref
+             +--ro ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:optimizations/te:algorithm
+               /te:metric/te:optimization-metric
+               /te:explicit-route-exclude-objects
+               /te:route-object-exclude-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:optimizations/te:algorithm
+               /te:metric/te:optimization-metric
+               /te:explicit-route-include-objects
+               /te:route-object-include-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path
+               /te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path
+               /te:explicit-route-objects-always
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 20]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw tpn?       otn-tpn
+             +--rw tsg?       identityref
+             +--rw ts-list?   string
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 21]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(otn)
+          +--rw otn
+             +--rw (range-type)?
+                +--:(trib-port)
+                |  +--rw tpn?   otn-tpn
+                +--:(trib-slot)
+                   +--rw ts?    otn-ts
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:label/te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--ro otn
+             +--ro tpn?       otn-tpn
+             +--ro tsg?       identityref
+             +--ro ts-list?   string
+     augment /te:te/te:lsps/te:lsp/te:lsp-record-route-information
+               /te:lsp-record-route-information/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(otn)
+          +--ro otn
+             +--ro tpn?       otn-tpn
+             +--ro tsg?       identityref
+             +--ro ts-list?   string
+
+
+
+4.  OTN Tunnel YANG Code
+
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 22]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+   <CODE BEGINS>
+   file "ietf-otn-tunnel@2023-10-12.yang"
+   module ietf-otn-tunnel {
+     yang-version 1.1;
+     namespace "urn:ietf:params:xml:ns:yang:ietf-otn-tunnel";
+     prefix "otn-tnl";
+
+     import ietf-te {
+       prefix "te";
+       revision-date "2021-02-20";
+       reference
+         "I-D.ietf-teas-yang-te-19: A YANG Data Model for Traffic
+         Engineering Tunnels and Interfaces. ";
+     }
+
+     import ietf-layer1-types {
+       prefix "l1-types";
+       reference
+         "I-D.ietf-ccamp-layer1-types:
+         A YANG Data Model for Layer 1 Types. ";
+     }
+
+     organization
+       "IETF CCAMP Working Group";
+     contact
+       "WG Web:   <http://tools.ietf.org/wg/ccamp/>
+        WG List:  <mailto:ccamp@ietf.org>
+
+        Editor:   Haomian Zheng
+                  <mailto:zhenghaomian@huawei.com>
+
+        Editor:   Italo Busi
+                  <mailto:italo.busi@huawei.com>
+
+        Editor:   Sergio Belotti
+                  <mailto:sergio.belotti@nokia.com>
+
+        Editor:   Victor Lopez
+                  <mailto:victor.lopez@nokia.com>
+
+        Editor:   Yunbin Xu
+                  <mailto:xuyunbin@caict.ac.cn>";
+
+     description
+       "This module defines a model for OTN Tunnel Services.
+
+       The model fully conforms to the Network Management
+       Datastore Architecture (NMDA).
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 23]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+       Copyright (c) 2023 IETF Trust and the persons
+       identified as authors of the code.  All rights reserved.
+
+       Redistribution and use in source and binary forms, with or
+       without modification, is permitted pursuant to, and subject
+       to the license terms contained in, the Revised BSD License
+       set forth in Section 4.c of the IETF Trust's Legal Provisions
+       Relating to IETF Documents
+       (https://trustee.ietf.org/license-info).
+
+       This version of this YANG module is part of RFC XXXX; see
+       the RFC itself for full legal notices.";
+
+     revision "2023-10-12" {
+       description
+         "Initial version";
+       reference
+         "RFC XXXX: OTN Tunnel YANG Model";
+       // RFC Ed.: replace XXXX with actual RFC number, update date
+       // information and remove this note
+     }
+
+    /*
+     * Data nodes
+     */
+
+     /*
+      * Augment TE bandwidth
+      */
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/"
+           + "te:te-bandwidth/te:technology" {
+       description
+         "Augment TE bandwidth of the named path constraint.";
+       case otn {
+         uses l1-types:otn-path-bandwidth;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:te-bandwidth/te:technology" {
+       description
+         "Augment TE bandwidth of the tunnel.";
+       case otn {
+         uses l1-types:otn-path-bandwidth;
+       }
+     }
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 24]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:te-bandwidth/te:technology" {
+       description
+         "Augment TE bandwidth of the primary path.";
+       case otn {
+         uses l1-types:otn-path-bandwidth;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:te-bandwidth/te:technology" {
+       description
+         "Augment TE bandwidth of primary path's computed path
+         properties.";
+       case otn {
+         uses l1-types:otn-path-bandwidth;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:te-bandwidth/te:technology" {
+       description
+         "Augment TE bandwidth of the primary reverse path.";
+       case otn {
+         uses l1-types:otn-path-bandwidth;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:te-bandwidth/te:technology" {
+       description
+         "Augment TE bandwidth of the primary reverse path's computed
+         path properties.";
+       case otn {
+         uses l1-types:otn-path-bandwidth;
+       }
+     }
+
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 25]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:te-bandwidth/te:technology" {
+       description
+         "Augment TE bandwidth of the secondary path.";
+       case otn {
+         uses l1-types:otn-path-bandwidth;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:te-bandwidth/te:technology" {
+       description
+         "Augment TE bandwidth of the secondary path's computed path
+         properties.";
+       case otn {
+         uses l1-types:otn-path-bandwidth;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/"
+           + "te:secondary-reverse-path/"
+           + "te:te-bandwidth/te:technology" {
+       description
+         "Augment TE bandwidth of the secondary reverse path.";
+       case otn {
+         uses l1-types:otn-path-bandwidth;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/"
+           + "te:secondary-reverse-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:te-bandwidth/te:technology" {
+       description
+         "Augment TE bandwidth of the secondary reverse path's computed
+         path properties.";
+       case otn {
+         uses l1-types:otn-path-bandwidth;
+       }
+     }
+
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 26]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+     /*
+      * Augment TE label range information
+      */
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-in-segment/"
+           + "te:label-restrictions/te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
+         of the named path constraint.";
+       uses l1-types:otn-label-range-info;
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-out-segment/"
+           + "te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the named path constraint.";
+       uses l1-types:otn-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
+         of the primay path.";
+       uses l1-types:otn-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the primay path.";
+       uses l1-types:otn-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 27]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+       description
+         "Augment TE label range information for the ingress segment
+         of the primay reverse path.";
+       uses l1-types:otn-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the primay reverse path.";
+       uses l1-types:otn-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
+         of the secondary path.";
+       uses l1-types:otn-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the secondary path.";
+       uses l1-types:otn-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
+         of the secondary reverse path.";
+       uses l1-types:otn-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 28]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the secondary reverse path.";
+       uses l1-types:otn-label-range-info;
+     }
+
+     /*
+      * Augment TE label.
+      */
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects always
+         excluded by the path computation with the named path
+         constraint.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-include-exclude/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects included
+         or excluded by the path computation with the named path
+         constraint.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-in-segment/"
+           + "te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the ingress segment
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 29]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+         of the named path constraint.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-in-segment/"
+           + "te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the ingress segment
+         of the named path constraint.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-in-segment/"
+           + "te:label-restrictions/te:label-restriction/"
+           + "te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the ingress segment
+         of the named path constraint.";
+       case otn {
+         uses l1-types:otn-label-step;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-out-segment/"
+           + "te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the egress segment
+         of the named path constraint.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-out-segment/"
+           + "te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 30]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the named path constraint.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:globals/te:named-path-constraints/"
+           + "te:named-path-constraint/te:path-out-segment/"
+           + "te:label-restrictions/te:label-restriction/"
+           + "te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the egress segment
+         of the named path constraint.";
+       case otn {
+         uses l1-types:otn-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:route-object-exclude-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects excluded by the path computation of the primary
+         path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:route-object-include-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects included by the path computation of the primary
+         path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 31]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects always
+         excluded by the path computation of the primary path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-include-exclude/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects included
+         or excluded by the path computation of the primary path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the ingress segment
+         of the primay path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 32]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+         "Augment TE label range end for the ingress segment
+         of the primay path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the ingress segment
+         of the primay path.";
+       case otn {
+         uses l1-types:otn-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the egress segment
+         of the primay path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the primay path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 33]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the primay path.";
+       case otn {
+         uses l1-types:otn-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/te:path-properties/"
+           + "te:path-route-objects/te:path-route-object/"
+           + "te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the route object of the computed
+         primary path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:route-object-exclude-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects excluded by the path computation of the primary
+         reverse path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:route-object-include-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 34]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+         "Augment TE label hop for the optimization of the explicit
+         route objects included by the path computation of the primary
+         reverse path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/"
+           + "te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects always
+         excluded by the path computation of the primary reverse
+         path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-include-exclude/"
+           + "te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects included
+         or excluded by the path computation of the primary reverse
+         path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the ingress segment
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 35]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+         of the primay reverse path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the ingress segment
+         of the primay reverse path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the ingress segment
+         of the primay reverse path.";
+       case otn {
+         uses l1-types:otn-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the egress segment
+         of the primay reverse path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 36]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the primay reverse path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the egress segment
+         of the primay reverse path.";
+       case otn {
+         uses l1-types:otn-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:computed-paths-properties/te:computed-path-properties/"
+           + "te:path-properties/te:path-route-objects/"
+           + "te:path-route-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the route object of the computed
+         primary reverse path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:route-object-exclude-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 37]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+         "Augment TE label hop for the optimization of the explicit
+         route objects excluded by the path computation of the
+         secondary path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:route-object-include-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects included by the path computation of the
+         secondary path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects always
+         excluded by the path computation of the secondary path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-include-exclude/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects included
+         or excluded by the path computation of the secondary path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 38]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the ingress segment
+         of the secondary path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the ingress segment
+         of the secondary path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the ingress segment
+         of the secondary path.";
+       case otn {
+         uses l1-types:otn-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the egress segment
+         of the secondary path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 39]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the secondary path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the egress segment
+         of the secondary path.";
+       case otn {
+         uses l1-types:otn-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/"
+           + "te:path-properties/te:path-route-objects/"
+           + "te:path-route-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the route object of the computed
+         secondary path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-exclude-objects/"
+           + "te:route-object-exclude-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 40]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects excluded by the path computation of the
+         secondary reverse path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:optimizations/te:algorithm/te:metric/"
+           + "te:optimization-metric/te:explicit-route-include-objects/"
+           + "te:route-object-include-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the optimization of the explicit
+         route objects included by the path computation of the
+         secondary reverse path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-exclude-always/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects always
+         excluded by the path computation of the secondary reverse
+         path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:explicit-route-objects-always/"
+           + "te:route-object-include-exclude/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the explicit route objects included
+         or excluded by the path computation of the secondary reverse
+         path.";
+       case otn {
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 41]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range start for the ingress segment
+         of the secondary reverse path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the ingress segment
+         of the secondary reverse path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the ingress segment
+         of the secondary reverse path.";
+       case otn {
+         uses l1-types:otn-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-start/"
+           + "te:te-label/te:technology" {
+       description
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 42]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+         "Augment TE label range start for the egress segment
+         of the secondary reverse path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-end/"
+           + "te:te-label/te:technology" {
+       description
+         "Augment TE label range end for the egress segment
+         of the secondary reverse path.";
+       case otn {
+         uses l1-types:otn-label-start-end;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction/te:label-step/te:technology" {
+       description
+         "Augment TE label range step for the egress segment
+         of the secondary reverse path.";
+       case otn {
+         uses l1-types:otn-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:computed-paths-properties/"
+           + "te:computed-path-properties/"
+           + "te:path-properties/te:path-route-objects/"
+           + "te:path-route-object/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the route object of the computed
+         secondary reverse path.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+
+     augment "/te:te/te:lsps/"
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 43]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+           + "te:lsp/te:lsp-record-route-information/"
+           + "te:lsp-record-route-information/te:type/te:label/"
+           + "te:label-hop/te:te-label/te:technology" {
+       description
+         "Augment TE label hop for the record route of the LSP.";
+       case otn {
+         uses l1-types:otn-label-hop;
+       }
+     }
+   }
+   <CODE ENDS>
+
+5.  Security Considerations
+
+   The YANG module specified in this document defines a schema for data
+   that is designed to be accessed via network management protocols such
+   as NETCONF [RFC6241] or RESTCONF [RFC8040].  The lowest NETCONF layer
+   is the secure transport layer, and the mandatory-to-implement secure
+   transport is Secure Shell (SSH) [RFC6242].  The lowest RESTCONF layer
+   is HTTPS, and the mandatory-to-implement secure transport is TLS
+   [RFC8446].
+
+   The NETCONF access control model [RFC8341] provides the means to
+   restrict access for particular NETCONF or RESTCONF users to a
+   preconfigured subset of all available NETCONF or RESTCONF protocol
+   operations and content.
+
+   There are a number of data nodes defined in this YANG module that are
+   writable/creatable/deletable (i.e., config true, which is the
+   default).  These data nodes may be considered sensitive or vulnerable
+   in some network environments.  Write operations (e.g., edit-config)
+   to these data nodes without proper protection can have a negative
+   effect on network operations.  Considerations in Section 10 of
+   [I-D.ietf-teas-yang-te]are also applicable to their subtrees in the
+   module defined in this document.
+
+   Some of the readable data nodes in this YANG module may be considered
+   sensitive or vulnerable in some network environments.  It is thus
+   important to control read access (e.g., via get, get-config, or
+   notification) to these data nodes.  Considerations in Section 10 of
+   [I-D.ietf-teas-yang-te]are also applicable to their subtrees in the
+   module defined in this document.
+
+6.  IANA Considerations
+
+   It is proposed that IANA should assign new URIs from the "IETF XML
+   Registry" [RFC3688] as follows:
+
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 44]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+         URI: urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
+         Registrant Contact: The IESG
+         XML: N/A; the requested URI is an XML namespace.
+
+
+   This document registers following YANG modules in the YANG Module
+   Names registry [RFC7950].
+
+
+      name:         ietf-otn-tunnel
+      namespace:    urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
+      prefix:       otn-tnl
+      reference:    RFC XXXX
+
+
+   RFC Editor Note: Please replace XXXX with the number assigned to the
+   RFC once this draft becomes an RFC.
+
+7.  Acknowledgements
+
+   TBD.
+
+8.  Contributors
+
+   Aihua Guo Futurewei Email: aihuaguo.ietf@gmail.com
+
+   Anurag Sharma Google Email: ansha@google.com
+
+   Rajan Rao Infinera Email: rrao@infinera.com
+
+   Yunbo Li China Mobile Email: liyunbo@chinamobile.com
+
+   Dieter Beller Nokia Email: dieter.beller@nokia.com
+
+   Yanlei Zheng China Unicom Email: zhengyanlei@chinaunicom.cn
+
+   Xian Zhang Huawei Technologies Email: zhang.xian@huawei.com
+
+   Lei Wang China Mobile Email: wangleiyj@chinamobile.com
+
+   Oscar Gonzalez de Dios Telefonica Email:
+   oscar.gonzalezdedios@telefonica.com
+
+9.  References
+
+9.1.  Normative References
+
+
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 45]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+   [I-D.ietf-ccamp-layer1-types]
+              Zheng, H. and I. Busi, "A YANG Data Model for Layer 1
+              Types", Work in Progress, Internet-Draft, draft-ietf-
+              ccamp-layer1-types-16, 10 July 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
+              layer1-types-16>.
+
+   [I-D.ietf-ccamp-otn-topo-yang]
+              Zheng, H., Busi, I., Liu, X., Belotti, S., and O. G. de
+              Dios, "A YANG Data Model for Optical Transport Network
+              Topology", Work in Progress, Internet-Draft, draft-ietf-
+              ccamp-otn-topo-yang-17, 10 July 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
+              otn-topo-yang-17>.
+
+   [I-D.ietf-teas-yang-te]
+              Saad, T., Gandhi, R., Liu, X., Beeram, V. P., and I.
+              Bryskin, "A YANG Data Model for Traffic Engineering
+              Tunnels, Label Switched Paths and Interfaces", Work in
+              Progress, Internet-Draft, draft-ietf-teas-yang-te-34, 1
+              October 2023, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-teas-yang-te-34>.
+
+   [ITU-Tg709]
+              International Telecommunication Union, "Interfaces for the
+              optical transport network", ITU-T G.709, March 2020.
+
+   [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
+              DOI 10.17487/RFC3688, January 2004,
+              <https://www.rfc-editor.org/info/rfc3688>.
+
+   [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
+              and A. Bierman, Ed., "Network Configuration Protocol
+              (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
+              <https://www.rfc-editor.org/info/rfc6241>.
+
+   [RFC6242]  Wasserman, M., "Using the NETCONF Protocol over Secure
+              Shell (SSH)", RFC 6242, DOI 10.17487/RFC6242, June 2011,
+              <https://www.rfc-editor.org/info/rfc6242>.
+
+   [RFC7139]  Zhang, F., Ed., Zhang, G., Belotti, S., Ceccarelli, D.,
+              and K. Pithewan, "GMPLS Signaling Extensions for Control
+              of Evolving G.709 Optical Transport Networks", RFC 7139,
+              DOI 10.17487/RFC7139, March 2014,
+              <https://www.rfc-editor.org/info/rfc7139>.
+
+
+
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 46]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+   [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
+              RFC 7950, DOI 10.17487/RFC7950, August 2016,
+              <https://www.rfc-editor.org/info/rfc7950>.
+
+   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
+              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
+              <https://www.rfc-editor.org/info/rfc8040>.
+
+   [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
+              Access Control Model", STD 91, RFC 8341,
+              DOI 10.17487/RFC8341, March 2018,
+              <https://www.rfc-editor.org/info/rfc8341>.
+
+   [RFC8342]  Bjorklund, M., Schoenwaelder, J., Shafer, P., Watsen, K.,
+              and R. Wilton, "Network Management Datastore Architecture
+              (NMDA)", RFC 8342, DOI 10.17487/RFC8342, March 2018,
+              <https://www.rfc-editor.org/info/rfc8342>.
+
+   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
+              <https://www.rfc-editor.org/info/rfc8446>.
+
+9.2.  Informative References
+
+   [I-D.ietf-ccamp-transport-nbi-app-statement]
+              Busi, I., King, D., Zheng, H., and Y. Xu, "Transport
+              Northbound Interface Applicability Statement", Work in
+              Progress, Internet-Draft, draft-ietf-ccamp-transport-nbi-
+              app-statement-17, 10 July 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
+              transport-nbi-app-statement-17>.
+
+   [I-D.ietf-teas-actn-yang]
+              Lee, Y., Zheng, H., Ceccarelli, D., Yoon, B. Y., and S.
+              Belotti, "Applicability of YANG models for Abstraction and
+              Control of Traffic Engineered Networks", Work in Progress,
+              Internet-Draft, draft-ietf-teas-actn-yang-11, 7 March
+              2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              teas-actn-yang-11>.
+
+   [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
+              BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
+              <https://www.rfc-editor.org/info/rfc8340>.
+
+Authors' Addresses
+
+
+
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 47]
+
+Internet-Draft            OTN Tunnel YANG Model            November 2023
+
+
+   Haomian Zheng
+   Huawei Technologies
+   H1, Huawei Xiliu Beipo Village, Songshan Lake
+   Dongguan
+   Guangdong, 523808
+   China
+   Email: zhenghaomian@huawei.com
+
+
+   Italo Busi
+   Huawei Technologies
+   HUAWEI TECHNOLOGIES ITALIA Srl Centro Direzionale Milano 2
+   20090 Milan Milan
+   Italy
+   Email: Italo.Busi@huawei.com
+
+
+   Sergio Belotti
+   Nokia
+   Email: sergio.belotti@nokia.com
+
+
+   Victor Lopez
+   Nokia
+   Email: victor.lopez@nokia.com
+
+
+   Yunbin Xu
+   CAICT
+   Email: xuyunbin@caict.ac.cn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zheng, et al.              Expires 27 May 2024                 [Page 48]
