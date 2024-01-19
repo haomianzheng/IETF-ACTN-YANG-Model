@@ -1,13 +1,13 @@
 module: ietf-layer1-types
 
   grouping otn-link-bandwidth:
-    +-- otn
+    +-- otn-bandwidth
        +-- odulist* [odu-type]
           +-- odu-type?    identityref
           +-- number?      uint16
           +-- ts-number?   uint16
   grouping otn-path-bandwidth:
-    +-- otn
+    +-- otn-bandwidth
        +-- odu-type?                     identityref
        +-- (oduflex-type)?
           +--:(generic)
@@ -24,7 +24,7 @@ module: ietf-layer1-types
           +--:(packet)
              +-- opuflex-payload-rate    union
   grouping otn-max-path-bandwidth:
-    +-- otn
+    +-- otn-bandwidth
        +-- odu-type?        identityref
        +-- max-ts-number?   uint16
   grouping otn-label-range-info:
@@ -34,19 +34,19 @@ module: ietf-layer1-types
        +-- odu-type-list*   identityref
        +-- priority?        uint8
   grouping otn-label-start-end:
-    +-- otn
+    +-- otn-label
        +-- (range-type)?
           +--:(trib-port)
           |  +-- tpn?   otn-tpn
           +--:(trib-slot)
              +-- ts?    otn-ts
   grouping otn-label-hop:
-    +-- otn
+    +-- otn-label
        +-- tpn?       otn-tpn
        +-- tsg?       identityref
        +-- ts-list?   string
   grouping otn-label-step:
-    +-- otn
+    +-- otn-label-step
        +-- (range-type)?
           +--:(trib-port)
           |  +-- tpn?   otn-tpn
