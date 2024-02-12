@@ -26,7 +26,7 @@
               "// default priority": 7
             },
             "// ts-range": "1-2",
-            "// comment": "Since no TPN range is reportd for ODU0 with 1.25G TSG, the TPN allocation rule is fixed (TPN = TS#) for mapping LO-ODU0 over HO-ODU1 with 1.25G TSG. See Table 4 of [RFC7139]."
+            "// comment": "Since no TPN range is reported for ODU0 with 1.25G TSG, the TPN allocation rule is fixed (TPN = TS#) for mapping LO-ODU0 over HO-ODU1 with 1.25G TSG. See Table 4 of [RFC7139]."
           }
         ]
       }
@@ -40,7 +40,7 @@
             "// default restriction": "inclusive",
             "otn-label-range": {
               "range-type": "label-range-trib-port",
-              "//not-present tsg": "",
+              "// not-present tsg": "",
               "odu-type-list": "[ ODU2 ]",
               "// default priority": 7
             },
@@ -106,7 +106,7 @@
             "// default restriction": "inclusive",
             "otn-label-range": {
               "range-type": "label-range-trib-port",
-              "//not-present tsg": "",
+              "// not-present tsg": "",
               "odu-type-list": "[ ODU3 ]",
               "// default priority": 7
             },
@@ -195,7 +195,7 @@
             "// default restriction": "inclusive",
             "otn-label-range": {
               "range-type": "label-range-trib-port",
-              "//not-present tsg": "",
+              "// not-present tsg": "",
               "odu-type-list": "[ ODU4 ]",
               "// default priority": 7
             },
