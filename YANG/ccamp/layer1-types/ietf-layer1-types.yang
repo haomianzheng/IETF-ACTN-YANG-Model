@@ -22,7 +22,7 @@ module ietf-layer1-types {
              <mailto:Italo.Busi@huawei.com>";
 
   description
-    "This module defines Layer 1 types. The model fully conforms
+    "This module defines Layer 1 YANG types. The model fully conforms
      to the Network Management Datastore Architecture (NMDA).
 
      Copyright (c) 2024 IETF Trust and the persons
@@ -44,13 +44,13 @@ module ietf-layer1-types {
     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
     they appear in all capitals, as shown here.";
 
-  revision "2024-02-12" {
+  revision "2024-02-14" {
     description
       "Initial Version";
     reference
       "RFC XXXX: A YANG Data Model for Layer 1 Types";
     // RFC Editor: replace RFC XXXX with actual RFC number,
-    // update date information and remove this note
+    // update date information and remove this note.
   }
 
   /*
@@ -401,7 +401,7 @@ module ietf-layer1-types {
       "Client signal type of OC3;
        OC-3 GR-253-CORE (N=3) coding function.";
     reference 
-      "ANSI T1.105-1995: Synchronous Optical Network (SONET) 
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
        and Formats
 
@@ -415,7 +415,7 @@ module ietf-layer1-types {
       "Client signal type of OC12;
        OC-12 GR-253-CORE (N=12) coding function.";
     reference 
-      "ANSI T1.105-1995: Synchronous Optical Network (SONET) 
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
        and Formats
 
@@ -429,7 +429,7 @@ module ietf-layer1-types {
       "Client signal type of OC48;
        OC-48 GR-253-CORE (N=48) coding function.";
     reference 
-      "ANSI T1.105-1995: Synchronous Optical Network (SONET) 
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
        and Formats
 
@@ -443,7 +443,7 @@ module ietf-layer1-types {
       "Client signal type of OC192;
        OC-192 GR-253-CORE (N=192) coding function.";
     reference 
-      "ANSI T1.105-1995: Synchronous Optical Network (SONET) 
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
        and Formats
 
@@ -457,7 +457,7 @@ module ietf-layer1-types {
       "Client signal type of OC768;
        OC-768 GR-253-CORE (N=768) coding function.";
     reference 
-      "ANSI T1.105-1995: Synchronous Optical Network (SONET) 
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
        and Formats
 
@@ -903,7 +903,7 @@ module ietf-layer1-types {
       in bits per second.
 
       The encoding format is the external decimal-significant
-      character sequences specified in IEEE 754 and ISO/IEC C99
+      character sequences specified in IEEE 754 and ISO/IEC 9899:1999
       for 32-bit decimal floating-point numbers:
       (-1)**(S) * 10**(Exponent) * (Significant),
       where Significant uses 7 digits.
@@ -918,10 +918,11 @@ module ietf-layer1-types {
       non-zero decimal digits; 'e' and 'E' indicate a power of ten.
       Some examples are 0e0, 1e10, and 9.953e9.";
     reference
-      "IEEE Std 754-2008: IEEE Standard for Floating-Point
-      Arithmetic.
-      ISO/IEC C99: Information technology - Programming
-      Languages - C.";
+      "IEEE Std 754-2001: IEEE Standard for Floating-Point
+      Arithmetic
+      
+      ISO/IEC 9899:1999: Information technology - Programming
+      Languages - C";
   }
 
   /*
@@ -931,7 +932,7 @@ module ietf-layer1-types {
   grouping otn-link-bandwidth {
     description
       "Bandwidth attributes for OTN links.";
-    container otn-bandwidth {
+    container otn {
       description
         "Bandwidth attributes for OTN links.";
       list odulist {
@@ -970,7 +971,7 @@ module ietf-layer1-types {
   grouping otn-path-bandwidth {
     description
       "Bandwidth attributes for OTN paths.";
-    container otn-bandwidth {
+    container otn {
       description
         "Bandwidth attributes for OTN paths.";
       leaf odu-type {
@@ -1076,7 +1077,7 @@ module ietf-layer1-types {
   grouping otn-max-path-bandwidth {
     description
       "Maximum bandwidth attributes for OTN paths.";
-    container otn-bandwidth {
+    container otn {
       description
         "Maximum bandwidth attributes for OTN paths.";
       leaf odu-type {
@@ -1174,7 +1175,7 @@ module ietf-layer1-types {
        OTN technology-specific label information to the models which
        use the label-restriction-info grouping defined in the module
        ietf-te-types.";
-    container otn-label {
+    container otn {
       description
         "Label start or label end for OTN.";
       choice range-type {
@@ -1202,7 +1203,7 @@ module ietf-layer1-types {
                   'trib-slot'" {
               description 
                 "Valid only when range-type represented by
-                trib-slot";
+                trib-slot.";
             } 
             type otn-ts;
             description
@@ -1221,7 +1222,7 @@ module ietf-layer1-types {
     reference
       "RFC7139, section 6: GMPLS Signaling Extensions for Control of
        Evolving G.709 Optical Transport Networks";
-    container otn-label {
+    container otn {
       description
         "Label hop for OTN.";
       leaf tpn {
@@ -1271,7 +1272,7 @@ module ietf-layer1-types {
        provide OTN technology-specific label information to the
        models which use the label-restriction-info grouping defined
        in the module ietf-te-types.";
-    container otn-label-step {
+    container otn {
       description
         "Label step for OTN.";
       choice range-type {
