@@ -22,7 +22,7 @@ module ietf-layer1-types {
              <mailto:Italo.Busi@huawei.com>";
 
   description
-    "This module defines Layer 1 types. The model fully conforms
+    "This module defines Layer 1 YANG types. The model fully conforms
      to the Network Management Datastore Architecture (NMDA).
 
      Copyright (c) 2024 IETF Trust and the persons
@@ -44,13 +44,13 @@ module ietf-layer1-types {
     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
     they appear in all capitals, as shown here.";
 
-  revision "2024-01-08" {
+  revision "2024-02-14" {
     description
       "Initial Version";
     reference
       "RFC XXXX: A YANG Data Model for Layer 1 Types";
-    // RFC Editor: replace XXXX with actual RFC number, update date
-    // information and remove this note
+    // RFC Editor: replace RFC XXXX with actual RFC number,
+    // update date information and remove this note.
   }
 
   /*
@@ -59,7 +59,7 @@ module ietf-layer1-types {
 
   identity tributary-slot-granularity {
     description
-      "Tributary Slot Granularity (TSG)";
+      "Tributary Slot Granularity (TSG).";
     reference
       "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
        Transport Network (OTN)";
@@ -68,19 +68,19 @@ module ietf-layer1-types {
   identity tsg-1.25G {
     base tributary-slot-granularity;
     description
-      "1.25G tributary slot granularity";
+      "1.25G tributary slot granularity.";
   }
 
   identity tsg-2.5G {
     base tributary-slot-granularity;
     description
-      "2.5G tributary slot granularity";
+      "2.5G tributary slot granularity.";
   }
   
   identity tsg-5G {
     base tributary-slot-granularity;
     description
-      "5G tributary slot granularity";
+      "5G tributary slot granularity.";
   }
 
   identity odu-type {
@@ -253,7 +253,7 @@ module ietf-layer1-types {
   identity ETH-1Gb {
     base client-signal;
     description
-      "Client signal type of 1GbE";
+      "Client signal type of 1GbE.";
     reference
       "RFC7139: GMPLS Signaling Extensions for Control of Evolving
        G.709 Optical Transport Networks
@@ -265,7 +265,7 @@ module ietf-layer1-types {
   identity ETH-10Gb-LAN {
     base client-signal;
     description
-      "Client signal type of ETH-10Gb-LAN (10.3 Gb/s)";
+      "Client signal type of ETH-10Gb-LAN (10.3 Gb/s).";
     reference
       "RFC7139: GMPLS Signaling Extensions for Control of Evolving
        G.709 Optical Transport Networks
@@ -279,7 +279,7 @@ module ietf-layer1-types {
   identity ETH-10Gb-WAN {
     base client-signal;
     description
-      "Client signal type of ETH-10Gb-WAN (9.95 Gb/s)";
+      "Client signal type of ETH-10Gb-WAN (9.95 Gb/s).";
     reference
       "RFC7139: GMPLS Signaling Extensions for Control of Evolving
        G.709 Optical Transport Networks
@@ -293,7 +293,7 @@ module ietf-layer1-types {
   identity ETH-40Gb {
     base client-signal;
     description
-      "Client signal type of 40GbE";
+      "Client signal type of 40GbE.";
     reference
       "RFC7139: GMPLS Signaling Extensions for Control of Evolving
        G.709 Optical Transport Networks
@@ -305,7 +305,7 @@ module ietf-layer1-types {
   identity ETH-100Gb {
     base client-signal;
     description
-      "Client signal type of 100GbE";
+      "Client signal type of 100GbE.";
     reference
       "RFC7139: GMPLS Signaling Extensions for Control of Evolving
        G.709 Optical Transport Networks
@@ -401,7 +401,7 @@ module ietf-layer1-types {
       "Client signal type of OC3;
        OC-3 GR-253-CORE (N=3) coding function.";
     reference 
-      "ANSI T1.105-1995: Synchronous Optical Network (SONET) 
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
        and Formats
 
@@ -415,7 +415,7 @@ module ietf-layer1-types {
       "Client signal type of OC12;
        OC-12 GR-253-CORE (N=12) coding function.";
     reference 
-      "ANSI T1.105-1995: Synchronous Optical Network (SONET) 
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
        and Formats
 
@@ -429,7 +429,7 @@ module ietf-layer1-types {
       "Client signal type of OC48;
        OC-48 GR-253-CORE (N=48) coding function.";
     reference 
-      "ANSI T1.105-1995: Synchronous Optical Network (SONET) 
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
        and Formats
 
@@ -443,7 +443,7 @@ module ietf-layer1-types {
       "Client signal type of OC192;
        OC-192 GR-253-CORE (N=192) coding function.";
     reference 
-      "ANSI T1.105-1995: Synchronous Optical Network (SONET) 
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
        and Formats
 
@@ -457,7 +457,7 @@ module ietf-layer1-types {
       "Client signal type of OC768;
        OC-768 GR-253-CORE (N=768) coding function.";
     reference 
-      "ANSI T1.105-1995: Synchronous Optical Network (SONET) 
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET) 
        Basic Description including Multiplex Structure, Rates, 
        and Formats
 
@@ -579,7 +579,7 @@ module ietf-layer1-types {
   identity FICON-4G {
     base client-signal;
     description
-      "Client signal type of Fibre Connection 4G";
+      "Client signal type of Fibre Connection 4G.";
     reference
       "RFC7139: GMPLS Signaling Extensions for Control of Evolving
        G.709 Optical Transport Networks
@@ -591,7 +591,7 @@ module ietf-layer1-types {
   identity FICON-8G {
     base client-signal;
     description
-      "Client signal type of Fibre Connection 8G";
+      "Client signal type of Fibre Connection 8G.";
     reference
       "RFC7139: GMPLS Signaling Extensions for Control of Evolving
        G.709 Optical Transport Networks
@@ -653,7 +653,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "SX-PMD-clause-38 Optical Interface function for
-      1000BASE-X PCS-36";
+      1000BASE-X PCS-36.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -662,7 +662,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "LX-PMD-clause-38 Optical Interface function for
-       1000BASE-X PCS-36";
+       1000BASE-X PCS-36.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -671,7 +671,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "LX10-PMD-clause-59 Optical Interface function for
-       1000BASE-X PCS-36";
+       1000BASE-X PCS-36.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -680,7 +680,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "BX10-PMD-clause-59 Optical Interface function for
-       1000BASE-X PCS-36";
+       1000BASE-X PCS-36.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -689,7 +689,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "LW-PMD-clause-52 Optical Interface function for
-       10GBASE-W PCS-49-WIS-50";
+       10GBASE-W PCS-49-WIS-50.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -698,7 +698,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "EW-PMD-clause-52 Optical Interface function for
-       10GBASE-W PCS-49-WIS-50";
+       10GBASE-W PCS-49-WIS-50.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -707,7 +707,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "LR-PMD-clause-52 Optical Interface function for
-       10GBASE-R PCS-49";
+       10GBASE-R PCS-49.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -716,7 +716,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "ER-PMD-clause-52 Optical Interface function for
-       10GBASE-R PCS-49";
+       10GBASE-R PCS-49.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -725,7 +725,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "LR4-PMD-clause-87 Optical Interface function for
-       40GBASE-R PCS-82";
+       40GBASE-R PCS-82.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -734,7 +734,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "ER4-PMD-clause-87 Optical Interface function for
-       40GBASE-R PCS-82";
+       40GBASE-R PCS-82.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -743,7 +743,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "FR-PMD-clause-89 Optical Interface function for
-       40GBASE-R PCS-82";
+       40GBASE-R PCS-82.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -752,7 +752,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "LR4-PMD-clause-88 Optical Interface function for
-       100GBASE-R PCS-82";
+       100GBASE-R PCS-82.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -761,7 +761,7 @@ module ietf-layer1-types {
     base optical-interface-func;
     description
       "ER4-PMD-clause-88 Optical Interface function for
-       100GBASE-R PCS-82";
+       100GBASE-R PCS-82.";
     reference
       "MEF63: Subscriber Layer 1 Service Attributes";
   }
@@ -775,7 +775,7 @@ module ietf-layer1-types {
       range "1..4095";
     }
     description
-      "Tributary Port Number (TPN) for OTN. ";
+      "Tributary Port Number (TPN) for OTN.";
     reference
       "RFC7139: GMPLS Signaling Extensions for Control of Evolving
        G.709 Optical Transport Networks.";
@@ -804,7 +804,7 @@ module ietf-layer1-types {
       }
     }
     description
-      "Defines the type of OTN label range: TS or TPN. ";
+      "Defines the type of OTN label range: TS or TPN.";
   }
   
   typedef gfp-k {
@@ -812,21 +812,21 @@ module ietf-layer1-types {
       enum 2 {
         description
           "The ODU2.ts rate (1,249,177.230 kbit/s) is used
-           to compute the rate of an ODUflex(GFP,n,2). ";
+           to compute the rate of an ODUflex(GFP,n,2).";
       }
       enum 3 {
         description
           "The ODU3.ts rate (1,254,470.354 kbit/s) is used
-           to compute the rate of an ODUflex(GFP,n,3). ";
+           to compute the rate of an ODUflex(GFP,n,3).";
       }
       enum 4 {
         description
           "The ODU4.ts rate (1,301,467.133 kbit/s) is used
-           to compute the rate of an ODUflex(GFP,n,4). ";
+           to compute the rate of an ODUflex(GFP,n,4).";
       }
     }
     description
-      "The ODUk.ts used to compute the rate of an ODUflex(GFP,n,k)";
+      "The ODUk.ts used to compute the rate of an ODUflex(GFP,n,k).";
     reference
       "ITU-T G.709 v6.0 (06/2020), Table 7-8 and L.7: Interfaces for
        the Optical Transport Network (OTN)";
@@ -838,22 +838,24 @@ module ietf-layer1-types {
       type enumeration {
         enum "10G" {
           description
-            "Represents a 10G FlexE Client signal (s=2)"; 
+            "Represents a 10G FlexE Client signal (s=2)."; 
         }
         enum "40G" {
           description
-            "Represents a 40G FlexE Client signal (s=8)";
+            "Represents a 40G FlexE Client signal (s=8).";
         }
       }
     }
     description
       "The FlexE Client signal rate (s x 5,156,250.000 kbit/s)
        used to compute the rate of an ODUflex(IMP, s).
+
        Valid values for s are s=2 (10G), s=4 (40G) and
        s=5 x n (n x 25G).
+
        In the first two cases an enumeration value
        (either 10G or 40G) is used, while in the latter case
-       the value of n is used";
+       the value of n is used.";
     reference
       "ITU-T G.709 v6.0 (06/2020), Table 7-2: Interfaces for the
        Optical Transport Network (OTN)";
@@ -901,7 +903,7 @@ module ietf-layer1-types {
       in bits per second.
 
       The encoding format is the external decimal-significant
-      character sequences specified in IEEE 754 and ISO/IEC C99
+      character sequences specified in IEEE 754 and ISO/IEC 9899:1999
       for 32-bit decimal floating-point numbers:
       (-1)**(S) * 10**(Exponent) * (Significant),
       where Significant uses 7 digits.
@@ -916,10 +918,11 @@ module ietf-layer1-types {
       non-zero decimal digits; 'e' and 'E' indicate a power of ten.
       Some examples are 0e0, 1e10, and 9.953e9.";
     reference
-      "IEEE Std 754-2008: IEEE Standard for Floating-Point
-      Arithmetic.
-      ISO/IEC C99: Information technology - Programming
-      Languages - C.";
+      "IEEE Std 754-2001: IEEE Standard for Floating-Point
+      Arithmetic
+      
+      ISO/IEC 9899:1999: Information technology - Programming
+      Languages - C";
   }
 
   /*
@@ -928,10 +931,10 @@ module ietf-layer1-types {
 
   grouping otn-link-bandwidth {
     description
-      "Bandwidth attributes for OTN links";
-    container otn-bandwidth {
+      "Bandwidth attributes for OTN links.";
+    container otn {
       description
-        "Bandwidth attributes for OTN links";
+        "Bandwidth attributes for OTN links.";
       list odulist {
         key "odu-type";
         description
@@ -944,7 +947,7 @@ module ietf-layer1-types {
         }
         leaf number {
           type uint16;
-          description "Number of ODUs";
+          description "Number of ODUs.";
         }
         leaf ts-number {
           when 'derived-from-or-self(../odu-type,"ODUflex") or
@@ -952,7 +955,7 @@ module ietf-layer1-types {
                 "ODUflex-resizable")' {
             description
               "Applicable when odu-type is ODUflex or
-              ODUflex-resizable";
+              ODUflex-resizable.";
           }
           type uint16 {
             range "1..4095";
@@ -968,7 +971,7 @@ module ietf-layer1-types {
   grouping otn-path-bandwidth {
     description
       "Bandwidth attributes for OTN paths.";
-    container otn-bandwidth {
+    container otn {
       description
         "Bandwidth attributes for OTN paths.";
       leaf odu-type {
@@ -983,7 +986,7 @@ module ietf-layer1-types {
               "ODUflex-resizable")' {
           description
             "Applicable when odu-type is ODUflex or
-             ODUflex-resizable";
+             ODUflex-resizable.";
         }
         description
           "Types of ODUflex used to compute the ODUflex
@@ -1031,7 +1034,7 @@ module ietf-layer1-types {
               "The value of k for an ODUflex(GFP,n,k).
 
                If omitted, it is calculated from the value of gfp-n
-               as described in Table 7-8 of G.709";
+               as described in Table 7-8 of G.709.";
             reference
               "ITU-T G.709 v6.0 (06/2020), Tables 7-8 and L.7:
                Interfaces for the Optical Transport Network (OTN)";
@@ -1074,14 +1077,14 @@ module ietf-layer1-types {
   grouping otn-max-path-bandwidth {
     description
       "Maximum bandwidth attributes for OTN paths.";
-    container otn-bandwidth {
+    container otn {
       description
         "Maximum bandwidth attributes for OTN paths.";
       leaf odu-type {
         type identityref {
           base odu-type;
         }
-        description "ODU type";
+        description "ODU type.";
       }
       leaf max-ts-number {
         when 'derived-from-or-self(../odu-type,"ODUflex") or
@@ -1089,14 +1092,14 @@ module ietf-layer1-types {
               "ODUflex-resizable")' {
           description
             "Applicable when odu-type is ODUflex or
-             ODUflex-resizable";
+             ODUflex-resizable.";
         }
         type uint16 {
           range "1..4095";
         }
         description
           "The maximum number of Tributary Slots (TS) that could be 
-          used  by an ODUflex LSP.";
+          used by an ODUflex LSP.";
       }
     }
   }
@@ -1172,26 +1175,26 @@ module ietf-layer1-types {
        OTN technology-specific label information to the models which
        use the label-restriction-info grouping defined in the module
        ietf-te-types.";
-    container otn-label {
+    container otn {
       description
         "Label start or label end for OTN.";
       choice range-type {
         description
-          "OTN label range type, either TPN range or TS range";
+          "OTN label range type, either TPN range or TS range.";
         case trib-port {
           leaf tpn {
             when "../../../../otn-label-range/range-type = 
                   'trib-port'" {
               description 
                 "Valid only when range-type represented by
-                trib-port";
+                trib-port.";
             } 
             type otn-tpn;
             description
               "Tributary Port Number (TPN).";
             reference
               "RFC7139: GMPLS Signaling Extensions for Control of
-              Evolving G.709 Optical Transport Networks.";
+              Evolving G.709 Optical Transport Networks";
           }
         }
         case trib-slot {
@@ -1200,7 +1203,7 @@ module ietf-layer1-types {
                   'trib-slot'" {
               description 
                 "Valid only when range-type represented by
-                trib-slot";
+                trib-slot.";
             } 
             type otn-ts;
             description
@@ -1219,7 +1222,7 @@ module ietf-layer1-types {
     reference
       "RFC7139, section 6: GMPLS Signaling Extensions for Control of
        Evolving G.709 Optical Transport Networks";
-    container otn-label {
+    container otn {
       description
         "Label hop for OTN.";
       leaf tpn {
@@ -1228,7 +1231,7 @@ module ietf-layer1-types {
           "Tributary Port Number (TPN).";
         reference
           "RFC7139: GMPLS Signaling Extensions for Control of
-          Evolving G.709 Optical Transport Networks.";
+          Evolving G.709 Optical Transport Networks";
       }
       leaf tsg {
         type identityref {
@@ -1269,19 +1272,19 @@ module ietf-layer1-types {
        provide OTN technology-specific label information to the
        models which use the label-restriction-info grouping defined
        in the module ietf-te-types.";
-    container otn-label-step {
+    container otn {
       description
-        "Label step for OTN";
+        "Label step for OTN.";
       choice range-type {
         description
-          "OTN label range type, either TPN range or TS range";
+          "OTN label range type, either TPN range or TS range.";
         case trib-port {
           leaf tpn {
             when "../../../otn-label-range/range-type = 
                   'trib-port'" {
               description 
                 "Valid only when range-type represented by
-                trib-port";
+                trib-port.";
             } 
             type otn-tpn;
             description
@@ -1289,7 +1292,7 @@ module ietf-layer1-types {
               Tributary Port Number (TPN).";
             reference
               "RFC7139: GMPLS Signaling Extensions for Control of 
-              Evolving G.709 Optical Transport Networks.";
+              Evolving G.709 Optical Transport Networks";
           }
         }
         case trib-slot {
@@ -1306,7 +1309,7 @@ module ietf-layer1-types {
               Tributary Slot (TS) number.";
             reference
               "RFC7139: GMPLS Signaling Extensions for Control of
-              Evolving G.709 Optical Transport Networks.";
+              Evolving G.709 Optical Transport Networks";
           }
         }
       }
