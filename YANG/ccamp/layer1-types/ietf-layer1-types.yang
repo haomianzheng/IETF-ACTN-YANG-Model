@@ -44,7 +44,7 @@ module ietf-layer1-types {
     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
     they appear in all capitals, as shown here.";
 
-  revision "2024-02-19" {
+  revision "2024-02-21" {
     description
       "Initial Version";
     reference
@@ -1010,7 +1010,7 @@ module ietf-layer1-types {
   grouping otn-link-bandwidth {
     description
       "Bandwidth attributes for OTN links.";
-    container otn {
+    container otn-bandwidth {
       description
         "Bandwidth attributes for OTN links.";
       list odulist {
@@ -1049,7 +1049,7 @@ module ietf-layer1-types {
   grouping otn-path-bandwidth {
     description
       "Bandwidth attributes for OTN paths.";
-    container otn {
+    container otn-bandwidth {
       description
         "Bandwidth attributes for OTN paths.";
       leaf odu-type {
@@ -1155,7 +1155,7 @@ module ietf-layer1-types {
   grouping otn-max-path-bandwidth {
     description
       "Maximum bandwidth attributes for OTN paths.";
-    container otn {
+    container otn-bandwidth {
       description
         "Maximum bandwidth attributes for OTN paths.";
       leaf odu-type {
@@ -1253,7 +1253,7 @@ module ietf-layer1-types {
        OTN technology-specific label information to the models which
        use the label-restriction-info grouping defined in the module
        ietf-te-types.";
-    container otn {
+    container otn-label {
       description
         "Label start or label end for OTN.";
       choice range-type {
@@ -1300,7 +1300,7 @@ module ietf-layer1-types {
     reference
       "RFC7139, section 6: GMPLS Signaling Extensions for Control of
        Evolving G.709 Optical Transport Networks";
-    container otn {
+    container otn-label {
       description
         "Label hop for OTN.";
       leaf tpn {
@@ -1350,7 +1350,7 @@ module ietf-layer1-types {
        provide OTN technology-specific label information to the
        models which use the label-restriction-info grouping defined
        in the module ietf-te-types.";
-    container otn {
+    container otn-label-step {
       description
         "Label step for OTN.";
       choice range-type {
