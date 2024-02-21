@@ -618,30 +618,6 @@ module ietf-layer1-types {
         MEF63: Subscriber Layer 1 Service Attributes";
     }
 
-    identity FICON-4G {
-      base client-signal;
-      description
-        "Client signal type of Fibre Connection 4G.";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
-
-    identity FICON-8G {
-      base client-signal;
-      description
-        "Client signal type of Fibre Connection 8G.";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
-
     identity ETH-1000X {
       base coding-func;
       description
