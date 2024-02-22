@@ -35,11 +35,8 @@ module: ietf-layer1-types
        +-- priority?        uint8
   grouping otn-label-start-end:
     +-- otn-label
-       +-- (range-type)?
-          +--:(trib-port)
-          |  +-- tpn?   otn-tpn
-          +--:(trib-slot)
-             +-- ts?    otn-ts
+       +-- tpn?   otn-tpn
+       +-- ts?    otn-ts
   grouping otn-label-hop:
     +-- otn-label
        +-- tpn?       otn-tpn
@@ -47,8 +44,5 @@ module: ietf-layer1-types
        +-- ts-list?   string
   grouping otn-label-step:
     +-- otn-label-step
-       +-- (range-type)?
-          +--:(trib-port)
-          |  +-- tpn?   otn-tpn
-          +--:(trib-slot)
-             +-- ts?    otn-ts
+       +-- tpn?   otn-tpn
+       +-- ts?    otn-ts

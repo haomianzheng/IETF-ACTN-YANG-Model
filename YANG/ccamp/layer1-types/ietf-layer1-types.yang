@@ -44,7 +44,7 @@ module ietf-layer1-types {
     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
     they appear in all capitals, as shown here.";
 
-  revision "2024-02-21" {
+  revision "2024-02-22" {
     description
       "Initial Version";
     reference
@@ -1231,42 +1231,38 @@ module ietf-layer1-types {
        ietf-te-types.";
     container otn-label {
       description
-        "Label start or label end for OTN.";
-      choice range-type {
+        "Label start or label end for OTN.
+        
+        It is either a TPN or a TS depending on the OTN label range
+        type specified in the 'range-type' leaf defined in the
+        otn-label-range-info grouping.";
+      leaf tpn {
+        when "../../../../otn-label-range/range-type = 
+              'trib-port'" {
+          description 
+            "Valid only when range-type represented by
+            trib-port.";
+        } 
+        type otn-tpn;
         description
-          "OTN label range type, either TPN range or TS range.";
-        case trib-port {
-          leaf tpn {
-            when "../../../../otn-label-range/range-type = 
-                  'trib-port'" {
-              description 
-                "Valid only when range-type represented by
-                trib-port.";
-            } 
-            type otn-tpn;
-            description
-              "Tributary Port Number (TPN).";
-            reference
-              "RFC7139: GMPLS Signaling Extensions for Control of
-              Evolving G.709 Optical Transport Networks";
-          }
-        }
-        case trib-slot {
-          leaf ts {
-            when "../../../../otn-label-range/range-type = 
-                  'trib-slot'" {
-              description 
-                "Valid only when range-type represented by
-                trib-slot.";
-            } 
-            type otn-ts;
-            description
-              "Tributary Slot (TS) number.";
-            reference
-              "RFC7139: GMPLS Signaling Extensions for Control of
-              Evolving G.709 Optical Transport Networks";
-          }
-        }
+          "Tributary Port Number (TPN).";
+        reference
+          "RFC7139: GMPLS Signaling Extensions for Control of
+          Evolving G.709 Optical Transport Networks";
+      }
+      leaf ts {
+        when "../../../../otn-label-range/range-type = 
+              'trib-slot'" {
+          description 
+            "Valid only when range-type represented by
+            trib-slot.";
+        } 
+        type otn-ts;
+        description
+          "Tributary Slot (TS) number.";
+        reference
+          "RFC7139: GMPLS Signaling Extensions for Control of
+          Evolving G.709 Optical Transport Networks";
       }
     }
   }
@@ -1328,44 +1324,40 @@ module ietf-layer1-types {
        in the module ietf-te-types.";
     container otn-label-step {
       description
-        "Label step for OTN.";
-      choice range-type {
+        "Label step for OTN.
+        
+        It is either a TPN or a TS depending on the OTN label range
+        type specified in the 'range-type' leaf defined in the
+        otn-label-range-info grouping.";
+      leaf tpn {
+        when "../../../otn-label-range/range-type = 
+              'trib-port'" {
+          description 
+            "Valid only when range-type represented by
+            trib-port.";
+        } 
+        type otn-tpn;
         description
-          "OTN label range type, either TPN range or TS range.";
-        case trib-port {
-          leaf tpn {
-            when "../../../otn-label-range/range-type = 
-                  'trib-port'" {
-              description 
-                "Valid only when range-type represented by
-                trib-port.";
-            } 
-            type otn-tpn;
-            description
-              "Label step which represents possible increments for 
-              Tributary Port Number (TPN).";
-            reference
-              "RFC7139: GMPLS Signaling Extensions for Control of 
-              Evolving G.709 Optical Transport Networks";
-          }
-        }
-        case trib-slot {
-          leaf ts {
-            when "../../../otn-label-range/range-type = 
-                  'trib-slot'" {
-              description 
-                "Valid only when range-type represented by
-                trib-slot";
-            } 
-            type otn-ts; 
-            description
-              "Label step which represents possible increments for 
-              Tributary Slot (TS) number.";
-            reference
-              "RFC7139: GMPLS Signaling Extensions for Control of
-              Evolving G.709 Optical Transport Networks";
-          }
-        }
+          "Label step which represents possible increments for 
+          Tributary Port Number (TPN).";
+        reference
+          "RFC7139: GMPLS Signaling Extensions for Control of 
+          Evolving G.709 Optical Transport Networks";
+      }
+      leaf ts {
+        when "../../../otn-label-range/range-type = 
+              'trib-slot'" {
+          description 
+            "Valid only when range-type represented by
+            trib-slot";
+        } 
+        type otn-ts; 
+        description
+          "Label step which represents possible increments for 
+          Tributary Slot (TS) number.";
+        reference
+          "RFC7139: GMPLS Signaling Extensions for Control of
+          Evolving G.709 Optical Transport Networks";
       }
     }
   }
