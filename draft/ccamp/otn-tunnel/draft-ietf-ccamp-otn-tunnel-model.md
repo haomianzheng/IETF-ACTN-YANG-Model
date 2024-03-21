@@ -1,9 +1,10 @@
 ---
-title: "OTN Tunnel YANG Model"
-abbrev: "OTN Tunnel YANG Model"
+title: >
+  A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label Switched Paths
+abbrev: OTN Tunnel Model
 category: std
 
-docname: draft-ietf-ccamp-otn-tunnel-model-20
+docname: draft-ietf-ccamp-otn-tunnel-model-21
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
@@ -230,16 +231,16 @@ in {{!I-D.ietf-ccamp-layer1-types}}.
 # OTN Tunnel YANG Tree
 
 ~~~~ ascii-art
-{::include ../../../YANG/ccamp/otn-tunnel/ietf-otn-tunnel.tree}
+{::include ../../../YANG/ccamp/otn-tunnel/ietf-otn-tunnel.tree.folded}
 ~~~~
-{: #fig-otn-tunnel-tree artwork-name="ietf-otn-tunnel.tree"}
+{: #fig-otn-tunnel-tree artwork-name="ietf-otn-tunnel.tree.folded"}
 
 # OTN Tunnel YANG Code
 
 ~~~~ yang
 {::include ../../../YANG/ccamp/otn-tunnel/ietf-otn-tunnel.yang}
 ~~~~
-{: #fig-otn-tunnel-yang sourcecode-markers="true" sourcecode-name="ietf-otn-tunnel@2023-10-12.yang"}
+{: #fig-otn-tunnel-yang sourcecode-markers="true" sourcecode-name="ietf-otn-tunnel@2024-03-21.yang"}
 
 # Security Considerations
 
