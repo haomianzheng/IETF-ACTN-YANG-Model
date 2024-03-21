@@ -60,11 +60,12 @@ module ietf-otn-tunnel {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision "2024-03-20" {
+  revision "2024-03-21" {
     description
       "Initial version";
     reference
-      "RFC XXXX: OTN Tunnel YANG Model";
+      "RFC XXXX: A YANG Data Model for Optical Transport Network
+      (OTN) Tunnels and Label Switched Paths";
     // RFC Ed.: replace XXXX with actual RFC number, update date
     // information and remove this note
   }
