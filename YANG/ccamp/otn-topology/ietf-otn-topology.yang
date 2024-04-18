@@ -72,7 +72,7 @@ module ietf-otn-topology {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2024-01-08 {
+  revision 2024-04-18 {
     description
       "Initial Revision";
     reference
@@ -120,14 +120,14 @@ module ietf-otn-topology {
                 Network (OTN)-electrical layer.";
       description "OTN topology type";
     }
-    description "augment network types to include OTN newtork";
+    description "augment network types to include OTN network.";
   }
 
   augment "/nw:networks/nw:network/nw:node/tet:te"
         + "/tet:te-node-attributes" {
     when "../../../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
-      description "Augment only for OTN network.";
+      description "Augment only for OTN.";
     }
     description "Augment TE node attributes.";
     container otn-node {
@@ -140,13 +140,13 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nt:link" {
     when "../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
-      description "Augment only for OTN network.";
+      description "Augment only for OTN.";
     }
     description "Augment link configuration";
 
     container client-svc {
       presence
-        "When present, indicates that the Link supports Costant
+        "When present, indicates that the Link supports Constant
         Bit Rate (CBR) client signals.";
       description
         "Attributes of the Link supporting CBR client signals.";
@@ -165,7 +165,7 @@ module ietf-otn-topology {
         + "tet:te-link-attributes" {
     when "../../../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
-      description "Augment only for OTN network.";
+      description "Augment only for OTN.";
     }
     description "Augment TE link configuration";
 
@@ -199,7 +199,7 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nw:node/nt:termination-point" {
     when "../../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
-      description "Augment only for OTN network";
+      description "Augment only for OTN.";
     }
     description
       "Augment link termination point (LTP) configuration.";
@@ -207,7 +207,7 @@ module ietf-otn-topology {
     container client-svc {
       presence
         "When present, indicates that the Link Termination Point 
-        (LTP) supports Costant Bit Rate (CBR) client signals.";
+        (LTP) supports Constant Bit Rate (CBR) client signals.";
       description
         "OTN LTP Service attributes.";
       leaf-list supported-client-signal {
@@ -224,7 +224,7 @@ module ietf-otn-topology {
         + "tet:te" {
     when "../../../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
-      description "Augment only for OTN network";
+      description "Augment only for OTN.";
     }
     description
       "Augment TE link termination point (LTP) configuration.";
@@ -487,7 +487,7 @@ module ietf-otn-topology {
               whose nominal bitrate is used to compute the number of
               Tributary Slots (TS) required by the ODUflex LSPs
               set up along the underlay path of this OTN Local
-              Link Connectivyt entry.";
+              Link Connectivity entry.";
           }
         }
       }
