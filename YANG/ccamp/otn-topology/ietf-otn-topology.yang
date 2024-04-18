@@ -120,7 +120,7 @@ module ietf-otn-topology {
                 Network (OTN)-electrical layer.";
       description "OTN topology type";
     }
-    description "augment network types to include OTN network.";
+    description "augment network types to include OTN.";
   }
 
   augment "/nw:networks/nw:network/nw:node/tet:te"
