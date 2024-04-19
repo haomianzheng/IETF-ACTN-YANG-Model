@@ -143,7 +143,7 @@ module ietf-otn-topology {
        + "otnt:otn-topology" {
       description "Augment only for OTN.";
     }
-    description "Augment TE link configuration";
+    description "Augment link configuration";
 
     container otn-link {
       description
