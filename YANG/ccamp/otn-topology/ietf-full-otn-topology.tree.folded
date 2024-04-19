@@ -27,40 +27,40 @@ module: ietf-network
      |  |  |  +--rw tet:te-tp-id?
      |  |  |  |       te-types:te-tp-id
      |  |  |  +--rw tet:te!
-     |  |  |  |  +--rw tet:admin-status?
-     |  |  |  |  |       te-types:te-admin-status
-     |  |  |  |  +--rw tet:name?                             string
-     |  |  |  |  +--rw tet:interface-switching-capability*
-     |  |  |  |  |       [switching-capability encoding]
-     |  |  |  |  |  +--rw tet:switching-capability    identityref
-     |  |  |  |  |  +--rw tet:encoding                identityref
-     |  |  |  |  |  +--rw tet:max-lsp-bandwidth* [priority]
-     |  |  |  |  |     +--rw tet:priority        uint8
-     |  |  |  |  |     +--rw tet:te-bandwidth
-     |  |  |  |  |        +--rw (tet:technology)?
-     |  |  |  |  |           +--:(tet:generic)
-     |  |  |  |  |           |  +--rw tet:generic?
-     |  |  |  |  |           |          te-bandwidth
-     |  |  |  |  |           +--:(otnt:otn)
-     |  |  |  |  |              +--rw otnt:otn-bandwidth
-     |  |  |  |  |                 +--rw otnt:odu-type?
-     |  |  |  |  |                 |       identityref
-     |  |  |  |  |                 +--rw otnt:max-ts-number?   uint16
-     |  |  |  |  +--rw tet:inter-domain-plug-id?             binary
-     |  |  |  |  +--rw tet:inter-layer-lock-id*              uint32
-     |  |  |  |  +--ro tet:oper-status?
-     |  |  |  |  |       te-types:te-oper-status
-     |  |  |  |  +--ro tet:geolocation
-     |  |  |  |  |  +--ro tet:altitude?    int64
-     |  |  |  |  |  +--ro tet:latitude?
-     |  |  |  |  |  |       geographic-coordinate-degree
-     |  |  |  |  |  +--ro tet:longitude?
-     |  |  |  |  |          geographic-coordinate-degree
-     |  |  |  |  +--rw otnt:otn-link-tp
-     |  |  |  |     +--rw otnt:odtu-flex-type?
-     |  |  |  |             l1-types:odtu-flex-type
-     |  |  |  +--rw otnt:client-svc!
-     |  |  |     +--rw otnt:supported-client-signal*   identityref
+     |  |  |     +--rw tet:admin-status?
+     |  |  |     |       te-types:te-admin-status
+     |  |  |     +--rw tet:name?                             string
+     |  |  |     +--rw tet:interface-switching-capability*
+     |  |  |     |       [switching-capability encoding]
+     |  |  |     |  +--rw tet:switching-capability    identityref
+     |  |  |     |  +--rw tet:encoding                identityref
+     |  |  |     |  +--rw tet:max-lsp-bandwidth* [priority]
+     |  |  |     |     +--rw tet:priority        uint8
+     |  |  |     |     +--rw tet:te-bandwidth
+     |  |  |     |        +--rw (tet:technology)?
+     |  |  |     |           +--:(tet:generic)
+     |  |  |     |           |  +--rw tet:generic?
+     |  |  |     |           |          te-bandwidth
+     |  |  |     |           +--:(otnt:otn)
+     |  |  |     |              +--rw otnt:otn-bandwidth
+     |  |  |     |                 +--rw otnt:odu-type?
+     |  |  |     |                 |       identityref
+     |  |  |     |                 +--rw otnt:max-ts-number?   uint16
+     |  |  |     +--rw tet:inter-domain-plug-id?             binary
+     |  |  |     +--rw tet:inter-layer-lock-id*              uint32
+     |  |  |     +--ro tet:oper-status?
+     |  |  |     |       te-types:te-oper-status
+     |  |  |     +--ro tet:geolocation
+     |  |  |     |  +--ro tet:altitude?    int64
+     |  |  |     |  +--ro tet:latitude?
+     |  |  |     |  |       geographic-coordinate-degree
+     |  |  |     |  +--ro tet:longitude?
+     |  |  |     |          geographic-coordinate-degree
+     |  |  |     +--rw otnt:otn-link-tp
+     |  |  |     |  +--rw otnt:odtu-flex-type?
+     |  |  |     |          l1-types:odtu-flex-type
+     |  |  |     +--rw otnt:client-svc!
+     |  |  |        +--rw otnt:supported-client-signal*   identityref
      |  |  +--rw tet:te-node-id?         te-types:te-node-id
      |  |  +--rw tet:te!
      |  |     +--rw tet:te-node-template*
@@ -3444,450 +3444,450 @@ module: ietf-network
      |  |  |  |       -> ../../../nw:supporting-network/network-ref
      |  |  |  +--rw nt:link-ref       leafref
      |  |  +--rw tet:te!
-     |  |  |  +--rw (tet:bundle-stack-level)?
-     |  |  |  |  +--:(tet:bundle)
-     |  |  |  |  |  +--rw tet:bundled-links
-     |  |  |  |  |     +--rw tet:bundled-link* [sequence]
-     |  |  |  |  |        +--rw tet:sequence      uint32
-     |  |  |  |  |        +--rw tet:src-tp-ref?   leafref
-     |  |  |  |  |        +--rw tet:des-tp-ref?   leafref
-     |  |  |  |  +--:(tet:component)
-     |  |  |  |     +--rw tet:component-links
-     |  |  |  |        +--rw tet:component-link* [sequence]
-     |  |  |  |           +--rw tet:sequence             uint32
-     |  |  |  |           +--rw tet:src-interface-ref?   string
-     |  |  |  |           +--rw tet:des-interface-ref?   string
-     |  |  |  +--rw tet:te-link-template*
-     |  |  |  |       -> ../../../../te/templates/link-template/name
-     |  |  |  |       {template}?
-     |  |  |  +--rw tet:te-link-attributes
-     |  |  |  |  +--rw tet:access-type?
-     |  |  |  |  |       te-types:te-link-access-type
-     |  |  |  |  +--rw tet:external-domain
-     |  |  |  |  |  +--rw tet:network-ref?
-     |  |  |  |  |  |       -> /nw:networks/network/network-id
-     |  |  |  |  |  +--rw tet:remote-te-node-id?
-     |  |  |  |  |  |       te-types:te-node-id
-     |  |  |  |  |  +--rw tet:remote-te-link-tp-id?
-     |  |  |  |  |          te-types:te-tp-id
-     |  |  |  |  +--rw tet:is-abstract?                      empty
-     |  |  |  |  +--rw tet:name?                             string
-     |  |  |  |  +--rw tet:underlay {te-topology-hierarchy}?
-     |  |  |  |  |  +--rw tet:enabled?                     boolean
-     |  |  |  |  |  +--rw tet:primary-path
-     |  |  |  |  |  |  +--rw tet:network-ref?
-     |  |  |  |  |  |  |       -> /nw:networks/network/network-id
-     |  |  |  |  |  |  +--rw tet:path-element* [path-element-id]
-     |  |  |  |  |  |     +--rw tet:path-element-id
-     |  |  |  |  |  |     |       uint32
-     |  |  |  |  |  |     +--rw (tet:type)?
-     |  |  |  |  |  |        +--:(tet:numbered-node-hop)
-     |  |  |  |  |  |        |  +--rw tet:numbered-node-hop
-     |  |  |  |  |  |        |     +--rw tet:node-id-uri?
-     |  |  |  |  |  |        |     |       nw:node-id
-     |  |  |  |  |  |        |     +--rw tet:node-id?
-     |  |  |  |  |  |        |     |       te-node-id
-     |  |  |  |  |  |        |     +--rw tet:hop-type?
-     |  |  |  |  |  |        |             te-hop-type
-     |  |  |  |  |  |        +--:(tet:numbered-link-hop)
-     |  |  |  |  |  |        |  +--rw tet:numbered-link-hop
-     |  |  |  |  |  |        |     +--rw tet:link-tp-id    te-tp-id
-     |  |  |  |  |  |        |     +--rw tet:hop-type?
-     |  |  |  |  |  |        |     |       te-hop-type
-     |  |  |  |  |  |        |     +--rw tet:direction?
-     |  |  |  |  |  |        |             te-link-direction
-     |  |  |  |  |  |        +--:(tet:unnumbered-link-hop)
-     |  |  |  |  |  |        |  +--rw tet:unnumbered-link-hop
-     |  |  |  |  |  |        |     +--rw tet:link-tp-id-uri?
-     |  |  |  |  |  |        |     |       nt:tp-id
-     |  |  |  |  |  |        |     +--rw tet:link-tp-id?
-     |  |  |  |  |  |        |     |       te-tp-id
-     |  |  |  |  |  |        |     +--rw tet:node-id-uri?
-     |  |  |  |  |  |        |     |       nw:node-id
-     |  |  |  |  |  |        |     +--rw tet:node-id?
-     |  |  |  |  |  |        |     |       te-node-id
-     |  |  |  |  |  |        |     +--rw tet:hop-type?
-     |  |  |  |  |  |        |     |       te-hop-type
-     |  |  |  |  |  |        |     +--rw tet:direction?
-     |  |  |  |  |  |        |             te-link-direction
-     |  |  |  |  |  |        +--:(tet:as-number)
-     |  |  |  |  |  |        |  +--rw tet:as-number-hop
-     |  |  |  |  |  |        |     +--rw tet:as-number
-     |  |  |  |  |  |        |     |       inet:as-number
-     |  |  |  |  |  |        |     +--rw tet:hop-type?    te-hop-type
-     |  |  |  |  |  |        +--:(tet:label)
-     |  |  |  |  |  |           +--rw tet:label-hop
-     |  |  |  |  |  |              +--rw tet:te-label
-     |  |  |  |  |  |                 +--rw (tet:technology)?
-     |  |  |  |  |  |                 |  +--:(tet:generic)
-     |  |  |  |  |  |                 |  |  +--rw tet:generic?
-     |  |  |  |  |  |                 |  |          rt-types:general\
+     |  |     +--rw (tet:bundle-stack-level)?
+     |  |     |  +--:(tet:bundle)
+     |  |     |  |  +--rw tet:bundled-links
+     |  |     |  |     +--rw tet:bundled-link* [sequence]
+     |  |     |  |        +--rw tet:sequence      uint32
+     |  |     |  |        +--rw tet:src-tp-ref?   leafref
+     |  |     |  |        +--rw tet:des-tp-ref?   leafref
+     |  |     |  +--:(tet:component)
+     |  |     |     +--rw tet:component-links
+     |  |     |        +--rw tet:component-link* [sequence]
+     |  |     |           +--rw tet:sequence             uint32
+     |  |     |           +--rw tet:src-interface-ref?   string
+     |  |     |           +--rw tet:des-interface-ref?   string
+     |  |     +--rw tet:te-link-template*
+     |  |     |       -> ../../../../te/templates/link-template/name
+     |  |     |       {template}?
+     |  |     +--rw tet:te-link-attributes
+     |  |     |  +--rw tet:access-type?
+     |  |     |  |       te-types:te-link-access-type
+     |  |     |  +--rw tet:external-domain
+     |  |     |  |  +--rw tet:network-ref?
+     |  |     |  |  |       -> /nw:networks/network/network-id
+     |  |     |  |  +--rw tet:remote-te-node-id?
+     |  |     |  |  |       te-types:te-node-id
+     |  |     |  |  +--rw tet:remote-te-link-tp-id?
+     |  |     |  |          te-types:te-tp-id
+     |  |     |  +--rw tet:is-abstract?                      empty
+     |  |     |  +--rw tet:name?                             string
+     |  |     |  +--rw tet:underlay {te-topology-hierarchy}?
+     |  |     |  |  +--rw tet:enabled?                     boolean
+     |  |     |  |  +--rw tet:primary-path
+     |  |     |  |  |  +--rw tet:network-ref?
+     |  |     |  |  |  |       -> /nw:networks/network/network-id
+     |  |     |  |  |  +--rw tet:path-element* [path-element-id]
+     |  |     |  |  |     +--rw tet:path-element-id
+     |  |     |  |  |     |       uint32
+     |  |     |  |  |     +--rw (tet:type)?
+     |  |     |  |  |        +--:(tet:numbered-node-hop)
+     |  |     |  |  |        |  +--rw tet:numbered-node-hop
+     |  |     |  |  |        |     +--rw tet:node-id-uri?
+     |  |     |  |  |        |     |       nw:node-id
+     |  |     |  |  |        |     +--rw tet:node-id?
+     |  |     |  |  |        |     |       te-node-id
+     |  |     |  |  |        |     +--rw tet:hop-type?
+     |  |     |  |  |        |             te-hop-type
+     |  |     |  |  |        +--:(tet:numbered-link-hop)
+     |  |     |  |  |        |  +--rw tet:numbered-link-hop
+     |  |     |  |  |        |     +--rw tet:link-tp-id    te-tp-id
+     |  |     |  |  |        |     +--rw tet:hop-type?
+     |  |     |  |  |        |     |       te-hop-type
+     |  |     |  |  |        |     +--rw tet:direction?
+     |  |     |  |  |        |             te-link-direction
+     |  |     |  |  |        +--:(tet:unnumbered-link-hop)
+     |  |     |  |  |        |  +--rw tet:unnumbered-link-hop
+     |  |     |  |  |        |     +--rw tet:link-tp-id-uri?
+     |  |     |  |  |        |     |       nt:tp-id
+     |  |     |  |  |        |     +--rw tet:link-tp-id?
+     |  |     |  |  |        |     |       te-tp-id
+     |  |     |  |  |        |     +--rw tet:node-id-uri?
+     |  |     |  |  |        |     |       nw:node-id
+     |  |     |  |  |        |     +--rw tet:node-id?
+     |  |     |  |  |        |     |       te-node-id
+     |  |     |  |  |        |     +--rw tet:hop-type?
+     |  |     |  |  |        |     |       te-hop-type
+     |  |     |  |  |        |     +--rw tet:direction?
+     |  |     |  |  |        |             te-link-direction
+     |  |     |  |  |        +--:(tet:as-number)
+     |  |     |  |  |        |  +--rw tet:as-number-hop
+     |  |     |  |  |        |     +--rw tet:as-number
+     |  |     |  |  |        |     |       inet:as-number
+     |  |     |  |  |        |     +--rw tet:hop-type?    te-hop-type
+     |  |     |  |  |        +--:(tet:label)
+     |  |     |  |  |           +--rw tet:label-hop
+     |  |     |  |  |              +--rw tet:te-label
+     |  |     |  |  |                 +--rw (tet:technology)?
+     |  |     |  |  |                 |  +--:(tet:generic)
+     |  |     |  |  |                 |  |  +--rw tet:generic?
+     |  |     |  |  |                 |  |          rt-types:general\
 \ized-label
-     |  |  |  |  |  |                 |  +--:(otnt:otn)
-     |  |  |  |  |  |                 |     +--rw otnt:otn-label
-     |  |  |  |  |  |                 |        +--rw otnt:tpn?
-     |  |  |  |  |  |                 |        |       otn-tpn
-     |  |  |  |  |  |                 |        +--rw otnt:tsg?
-     |  |  |  |  |  |                 |        |       identityref
-     |  |  |  |  |  |                 |        +--rw otnt:ts-list?
-     |  |  |  |  |  |                 |                string
-     |  |  |  |  |  |                 +--rw tet:direction?
-     |  |  |  |  |  |                         te-label-direction
-     |  |  |  |  |  +--rw tet:backup-path* [index]
-     |  |  |  |  |  |  +--rw tet:index           uint32
-     |  |  |  |  |  |  +--rw tet:network-ref?
-     |  |  |  |  |  |  |       -> /nw:networks/network/network-id
-     |  |  |  |  |  |  +--rw tet:path-element* [path-element-id]
-     |  |  |  |  |  |     +--rw tet:path-element-id
-     |  |  |  |  |  |     |       uint32
-     |  |  |  |  |  |     +--rw (tet:type)?
-     |  |  |  |  |  |        +--:(tet:numbered-node-hop)
-     |  |  |  |  |  |        |  +--rw tet:numbered-node-hop
-     |  |  |  |  |  |        |     +--rw tet:node-id-uri?
-     |  |  |  |  |  |        |     |       nw:node-id
-     |  |  |  |  |  |        |     +--rw tet:node-id?
-     |  |  |  |  |  |        |     |       te-node-id
-     |  |  |  |  |  |        |     +--rw tet:hop-type?
-     |  |  |  |  |  |        |             te-hop-type
-     |  |  |  |  |  |        +--:(tet:numbered-link-hop)
-     |  |  |  |  |  |        |  +--rw tet:numbered-link-hop
-     |  |  |  |  |  |        |     +--rw tet:link-tp-id    te-tp-id
-     |  |  |  |  |  |        |     +--rw tet:hop-type?
-     |  |  |  |  |  |        |     |       te-hop-type
-     |  |  |  |  |  |        |     +--rw tet:direction?
-     |  |  |  |  |  |        |             te-link-direction
-     |  |  |  |  |  |        +--:(tet:unnumbered-link-hop)
-     |  |  |  |  |  |        |  +--rw tet:unnumbered-link-hop
-     |  |  |  |  |  |        |     +--rw tet:link-tp-id-uri?
-     |  |  |  |  |  |        |     |       nt:tp-id
-     |  |  |  |  |  |        |     +--rw tet:link-tp-id?
-     |  |  |  |  |  |        |     |       te-tp-id
-     |  |  |  |  |  |        |     +--rw tet:node-id-uri?
-     |  |  |  |  |  |        |     |       nw:node-id
-     |  |  |  |  |  |        |     +--rw tet:node-id?
-     |  |  |  |  |  |        |     |       te-node-id
-     |  |  |  |  |  |        |     +--rw tet:hop-type?
-     |  |  |  |  |  |        |     |       te-hop-type
-     |  |  |  |  |  |        |     +--rw tet:direction?
-     |  |  |  |  |  |        |             te-link-direction
-     |  |  |  |  |  |        +--:(tet:as-number)
-     |  |  |  |  |  |        |  +--rw tet:as-number-hop
-     |  |  |  |  |  |        |     +--rw tet:as-number
-     |  |  |  |  |  |        |     |       inet:as-number
-     |  |  |  |  |  |        |     +--rw tet:hop-type?    te-hop-type
-     |  |  |  |  |  |        +--:(tet:label)
-     |  |  |  |  |  |           +--rw tet:label-hop
-     |  |  |  |  |  |              +--rw tet:te-label
-     |  |  |  |  |  |                 +--rw (tet:technology)?
-     |  |  |  |  |  |                 |  +--:(tet:generic)
-     |  |  |  |  |  |                 |  |  +--rw tet:generic?
-     |  |  |  |  |  |                 |  |          rt-types:general\
+     |  |     |  |  |                 |  +--:(otnt:otn)
+     |  |     |  |  |                 |     +--rw otnt:otn-label
+     |  |     |  |  |                 |        +--rw otnt:tpn?
+     |  |     |  |  |                 |        |       otn-tpn
+     |  |     |  |  |                 |        +--rw otnt:tsg?
+     |  |     |  |  |                 |        |       identityref
+     |  |     |  |  |                 |        +--rw otnt:ts-list?
+     |  |     |  |  |                 |                string
+     |  |     |  |  |                 +--rw tet:direction?
+     |  |     |  |  |                         te-label-direction
+     |  |     |  |  +--rw tet:backup-path* [index]
+     |  |     |  |  |  +--rw tet:index           uint32
+     |  |     |  |  |  +--rw tet:network-ref?
+     |  |     |  |  |  |       -> /nw:networks/network/network-id
+     |  |     |  |  |  +--rw tet:path-element* [path-element-id]
+     |  |     |  |  |     +--rw tet:path-element-id
+     |  |     |  |  |     |       uint32
+     |  |     |  |  |     +--rw (tet:type)?
+     |  |     |  |  |        +--:(tet:numbered-node-hop)
+     |  |     |  |  |        |  +--rw tet:numbered-node-hop
+     |  |     |  |  |        |     +--rw tet:node-id-uri?
+     |  |     |  |  |        |     |       nw:node-id
+     |  |     |  |  |        |     +--rw tet:node-id?
+     |  |     |  |  |        |     |       te-node-id
+     |  |     |  |  |        |     +--rw tet:hop-type?
+     |  |     |  |  |        |             te-hop-type
+     |  |     |  |  |        +--:(tet:numbered-link-hop)
+     |  |     |  |  |        |  +--rw tet:numbered-link-hop
+     |  |     |  |  |        |     +--rw tet:link-tp-id    te-tp-id
+     |  |     |  |  |        |     +--rw tet:hop-type?
+     |  |     |  |  |        |     |       te-hop-type
+     |  |     |  |  |        |     +--rw tet:direction?
+     |  |     |  |  |        |             te-link-direction
+     |  |     |  |  |        +--:(tet:unnumbered-link-hop)
+     |  |     |  |  |        |  +--rw tet:unnumbered-link-hop
+     |  |     |  |  |        |     +--rw tet:link-tp-id-uri?
+     |  |     |  |  |        |     |       nt:tp-id
+     |  |     |  |  |        |     +--rw tet:link-tp-id?
+     |  |     |  |  |        |     |       te-tp-id
+     |  |     |  |  |        |     +--rw tet:node-id-uri?
+     |  |     |  |  |        |     |       nw:node-id
+     |  |     |  |  |        |     +--rw tet:node-id?
+     |  |     |  |  |        |     |       te-node-id
+     |  |     |  |  |        |     +--rw tet:hop-type?
+     |  |     |  |  |        |     |       te-hop-type
+     |  |     |  |  |        |     +--rw tet:direction?
+     |  |     |  |  |        |             te-link-direction
+     |  |     |  |  |        +--:(tet:as-number)
+     |  |     |  |  |        |  +--rw tet:as-number-hop
+     |  |     |  |  |        |     +--rw tet:as-number
+     |  |     |  |  |        |     |       inet:as-number
+     |  |     |  |  |        |     +--rw tet:hop-type?    te-hop-type
+     |  |     |  |  |        +--:(tet:label)
+     |  |     |  |  |           +--rw tet:label-hop
+     |  |     |  |  |              +--rw tet:te-label
+     |  |     |  |  |                 +--rw (tet:technology)?
+     |  |     |  |  |                 |  +--:(tet:generic)
+     |  |     |  |  |                 |  |  +--rw tet:generic?
+     |  |     |  |  |                 |  |          rt-types:general\
 \ized-label
-     |  |  |  |  |  |                 |  +--:(otnt:otn)
-     |  |  |  |  |  |                 |     +--rw otnt:otn-label
-     |  |  |  |  |  |                 |        +--rw otnt:tpn?
-     |  |  |  |  |  |                 |        |       otn-tpn
-     |  |  |  |  |  |                 |        +--rw otnt:tsg?
-     |  |  |  |  |  |                 |        |       identityref
-     |  |  |  |  |  |                 |        +--rw otnt:ts-list?
-     |  |  |  |  |  |                 |                string
-     |  |  |  |  |  |                 +--rw tet:direction?
-     |  |  |  |  |  |                         te-label-direction
-     |  |  |  |  |  +--rw tet:protection-type?
-     |  |  |  |  |  |       identityref
-     |  |  |  |  |  +--rw tet:tunnel-termination-points
-     |  |  |  |  |  |  +--rw tet:source?        binary
-     |  |  |  |  |  |  +--rw tet:destination?   binary
-     |  |  |  |  |  +--rw tet:tunnels
-     |  |  |  |  |     +--rw tet:sharing?   boolean
-     |  |  |  |  |     +--rw tet:tunnel* [tunnel-name]
-     |  |  |  |  |        +--rw tet:tunnel-name    string
-     |  |  |  |  |        +--rw tet:sharing?       boolean
-     |  |  |  |  +--rw tet:admin-status?
-     |  |  |  |  |       te-types:te-admin-status
-     |  |  |  |  +--rw tet:link-index?                       uint64
-     |  |  |  |  +--rw tet:administrative-group?
-     |  |  |  |  |       te-types:admin-groups
-     |  |  |  |  +--rw tet:interface-switching-capability*
-     |  |  |  |  |       [switching-capability encoding]
-     |  |  |  |  |  +--rw tet:switching-capability    identityref
-     |  |  |  |  |  +--rw tet:encoding                identityref
-     |  |  |  |  |  +--rw tet:max-lsp-bandwidth* [priority]
-     |  |  |  |  |     +--rw tet:priority        uint8
-     |  |  |  |  |     +--rw tet:te-bandwidth
-     |  |  |  |  |        +--rw (tet:technology)?
-     |  |  |  |  |           +--:(tet:generic)
-     |  |  |  |  |           |  +--rw tet:generic?
-     |  |  |  |  |           |          te-bandwidth
-     |  |  |  |  |           +--:(otnt:otn)
-     |  |  |  |  |              +--rw otnt:otn-bandwidth
-     |  |  |  |  |                 +--rw otnt:odu-type?
-     |  |  |  |  |                 |       identityref
-     |  |  |  |  |                 +--rw otnt:max-ts-number?   uint16
-     |  |  |  |  +--rw tet:label-restrictions
-     |  |  |  |  |  +--rw tet:label-restriction* [index]
-     |  |  |  |  |     +--rw tet:restriction?        enumeration
-     |  |  |  |  |     +--rw tet:index               uint32
-     |  |  |  |  |     +--rw tet:label-start
-     |  |  |  |  |     |  +--rw tet:te-label
-     |  |  |  |  |     |     +--rw (tet:technology)?
-     |  |  |  |  |     |     |  +--:(tet:generic)
-     |  |  |  |  |     |     |  |  +--rw tet:generic?
-     |  |  |  |  |     |     |  |          rt-types:generalized-label
-     |  |  |  |  |     |     |  +--:(otnt:otn)
-     |  |  |  |  |     |     |     +--rw otnt:otn-label
-     |  |  |  |  |     |     |        +--rw otnt:tpn?   otn-tpn
-     |  |  |  |  |     |     |        +--rw otnt:ts?    otn-ts
-     |  |  |  |  |     |     +--rw tet:direction?
-     |  |  |  |  |     |             te-label-direction
-     |  |  |  |  |     +--rw tet:label-end
-     |  |  |  |  |     |  +--rw tet:te-label
-     |  |  |  |  |     |     +--rw (tet:technology)?
-     |  |  |  |  |     |     |  +--:(tet:generic)
-     |  |  |  |  |     |     |  |  +--rw tet:generic?
-     |  |  |  |  |     |     |  |          rt-types:generalized-label
-     |  |  |  |  |     |     |  +--:(otnt:otn)
-     |  |  |  |  |     |     |     +--rw otnt:otn-label
-     |  |  |  |  |     |     |        +--rw otnt:tpn?   otn-tpn
-     |  |  |  |  |     |     |        +--rw otnt:ts?    otn-ts
-     |  |  |  |  |     |     +--rw tet:direction?
-     |  |  |  |  |     |             te-label-direction
-     |  |  |  |  |     +--rw tet:label-step
-     |  |  |  |  |     |  +--rw (tet:technology)?
-     |  |  |  |  |     |     +--:(tet:generic)
-     |  |  |  |  |     |     |  +--rw tet:generic?           int32
-     |  |  |  |  |     |     +--:(otnt:otn)
-     |  |  |  |  |     |        +--rw otnt:otn-label-step
-     |  |  |  |  |     |           +--rw otnt:tpn?   otn-tpn
-     |  |  |  |  |     |           +--rw otnt:ts?    otn-ts
-     |  |  |  |  |     +--rw tet:range-bitmap?       yang:hex-string
-     |  |  |  |  |     +--rw otnt:otn-label-range!
-     |  |  |  |  |        +--rw otnt:range-type?
-     |  |  |  |  |        |       otn-label-range-type
-     |  |  |  |  |        +--rw otnt:tsg?             identityref
-     |  |  |  |  |        +--rw otnt:odu-type-list*   identityref
-     |  |  |  |  |        +--rw otnt:priority?        uint8
-     |  |  |  |  +--rw tet:link-protection-type?
-     |  |  |  |  |       identityref
-     |  |  |  |  +--rw tet:max-link-bandwidth
-     |  |  |  |  |  +--rw tet:te-bandwidth
-     |  |  |  |  |     +--rw (tet:technology)?
-     |  |  |  |  |     |  +--:(tet:generic)
-     |  |  |  |  |     |     +--rw tet:generic?    te-bandwidth
-     |  |  |  |  |     +--rw otnt:otn-bandwidth
-     |  |  |  |  |        +--rw otnt:odulist* [odu-type]
-     |  |  |  |  |           +--rw otnt:odu-type     identityref
-     |  |  |  |  |           +--rw otnt:number?      uint16
-     |  |  |  |  |           +--rw otnt:ts-number?   uint16
-     |  |  |  |  +--rw tet:max-resv-link-bandwidth
-     |  |  |  |  |  +--rw tet:te-bandwidth
-     |  |  |  |  |     +--rw (tet:technology)?
-     |  |  |  |  |     |  +--:(tet:generic)
-     |  |  |  |  |     |     +--rw tet:generic?    te-bandwidth
-     |  |  |  |  |     +--rw otnt:otn-bandwidth
-     |  |  |  |  |        +--rw otnt:odulist* [odu-type]
-     |  |  |  |  |           +--rw otnt:odu-type     identityref
-     |  |  |  |  |           +--rw otnt:number?      uint16
-     |  |  |  |  |           +--rw otnt:ts-number?   uint16
-     |  |  |  |  +--rw tet:unreserved-bandwidth* [priority]
-     |  |  |  |  |  +--rw tet:priority        uint8
-     |  |  |  |  |  +--rw tet:te-bandwidth
-     |  |  |  |  |     +--rw (tet:technology)?
-     |  |  |  |  |     |  +--:(tet:generic)
-     |  |  |  |  |     |     +--rw tet:generic?    te-bandwidth
-     |  |  |  |  |     +--rw otnt:otn-bandwidth
-     |  |  |  |  |        +--rw otnt:odulist* [odu-type]
-     |  |  |  |  |           +--rw otnt:odu-type     identityref
-     |  |  |  |  |           +--rw otnt:number?      uint16
-     |  |  |  |  |           +--rw otnt:ts-number?   uint16
-     |  |  |  |  +--rw tet:te-default-metric?                uint32
-     |  |  |  |  +--rw tet:te-delay-metric?                  uint32
-     |  |  |  |  +--rw tet:te-igp-metric?                    uint32
-     |  |  |  |  +--rw tet:te-srlgs
-     |  |  |  |  |  +--rw tet:value*   te-types:srlg
-     |  |  |  |  +--rw tet:te-nsrlgs {nsrlg}?
-     |  |  |  |  |  +--rw tet:id*   uint32
-     |  |  |  |  +--rw otnt:otn-link
-     |  |  |  |     +--rw otnt:odtu-flex-type?
-     |  |  |  |     |       l1-types:odtu-flex-type
-     |  |  |  |     +--rw otnt:tsg?              identityref
-     |  |  |  |     +--rw otnt:distance?         uint32
-     |  |  |  +--ro tet:oper-status?
-     |  |  |  |       te-types:te-oper-status
-     |  |  |  +--ro tet:is-transitional?               empty
-     |  |  |  +--ro tet:information-source?            te-info-source
-     |  |  |  +--ro tet:information-source-instance?   string
-     |  |  |  +--ro tet:information-source-state
-     |  |  |  |  +--ro tet:credibility-preference?    uint16
-     |  |  |  |  +--ro tet:logical-network-element?   string
-     |  |  |  |  +--ro tet:network-instance?          string
-     |  |  |  |  +--ro tet:topology
-     |  |  |  |     +--ro tet:link-ref?      leafref
-     |  |  |  |     +--ro tet:network-ref?
-     |  |  |  |             -> /nw:networks/network/network-id
-     |  |  |  +--ro tet:information-source-entry*
-     |  |  |  |       [information-source information-source-instanc\
+     |  |     |  |  |                 |  +--:(otnt:otn)
+     |  |     |  |  |                 |     +--rw otnt:otn-label
+     |  |     |  |  |                 |        +--rw otnt:tpn?
+     |  |     |  |  |                 |        |       otn-tpn
+     |  |     |  |  |                 |        +--rw otnt:tsg?
+     |  |     |  |  |                 |        |       identityref
+     |  |     |  |  |                 |        +--rw otnt:ts-list?
+     |  |     |  |  |                 |                string
+     |  |     |  |  |                 +--rw tet:direction?
+     |  |     |  |  |                         te-label-direction
+     |  |     |  |  +--rw tet:protection-type?
+     |  |     |  |  |       identityref
+     |  |     |  |  +--rw tet:tunnel-termination-points
+     |  |     |  |  |  +--rw tet:source?        binary
+     |  |     |  |  |  +--rw tet:destination?   binary
+     |  |     |  |  +--rw tet:tunnels
+     |  |     |  |     +--rw tet:sharing?   boolean
+     |  |     |  |     +--rw tet:tunnel* [tunnel-name]
+     |  |     |  |        +--rw tet:tunnel-name    string
+     |  |     |  |        +--rw tet:sharing?       boolean
+     |  |     |  +--rw tet:admin-status?
+     |  |     |  |       te-types:te-admin-status
+     |  |     |  +--rw tet:link-index?                       uint64
+     |  |     |  +--rw tet:administrative-group?
+     |  |     |  |       te-types:admin-groups
+     |  |     |  +--rw tet:interface-switching-capability*
+     |  |     |  |       [switching-capability encoding]
+     |  |     |  |  +--rw tet:switching-capability    identityref
+     |  |     |  |  +--rw tet:encoding                identityref
+     |  |     |  |  +--rw tet:max-lsp-bandwidth* [priority]
+     |  |     |  |     +--rw tet:priority        uint8
+     |  |     |  |     +--rw tet:te-bandwidth
+     |  |     |  |        +--rw (tet:technology)?
+     |  |     |  |           +--:(tet:generic)
+     |  |     |  |           |  +--rw tet:generic?
+     |  |     |  |           |          te-bandwidth
+     |  |     |  |           +--:(otnt:otn)
+     |  |     |  |              +--rw otnt:otn-bandwidth
+     |  |     |  |                 +--rw otnt:odu-type?
+     |  |     |  |                 |       identityref
+     |  |     |  |                 +--rw otnt:max-ts-number?   uint16
+     |  |     |  +--rw tet:label-restrictions
+     |  |     |  |  +--rw tet:label-restriction* [index]
+     |  |     |  |     +--rw tet:restriction?        enumeration
+     |  |     |  |     +--rw tet:index               uint32
+     |  |     |  |     +--rw tet:label-start
+     |  |     |  |     |  +--rw tet:te-label
+     |  |     |  |     |     +--rw (tet:technology)?
+     |  |     |  |     |     |  +--:(tet:generic)
+     |  |     |  |     |     |  |  +--rw tet:generic?
+     |  |     |  |     |     |  |          rt-types:generalized-label
+     |  |     |  |     |     |  +--:(otnt:otn)
+     |  |     |  |     |     |     +--rw otnt:otn-label
+     |  |     |  |     |     |        +--rw otnt:tpn?   otn-tpn
+     |  |     |  |     |     |        +--rw otnt:ts?    otn-ts
+     |  |     |  |     |     +--rw tet:direction?
+     |  |     |  |     |             te-label-direction
+     |  |     |  |     +--rw tet:label-end
+     |  |     |  |     |  +--rw tet:te-label
+     |  |     |  |     |     +--rw (tet:technology)?
+     |  |     |  |     |     |  +--:(tet:generic)
+     |  |     |  |     |     |  |  +--rw tet:generic?
+     |  |     |  |     |     |  |          rt-types:generalized-label
+     |  |     |  |     |     |  +--:(otnt:otn)
+     |  |     |  |     |     |     +--rw otnt:otn-label
+     |  |     |  |     |     |        +--rw otnt:tpn?   otn-tpn
+     |  |     |  |     |     |        +--rw otnt:ts?    otn-ts
+     |  |     |  |     |     +--rw tet:direction?
+     |  |     |  |     |             te-label-direction
+     |  |     |  |     +--rw tet:label-step
+     |  |     |  |     |  +--rw (tet:technology)?
+     |  |     |  |     |     +--:(tet:generic)
+     |  |     |  |     |     |  +--rw tet:generic?           int32
+     |  |     |  |     |     +--:(otnt:otn)
+     |  |     |  |     |        +--rw otnt:otn-label-step
+     |  |     |  |     |           +--rw otnt:tpn?   otn-tpn
+     |  |     |  |     |           +--rw otnt:ts?    otn-ts
+     |  |     |  |     +--rw tet:range-bitmap?       yang:hex-string
+     |  |     |  |     +--rw otnt:otn-label-range!
+     |  |     |  |        +--rw otnt:range-type?
+     |  |     |  |        |       otn-label-range-type
+     |  |     |  |        +--rw otnt:tsg?             identityref
+     |  |     |  |        +--rw otnt:odu-type-list*   identityref
+     |  |     |  |        +--rw otnt:priority?        uint8
+     |  |     |  +--rw tet:link-protection-type?
+     |  |     |  |       identityref
+     |  |     |  +--rw tet:max-link-bandwidth
+     |  |     |  |  +--rw tet:te-bandwidth
+     |  |     |  |     +--rw (tet:technology)?
+     |  |     |  |     |  +--:(tet:generic)
+     |  |     |  |     |     +--rw tet:generic?    te-bandwidth
+     |  |     |  |     +--rw otnt:otn-bandwidth
+     |  |     |  |        +--rw otnt:odulist* [odu-type]
+     |  |     |  |           +--rw otnt:odu-type     identityref
+     |  |     |  |           +--rw otnt:number?      uint16
+     |  |     |  |           +--rw otnt:ts-number?   uint16
+     |  |     |  +--rw tet:max-resv-link-bandwidth
+     |  |     |  |  +--rw tet:te-bandwidth
+     |  |     |  |     +--rw (tet:technology)?
+     |  |     |  |     |  +--:(tet:generic)
+     |  |     |  |     |     +--rw tet:generic?    te-bandwidth
+     |  |     |  |     +--rw otnt:otn-bandwidth
+     |  |     |  |        +--rw otnt:odulist* [odu-type]
+     |  |     |  |           +--rw otnt:odu-type     identityref
+     |  |     |  |           +--rw otnt:number?      uint16
+     |  |     |  |           +--rw otnt:ts-number?   uint16
+     |  |     |  +--rw tet:unreserved-bandwidth* [priority]
+     |  |     |  |  +--rw tet:priority        uint8
+     |  |     |  |  +--rw tet:te-bandwidth
+     |  |     |  |     +--rw (tet:technology)?
+     |  |     |  |     |  +--:(tet:generic)
+     |  |     |  |     |     +--rw tet:generic?    te-bandwidth
+     |  |     |  |     +--rw otnt:otn-bandwidth
+     |  |     |  |        +--rw otnt:odulist* [odu-type]
+     |  |     |  |           +--rw otnt:odu-type     identityref
+     |  |     |  |           +--rw otnt:number?      uint16
+     |  |     |  |           +--rw otnt:ts-number?   uint16
+     |  |     |  +--rw tet:te-default-metric?                uint32
+     |  |     |  +--rw tet:te-delay-metric?                  uint32
+     |  |     |  +--rw tet:te-igp-metric?                    uint32
+     |  |     |  +--rw tet:te-srlgs
+     |  |     |  |  +--rw tet:value*   te-types:srlg
+     |  |     |  +--rw tet:te-nsrlgs {nsrlg}?
+     |  |     |  |  +--rw tet:id*   uint32
+     |  |     |  +--rw otnt:otn-link
+     |  |     |  |  +--rw otnt:odtu-flex-type?
+     |  |     |  |  |       l1-types:odtu-flex-type
+     |  |     |  |  +--rw otnt:tsg?              identityref
+     |  |     |  |  +--rw otnt:distance?         uint32
+     |  |     |  +--rw otnt:client-svc!
+     |  |     |     +--rw otnt:supported-client-signal*   identityref
+     |  |     +--ro tet:oper-status?
+     |  |     |       te-types:te-oper-status
+     |  |     +--ro tet:is-transitional?               empty
+     |  |     +--ro tet:information-source?            te-info-source
+     |  |     +--ro tet:information-source-instance?   string
+     |  |     +--ro tet:information-source-state
+     |  |     |  +--ro tet:credibility-preference?    uint16
+     |  |     |  +--ro tet:logical-network-element?   string
+     |  |     |  +--ro tet:network-instance?          string
+     |  |     |  +--ro tet:topology
+     |  |     |     +--ro tet:link-ref?      leafref
+     |  |     |     +--ro tet:network-ref?
+     |  |     |             -> /nw:networks/network/network-id
+     |  |     +--ro tet:information-source-entry*
+     |  |     |       [information-source information-source-instanc\
 \e]
-     |  |  |  |  +--ro tet:information-source
-     |  |  |  |  |       te-info-source
-     |  |  |  |  +--ro tet:information-source-instance       string
-     |  |  |  |  +--ro tet:information-source-state
-     |  |  |  |  |  +--ro tet:credibility-preference?    uint16
-     |  |  |  |  |  +--ro tet:logical-network-element?   string
-     |  |  |  |  |  +--ro tet:network-instance?          string
-     |  |  |  |  |  +--ro tet:topology
-     |  |  |  |  |     +--ro tet:link-ref?      leafref
-     |  |  |  |  |     +--ro tet:network-ref?
-     |  |  |  |  |             -> /nw:networks/network/network-id
-     |  |  |  |  +--ro tet:link-index?                       uint64
-     |  |  |  |  +--ro tet:administrative-group?
-     |  |  |  |  |       te-types:admin-groups
-     |  |  |  |  +--ro tet:interface-switching-capability*
-     |  |  |  |  |       [switching-capability encoding]
-     |  |  |  |  |  +--ro tet:switching-capability    identityref
-     |  |  |  |  |  +--ro tet:encoding                identityref
-     |  |  |  |  |  +--ro tet:max-lsp-bandwidth* [priority]
-     |  |  |  |  |     +--ro tet:priority        uint8
-     |  |  |  |  |     +--ro tet:te-bandwidth
-     |  |  |  |  |        +--ro (tet:technology)?
-     |  |  |  |  |           +--:(tet:generic)
-     |  |  |  |  |           |  +--ro tet:generic?
-     |  |  |  |  |           |          te-bandwidth
-     |  |  |  |  |           +--:(otnt:otn)
-     |  |  |  |  |              +--ro otnt:otn-bandwidth
-     |  |  |  |  |                 +--ro otnt:odu-type?
-     |  |  |  |  |                 |       identityref
-     |  |  |  |  |                 +--ro otnt:max-ts-number?   uint16
-     |  |  |  |  +--ro tet:label-restrictions
-     |  |  |  |  |  +--ro tet:label-restriction* [index]
-     |  |  |  |  |     +--ro tet:restriction?        enumeration
-     |  |  |  |  |     +--ro tet:index               uint32
-     |  |  |  |  |     +--ro tet:label-start
-     |  |  |  |  |     |  +--ro tet:te-label
-     |  |  |  |  |     |     +--ro (tet:technology)?
-     |  |  |  |  |     |     |  +--:(tet:generic)
-     |  |  |  |  |     |     |  |  +--ro tet:generic?
-     |  |  |  |  |     |     |  |          rt-types:generalized-label
-     |  |  |  |  |     |     |  +--:(otnt:otn)
-     |  |  |  |  |     |     |     +--ro otnt:otn-label
-     |  |  |  |  |     |     |        +--ro otnt:tpn?   otn-tpn
-     |  |  |  |  |     |     |        +--ro otnt:ts?    otn-ts
-     |  |  |  |  |     |     +--ro tet:direction?
-     |  |  |  |  |     |             te-label-direction
-     |  |  |  |  |     +--ro tet:label-end
-     |  |  |  |  |     |  +--ro tet:te-label
-     |  |  |  |  |     |     +--ro (tet:technology)?
-     |  |  |  |  |     |     |  +--:(tet:generic)
-     |  |  |  |  |     |     |  |  +--ro tet:generic?
-     |  |  |  |  |     |     |  |          rt-types:generalized-label
-     |  |  |  |  |     |     |  +--:(otnt:otn)
-     |  |  |  |  |     |     |     +--ro otnt:otn-label
-     |  |  |  |  |     |     |        +--ro otnt:tpn?   otn-tpn
-     |  |  |  |  |     |     |        +--ro otnt:ts?    otn-ts
-     |  |  |  |  |     |     +--ro tet:direction?
-     |  |  |  |  |     |             te-label-direction
-     |  |  |  |  |     +--ro tet:label-step
-     |  |  |  |  |     |  +--ro (tet:technology)?
-     |  |  |  |  |     |     +--:(tet:generic)
-     |  |  |  |  |     |     |  +--ro tet:generic?           int32
-     |  |  |  |  |     |     +--:(otnt:otn)
-     |  |  |  |  |     |        +--ro otnt:otn-label-step
-     |  |  |  |  |     |           +--ro otnt:tpn?   otn-tpn
-     |  |  |  |  |     |           +--ro otnt:ts?    otn-ts
-     |  |  |  |  |     +--ro tet:range-bitmap?       yang:hex-string
-     |  |  |  |  |     +--ro otnt:otn-label-range!
-     |  |  |  |  |        +--ro otnt:range-type?
-     |  |  |  |  |        |       otn-label-range-type
-     |  |  |  |  |        +--ro otnt:tsg?             identityref
-     |  |  |  |  |        +--ro otnt:odu-type-list*   identityref
-     |  |  |  |  |        +--ro otnt:priority?        uint8
-     |  |  |  |  +--ro tet:link-protection-type?
-     |  |  |  |  |       identityref
-     |  |  |  |  +--ro tet:max-link-bandwidth
-     |  |  |  |  |  +--ro tet:te-bandwidth
-     |  |  |  |  |     +--ro (tet:technology)?
-     |  |  |  |  |     |  +--:(tet:generic)
-     |  |  |  |  |     |     +--ro tet:generic?    te-bandwidth
-     |  |  |  |  |     +--ro otnt:otn-bandwidth
-     |  |  |  |  |        +--ro otnt:odulist* [odu-type]
-     |  |  |  |  |           +--ro otnt:odu-type     identityref
-     |  |  |  |  |           +--ro otnt:number?      uint16
-     |  |  |  |  |           +--ro otnt:ts-number?   uint16
-     |  |  |  |  +--ro tet:max-resv-link-bandwidth
-     |  |  |  |  |  +--ro tet:te-bandwidth
-     |  |  |  |  |     +--ro (tet:technology)?
-     |  |  |  |  |     |  +--:(tet:generic)
-     |  |  |  |  |     |     +--ro tet:generic?    te-bandwidth
-     |  |  |  |  |     +--ro otnt:otn-bandwidth
-     |  |  |  |  |        +--ro otnt:odulist* [odu-type]
-     |  |  |  |  |           +--ro otnt:odu-type     identityref
-     |  |  |  |  |           +--ro otnt:number?      uint16
-     |  |  |  |  |           +--ro otnt:ts-number?   uint16
-     |  |  |  |  +--ro tet:unreserved-bandwidth* [priority]
-     |  |  |  |  |  +--ro tet:priority        uint8
-     |  |  |  |  |  +--ro tet:te-bandwidth
-     |  |  |  |  |     +--ro (tet:technology)?
-     |  |  |  |  |     |  +--:(tet:generic)
-     |  |  |  |  |     |     +--ro tet:generic?    te-bandwidth
-     |  |  |  |  |     +--ro otnt:otn-bandwidth
-     |  |  |  |  |        +--ro otnt:odulist* [odu-type]
-     |  |  |  |  |           +--ro otnt:odu-type     identityref
-     |  |  |  |  |           +--ro otnt:number?      uint16
-     |  |  |  |  |           +--ro otnt:ts-number?   uint16
-     |  |  |  |  +--ro tet:te-default-metric?                uint32
-     |  |  |  |  +--ro tet:te-delay-metric?                  uint32
-     |  |  |  |  +--ro tet:te-igp-metric?                    uint32
-     |  |  |  |  +--ro tet:te-srlgs
-     |  |  |  |  |  +--ro tet:value*   te-types:srlg
-     |  |  |  |  +--ro tet:te-nsrlgs {nsrlg}?
-     |  |  |  |     +--ro tet:id*   uint32
-     |  |  |  +--ro tet:recovery
-     |  |  |  |  +--ro tet:restoration-status?
-     |  |  |  |  |       te-types:te-recovery-status
-     |  |  |  |  +--ro tet:protection-status?
-     |  |  |  |          te-types:te-recovery-status
-     |  |  |  +--ro tet:underlay {te-topology-hierarchy}?
-     |  |  |  |  +--ro tet:dynamic?     boolean
-     |  |  |  |  +--ro tet:committed?   boolean
-     |  |  |  +--ro tet:statistics
-     |  |  |     +--ro tet:discontinuity-time?
-     |  |  |     |       yang:date-and-time
-     |  |  |     +--ro tet:disables?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:enables?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:maintenance-clears?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:maintenance-sets?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:modifies?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:downs?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:ups?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:fault-clears?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:fault-detects?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:protection-switches?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:protection-reverts?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:restoration-failures?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:restoration-starts?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:restoration-successes?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:restoration-reversion-failures?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:restoration-reversion-starts?
-     |  |  |     |       yang:counter32
-     |  |  |     +--ro tet:restoration-reversion-successes?
-     |  |  |             yang:counter32
-     |  |  +--rw otnt:client-svc!
-     |  |     +--rw otnt:supported-client-signal*   identityref
+     |  |     |  +--ro tet:information-source
+     |  |     |  |       te-info-source
+     |  |     |  +--ro tet:information-source-instance       string
+     |  |     |  +--ro tet:information-source-state
+     |  |     |  |  +--ro tet:credibility-preference?    uint16
+     |  |     |  |  +--ro tet:logical-network-element?   string
+     |  |     |  |  +--ro tet:network-instance?          string
+     |  |     |  |  +--ro tet:topology
+     |  |     |  |     +--ro tet:link-ref?      leafref
+     |  |     |  |     +--ro tet:network-ref?
+     |  |     |  |             -> /nw:networks/network/network-id
+     |  |     |  +--ro tet:link-index?                       uint64
+     |  |     |  +--ro tet:administrative-group?
+     |  |     |  |       te-types:admin-groups
+     |  |     |  +--ro tet:interface-switching-capability*
+     |  |     |  |       [switching-capability encoding]
+     |  |     |  |  +--ro tet:switching-capability    identityref
+     |  |     |  |  +--ro tet:encoding                identityref
+     |  |     |  |  +--ro tet:max-lsp-bandwidth* [priority]
+     |  |     |  |     +--ro tet:priority        uint8
+     |  |     |  |     +--ro tet:te-bandwidth
+     |  |     |  |        +--ro (tet:technology)?
+     |  |     |  |           +--:(tet:generic)
+     |  |     |  |           |  +--ro tet:generic?
+     |  |     |  |           |          te-bandwidth
+     |  |     |  |           +--:(otnt:otn)
+     |  |     |  |              +--ro otnt:otn-bandwidth
+     |  |     |  |                 +--ro otnt:odu-type?
+     |  |     |  |                 |       identityref
+     |  |     |  |                 +--ro otnt:max-ts-number?   uint16
+     |  |     |  +--ro tet:label-restrictions
+     |  |     |  |  +--ro tet:label-restriction* [index]
+     |  |     |  |     +--ro tet:restriction?        enumeration
+     |  |     |  |     +--ro tet:index               uint32
+     |  |     |  |     +--ro tet:label-start
+     |  |     |  |     |  +--ro tet:te-label
+     |  |     |  |     |     +--ro (tet:technology)?
+     |  |     |  |     |     |  +--:(tet:generic)
+     |  |     |  |     |     |  |  +--ro tet:generic?
+     |  |     |  |     |     |  |          rt-types:generalized-label
+     |  |     |  |     |     |  +--:(otnt:otn)
+     |  |     |  |     |     |     +--ro otnt:otn-label
+     |  |     |  |     |     |        +--ro otnt:tpn?   otn-tpn
+     |  |     |  |     |     |        +--ro otnt:ts?    otn-ts
+     |  |     |  |     |     +--ro tet:direction?
+     |  |     |  |     |             te-label-direction
+     |  |     |  |     +--ro tet:label-end
+     |  |     |  |     |  +--ro tet:te-label
+     |  |     |  |     |     +--ro (tet:technology)?
+     |  |     |  |     |     |  +--:(tet:generic)
+     |  |     |  |     |     |  |  +--ro tet:generic?
+     |  |     |  |     |     |  |          rt-types:generalized-label
+     |  |     |  |     |     |  +--:(otnt:otn)
+     |  |     |  |     |     |     +--ro otnt:otn-label
+     |  |     |  |     |     |        +--ro otnt:tpn?   otn-tpn
+     |  |     |  |     |     |        +--ro otnt:ts?    otn-ts
+     |  |     |  |     |     +--ro tet:direction?
+     |  |     |  |     |             te-label-direction
+     |  |     |  |     +--ro tet:label-step
+     |  |     |  |     |  +--ro (tet:technology)?
+     |  |     |  |     |     +--:(tet:generic)
+     |  |     |  |     |     |  +--ro tet:generic?           int32
+     |  |     |  |     |     +--:(otnt:otn)
+     |  |     |  |     |        +--ro otnt:otn-label-step
+     |  |     |  |     |           +--ro otnt:tpn?   otn-tpn
+     |  |     |  |     |           +--ro otnt:ts?    otn-ts
+     |  |     |  |     +--ro tet:range-bitmap?       yang:hex-string
+     |  |     |  |     +--ro otnt:otn-label-range!
+     |  |     |  |        +--ro otnt:range-type?
+     |  |     |  |        |       otn-label-range-type
+     |  |     |  |        +--ro otnt:tsg?             identityref
+     |  |     |  |        +--ro otnt:odu-type-list*   identityref
+     |  |     |  |        +--ro otnt:priority?        uint8
+     |  |     |  +--ro tet:link-protection-type?
+     |  |     |  |       identityref
+     |  |     |  +--ro tet:max-link-bandwidth
+     |  |     |  |  +--ro tet:te-bandwidth
+     |  |     |  |     +--ro (tet:technology)?
+     |  |     |  |     |  +--:(tet:generic)
+     |  |     |  |     |     +--ro tet:generic?    te-bandwidth
+     |  |     |  |     +--ro otnt:otn-bandwidth
+     |  |     |  |        +--ro otnt:odulist* [odu-type]
+     |  |     |  |           +--ro otnt:odu-type     identityref
+     |  |     |  |           +--ro otnt:number?      uint16
+     |  |     |  |           +--ro otnt:ts-number?   uint16
+     |  |     |  +--ro tet:max-resv-link-bandwidth
+     |  |     |  |  +--ro tet:te-bandwidth
+     |  |     |  |     +--ro (tet:technology)?
+     |  |     |  |     |  +--:(tet:generic)
+     |  |     |  |     |     +--ro tet:generic?    te-bandwidth
+     |  |     |  |     +--ro otnt:otn-bandwidth
+     |  |     |  |        +--ro otnt:odulist* [odu-type]
+     |  |     |  |           +--ro otnt:odu-type     identityref
+     |  |     |  |           +--ro otnt:number?      uint16
+     |  |     |  |           +--ro otnt:ts-number?   uint16
+     |  |     |  +--ro tet:unreserved-bandwidth* [priority]
+     |  |     |  |  +--ro tet:priority        uint8
+     |  |     |  |  +--ro tet:te-bandwidth
+     |  |     |  |     +--ro (tet:technology)?
+     |  |     |  |     |  +--:(tet:generic)
+     |  |     |  |     |     +--ro tet:generic?    te-bandwidth
+     |  |     |  |     +--ro otnt:otn-bandwidth
+     |  |     |  |        +--ro otnt:odulist* [odu-type]
+     |  |     |  |           +--ro otnt:odu-type     identityref
+     |  |     |  |           +--ro otnt:number?      uint16
+     |  |     |  |           +--ro otnt:ts-number?   uint16
+     |  |     |  +--ro tet:te-default-metric?                uint32
+     |  |     |  +--ro tet:te-delay-metric?                  uint32
+     |  |     |  +--ro tet:te-igp-metric?                    uint32
+     |  |     |  +--ro tet:te-srlgs
+     |  |     |  |  +--ro tet:value*   te-types:srlg
+     |  |     |  +--ro tet:te-nsrlgs {nsrlg}?
+     |  |     |     +--ro tet:id*   uint32
+     |  |     +--ro tet:recovery
+     |  |     |  +--ro tet:restoration-status?
+     |  |     |  |       te-types:te-recovery-status
+     |  |     |  +--ro tet:protection-status?
+     |  |     |          te-types:te-recovery-status
+     |  |     +--ro tet:underlay {te-topology-hierarchy}?
+     |  |     |  +--ro tet:dynamic?     boolean
+     |  |     |  +--ro tet:committed?   boolean
+     |  |     +--ro tet:statistics
+     |  |        +--ro tet:discontinuity-time?
+     |  |        |       yang:date-and-time
+     |  |        +--ro tet:disables?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:enables?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:maintenance-clears?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:maintenance-sets?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:modifies?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:downs?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:ups?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:fault-clears?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:fault-detects?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:protection-switches?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:protection-reverts?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:restoration-failures?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:restoration-starts?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:restoration-successes?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:restoration-reversion-failures?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:restoration-reversion-starts?
+     |  |        |       yang:counter32
+     |  |        +--ro tet:restoration-reversion-successes?
+     |  |                yang:counter32
      |  +--rw tet:te-topology-identifier
      |  |  +--rw tet:provider-id?   te-global-id
      |  |  +--rw tet:client-id?     te-global-id

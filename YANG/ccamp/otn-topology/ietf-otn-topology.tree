@@ -5,22 +5,20 @@ module: ietf-otn-topology
   augment /nw:networks/nw:network/nw:node/tet:te
             /tet:te-node-attributes:
     +--rw otn-node!
-  augment /nw:networks/nw:network/nt:link:
-    +--rw client-svc!
-       +--rw supported-client-signal*   identityref
   augment /nw:networks/nw:network/nt:link/tet:te
             /tet:te-link-attributes:
     +--rw otn-link
-       +--rw odtu-flex-type?   l1-types:odtu-flex-type
-       +--rw tsg?              identityref
-       +--rw distance?         uint32
-  augment /nw:networks/nw:network/nw:node/nt:termination-point:
+    |  +--rw odtu-flex-type?   l1-types:odtu-flex-type
+    |  +--rw tsg?              identityref
+    |  +--rw distance?         uint32
     +--rw client-svc!
        +--rw supported-client-signal*   identityref
   augment /nw:networks/nw:network/nw:node/nt:termination-point
             /tet:te:
     +--rw otn-link-tp
-       +--rw odtu-flex-type?   l1-types:odtu-flex-type
+    |  +--rw odtu-flex-type?   l1-types:odtu-flex-type
+    +--rw client-svc!
+       +--rw supported-client-signal*   identityref
   augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te
             /tet:interface-switching-capability/tet:max-lsp-bandwidth
             /tet:te-bandwidth/tet:technology:

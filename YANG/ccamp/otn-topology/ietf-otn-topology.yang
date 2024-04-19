@@ -72,7 +72,7 @@ module ietf-otn-topology {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2024-04-18 {
+  revision 2024-04-19 {
     description
       "Initial Revision";
     reference
@@ -137,30 +137,6 @@ module ietf-otn-topology {
     }
   }
 
-  augment "/nw:networks/nw:network/nt:link" {
-    when "../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
-      description "Augment only for OTN.";
-    }
-    description "Augment link configuration";
-
-    container client-svc {
-      presence
-        "When present, indicates that the Link supports Constant
-        Bit Rate (CBR) client signals.";
-      description
-        "Attributes of the Link supporting CBR client signals.";
-      leaf-list supported-client-signal {
-        type identityref {
-          base l1-types:client-signal;
-        }
-        min-elements 1;
-        description
-          "List of client signal types supported by the Link.";
-      }
-    }
-  }
-
   augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:te-link-attributes" {
     when "../../../nw:network-types/tet:te-topology/"
@@ -194,16 +170,44 @@ module ietf-otn-topology {
         description "distance in the unit of kilometers";
       }
     }
+    container client-svc {
+      presence
+        "When present, indicates that the Link supports Constant
+        Bit Rate (CBR) client signals.";
+      description
+        "Attributes of the Link supporting CBR client signals.";
+      leaf-list supported-client-signal {
+        type identityref {
+          base l1-types:client-signal;
+        }
+        min-elements 1;
+        description
+          "List of client signal types supported by the Link.";
+      }
+    }
   }
 
-  augment "/nw:networks/nw:network/nw:node/nt:termination-point" {
-    when "../../nw:network-types/tet:te-topology/"
+  augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
+        + "tet:te" {
+    when "../../../nw:network-types/tet:te-topology/"
        + "otnt:otn-topology" {
       description "Augment only for OTN.";
     }
     description
       "Augment link termination point (LTP) configuration.";
 
+    container otn-link-tp {
+      description
+        "Attributes of the OTN Link Termination Point (LTP).";
+      leaf odtu-flex-type {
+        type l1-types:odtu-flex-type;
+        description
+          "The type of Optical Data Tributary Unit (ODTU)
+          whose nominal bitrate is used to compute the number of
+          Tributary Slots (TS) required by the ODUflex LSPs set up
+          on this OTN Link Termination Point (LTP).";
+      }
+    }
     container client-svc {
       presence
         "When present, indicates that the Link Termination Point 
@@ -216,29 +220,6 @@ module ietf-otn-topology {
         }
         description
           "List of client signal types supported by the LTP.";
-      }
-    }
-  }
-
-  augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
-        + "tet:te" {
-    when "../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
-      description "Augment only for OTN.";
-    }
-    description
-      "Augment TE link termination point (LTP) configuration.";
-
-    container otn-link-tp {
-      description
-        "Attributes of the OTN Link Termination Point (LTP).";
-      leaf odtu-flex-type {
-        type l1-types:odtu-flex-type;
-        description
-          "The type of Optical Data Tributary Unit (ODTU)
-          whose nominal bitrate is used to compute the number of
-          Tributary Slots (TS) required by the ODUflex LSPs set up
-          on this OTN Link Termination Point (LTP).";
       }
     }
   }
