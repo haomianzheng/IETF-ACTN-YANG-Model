@@ -14,7 +14,7 @@
 
 <rfc ipr="trust200902" docName="draft-ietf-ccamp-otn-tunnel-model-latest" category="std" consensus="true" submissionType="IETF" tocInclude="true" sortRefs="true" symRefs="true">
   <front>
-    <title abbrev="OTN Tunnel YANG Model">OTN Tunnel YANG Model</title>
+    <title abbrev="OTN Tunnel Model">A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label Switched Paths</title>
 
     <author initials="H." surname="Zheng" fullname="Haomian Zheng">
       <organization>Huawei Technologies</organization>
@@ -233,7 +233,7 @@ in <xref target="I-D.ietf-ccamp-layer1-types"/>.</t>
 </section>
 <section anchor="yang-tree"><name>OTN Tunnel YANG Tree</name>
 
-<figure anchor="fig-otn-tunnel-tree"><artwork type="ascii-art" name="ietf-otn-tunnel.tree"><![CDATA[
+<figure anchor="fig-otn-tunnel-tree"><artwork type="ascii-art" name="ietf-otn-tunnel.tree.folded"><![CDATA[
 module: ietf-otn-tunnel
 
   augment /te:te/te:globals/te:named-path-constraints
@@ -517,8 +517,7 @@ module: ietf-otn-tunnel
        +--rw odu-type-list*   identityref
        +--rw priority?        uint8
   augment /te:te/te:globals/te:named-path-constraints
-            /te:named-path-constraint
-            /te:explicit-route-objects-always
+            /te:named-path-constraint/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
@@ -527,8 +526,7 @@ module: ietf-otn-tunnel
           +--rw tsg?       identityref
           +--rw ts-list?   string
   augment /te:te/te:globals/te:named-path-constraints
-            /te:named-path-constraint
-            /te:explicit-route-objects-always
+            /te:named-path-constraint/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
@@ -542,66 +540,48 @@ module: ietf-otn-tunnel
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(otn)
        +--rw otn-label-step
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(otn)
        +--rw otn-label-step
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:optimizations/te:algorithm/te:metric
             /te:optimization-metric/te:explicit-route-exclude-objects
@@ -623,7 +603,7 @@ module: ietf-otn-tunnel
           +--rw tsg?       identityref
           +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-            /te:primary-path/te:explicit-route-objects-always
+            /te:primary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
@@ -632,7 +612,7 @@ module: ietf-otn-tunnel
           +--rw tsg?       identityref
           +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-            /te:primary-path/te:explicit-route-objects-always
+            /te:primary-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
@@ -646,65 +626,47 @@ module: ietf-otn-tunnel
             /te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-end/te:te-label
             /te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-step/te:technology:
     +--:(otn)
        +--rw otn-label-step
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(otn)
        +--rw otn-label-step
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
@@ -739,9 +701,8 @@ module: ietf-otn-tunnel
           +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
-            /te:explicit-route-objects-always
-            /te:route-object-exclude-always/te:type/te:label
-            /te:label-hop/te:te-label/te:technology:
+            /te:explicit-route-objects/te:route-object-exclude-always
+            /te:type/te:label/te:label-hop/te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
           +--rw tpn?       otn-tpn
@@ -749,7 +710,7 @@ module: ietf-otn-tunnel
           +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
-            /te:explicit-route-objects-always
+            /te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
@@ -764,11 +725,8 @@ module: ietf-otn-tunnel
             /te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
@@ -776,22 +734,16 @@ module: ietf-otn-tunnel
             /te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-step/te:technology:
     +--:(otn)
        +--rw otn-label-step
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-out-segment/te:label-restrictions
@@ -799,11 +751,8 @@ module: ietf-otn-tunnel
             /te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-out-segment/te:label-restrictions
@@ -811,22 +760,16 @@ module: ietf-otn-tunnel
             /te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-out-segment/te:label-restrictions
             /te:label-restriction/te:label-step/te:technology:
     +--:(otn)
        +--rw otn-label-step
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:computed-paths-properties/te:computed-path-properties
@@ -861,7 +804,7 @@ module: ietf-otn-tunnel
           +--rw tsg?       identityref
           +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-            /te:secondary-path/te:explicit-route-objects-always
+            /te:secondary-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
@@ -870,7 +813,7 @@ module: ietf-otn-tunnel
           +--rw tsg?       identityref
           +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-            /te:secondary-path/te:explicit-route-objects-always
+            /te:secondary-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
@@ -884,66 +827,48 @@ module: ietf-otn-tunnel
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(otn)
        +--rw otn-label-step
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(otn)
        +--rw otn-label-step
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
@@ -977,8 +902,7 @@ module: ietf-otn-tunnel
           +--rw tsg?       identityref
           +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-            /te:secondary-reverse-path
-            /te:explicit-route-objects-always
+            /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
@@ -987,8 +911,7 @@ module: ietf-otn-tunnel
           +--rw tsg?       identityref
           +--rw ts-list?   string
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-            /te:secondary-reverse-path
-            /te:explicit-route-objects-always
+            /te:secondary-reverse-path/te:explicit-route-objects
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
@@ -1002,66 +925,48 @@ module: ietf-otn-tunnel
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(otn)
        +--rw otn-label-step
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
     +--:(otn)
        +--rw otn-label
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
     +--:(otn)
        +--rw otn-label-step
-          +--rw (range-type)?
-             +--:(trib-port)
-             |  +--rw tpn?   otn-tpn
-             +--:(trib-slot)
-                +--rw ts?    otn-ts
+          +--rw tpn?   otn-tpn
+          +--rw ts?    otn-ts
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
@@ -1072,8 +977,8 @@ module: ietf-otn-tunnel
           +--ro tpn?       otn-tpn
           +--ro tsg?       identityref
           +--ro ts-list?   string
-  augment /te:te/te:lsps/te:lsp/te:lsp-record-route-information
-            /te:lsp-record-route-information/te:type/te:label
+  augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
+            /te:lsp-actual-route-information/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
     +--:(otn)
        +--ro otn-label
@@ -1085,7 +990,7 @@ module: ietf-otn-tunnel
 </section>
 <section anchor="otn-tunnel-yang-code"><name>OTN Tunnel YANG Code</name>
 
-<figure anchor="fig-otn-tunnel-yang"><sourcecode type="yang" markers="true" name="ietf-otn-tunnel@2023-10-12.yang"><![CDATA[
+<figure anchor="fig-otn-tunnel-yang"><sourcecode type="yang" markers="true" name="ietf-otn-tunnel@2024-03-21.yang"><![CDATA[
 module ietf-otn-tunnel {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-otn-tunnel";
@@ -1093,18 +998,20 @@ module ietf-otn-tunnel {
 
   import ietf-te {
     prefix "te";
-    revision-date "2021-02-20";
     reference
-      "I-D.ietf-teas-yang-te-19: A YANG Data Model for Traffic
-      Engineering Tunnels and Interfaces. ";
+      "RFC ZZZZ: A YANG Data Model for Traffic Engineering Tunnels
+      and Interfaces.";
   }
+  /* Note: The RFC Editor will replace ZZZZ with the number assigned
+     to the RFC once draft-ietf-teas-yang-te becomes an RFC.*/
 
   import ietf-layer1-types {
     prefix "l1-types";
     reference 
-      "I-D.ietf-ccamp-layer1-types: 
-      A YANG Data Model for Layer 1 Types. ";
+      "RFC YYYY: Common YANG Data Types for Layer 1 Networks.";
   }
+  /* Note: The RFC Editor will replace YYYY with the number assigned
+     to the RFC once draft-ietf-ccamp-layer1-types becomes an RFC.*/
 
   organization
     "IETF CCAMP Working Group";
@@ -1133,7 +1040,7 @@ module ietf-otn-tunnel {
     The model fully conforms to the Network Management 
     Datastore Architecture (NMDA).
     
-    Copyright (c) 2023 IETF Trust and the persons
+    Copyright (c) 2024 IETF Trust and the persons
     identified as authors of the code.  All rights reserved.
 
     Redistribution and use in source and binary forms, with or
@@ -1143,14 +1050,15 @@ module ietf-otn-tunnel {
     Relating to IETF Documents
     (https://trustee.ietf.org/license-info).
 
-    This version of this YANG module is part of RFC XXXX; see
-    the RFC itself for full legal notices.";
+     This version of this YANG module is part of RFC XXXX; see
+     the RFC itself for full legal notices.";
 
-  revision "2023-10-12" {
+  revision "2024-03-21" {
     description
       "Initial version";
     reference
-      "RFC XXXX: OTN Tunnel YANG Model";
+      "RFC XXXX: A YANG Data Model for Optical Transport Network
+      (OTN) Tunnels and Label Switched Paths";
     // RFC Ed.: replace XXXX with actual RFC number, update date
     // information and remove this note
   }
@@ -1389,7 +1297,7 @@ module ietf-otn-tunnel {
 
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -1403,7 +1311,7 @@ module ietf-otn-tunnel {
 
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -1523,7 +1431,7 @@ module ietf-otn-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -1536,7 +1444,7 @@ module ietf-otn-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -1673,7 +1581,7 @@ module ietf-otn-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/"
         + "te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
@@ -1689,7 +1597,7 @@ module ietf-otn-tunnel {
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:primary-paths/te:primary-path/"
         + "te:primary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/"
         + "te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
@@ -1831,7 +1739,7 @@ module ietf-otn-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-paths/te:secondary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -1844,7 +1752,7 @@ module ietf-otn-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-paths/te:secondary-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -1977,7 +1885,7 @@ module ietf-otn-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-reverse-paths/te:secondary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-exclude-always/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -1991,7 +1899,7 @@ module ietf-otn-tunnel {
 
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-reverse-paths/te:secondary-reverse-path/"
-        + "te:explicit-route-objects-always/"
+        + "te:explicit-route-objects/"
         + "te:route-object-include-exclude/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
@@ -2095,8 +2003,8 @@ module ietf-otn-tunnel {
   }
 
   augment "/te:te/te:lsps/"
-        + "te:lsp/te:lsp-record-route-information/"
-        + "te:lsp-record-route-information/te:type/te:label/"
+        + "te:lsp/te:lsp-actual-route-information/"
+        + "te:lsp-actual-route-information/te:type/te:label/"
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the record route of the LSP.";
@@ -2611,161 +2519,162 @@ RFC once this draft becomes an RFC.</t>
   </back>
 
 <!-- ##markdown-source:
-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
-Y92TibHfMxahwkmbB15HGtj06BiThNbVphn6nXgms/QjKZvdFthELmMv8kLv
-00y2drxENwmQeTFv0qcSndrrZVKQIkX6qdpMUYpERYLidavH2Svwcxyzr1jA
-0oztmfa6+0MZ14j7n8SUxCw3r8iZSMQvAsW7Ocg5wNNek7aBR39W5p8zrMz/
-YZp/FMshamGbGEqyRnG48pacYeUtlbcs4C2+GkaoS13ZpT0c/yMRm/wj6uLU
-MdICpWU7fml68g29Us33SnVzr1Tf7pVqmV6pbscr1U28Ut2KV6rb9kq1bK9U
-q/LK7H0scELVojS3lflYlekmmFWZrsp0c3zqiiSnJ7LcrAxYsvh0iqwyYJUB
-H3AG1MJXdCvDTH8dJ6hOcjnDKr89zPx2A4+pTnNVLpsxqcplt5HLisXkXA+d
-d5Krclspsyq3PYTcdmMPqnJdletmTKpy3Y1y3TJv2bCXZOhpkX7zYXLm1J1B
-uvTqyMfS3Fe4B2giM7r7ggouNXnLEA1NzDG6P24rZSY7nlk9uoPpu7mkUSxV
-jJGcdW6xd6B0lZhK61dpfSkNxXETL1fvAhBUyl5U2ZVp35W2F+qVVw6wnpAU
-3KTC5FqY3KDlVhU6q1B4lQm+XeM3PnlXJr8OAFQusAACyzpdTZOJz/SlJOqe
-AAjhpV/k9nhwzi9KuBapPPGZvgYmUmIrLbaeIzQLzoGK0oaUfX/ttvEU8xSl
-KMxUab/WEYUlNCMk5/aQoQECkGjJyNwDazYFFvftPJHBU+GyFh2gWRPtV6Zu
-Q++PR/GsvLdK3+Xy6PuFM/vuKXQlsI3x0IGa3Wo3+uccer05cI0uCvqi5SSX
-Cqz1BIu+WViG1nURmmL04GFaRp1WxcDNwqsKgpuJVhUFl9ixpMc0DuUXniue
-B306uA2G9GYoSP3TXIqzPEdUUtdnJ6j8+VmTbErPW+7tA6zr1x3O7OS1GJzj
-1BWcN4Kz6l9sMABVp2KdPsCfU48vo5h46HXE8mFCUV6BtO4gUQldVd+rv2Gm
-6j1sBk5Vz2GzUKp6DRv4GBNLMFawl17NCvIZZrKMglzNdk61QEGuFizI1Z0W
-5DMeezHWephmU9KImNF6mJ5b9ZVWfgpbOehV92ktQL8Sp6pHdf9gqjpZm3e/
-/pwzYNVK2Vwwq67YvYGy6p3dFWzL+K5NFU/vJ5pVQL0/WFYR9Q5wu72HL073
-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
-N9VkspPlvTeZqh80D9cHBuj97fpsPKzL+uhiTXs7ZbcE3FrpvAnorE0np0Lm
-yh8KuuW+zbcisLojzNI++1vPLs19cI3lorMuPZkKmduJWncGwOpi1l3dPW8J
-FniMzbQ7rbAiLxbio2/vT9yav7k19kJ3G1Z9uRX35W78BZ7KwKouXmVgS+35
-rVV2upUOYKrKPLtVNnFl23ATjGIJTcQHYhkPo/P4jTF/9UfGFWG5bn3KCsfN
-6mp+M14r7G7e7ZfT1roH+oDc7l53TCsc1yd+3gle6x4+Z7djJwev7raWdGjH
-G7BXN2lX3QO5TgN2jdoYN/hebNVmveM2azb5G54Adu8Np2qf3mPDqW6FLG13
-PWRY7/0NkZsO7j1vTn4zPMs/kK0FSGvTdbw1gDYanjtvJi4BhiUehFf5FKD1
-7BLeozh2P9t/FUBr0tfb+Ei2jPsnH3T7bk1L8hs/AKxq5K28kbeWneC1NKiq
-wfcADapq/F3RG1q/O91WjPoD6gveS+wfTNtw7e7nWEvw1rCdWAG3mNetrNG4
-TnferNNjmte9AXlvHeu+NyYr4FYVEu8KoPWKiFUjc2mNzLtqFwQ6KnMWHaWD
-QNxXcTfv9eQ/DlA6aTb1qpVv5cowcMp/e/phKZrF//6DV732tcUe9WTfI2Ln
-Zd4FQgPTKol9CIDT75DHn4DrTw0TJ6JRHKHnb/7UoN+fL8zfG/3ye5NYNSyQ
-j9ip8JNYmgt2gFgnuyJ2nT0abGNnxV+k15HwZU/i/CpDZn91vav8xGqqK3oy
-xC450/5ADLnVVpcbXq+ZATf0Y/ZQtOyHmGwU6wjGfR9hDW/PJGehMOcq/sSG
-POR9YTnCTY3yVYDIl/iDeo1rdvyqffD++DX7+vUPJ68Pfnj6fPfyko7VJ69O
-iwMvdp7vXF42GSP5A3WOOJ1PDfiFiOs1iJNGzyQWzCDq6kihmrHDW/bH5Wkc
-4mAPCsHKKE8Oo8CJ5qZhZ/k88Dt1vE4HIgjY49PTX56M5Hw6KU4u8UieX9rt
-D6cLLs3GVm6/PYXBuK0/f/4D1srAy3btdE0PYzWxCghO2HQ645nVIrR9BvCd
-WoYC3AFTvZbluIwDoRohk0s/CXic8y9iAGOPaTID9BH5Sgg7hsxd4NjRwsYr
-DhXxMy7hBoEo5ZKhX69RsHYmaXVDe4Aisi1CF5z+z8Jk2BExMSerY6GizTir
-HJlr0ZitWXKC8RzmT4Js+7Hg7i/oR9i/2GPZFM0t5rbByNW22PlA+gPmbKhe
-wyI8CcwThzB8vyAAfUmgI+xTcMm1SAkCfxp5Jmi7Z0kQYndYByYQwoWHIncF
-EZ7JWIWEugbrXyEkNZlzZTwWzT4EE11pPCfdE1ikIpnGZaCfXECsSn+v02pW
-2KoFkSpkA35m1Sf6nKSq10SvZ7NKmEsyWhRyjEcJ0uxpym13B9q3hnjkHTZt
-9DGCaxu38BeMzCIVaJhGRB0zq18nsYzJOkwshHZgQZAUp0kMs5BjLeCUNJbG
-YIDXtSwLey8DfgqTem0GKOwKTI6MM4IE0RIuCnfkcFHsKHM0EilznRQvinZ9
-YbbonxS3Laxar4XKILb6Vq9PWAmQa6f8R+xo/3i/NG8UU0Ms/p0gjGhHjSVj
-0ZcoN1027akAMRHHfvb3k6NsfdYIdYOEcqSoYciIs7GjV+3X7OO7t+wkHW2k
-sezZDy9eUKR9nfN0K1DhQJyLVFsTq6crZZEmFpncoms369Kyy+eQtMWSOGyR
-nlEdxnyoW5+HQSvULVJ4ayL1ZvNSeclIoDTDfdOySeHo1embjAb7arHj7f0f
-U5tOZaA1ydjgsbRzyvA64r5oZpLdVOsFzxhp385550zgmJbKNPzDztOdqzXs
-qK6h4dakhml/raymYzPUmSvBUt4AD6SnnvycrWPHw3wQYwgOYcodu2If8Rqp
-m668QvBFxDhGRG2xD4Ggyi8WUQCZLHXh525ceuJ6VANZPyMuCouk7hXznkFw
-Qi0vLNYYttbneR7rcP+Tc7t9/1OozgPRtVWqpmrR8Rfdnxo9OLlwxV37/eF7
-hJ+MmIzl/wGRJM7HsjUBAA==
+H4sIAAAAAAAAA+1da3PbNtb+rhn9B6zyYePWlHPbblfdtnacSz2TOBlbu037
+3gaiIAkbiuASoB0nzf729zkASVFXy7YsUTY1u6lFAgfnPOeKI148z6vXjDSB
+aLGf6jXGDthvB8ev2QtuOHuruiJgPRWzd5GRPg9YO+ahjlRs2LEw5yr+yB6+
+ax/vsHYShiLQjIdd9oZ3MOv0XBp/ILrsPTcDXa/xTicWZy2G4eloR75e87kR
+fRVftJg23XqtXusqP+RDMNSNec94Upie5/t8GHnKhJ6xk70hTfYCzNWmXtNJ
+Zyi1lio0FxFmHr1sv2LsAeOBVi3WkGFXRAL/hKaxyxqiK42KJQ/oy9HBc/wH
+MjaOTtqvGvVamAw7Im6BDxDHf3wVahHqRLeYiRNRr0GKpxAoFhykT1RiZNjH
+PIKjH6skwtHDw4O379mvOIJz7DUdxYgzESZEkbF8nBoOVcgOwXesAgvfW8F1
+EosheGXvAx6KBk1wYjUmKTI25DLACYvPPkHVVHHfnuGxP8CZgTGRbu3t0UA6
+JM9EMxu3Rwf2OrE612LPktizU/vSDJIOTeZqKHn4eSDCvhvg+YEEa1409C54
+6FZyWiisVZzWdMSaUs0ksOeUbId6swY0B2YYNMgueGIGKrb4efQPY85MfnGr
+sd+JhjsB2XA84edCsrbwB6EKVF8K7c5qEwsBfn95vJsN+iADmbDnQkaK/VMG
+Ae+LXXaqwr4egPIb/lG4qb40MNQXONFPeOiOxaIPw2ux1zjS76qMBx8W2mJ/
+efL0+0ffZ0cS6BnzDwcy5O6YcAq08qew7Q8sT01fDadkPTI8UOx5ouUygqbE
+JU1qdjBpEelTEUMOYBAoY4rkj9VHOc6ttkObHTd0P6QBM2n+U/rwNPZGReLz
+QopndmAzoIEL6P2WhB0Zsg9JgdjhwdFhe4zYp+TCjtv3Ocg2ud/0QzIgn9xM
+dhIzy4oOJLCBDlWB9KvEwBUB2Bh5TiP7ibJutN+ngzOZPQiTmPfZ6YDHQ16g
++lqpfiDGSYaws/2+PTGT1gn/F+zwhBe5Owp7MhTxOJBxzNW+TM/MxVCxN0UN
+W3tEPO7ICb4CSUiqfZ8GDO35mTRfAAoRk+0EIl6o6K4dSaaDkQs03X7+YurY
+B+flfDkvTxecc36M8BsM+HWc7FxIzjEuEPLiX5eC8k77PIa2w888EJ9ZVwAm
+lTInQ6STd805Zy0HbRGIngqRd8fWV0S12U/ndZHLlN43+VjHCbKYgtEZBHtr
+6Uftf3jt/3vd/Oujv7UctTTnH4XQRo/7Qts8bwaCqTTXmzzXhy7Xu4mFKDyy
+RCLPTgTWRt5C3kQ8ZHY1N8xmUvaWsg178ujJozQMixjKgK2qjEI6pV6jgyP+
+6zXP8xjvIG5z39D39kBqhjohsWmyK7QPv4YMxL+tX7pUvwzz+sWk9Qlihy1A
+XgIgJ5RuMtbGLDfWh4F1BEs0ChejsIKliLjRk304s5ULNFTchbUbOCPyHu8E
+Ug/sQLdMtkq6gl0A7NpySRIPeTHCUCQNUH+5NWwJEFHKZ1GsjPJVoJuZ9EPZ
+7ZIl1msPSGmx6iY+sUNHaLEpbeldpiPhy56ELODoy5eCEXz9umtlhSnFF+yM
+x1IlsD2qMjRTPeZSMNOyH6KEggRHISqN8AITtABly3FxDAlGxLBYvabOgA53
+IKSQcD9WWpOUofANOOoqmHNoNQJFJYGRnjuUa6Y5rWjAciahbafjkXp91GJU
+hRVWLKqVSoc+EXAG0heIjdKHFWSVqKNUhKte+/LlT0feCxvjPYOazBYj+Ovr
+15QxkXORBILZcaP6FDZJIdgib8ZkIGOCbWtrPsROVkm/5SGqDjuGqm+NLCXY
+AVVsBpAhD7GHx29fHOwUSFsuT14dfv/02ZOUrwcPEDjiobSx7sJWlMfKWMvV
+dP5E9KzpsqJ8hepaRcpK+vVrHhAI1BQbnyFcDMlS6D/OTyYlzOHpqSBQ56QW
+NxoVcxEWx/pf//aXR1iL+KTzoTKop9JR9dpAxGkAYKm9pV8QO84o09gvqXbT
+byPXLx4IceBKjH335NnjJRkbCw+0WsYkcBf5AVrZFFRD8KaRi1iZCFuaPKqH
+grGoZwdWrmdUsUgavB9zG/IP4IvDKHAmjIPRwMbxWESxwA7GGQF5Nym1ECBl
+rkhax5k5SEN4O1bqCf2mniV4SHyn9PTFsKNchMVXDay7jjMryBi6PzuLLUjy
+Psb5T3TW7juPwRY7Rg61Fns0YV+7Nr3aMJVr1u08FVaOi5Kpzr/gOtpu1hA8
+aBEwgTqYVE9MG0zjcTc9x7jWypec4hNFZhpDVWMM/CIVdnM1AWZEWoxyzo+A
+yDXTA3UepvIXTQz5QVhB/8jktJ8/xsJH8fMHs04qQl/QpOCx5+KyPWX9NeAX
+Ii4ctmf++7+AK/sNn/+hadabw4AVphXCU2EtTPqAD80xoshFGvrY5Cdb6nd8
+sNSXFnsAIb0UX+1Kix8b77PvpJoZIKbYNb7asAR6L+22nMIVioX3AWKuIOMN
+UJ1YDnOdMLdFJ3Uh+bhUbVVFVBRgSw2GdpZI56hKLBckKox3gjIBNqKMIVkH
+QI/Rnw6XRSXAlCcJ12uEzxhldhnhGXnmwVTHhL2wQSPKsj/85x1i4ZkU5+QT
+0w2WySzKpc0+edk0GQ9sw2cikaZFRjFd2rBB2kQeTU/Ml4UcBFGwwzVyiJtv
+I2uWl6WrhWhdL881EUf8oO0CHEyGfpCQ8bik2cHsc9nFjLxURGwjkoFtPxWO
+QoAvXxCgPZWiBG7IV7WzmZQFRyAWgUuVAxlZ+P+DD3j3pfR4bLKid+bnW2/i
+8+3kcACV1R7kRXYfMPKxP25Iffbnf5cbtnjx0TB2kGpsFWRzmb6dKxRZXWH1
+yTB2RcyIPmnUBa2iTWRB66RgAAgd5lwIV8eSaY0M3aVoF7qODLkCdRqpxIdF
+olRwCYabvH5K59kCltqUNMA6UMKD4MI6BsKBCkcTUIhRmeDcD6GUqsEJagU/
+TMmkG5e+sJkw86ic2KWF7sxCME34UwtbkV0qtM7dIxgRDUdZMXfa6bS1m5l+
+msWAL7Z9dAiFgnEHRwuPYgI3roUjdKGGfPzU7mgmYkTbDuTY4JwGqN4etk93
+nBrz4+9tJ9slk4ft98c7u8UdIKioUfXExsPOvFDTpuKnwCVKRX6GiWRHE/ux
+xQnFrlAssG1j3EVwitBjcSstwgo7m6KmbCR7SwakfRHSZs8l5VSNEWpG31l9
+Jn6x8Px5gs18p+mFHUTFKPJsnUvMOK7HJ9k8gG17mFlTmrOe51AeFCTJCuWU
+tSw9wLpdb8L3k9hWRjqTGRY00grtojm1vuq1PPFau826PxdsliWNKkIy/UCG
+Hz1yyaKu6UTEzaCwmG3iY6Ke3JEtLhRS+d3PJDeT3RqgB/uEJLYbwAJJP4eM
+HP9Kcjtq0JLwXAsmF3Fie3S5gGRtFFtdq+BK2rRsuGatVSW7vibrNScTDBTm
+KsLubkHQgYpyzWbDRDStVYJiOaEpqYy2T1PVm616adM2q7BwMbM1meFoaL7B
+ZXuojI2gf/uB6iD+0p+0G+o626SfquCecio/zx3nKI6M2n3PIE67fMijrYfg
+aScniiPxuUUun1lcMD3dTSw8P89MzpIaYNJcILVNT32Iub1AfLLzd36eyPKW
+nzTW7Uyc+yMjESrstHngdaSBTY+2MUloXW2aoN+J5xJLf5Ky2W0JIXIee5EX
+eh/nkrXnZ2CTQDPfL5r0cQam9vgsLghIkf6qNpeV4qDigOJxi+P8Ffg5ttmX
+LGDHjMlMsj7+bhbViPsfxRTHLDevyJlIxC8Cxbu5knMFT3tN2gYe/VmZf06w
+Mv/7af5RLIeohW1imJE1iqcrb8kJVt5SecsS3uKrYYS61JVd2sP2PxKxyX+i
+Lk4dG1oYacmOH5qefE2vVIu9Ul3fK9XNvVKt0ivV7Xiluo5XqlvxSnXbXqlW
+7ZVqU16ZfY8FdqhazMxts3ysynQTxKpMV2W6BT51SZLTE1luXgacsfh0iqwy
+YJUB73EG1MJXdCnDXH8dH1Dt5HKCVX67n/ntGh5T7eaqXDZnUpXLbiOXFYvJ
+hR66aCdX5baZxKrcdh9y27U9qMp1Va6bM6nKddfKdau8ZMMekqGnRXrnw+TM
+qSuD9MyjIx9Lc1/hGqCJzOiuCyq41OQlQ3RqYo7R/XFbmWWy45nVoyuYvlk4
+NIqlinEmJ51b7BpAV4mpUL8M9ZU0FMdNfDa8S6igAntZsCvTXhfaS/XKKwco
+p0oKblLp5Eo6uUbLrSp0NgF4lQlujvi1d96VyZdBAZULLKGBVe6uxCe6DYn6
+JYBeePmt25MEiqc98Ynu+MLOPjjnF84SIGWujHmaG6go7T3Z71fuEE8RTxUS
+hRlq9g6OKJwxZqS0he1io62uaCzZk3s2TQk14O65E5kmKhWUoq8zb6K9EeoW
+cV+A+c+5TvT24Dg6KOi+xkkqFYpXRJHusJsF41WhmyJUXvxWUUhU7rwiICt/
+XjGM5XfoVXSH6JF4Q/mZ54jwoE9F8mBIX4aCcJmmUpzluUEzyqyshL1aweu+
+3sNqq+zqzOrhq1XPlTpvoM5q57hVyFc7xjL9PLqgmFxFXi9tSl89fqgoK/Ru
+YH0iuoul473eA5YKwO3b+5UUvvux51vXBbB2wFj9NPNoVibN0d8qyiQ135zV
+EmWSWrJMUmstk+bc6j22BZwmM2NDOGcLOD232t9vvDbeuNKrLkAplH6pngoR
+d0F3YEayK+qn0sjqNVL1EEqjoKrTsJ0o36t+xMYs+Y52LdZ7OXQVGtYMcxUb
+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
+sW5NOlk21K2+27nMO0kXz1r6FbNLbvjmPTd3vXuBooSZvjPxMgrj24RL9wTj
+VwtlRK58ScAVNwLbZTITD15Zcv+4rSaT7SzvvMlUHaCZCr0vmry7fZ6t1+eq
+fp4oaTdn1s/+t1Ysb4N2StO7qTRz6Ws7brlTc1MNbG7TsrLf98rZl7kLrrFa
+7ZSlC1Np5nai1toUsLmYta4r5O2AJZ7jM+1OG6zIi4X46F7/icvvt7fGXuqK
+wqoTt+FO3LVv0qkMrOrbVQa2mi5fqdLSrfT8UgzztFYZw/xG4TZYwwrahvfE
+JO5Hr/GGUX7zm8QN6bJsnclKj9vVx7yxvjbYz1zvLWel7nreI7e70z3SSo/l
+iZ9r0VfZw+e1Xgw/R+OXvRh+ibbsprseV2m5lqhxcY27XavG6pobq9nkGzzX
+684bTtUwvcOGU13uON7nupf6vPMXPW67Vu94O/LG6ln9FqwUSipNn/HWFLTV
+6ll7+3AFaljh1neTT/MpZ1/wDsWxu9nwqxRUkk7e1keyVVwjea8bdiUtya/9
+IK+qdbfx1l0pe7+lNKiqpXcPDapq9c1rCpXvorZNqfsedQLvpNLvTaOwdNds
+lFJ5JWwgVopbzus21los09U1ZXrActlbjnfWse56K7JS3KZC4roUVK6IWLUu
+V9a6XFeDINDRLGfRUXrScy/ozrs7+WP9Z06aP3rT4APYuJvpwIH/5vT9SpDF
+//6DT732pcUe9GTfo8HOy7wLhAamVRL7YAC73yGPP0KvPzZMnIhG8Qw9R/PH
+Br2DvjB/f/Tu9yaRalhFPmCnwk9iaS7YIWKd7IrY9fLoZBuSFV9KryPhy57E
+/lWGzL4vvav8xCLVFT0ZQkrOtD8QQ27R6nLD6zUz4IbeZw+gZT/EZKNYRzDu
++whr+HomOQvdW+HZkIe8LyxFuKlRvgoQ+RJ/UK9xzY5ftg/fHb9iX7786eTV
+4XdPnj3++pW21ScvT4snvn/07NHXr03GiP9AnSNO51MDfiHieg3spNEziQUz
++dvp7eld+1p4Og92IINCsDLKk8MocKy5aZAsnwd6p47W6UAEAXt4evrLzojP
+J5Ps5ByP+Pml3X5/uuTSbGzl9ptTGIwT/dmz77BWprxMaoc1PVTVxCogdcKm
+0xlPLYpA+wzKd7AMBahDTfValuMyCqTVCJlc+knA45x+UQcw9pgmM6g+Il8J
+YcfguQs9drSw8YoDIn7GJdwgEDOpZNqv1yhYO5O02JAMACITEVhw+j8Lk2FH
+xEScrI6FioRxVjky16IxW7PkpMZzmD8xsufHgru/gI+wf7GHsimau8yJwcjV
+dtn5QPoD5myoXsMiPAnMjtMwfL/AAN0I0BH2abbkWgSCwJ9GngkS9ywJQkiH
+dWACIVx4KHJXEOGZjFVIWtcg/SuYpLZyDsZD0eyDMdGVxnPc7cAiFfE0zgO9
+OgGxKn3TpkVW2KoFkSpkA35m4RN9TlzVa6LXs1klzDkZLQo+xqMEIXuaUnv8
+COhbQzzyXjRt9DGCaxu38BeMzGoq0DCNiDpmFl/HsYzJOkwshHbKAiOpniZ1
+mIUcawGnhFgag6G8riVZkH2W4qd0Uq/NUQq7RCdHxhlBgmgJF4U7crgoJMoc
+jVjKXCfVF0W7vjC79E+qt12sWq+FyiC2+hbXHTZDkaUD/wE7Ojg+mJk3iqkh
+Fv9OEEa0G40lY9GXKDddNu2pADER2372j5OjbH3WCHWDmHJDUcOQEWfnjl62
+X7EPb9+wk/RsI41lT7/7/nuKtK9ymm4FKhyIcnHU7sTq6UpZpIlFxrfoWmFd
+Wnb5HJy2WBKHLcIZ1WHMh7r1aRi0Qt0iwFsTqTebl/JLRgLQDAqclk0KRy9P
+X2djIFeLHe8d/JDadMoDrUnGBo8lySnD64j7oplxdl3UC54xQt/OeetM4JiW
+yhD+7tGTR5cj7EZdAeHWJMIkXyur6dgcOHMQ7Mhr6APpqSc/ZevY82F+EucQ
+HMKUOqRiH/AZwU1HXiL4ImIcI6K22PtAUOUXiygAT3Z04bU1Lj1xPaqBrJ8R
+FYVFUveKec8gOKGWF1bXOG2tz/M81uH+R+d2B/7HUJ0HomurVE3VoqMvuj82
+enBy4Yq79rsX7xB+ssFkLP8PwzBMKSgqAQA=
 
 -->
 
