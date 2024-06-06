@@ -4,7 +4,7 @@ title: >
 abbrev: OTN Tunnel Model
 category: std
 
-docname: draft-ietf-ccamp-otn-tunnel-model-21
+docname: draft-ietf-ccamp-otn-tunnel-model-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
@@ -244,14 +244,34 @@ in {{!I-D.ietf-ccamp-layer1-types}}.
 
 # Security Considerations
 
-The data following the model defined in this document is exchanged
-via, for example, the interface between an orchestrator and a
-transport network controller.  The security concerns mentioned in
-{{!I-D.ietf-ccamp-client-signal-yang}} also applies to this document.
+The YANG module specified in this document defines a schema for data
+that is designed to be accessed via network management protocols such
+as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
+is the secure transport layer, and the mandatory-to-implement secure
+transport is Secure Shell (SSH) {{!RFC6242}}.  The lowest RESTCONF layer
+is HTTPS, and the mandatory-to-implement secure transport is TLS
+{{!RFC8446}}.
 
-The YANG module defined in this document can be accessed via the
-RESTCONF protocol defined in {{!RFC8040}}, or maybe via the NETCONF
-protocol {{!RFC6241}}.
+The NETCONF access control model {{!RFC8341}} provides the means to
+restrict access for particular NETCONF or RESTCONF users to a
+preconfigured subset of all available NETCONF or RESTCONF protocol
+operations and content.
+
+There are a number of data nodes defined in this YANG module that are
+writable/creatable/deletable (i.e., config true, which is the
+default).  These data nodes may be considered sensitive or vulnerable
+in some network environments.  Write operations (e.g., edit-config)
+to these data nodes without proper protection can have a negative
+effect on network operations.  Considerations in Section 10 of
+{{!I-D.ietf-teas-yang-te}} are also applicable to their subtrees in the
+module defined in this document.
+
+Some of the readable data nodes in this YANG module may be considered
+sensitive or vulnerable in some network environments.  It is thus
+important to control read access (e.g., via get, get-config, or
+notification) to these data nodes.  Considerations in Section 10 of
+{{!I-D.ietf-teas-yang-te}} are also applicable to their subtrees in the
+module defined in this document.
 
 # IANA Considerations
 
