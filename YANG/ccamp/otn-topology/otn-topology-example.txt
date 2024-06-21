@@ -1,0 +1,44 @@
+This appendix contains an example of an instance data tree in JSON
+encoding [RFC7951].
+   
+The example instantiates the "ietf-otn-topology" model for the OTN topology depicted in Figure XXX below.
+
+The OTN topology consists of three nodes (D1, D2, and D3) with three link termination (LTPs) each: two LTPs which terminates the links that belongs to the OTN topology and one LTP which terminates inter-domain links, as defined in [RFC8795].
+
+The OTN links within the OTN network are 100G OTN links while the links at the edge of the network are 10G links.
+
+The OTN links within the OTN network are bidirectional and symmetrical: for this reasons, the link attributes (e.g., support for OTN switching capability or transparent client signal and the OTN maximum link bandwidth) are instantiated only on the link representing the forward direction, while the link representing the reverse direction are instantiated without any link attribute (other than the name) to indicate that the OTN links are bidirectional and symmetrical.
+
+The link between nodes D1 and D2 is an example of a multi-function link, as defined in Section 2.2, which can support both OTN and 100G client signal (e.g., 100GE): the interface-switching-capability list indicates support for OTN switching capability and the client-svc presence container is instantiated.
+
+For the LTPs which terminate OTN links, only the identifiers information is instantiated. All the other properties are defined in the links they terminate.
+
+For the LTPs at the edge network, additional properties are instantiated to indicate whether the link can support OTN or transparent client signals. In particular:
+
+- LTP 1 on Node D1 is an example of an LTP terminating a multi-function access link, as defined in Section 2.2, which can support both OTN and 10G client signals (e.g., 10GE and STM-64): the interface-switching-capability list indicates support for OTN switching capability and the client-svc presence container is instantiated;
+
+- LTP 2 on Node D2 is an example of an LTP which can support only 10G OTN (ODU2) signal: the interface-switching-capability list indicates support for OTN switching capability and the client-svc presence container is not instantiated;
+
+- LTP 3 on Node D3 is an example of an LTP which can support only 10G (e.g., 10GE and STM-64) client signals: the interface-switching-capability list does not indicate support for OTN switching capability and the client-svc presence container is instantiated.
+
+                +------------+                   +------------+
+                |     D1     |                   |     D2     |
+               /-\          /-\                 /-\          /-\
+               | | 1        | |---------------->| | 1        | |
+               | |        2 | |<----------------| |        2 | |
+               \-/    3     \-/                 \-/    3     \-/
+                |   /----\   |                   |   /----\   |
+                +---|    |---+                   +---|    |---+
+                    \----/                           \----/
+                     A  |                             A  |
+                     |  |                             |  |
+                     |  |                             |  |
+                     |  |       +------------+        |  |
+                     |  |       |     D3     |        |  |
+                     |  |      /-\          /-\       |  |
+                     |  +----->| | 1        | |-------+  |
+                     +---------| |        2 | |<---------+
+                               \-/    3     \-/
+                                |   /----\   |
+                                +---|    |---+
+                                    \----/
