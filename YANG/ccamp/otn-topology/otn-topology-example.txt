@@ -5,7 +5,7 @@ The example instantiates the "ietf-otn-topology" model for the OTN topology depi
 
 The OTN topology consists of three nodes (D1, D2, and D3) with three link termination (LTPs) each: two LTPs which terminates the links that belongs to the OTN topology and one LTP which terminates inter-domain links, as defined in [RFC8795].
 
-The OTN links within the OTN network are 100G OTN links while the links at the edge of the network are 10G links.
+The OTN links within the OTN network are 100G OTN links while the links at the edge of the network are 10G links. All these OTN links support ODU4, ODU2 and ODU0 connections. The link between nodes D1 and D2 also supports ODUflex.
 
 The OTN links within the OTN network are bidirectional and symmetrical: for this reasons, the link attributes (e.g., support for OTN switching capability or transparent client signal and the OTN maximum link bandwidth) are instantiated only on the link representing the forward direction, while the link representing the reverse direction are instantiated without any link attribute (other than the name) to indicate that the OTN links are bidirectional and symmetrical.
 

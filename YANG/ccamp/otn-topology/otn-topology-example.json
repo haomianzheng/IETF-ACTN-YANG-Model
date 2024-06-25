@@ -5,7 +5,7 @@
         "network-id": "example:otn-topology-example",
         "network-types": {
           "ietf-te-topology:te-topology": {
-            "ietf-otn-topology": {}
+            "ietf-otn-topology:otn-topology": {}
           }
         },
         "ietf-te-topology:te-topology-identifier": {
@@ -18,10 +18,10 @@
             "ietf-te-topology:te-node-id": "192.0.0.1",
             "ietf-te-topology:te": {
               "te-node-attributes": {
-                "name": "Node D1"
+                "name": "Node D1",
+                "ietf-otn-topology:otn-node": {}
               }
             },
-            "ietf-otn-topology:otn-node": {},
             "ietf-network-topology:termination-point": [
               {
                 "tp-id": "example:D1-1",
@@ -63,10 +63,10 @@
             "ietf-te-topology:te-node-id": "192.0.0.2",
             "ietf-te-topology:te": {
               "te-node-attributes": {
-                "name": "Node D2"
+                "name": "Node D2",
+                "ietf-otn-topology:otn-node": {}
               }
             },
-            "ietf-otn-topology:otn-node": {},
             "ietf-network-topology:termination-point": [
               {
                 "tp-id": "example:D2-1",
@@ -102,10 +102,10 @@
             "ietf-te-topology:te-node-id": "192.0.0.3",
             "ietf-te-topology:te": {
               "te-node-attributes": {
-                "name": "Node D3"
+                "name": "Node D3",
+                "ietf-otn-topology:otn-node": {}
               }
             },
-            "ietf-otn-topology:otn-node": {},
             "ietf-network-topology:termination-point": [
               {
                 "tp-id": "example:D3-1",
@@ -168,18 +168,18 @@
                         {
                           "odu-type": "ietf-layer1-types:ODUflex",
                           "number": 80,
-                          "max-ts-number": 80
+                          "ts-number": 80
                         }
                       ]
                     }
                   }
                 },
                 "ietf-otn-topology:otn-link": {
-                  "otnt:odtu-flex-type": "ietf-layer1-types:4"
+                  "odtu-flex-type": "4"
                 },
                 "ietf-otn-topology:client-svc": {
                   "supported-client-signal": [
-                    "ietf-layer1-types:ETH-100Gb-LAN"
+                    "ietf-layer1-types:ETH-100Gb"
                   ]
                 }
               }
@@ -187,8 +187,10 @@
           },
           {
             "link-id": "example:link/D2-1/D1-2",
-            "te-link-attributes": {
-              "name": "Link between Node D1 and Node D2 (reverse direction)"
+            "ietf-te-topology:te": {
+              "te-link-attributes": {
+                "name": "Link between Node D1 and Node D2 (reverse direction)"
+              }
             }
           },
           {
@@ -217,32 +219,28 @@
                         {
                           "odu-type": "ietf-layer1-types:ODU0",
                           "number": 80
-                        },
-                        {
-                          "odu-type": "ietf-layer1-types:ODUflex",
-                          "number": 80,
-                          "max-ts-number": 80
                         }
                       ]
                     }
                   }
-                },
-                "ietf-otn-topology:otn-link": {
-                  "otnt:odtu-flex-type": "ietf-layer1-types:4"
                 }
               }
             }
           },
           {
             "link-id": "example:link/D3-2/D2-3",
-            "te-link-attributes": {
-              "name": "Link between Node D2 and Node D3 (reverse direction)"
+            "ietf-te-topology:te": {
+              "te-link-attributes": {
+                "name": "Link between Node D2 and Node D3 (reverse direction)"
+              }
             }
           },
           {
             "link-id": "example:link/D3-1/D1-3",
-            "te-link-attributes": {
-              "name": "Link between Node D1 and Node D3 (reverse direction)"
+            "ietf-te-topology:te": {
+              "te-link-attributes": {
+                "name": "Link between Node D1 and Node D3 (reverse direction)"
+              }
             }
           },
           {
@@ -271,18 +269,10 @@
                         {
                           "odu-type": "ietf-layer1-types:ODU0",
                           "number": 80
-                        },
-                        {
-                          "odu-type": "ietf-layer1-types:ODUflex",
-                          "number": 80,
-                          "max-ts-number": 80
                         }
                       ]
                     }
                   }
-                },
-                "ietf-otn-topology:otn-link": {
-                  "otnt:odtu-flex-type": "ietf-layer1-types:4"
                 }
               }
             }
