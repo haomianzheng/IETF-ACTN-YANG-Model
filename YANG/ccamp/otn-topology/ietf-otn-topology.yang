@@ -5,12 +5,14 @@ module ietf-otn-topology {
 
   import ietf-network {
     prefix "nw";
-    reference "RFC 8345: A YANG Data Model for Network Topologies";
+    reference
+      "RFC 8345: A YANG Data Model for Network Topologies";
   }
 
   import ietf-network-topology {
     prefix "nt";
-    reference "RFC 8345: A YANG Data Model for Network Topologies";
+    reference
+      "RFC 8345: A YANG Data Model for Network Topologies";
   }
 
   import ietf-te-topology {
@@ -23,9 +25,10 @@ module ietf-otn-topology {
   import ietf-layer1-types {
     prefix "l1-types";
     reference
-      "I-D.ietf-ccamp-layer1-types: A YANG Data Model 
-       for Layer 1 Types";
+      "RFC YYYY: A YANG Data Model for Layer 1 Types";
   }
+  // RFC Editor: replace YYYY with actual RFC number assigned to 
+  // [I-D.ietf-ccamp-layer1-types] and remove this note
 
   organization
     "IETF CCAMP Working Group";
@@ -72,15 +75,15 @@ module ietf-otn-topology {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2024-04-19 {
+  revision 2024-06-21 {
     description
       "Initial Revision";
     reference
       "RFC XXXX: A YANG Data Model for Optical Transport Network 
       Topology";
-    // RFC Ed.: replace XXXX with actual RFC number, update date
-    // information and remove this note
   }
+  // RFC Editor: replace XXXX with actual RFC number, update date
+  // information and remove this note
 
   /*
    * Groupings
