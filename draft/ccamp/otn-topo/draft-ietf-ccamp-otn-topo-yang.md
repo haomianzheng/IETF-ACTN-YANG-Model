@@ -149,6 +149,7 @@ described in {{?I-D.ietf-ccamp-transport-nbi-app-statement}}.
 
 This model supports both client-configured and system-controlled OTN
 topologies, as described {{!RFC8345}}.
+These OTN topologies can be used as overlay or underlay topologies, using the mechanisms defined in {{!RFC8345}} and {{!RFC8795}}.
 
 The reader of this document is assumed to be familiar with the OTN
 technology, as specified in {{ITU-T_G.709}} and with the TE topology
