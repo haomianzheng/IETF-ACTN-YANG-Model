@@ -120,7 +120,7 @@ transport network typically utilizes several different transport
 technologies such as the Optical Transport Networks (OTN) or packet
 transport such as provided by the MPLS-Transport Profile (MPLS-TP).
 
-This document defines a data model of an OTN topology, using YANG
+This document defines a data model of an OTN topology, using YANG version 1.1 
 {{!RFC7950}}.  The model can be used by an application communicating
 with a transport controller.  Furthermore, it can be used by an
 application for the following purposes (but not limited to):
@@ -160,8 +160,6 @@ protocol extensions to support GMPLS and Path Computation Element
 
 {{Section 6 of !RFC8795}} provides guidelines for writing technology-
 specific TE topology augmentations.
-
-The YANG data model in this document uses YANG version 1.1 {{!RFC7950}}.
 
 The YANG data model in this document conforms to the Network
 Management Datastore Architecture defined in {{!RFC8342}}.

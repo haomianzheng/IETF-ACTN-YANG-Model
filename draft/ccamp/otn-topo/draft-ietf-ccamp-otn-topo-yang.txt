@@ -5,13 +5,13 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 27 April 2025                                            X. Liu
+Expires: 11 May 2025                                              X. Liu
                                                                Alef Edge
                                                               S. Belotti
                                                                    Nokia
                                                      O. Gonzalez de Dios
                                                               Telefonica
-                                                         24 October 2024
+                                                         7 November 2024
 
 
         A YANG Data Model for Optical Transport Network Topology
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Zheng, et al.             Expires 27 April 2025                 [Page 1]
+Zheng, et al.              Expires 11 May 2025                  [Page 1]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    Internet-Drafts are working documents of the Internet Engineering
@@ -68,7 +68,7 @@ Internet-Draft           OTN Topology YANG Model            October 2024
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 April 2025.
+   This Internet-Draft will expire on 11 May 2025.
 
 Copyright Notice
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Zheng, et al.             Expires 27 April 2025                 [Page 2]
+Zheng, et al.              Expires 11 May 2025                  [Page 2]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  87
@@ -126,9 +126,10 @@ Internet-Draft           OTN Topology YANG Model            October 2024
    transport such as provided by the MPLS-Transport Profile (MPLS-TP).
 
    This document defines a data model of an OTN topology, using YANG
-   [RFC7950].  The model can be used by an application communicating
-   with a transport controller.  Furthermore, it can be used by an
-   application for the following purposes (but not limited to):
+   version 1.1 [RFC7950].  The model can be used by an application
+   communicating with a transport controller.  Furthermore, it can be
+   used by an application for the following purposes (but not limited
+   to):
 
    *  To obtain a whole view of the network topology information of its
       interest;
@@ -159,21 +160,22 @@ Internet-Draft           OTN Topology YANG Model            October 2024
    technology, as specified in [ITU-T_G.709] and with the TE topology
    YANG data model, as defined in [RFC8795].
 
+
+
+
+
+
+Zheng, et al.              Expires 11 May 2025                  [Page 3]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
    [RFC7062] also provides a framework to allow the development of
    protocol extensions to support GMPLS and Path Computation Element
    (PCE) control of OTN.
 
-
-
-Zheng, et al.             Expires 27 April 2025                 [Page 3]
-
-Internet-Draft           OTN Topology YANG Model            October 2024
-
-
    Section 6 of [RFC8795] provides guidelines for writing technology-
    specific TE topology augmentations.
-
-   The YANG data model in this document uses YANG version 1.1 [RFC7950].
 
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture defined in [RFC8342].
@@ -219,11 +221,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-
-
-Zheng, et al.             Expires 27 April 2025                 [Page 4]
+Zheng, et al.              Expires 11 May 2025                  [Page 4]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
 1.2.  Requirements Language
@@ -277,9 +277,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                 [Page 5]
+Zheng, et al.              Expires 11 May 2025                  [Page 5]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
 2.1.  OTN Topology Data Model Overview
@@ -333,9 +333,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                 [Page 6]
+Zheng, et al.              Expires 11 May 2025                  [Page 6]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    Three OTN technology-specific parameters that augment the generic TE
@@ -389,9 +389,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                 [Page 7]
+Zheng, et al.              Expires 11 May 2025                  [Page 7]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
 2.4.  Label Augmentation
@@ -445,9 +445,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                 [Page 8]
+Zheng, et al.              Expires 11 May 2025                  [Page 8]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
      organization
@@ -501,9 +501,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                 [Page 9]
+Zheng, et al.              Expires 11 May 2025                  [Page 9]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
        reference
@@ -557,9 +557,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 10]
+Zheng, et al.              Expires 11 May 2025                 [Page 10]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
      augment "/nw:networks/nw:network/nw:node/tet:te"
@@ -613,9 +613,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 11]
+Zheng, et al.              Expires 11 May 2025                 [Page 11]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
          presence
@@ -669,9 +669,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 12]
+Zheng, et al.              Expires 11 May 2025                 [Page 12]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
              "List of client signal types supported by the LTP.";
@@ -725,9 +725,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 13]
+Zheng, et al.              Expires 11 May 2025                 [Page 13]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
              description
@@ -781,9 +781,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 14]
+Zheng, et al.              Expires 11 May 2025                 [Page 14]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
@@ -837,9 +837,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 15]
+Zheng, et al.              Expires 11 May 2025                 [Page 15]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
                "Augment OTN link bandwidth information.";
@@ -893,9 +893,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 16]
+Zheng, et al.              Expires 11 May 2025                 [Page 16]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
            + "tet:tunnel-termination-point/"
@@ -949,9 +949,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 17]
+Zheng, et al.              Expires 11 May 2025                 [Page 17]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
              description
@@ -1005,9 +1005,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 18]
+Zheng, et al.              Expires 11 May 2025                 [Page 18]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
        description
@@ -1061,9 +1061,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 19]
+Zheng, et al.              Expires 11 May 2025                 [Page 19]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
      }
@@ -1117,9 +1117,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 20]
+Zheng, et al.              Expires 11 May 2025                 [Page 20]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
            + "tet:information-source-entry/"
@@ -1173,9 +1173,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 21]
+Zheng, et al.              Expires 11 May 2025                 [Page 21]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
           template";
@@ -1229,9 +1229,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 22]
+Zheng, et al.              Expires 11 May 2025                 [Page 22]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
          "Augment unreserved TE bandwidth the TE link template";
@@ -1285,9 +1285,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 23]
+Zheng, et al.              Expires 11 May 2025                 [Page 23]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
            + "tet:label-restrictions/tet:label-restriction" {
@@ -1341,9 +1341,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 24]
+Zheng, et al.              Expires 11 May 2025                 [Page 24]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
            + "tet:to/tet:label-restrictions/tet:label-restriction" {
@@ -1397,9 +1397,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 25]
+Zheng, et al.              Expires 11 May 2025                 [Page 25]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
            + "tet:label-restrictions/tet:label-restriction" {
@@ -1453,9 +1453,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 26]
+Zheng, et al.              Expires 11 May 2025                 [Page 26]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
             OTN topology type.";
@@ -1509,9 +1509,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 27]
+Zheng, et al.              Expires 11 May 2025                 [Page 27]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
@@ -1565,9 +1565,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 28]
+Zheng, et al.              Expires 11 May 2025                 [Page 28]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
        when "../../../../../../../../../../"
@@ -1621,9 +1621,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 29]
+Zheng, et al.              Expires 11 May 2025                 [Page 29]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
          description
@@ -1677,9 +1677,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 30]
+Zheng, et al.              Expires 11 May 2025                 [Page 30]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
           of the connectivity matrix entry.";
@@ -1733,9 +1733,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 31]
+Zheng, et al.              Expires 11 May 2025                 [Page 31]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
@@ -1789,9 +1789,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 32]
+Zheng, et al.              Expires 11 May 2025                 [Page 32]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
        when "../../../../../../../../../../"
@@ -1845,9 +1845,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 33]
+Zheng, et al.              Expires 11 May 2025                 [Page 33]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
             OTN topology type.";
@@ -1901,9 +1901,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 34]
+Zheng, et al.              Expires 11 May 2025                 [Page 34]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
        case otn {
@@ -1957,9 +1957,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 35]
+Zheng, et al.              Expires 11 May 2025                 [Page 35]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
            + "tet:label-restriction/"
@@ -2013,9 +2013,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 36]
+Zheng, et al.              Expires 11 May 2025                 [Page 36]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
        description
@@ -2069,9 +2069,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 37]
+Zheng, et al.              Expires 11 May 2025                 [Page 37]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
           by the path computation of the TE node connectivity matrices
@@ -2125,9 +2125,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 38]
+Zheng, et al.              Expires 11 May 2025                 [Page 38]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
            + "tet:information-source-entry/tet:connectivity-matrices/"
@@ -2181,9 +2181,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 39]
+Zheng, et al.              Expires 11 May 2025                 [Page 39]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
           + "otnt:otn-topology" {
@@ -2237,9 +2237,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 40]
+Zheng, et al.              Expires 11 May 2025                 [Page 40]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
        case otn {
@@ -2293,9 +2293,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 41]
+Zheng, et al.              Expires 11 May 2025                 [Page 41]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
            + "tet:optimizations/tet:algorithm/tet:metric/"
@@ -2349,9 +2349,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 42]
+Zheng, et al.              Expires 11 May 2025                 [Page 42]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
            + "tet:path-properties/tet:path-route-objects/"
@@ -2405,9 +2405,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 43]
+Zheng, et al.              Expires 11 May 2025                 [Page 43]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
          description
@@ -2461,9 +2461,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 44]
+Zheng, et al.              Expires 11 May 2025                 [Page 44]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
        case otn {
@@ -2517,9 +2517,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 45]
+Zheng, et al.              Expires 11 May 2025                 [Page 45]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
@@ -2573,9 +2573,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 46]
+Zheng, et al.              Expires 11 May 2025                 [Page 46]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
            + "tet:local-link-connectivity/"
@@ -2629,9 +2629,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 47]
+Zheng, et al.              Expires 11 May 2025                 [Page 47]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
          description
@@ -2685,9 +2685,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 48]
+Zheng, et al.              Expires 11 May 2025                 [Page 48]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
           of the TTP Local Link Connectivity entry.";
@@ -2741,9 +2741,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 49]
+Zheng, et al.              Expires 11 May 2025                 [Page 49]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
          "Augment TE label hop for the explicit route objects included
@@ -2797,9 +2797,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 50]
+Zheng, et al.              Expires 11 May 2025                 [Page 50]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
      augment "/nw:networks/nw:network/nt:link/tet:te/"
@@ -2853,9 +2853,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 51]
+Zheng, et al.              Expires 11 May 2025                 [Page 51]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
        case otn {
@@ -2909,9 +2909,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 52]
+Zheng, et al.              Expires 11 May 2025                 [Page 52]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
             OTN topology type.";
@@ -2965,9 +2965,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 53]
+Zheng, et al.              Expires 11 May 2025                 [Page 53]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
          uses l1-types:otn-label-hop;
@@ -3021,9 +3021,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 54]
+Zheng, et al.              Expires 11 May 2025                 [Page 54]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    This document registers a YANG module in the YANG Module Names
@@ -3077,9 +3077,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 55]
+Zheng, et al.              Expires 11 May 2025                 [Page 55]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    [I-D.ietf-ccamp-layer1-types]
@@ -3133,9 +3133,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 56]
+Zheng, et al.              Expires 11 May 2025                 [Page 56]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
@@ -3189,9 +3189,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 57]
+Zheng, et al.              Expires 11 May 2025                 [Page 57]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
@@ -3245,9 +3245,9 @@ Appendix A.  YANG Tree
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 58]
+Zheng, et al.              Expires 11 May 2025                 [Page 58]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
        +--:(otn)
@@ -3301,9 +3301,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 59]
+Zheng, et al.              Expires 11 May 2025                 [Page 59]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
              |  +--rw ts-number?   uint16
@@ -3357,9 +3357,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 60]
+Zheng, et al.              Expires 11 May 2025                 [Page 60]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
              +--rw ts-number?   uint16
@@ -3413,9 +3413,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 61]
+Zheng, et al.              Expires 11 May 2025                 [Page 61]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
              +--rw max-ts-number?   uint16
@@ -3469,9 +3469,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 62]
+Zheng, et al.              Expires 11 May 2025                 [Page 62]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
           +--rw tsg?             identityref
@@ -3525,9 +3525,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 63]
+Zheng, et al.              Expires 11 May 2025                 [Page 63]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
      augment /nw:networks/nw:network/nt:link/tet:te
@@ -3581,9 +3581,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 64]
+Zheng, et al.              Expires 11 May 2025                 [Page 64]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
      augment /nw:networks/nw:network/nw:node/tet:te
@@ -3637,9 +3637,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 65]
+Zheng, et al.              Expires 11 May 2025                 [Page 65]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
           +--ro otn-label
@@ -3693,9 +3693,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 66]
+Zheng, et al.              Expires 11 May 2025                 [Page 66]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
      augment /nw:networks/nw:network/nw:node/tet:te
@@ -3749,9 +3749,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 67]
+Zheng, et al.              Expires 11 May 2025                 [Page 67]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
           +--rw otn-label
@@ -3805,9 +3805,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 68]
+Zheng, et al.              Expires 11 May 2025                 [Page 68]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
                /tet:information-source-entry/tet:connectivity-matrices
@@ -3861,9 +3861,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 69]
+Zheng, et al.              Expires 11 May 2025                 [Page 69]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
           +--ro otn-label
@@ -3917,9 +3917,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 70]
+Zheng, et al.              Expires 11 May 2025                 [Page 70]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
                /tet:connectivity-matrix/tet:underlay/tet:primary-path
@@ -3973,9 +3973,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 71]
+Zheng, et al.              Expires 11 May 2025                 [Page 71]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
           +--ro otn-label
@@ -4029,9 +4029,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 72]
+Zheng, et al.              Expires 11 May 2025                 [Page 72]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
              +--rw tsg?       identityref
@@ -4085,9 +4085,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 73]
+Zheng, et al.              Expires 11 May 2025                 [Page 73]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
                /tet:local-link-connectivities
@@ -4141,9 +4141,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 74]
+Zheng, et al.              Expires 11 May 2025                 [Page 74]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
           +--rw otn-label
@@ -4197,9 +4197,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 75]
+Zheng, et al.              Expires 11 May 2025                 [Page 75]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
                /tet:label-restriction/tet:label-start/tet:te-label
@@ -4253,9 +4253,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 76]
+Zheng, et al.              Expires 11 May 2025                 [Page 76]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
        +--:(otn)
@@ -4309,9 +4309,9 @@ Appendix B.  JSON Examples
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 77]
+Zheng, et al.              Expires 11 May 2025                 [Page 77]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    The OTN topology consists of three nodes (D1, D2, and D3) with three
@@ -4365,9 +4365,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 78]
+Zheng, et al.              Expires 11 May 2025                 [Page 78]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    *  LTP 3 on Node D3 is an example of an LTP which can support only
@@ -4421,9 +4421,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 79]
+Zheng, et al.              Expires 11 May 2025                 [Page 79]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
                "node-id": "example:D1",
@@ -4477,9 +4477,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 80]
+Zheng, et al.              Expires 11 May 2025                 [Page 80]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
                "ietf-te-topology:te": {
@@ -4533,9 +4533,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 81]
+Zheng, et al.              Expires 11 May 2025                 [Page 81]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
                    "tp-id": "example:D3-1",
@@ -4589,9 +4589,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 82]
+Zheng, et al.              Expires 11 May 2025                 [Page 82]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
                              "odu-type": "ietf-layer1-types:ODU4",
@@ -4645,9 +4645,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 83]
+Zheng, et al.              Expires 11 May 2025                 [Page 83]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
                        "switching-capability": "ietf-te-types:switching\
@@ -4701,9 +4701,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 84]
+Zheng, et al.              Expires 11 May 2025                 [Page 84]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
                "ietf-te-topology:te": {
@@ -4757,9 +4757,9 @@ Contributors
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 85]
+Zheng, et al.              Expires 11 May 2025                 [Page 85]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    Aihua Guo
@@ -4813,9 +4813,9 @@ Internet-Draft           OTN Topology YANG Model            October 2024
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 86]
+Zheng, et al.              Expires 11 May 2025                 [Page 86]
 
-Internet-Draft           OTN Topology YANG Model            October 2024
+Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    TBD
@@ -4869,4 +4869,4 @@ Authors' Addresses
 
 
 
-Zheng, et al.             Expires 27 April 2025                [Page 87]
+Zheng, et al.              Expires 11 May 2025                 [Page 87]
