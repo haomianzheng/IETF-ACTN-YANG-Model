@@ -327,12 +327,16 @@ The list of supported-client-signal is used to provide the
 capabilities of the client signal specified in
 {{!I-D.ietf-ccamp-layer1-types}}.
 
-## Bandwidth Augmentation
+## Bandwidth Augmentation {#sec-bandwidth}
 
 Following the guidelines in {{!RFC8795}}, the model augments all the
 occurrences of the te-bandwidth container with the OTN technology-
 specific attributes using the otn-link-bandwidth and otn-path-
 bandwidth groupings defined in {{!I-D.ietf-ccamp-layer1-types}}.
+
+The odtu-flex-type attribute of a given OTN Link (or Link Termination Point - LTP), shown in {{sec-attributes}}, is used, together with the OTN technology-specific attributes defined in the otn-link-bandwidth and otn-path-bandwidth groupings, to compute the number of Tributary Slots (TS) required by the ODUflex LSPs set up on that OTN Link (or LTP).
+
+In order to compute the number of Tributary Slots (TS) required by the ODUflex LSPs set up on an underlay path (e.g., the underlay path of a connectivity matrix entry), the odtu-flex-type attribute is added to the OTN technology-specific attributes defined in the otn-link-bandwidth and otn-path-bandwidth groupings.
 
 ## Label Augmentation
 
@@ -381,34 +385,128 @@ RFC once this draft becomes an RFC.
 
 # Security Considerations
 
-   The YANG module specified in this document defines a schema for data
-   that is designed to be accessed via network management protocols such
-   as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
-   is the secure transport layer, and the mandatory-to-implement secure
-   transport is Secure Shell (SSH) {{!RFC6242}}.  The lowest RESTCONF layer
-   is HTTPS, and the mandatory-to-implement secure transport is TLS
-   {{!RFC8446}}.
+This section is modeled after the template described in Section 3.7
+of {{?I-D.ietf-netmod-rfc8407bis}}.
 
-   The NETCONF access control model {{!RFC8341}} provides the means to
-   restrict access for particular NETCONF or RESTCONF users to a
-   preconfigured subset of all available NETCONF or RESTCONF protocol
-   operations and content.
+The "ietf-te-types" and the "ietf-te-packet-types" YANG modules define data models that are
+designed to be accessed via YANG-based management protocols, such as
+NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These protocols have to
+use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
+QUIC {{?RFC9000}}) and have to use mutual authentication.
 
-   There are a number of data nodes defined in this YANG module that are
-   writable/creatable/deletable (i.e., config true, which is the
-   default).  These data nodes may be considered sensitive or vulnerable
-   in some network environments.  Write operations (e.g., edit-config)
-   to these data nodes without proper protection can have a negative
-   effect on network operations.
+The Network Configuration Access Control Model (NACM) {{!RFC8341}}
+provides the means to restrict access for particular NETCONF or
+RESTCONF users to a preconfigured subset of all available NETCONF or
+RESTCONF protocol operations and content.
 
-   Some of the readable data nodes in this YANG module may be considered
-   sensitive or vulnerable in some network environments.  It is thus
-   important to control read access (e.g., via get, get-config, or
-   notification) to these data nodes.
+There are a number of data nodes defined in this YANG module that are writable/creatable/deletable (i.e., config true, which is the default).
+These data nodes can be considered sensitive or vulnerable in some network environments.
+Write operations (e.g., edit-config) to these data nodes without proper protection can have a negative effect on network operations.
+Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:
 
-   The sensitivity and vulnerability considerations outlined in
-   {{Section 8 of !RFC8795}} also apply to the OTN technology-specific
-   attributes defined in this module, which augment those subtrees.
+- "/nw:networks/nw:network/nw:network-types/tet:te-topology/otnt:otn-topology"
+
+> This subtree specifies the OTN topology type. Modifying the configurations can render the OTN topology type invalid. By making such modifications, a malicious attacker may disable the OTN capabilities on the related networks and cause traffic to be disrupted or misrouted.
+
+- "/nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/otnt:otn-node"
+
+> This subtree specifies the OTN node type. By configuring the OTN node type, an attacker may create an unauthorized OTN traffic path. By removing it, a malicious attacker may cause OTN traffic to be disabled or misrouted. Such traffic changes may also affect the traffic on the surrounding OTN nodes and OTN links in this OTN topology and the connected OTN topologies.
+
+- "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/otnt:otn-link/otnt:odtu-flex-type"
+
+> This node is used, together with the other attributes in the otn-bandwidth container, to compute the OTN bandwidth information for an OTN link, as described in {{sec-bandwidth}}. By configuring, modifying or removing this data node, a malicious attacker may modify the OTN bandwidth. The consequences of modifying the OTN bandwidth are reported below for the otn-bandwidth container.
+
+- "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/otnt:otn-link/otnt:tsg"
+
+> This node represents the TSG of the OTN link, as described in {{sec-attributes}}. By configuring, modifying or removing this data node, a malicious attacker may modify the resouces assigned to the OTN LSPs setup over that OTN link. The consequences of modifying the TSG would be to disrupt the traffic carried by the OTN LSPs setup over that OTN link.
+
+- "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/otnt:otn-link/otnt:distance"
+
+> This node is describes the geographical distance between a pair of OTN link termination points. By configuring, modifying or removing the distance, an attacker may cause OTN traffic to be misrouted. Such traffic changes may also affect the traffic on the surrounding OTN nodes and OTN links in this OTN topology and the connected OTN topologies.
+
+- "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/otnt:client-svc"
+
+> This subtree specifies the client traffic type supported by a link. By configuring it, an attacker may create an unauthorized client traffic path. By removing it, a malicious attacker may cause client traffic to be disabled or misrouted. Such traffic changes may also affect the traffic on the surrounding OTN nodes and OTN links in this OTN topology and the connected OTN topologies.
+
+- "/nw:networks/nw:network/nw:node/nt:termination-point/tet:te/otnt:otn-link-tp/otnt:odtu-flex-type"
+
+> This node is used, together with the other attributes in the otn-bandwidth container, to compute the OTN bandwidth information for an OTN link termination point, as described in {{sec-bandwidth}}. By configuring, modifying or removing this data node, a malicious attacker may modify the OTN bandwidth. The consequences of modifying the OTN bandwidth are reported below for the otn-bandwidth container.
+
+- "/nw:networks/nw:network/nw:node/nt:termination-point/tet:te/otnt:client-svc"
+
+> This subtree specifies the client traffic type supported by a link termination point. By configuring it, an attacker may create an unauthorized client traffic path. By removing it, a malicious attacker may cause client traffic to be disabled or misrouted. Such traffic changes may also affect the traffic on the surrounding OTN nodes and OTN links in this OTN topology and the connected topologies.
+
+- "otnt:otn-bandwidth"
+
+> This subtree specifies the configurations of OTN technology-specific information under any occurrence of the tet:te-bandwidth container, as defined in {{!RFC8795}} (e.g., "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:max-resv-link-bandwidth/tet:te-bandwidth/otnt:otn-bandwidth"). By configuring the OTN bandwidth attributes, an attacker may create an unauthorized OTN traffic path. By removing or modifying it, a malicious attacker may cause OTN traffic to be disabled or misrouted. Such traffic changes may also affect the traffic on the surrounding OTN nodes and OTN links in this OTN topology and the connected OTN topologies.
+
+- "otnt:otn-label-range"
+
+> This subtree specifies the configurations of OTN technology-specific label range information under any occurrence of the tet:te-label-restriction container, as defined in {{!RFC8795}} (e.g., "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:label-restrictions/tet:label-restriction\otnt:otn-label-range"). By configuring the OTN label range attributes, an attacker may create an unauthorized OTN traffic path. By removing or modifying, a malicious attacker may cause OTN traffic to be disabled or misrouted. Such traffic changes may also affect the traffic on the surrounding OTN nodes and OTN links in this OTN topology and the connected OTN topologies.
+
+- "otnt:otn-label"
+
+> This subtree specifies the configurations of OTN technology-specific label information under any occurrence of the tet:te-label container, as defined in {{!RFC8795}} (e.g., "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:label-restrictions/tet:label-restriction/tet:label-start/tet:te-label/tet:technology/otnt:otn-label"). By configuring, removing or modifying the OTN label attributes, a malicious attacker may cause OTN traffic to be disabled or misrouted. Such traffic changes may also affect the traffic on the surrounding OTN nodes and OTN links in this OTN topology and the connected OTN topologies.
+
+Some of the readable data nodes in this YANG module may be considered
+sensitive or vulnerable in some network environments.
+It is thus important to control read access (e.g., via get, get-config, or
+notification) to these data nodes.
+Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:
+
+- "/nw:networks/nw:network/nw:network-types/tet:te-topology/otnt:otn-topology"
+
+> Unauthorized access to this subtree can disclose the OTN topology type.
+
+- "/nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/otnt:otn-node"
+
+> Unauthorized access to this subtree can disclose the OTN nodes.
+
+- "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/otnt:otn-link/otnt:odtu-flex-type"
+
+> This node is used, together with the other attributes in the otn-bandwidth container, to compute the OTN bandwidth information for an OTN link, as described in {{sec-bandwidth}}. Unauthorized access to this data node can disclose the OTN bandwidth information of OTN links.
+
+- "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/otnt:otn-link/otnt:tsg"
+
+> Unauthorized access to this data node can disclose configuration information of OTN links.
+
+- "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/otnt:otn-link/otnt:distance"
+
+> Unauthorized access to this data node can disclose state information of OTN links.
+
+- "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/otnt:client-svc"
+
+> Unauthorized access to this data node can disclose capabilities of OTN links.
+
+- "/nw:networks/nw:network/nw:node/nt:termination-point/tet:te/otnt:otn-link-tp/otnt:odtu-flex-type"
+
+> This node is used, together with the other attributes in the otn-bandwidth container, to compute the OTN bandwidth information for an OTN link termination point, as described in {{sec-bandwidth}}. Unauthorized access to this data node can disclose the OTN bandwidth information of OTN link termination points.
+
+- "/nw:networks/nw:network/nw:node/nt:termination-point/tet:te/otnt:client-svc"
+
+> Unauthorized access to this data node can disclose capabilities of OTN link termination points.
+
+- "otnt:otn-bandwidth"
+
+> This subtree specifies the configurations of OTN technology-specific information under any occurrence of the tet:te-bandwidth container, as defined in {{!RFC8795}} (e.g., "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:max-resv-link-bandwidth/tet:te-bandwidth/otnt:otn-bandwidth"). Unauthorized access to this data node can disclose the OTN bandwidth information of OTN links and link termination points.
+
+- "otnt:otn-label-range"
+
+> This subtree specifies the configurations of OTN technology-specific label range information under any occurrence of the tet:te-label-restriction container, as defined in {{!RFC8795}} (e.g., "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:label-restrictions/tet:label-restriction\otnt:otn-label-range"). Unauthorized access to this data node can disclose the state information of OTN links and link termination points.
+
+- "otnt:otn-label"
+
+> This subtree specifies the configurations of OTN technology-specific label information under any occurrence of the tet:te-label container, as defined in {{!RFC8795}} (e.g., "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/tet:label-restrictions/tet:label-restriction/tet:label-start/tet:te-label/tet:technology/otnt:otn-label"). Unauthorized access to this data node can disclose the state information of OTN links and link termination points.
+
+This YANG module does not define RPC operations.
+
+This YANG module uses groupings from other YANG modules that
+define nodes that may be considered sensitive or vulnerable
+in network environments. Refer to the Security Considerations
+of {{!I-D.ietf-ccamp-layer1-types}} for information as to which nodes may
+be considered sensitive or vulnerable in network environments.
+
+Finally, the YANG module described in this document augments the "ietf-network" YANG module {{!RFC8345}} and the "ietf-te-topology" YANG module {{!RFC8795}} by adding data nodes. The security considerations for the subtrees described in those RFCs apply equally to the new data nodes that this module adds.
 
 --- back
 

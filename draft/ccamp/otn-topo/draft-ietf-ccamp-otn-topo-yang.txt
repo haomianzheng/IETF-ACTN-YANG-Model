@@ -5,13 +5,13 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 11 May 2025                                              X. Liu
+Expires: 12 May 2025                                              X. Liu
                                                                Alef Edge
                                                               S. Belotti
                                                                    Nokia
                                                      O. Gonzalez de Dios
                                                               Telefonica
-                                                         7 November 2024
+                                                         8 November 2024
 
 
         A YANG Data Model for Optical Transport Network Topology
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Zheng, et al.              Expires 11 May 2025                  [Page 1]
+Zheng, et al.              Expires 12 May 2025                  [Page 1]
 
 Internet-Draft           OTN Topology YANG Model           November 2024
 
@@ -68,7 +68,7 @@ Internet-Draft           OTN Topology YANG Model           November 2024
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 May 2025.
+   This Internet-Draft will expire on 12 May 2025.
 
 Copyright Notice
 
@@ -97,24 +97,24 @@ Table of Contents
      2.3.  Bandwidth Augmentation  . . . . . . . . . . . . . . . . .   7
      2.4.  Label Augmentation  . . . . . . . . . . . . . . . . . . .   8
    3.  The YANG Model  . . . . . . . . . . . . . . . . . . . . . . .   8
-   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  54
+   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  55
    5.  Security Considerations . . . . . . . . . . . . . . . . . . .  55
-   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  55
-     6.1.  Normative References  . . . . . . . . . . . . . . . . . .  55
-     6.2.  Informative References  . . . . . . . . . . . . . . . . .  57
-   Appendix A.  YANG Tree  . . . . . . . . . . . . . . . . . . . . .  58
-   Appendix B.  JSON Examples  . . . . . . . . . . . . . . . . . . .  77
-   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  85
-   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  85
+   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  60
+     6.1.  Normative References  . . . . . . . . . . . . . . . . . .  60
+     6.2.  Informative References  . . . . . . . . . . . . . . . . .  62
+   Appendix A.  YANG Tree  . . . . . . . . . . . . . . . . . . . . .  63
+   Appendix B.  JSON Examples  . . . . . . . . . . . . . . . . . . .  83
+   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  91
+   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  91
 
 
 
-Zheng, et al.              Expires 11 May 2025                  [Page 2]
+Zheng, et al.              Expires 12 May 2025                  [Page 2]
 
 Internet-Draft           OTN Topology YANG Model           November 2024
 
 
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  87
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  92
 
 1.  Introduction
 
@@ -165,7 +165,7 @@ Internet-Draft           OTN Topology YANG Model           November 2024
 
 
 
-Zheng, et al.              Expires 11 May 2025                  [Page 3]
+Zheng, et al.              Expires 12 May 2025                  [Page 3]
 
 Internet-Draft           OTN Topology YANG Model           November 2024
 
@@ -221,7 +221,7 @@ Internet-Draft           OTN Topology YANG Model           November 2024
 
 
 
-Zheng, et al.              Expires 11 May 2025                  [Page 4]
+Zheng, et al.              Expires 12 May 2025                  [Page 4]
 
 Internet-Draft           OTN Topology YANG Model           November 2024
 
@@ -277,7 +277,7 @@ Internet-Draft           OTN Topology YANG Model           November 2024
 
 
 
-Zheng, et al.              Expires 11 May 2025                  [Page 5]
+Zheng, et al.              Expires 12 May 2025                  [Page 5]
 
 Internet-Draft           OTN Topology YANG Model           November 2024
 
@@ -333,7 +333,7 @@ Internet-Draft           OTN Topology YANG Model           November 2024
 
 
 
-Zheng, et al.              Expires 11 May 2025                  [Page 6]
+Zheng, et al.              Expires 12 May 2025                  [Page 6]
 
 Internet-Draft           OTN Topology YANG Model           November 2024
 
@@ -383,16 +383,26 @@ Internet-Draft           OTN Topology YANG Model           November 2024
    specific attributes using the otn-link-bandwidth and otn-path-
    bandwidth groupings defined in [I-D.ietf-ccamp-layer1-types].
 
+   The odtu-flex-type attribute of a given OTN Link (or Link Termination
+   Point - LTP), shown in Section 2.2, is used, together with the OTN
+   technology-specific attributes defined in the otn-link-bandwidth and
 
 
 
-
-
-
-Zheng, et al.              Expires 11 May 2025                  [Page 7]
+Zheng, et al.              Expires 12 May 2025                  [Page 7]
 
 Internet-Draft           OTN Topology YANG Model           November 2024
 
+
+   otn-path-bandwidth groupings, to compute the number of Tributary
+   Slots (TS) required by the ODUflex LSPs set up on that OTN Link (or
+   LTP).
+
+   In order to compute the number of Tributary Slots (TS) required by
+   the ODUflex LSPs set up on an underlay path (e.g., the underlay path
+   of a connectivity matrix entry), the odtu-flex-type attribute is
+   added to the OTN technology-specific attributes defined in the otn-
+   link-bandwidth and otn-path-bandwidth groupings.
 
 2.4.  Label Augmentation
 
@@ -432,6 +442,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        prefix "tet";
        reference
          "RFC 8795: YANG Data Model for Traffic Engineering
+
+
+
+Zheng, et al.              Expires 12 May 2025                  [Page 8]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
           (TE) Topologies";
      }
 
@@ -442,13 +460,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      }
      // RFC Editor: replace YYYY with actual RFC number assigned to
      // [I-D.ietf-ccamp-layer1-types] and remove this note
-
-
-
-Zheng, et al.              Expires 11 May 2025                  [Page 8]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
      organization
        "IETF CCAMP Working Group";
@@ -487,6 +498,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
         (https://trustee.ietf.org/license-info).
 
         This version of this YANG module is part of RFC XXXX; see
+
+
+
+Zheng, et al.              Expires 12 May 2025                  [Page 9]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
         the RFC itself for full legal notices.
 
         The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
@@ -498,14 +517,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      revision 2024-06-21 {
        description
          "Initial Revision";
-
-
-
-Zheng, et al.              Expires 11 May 2025                  [Page 9]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
        reference
          "RFC XXXX: A YANG Data Model for Optical Transport Network
          Topology";
@@ -544,6 +555,13 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      * Data nodes
      */
 
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 10]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      augment "/nw:networks/nw:network/nw:network-types/"
            + "tet:te-topology" {
        container otn-topology {
@@ -553,14 +571,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
        description "augment network types to include OTN.";
      }
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 10]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
      augment "/nw:networks/nw:network/nw:node/tet:te"
            + "/tet:te-node-attributes" {
@@ -600,6 +610,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              base l1-types:tributary-slot-granularity;
            }
            description "Tributary slot granularity.";
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 11]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
            reference
              "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
              Transport Network (OTN)";
@@ -610,14 +628,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          }
        }
        container client-svc {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 11]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
          presence
            "When present, indicates that the Link supports Constant
            Bit Rate (CBR) client signals.";
@@ -656,6 +666,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          }
        }
        container client-svc {
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 12]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
          presence
            "When present, indicates that the Link Termination Point
            (LTP) supports Constant Bit Rate (CBR) client signals.";
@@ -666,14 +684,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              base l1-types:client-signal;
            }
            description
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 12]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
              "List of client signal types supported by the LTP.";
          }
        }
@@ -712,6 +722,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
        when "../../../../../../nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 13]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -722,14 +740,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        case otn {
          uses l1-types:otn-link-bandwidth {
            augment otn-bandwidth {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 13]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
              description
                "Augment OTN link bandwidth information.";
              leaf odtu-flex-type {
@@ -768,6 +778,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                type l1-types:odtu-flex-type;
                description
                  "The type of Optical Data Tributary Unit (ODTU)
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 14]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                  whose nominal bitrate is used to compute the number of
                  Tributary Slots (TS) required by the ODUflex LSPs
                  set up along the underlay path of this OTN
@@ -777,14 +795,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          }
        }
      }
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 14]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:information-source-entry/tet:connectivity-matrices/"
@@ -824,6 +834,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        when "../../../../../../../nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
          description
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 15]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
            "Augmentation parameters apply only for networks with
             OTN topology type.";
        }
@@ -834,14 +852,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          uses l1-types:otn-link-bandwidth {
            augment otn-bandwidth {
              description
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 15]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
                "Augment OTN link bandwidth information.";
              leaf odtu-flex-type {
                type l1-types:odtu-flex-type;
@@ -880,6 +890,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                description
                  "The type of Optical Data Tributary Unit (ODTU)
                  whose nominal bitrate is used to compute the number of
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 16]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                  Tributary Slots (TS) required by the ODUflex LSPs
                  terminated on this OTN Tunnel Termination Point
                  (TTP).";
@@ -890,14 +908,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      }
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 16]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
            + "tet:tunnel-termination-point/"
            + "tet:local-link-connectivities/tet:path-constraints/"
            + "tet:te-bandwidth/tet:technology" {
@@ -936,6 +946,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:te-bandwidth/tet:technology" {
        when "../../../../../../../nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 17]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -946,14 +964,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        case otn {
          uses l1-types:otn-link-bandwidth {
            augment otn-bandwidth {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 17]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
              description
                "Augment OTN link bandwidth information.";
              leaf odtu-flex-type {
@@ -992,6 +1002,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
      }
 
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 18]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      augment "/nw:networks/nw:network/nt:link/tet:te/"
            + "tet:te-link-attributes/"
            + "tet:max-link-bandwidth/"
@@ -1002,14 +1020,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            "Augmentation parameters apply only for networks with
             OTN topology type.";
        }
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 18]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
        description
          "Augment maximum TE bandwidth for the TE link";
        uses l1-types:otn-link-bandwidth {
@@ -1048,6 +1058,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           + "otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 19]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
             OTN topology type.";
        }
        description
@@ -1058,14 +1076,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            to compute the number of Tributary Slots (TS) required
            by the ODUflex LSPs set up on this OTN Link.";
        }
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 19]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
      }
 
      augment "/nw:networks/nw:network/nt:link/tet:te/"
@@ -1104,6 +1114,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
        description
          "Augment maximum TE bandwidth for the TE link
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 20]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
           information source";
        uses l1-types:otn-link-bandwidth {
          description
@@ -1114,14 +1132,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      }
 
      augment "/nw:networks/nw:network/nt:link/tet:te/"
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 20]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
            + "tet:information-source-entry/"
            + "tet:max-resv-link-bandwidth/"
            + "tet:te-bandwidth" {
@@ -1160,6 +1170,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            "The odtu-flex-type attribute of the OTN Link is used
            to compute the number of Tributary Slots (TS) required
            by the ODUflex LSPs set up on this OTN Link.";
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 21]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
        }
      }
 
@@ -1170,14 +1188,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:te-bandwidth/tet:technology" {
        description
          "Augment maximum LSP TE bandwidth of the TE link
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 21]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
           template";
        case otn {
          uses l1-types:otn-max-path-bandwidth {
@@ -1216,6 +1226,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          description
            "The odtu-flex-type attribute of the OTN Link is used
            to compute the number of Tributary Slots (TS) required
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 22]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
            by the ODUflex LSPs set up on the OTN Link that uses this
            Link Template.";
        }
@@ -1226,14 +1244,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:unreserved-bandwidth/"
            + "tet:te-bandwidth" {
        description
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 22]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
          "Augment unreserved TE bandwidth the TE link template";
        uses l1-types:otn-link-bandwidth {
          description
@@ -1272,6 +1282,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 23]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
        }
        description
          "Augment TE label range information for the source LTP
@@ -1282,14 +1300,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:te-node-attributes/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/tet:to/"
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 23]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
            + "tet:label-restrictions/tet:label-restriction" {
        when "../../../../../../../../nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
@@ -1328,6 +1338,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 24]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
        }
        description
          "Augment TE label range information for the source LTP
@@ -1338,14 +1356,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:information-source-entry/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/"
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 24]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
            + "tet:to/tet:label-restrictions/tet:label-restriction" {
        when "../../../../../../../../nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
@@ -1384,6 +1394,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           + "otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 25]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
             OTN topology type.";
        }
        description
@@ -1394,14 +1412,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
 
      augment "/nw:networks/nw:network/nt:link/tet:te/"
            + "tet:te-link-attributes/"
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 25]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
            + "tet:label-restrictions/tet:label-restriction" {
        when "../../../../../nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
@@ -1441,6 +1451,13 @@ Internet-Draft           OTN Topology YANG Model           November 2024
       * Augment TE label
       */
 
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 26]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:te-node-attributes/tet:connectivity-matrices/"
            + "tet:label-restrictions/tet:label-restriction/"
@@ -1450,14 +1467,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           + "otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 26]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
             OTN topology type.";
        }
        description
@@ -1497,6 +1506,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 27]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
        }
        description
          "Augment TE label range step for the TE node
@@ -1505,14 +1522,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          uses l1-types:otn-label-step;
        }
      }
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 27]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:te-node-attributes/tet:connectivity-matrices/"
@@ -1554,6 +1563,13 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
      }
 
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 28]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:te-node-attributes/tet:connectivity-matrices/"
            + "tet:optimizations/tet:algorithm/tet:metric/"
@@ -1562,14 +1578,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:route-object-exclude-object/"
            + "tet:type/tet:label/tet:label-hop/"
            + "tet:te-label/tet:technology" {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 28]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
        when "../../../../../../../../../../"
           + "nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
@@ -1610,6 +1618,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
      }
 
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 29]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:te-node-attributes/tet:connectivity-matrices/"
            + "tet:path-properties/tet:path-route-objects/"
@@ -1618,14 +1634,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        when "../../../../../../../../../"
           + "nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 29]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1666,6 +1674,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:label-end/"
            + "tet:te-label/tet:technology" {
        when "../../../../../../../../../../"
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 30]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
           + "nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
          description
@@ -1674,14 +1690,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
        description
          "Augment TE label range end for the source LTP
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 30]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
           of the connectivity matrix entry.";
        case otn {
          uses l1-types:otn-label-start-end;
@@ -1722,6 +1730,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            "Augmentation parameters apply only for networks with
             OTN topology type.";
        }
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 31]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
        description
          "Augment TE label range start for the destination LTP
           of the connectivity matrix entry.";
@@ -1729,14 +1745,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          uses l1-types:otn-label-start-end;
        }
      }
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 31]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:te-node-attributes/tet:connectivity-matrices/"
@@ -1778,6 +1786,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        case otn {
          uses l1-types:otn-label-step;
        }
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 32]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      }
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
@@ -1786,14 +1802,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:underlay/tet:primary-path/tet:path-element/"
            + "tet:type/tet:label/tet:label-hop/"
            + "tet:te-label/tet:technology" {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 32]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
        when "../../../../../../../../../../"
           + "nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
@@ -1834,6 +1842,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:te-node-attributes/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/tet:optimizations/"
            + "tet:algorithm/tet:metric/tet:optimization-metric/"
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 33]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
            + "tet:explicit-route-exclude-objects/"
            + "tet:route-object-exclude-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
@@ -1842,14 +1858,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           + "otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 33]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
             OTN topology type.";
        }
        description
@@ -1890,6 +1898,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
        when "../../../../../../../../../../"
           + "nw:network-types/tet:te-topology/"
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 34]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
           + "otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
@@ -1898,14 +1914,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        description
          "Augment TE label hop for the computed path route objects
           of the connectivity matrix entry.";
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 34]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
        case otn {
          uses l1-types:otn-label-hop;
        }
@@ -1946,6 +1954,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        description
          "Augment TE label range end for the TE node connectivity
           matrices information source.";
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 35]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
        case otn {
          uses l1-types:otn-label-start-end;
        }
@@ -1954,14 +1970,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:information-source-entry/"
            + "tet:connectivity-matrices/tet:label-restrictions/"
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 35]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
            + "tet:label-restriction/"
            + "tet:label-step/tet:technology" {
        when "../../../../../../../"
@@ -2002,6 +2010,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:information-source-entry/tet:connectivity-matrices/"
            + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 36]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
        when "../../../../../../../../../"
           + "nw:network-types/tet:te-topology/"
@@ -2010,14 +2026,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            "Augmentation parameters apply only for networks with
             OTN topology type.";
        }
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 36]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
        description
          "Augment TE label hop for the underlay backup path
           of the TE node connectivity matrices of the information
@@ -2058,6 +2066,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:route-object-include-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
        when "../../../../../../../../../../"
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 37]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
           + "nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
          description
@@ -2066,14 +2082,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
        description
          "Augment TE label hop for the explicit route objects included
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 37]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
           by the path computation of the TE node connectivity matrices
           information source.";
        case otn {
@@ -2114,6 +2122,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            "Augmentation parameters apply only for networks with
             OTN topology type.";
        }
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 38]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
        description
          "Augment TE label range start for the source LTP
           of the connectivity matrix entry information source.";
@@ -2122,14 +2138,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
      }
      augment "/nw:networks/nw:network/nw:node/tet:te/"
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 38]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
            + "tet:information-source-entry/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/"
            + "tet:from/tet:label-restrictions/"
@@ -2171,6 +2179,13 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
      }
 
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 39]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:information-source-entry/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/"
@@ -2178,14 +2193,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:label-start/tet:te-label/tet:technology" {
        when "../../../../../../../../../../"
           + "nw:network-types/tet:te-topology/"
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 39]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
           + "otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
@@ -2227,6 +2234,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        when "../../../../../../../../../"
           + "nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 40]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2234,14 +2249,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        description
          "Augment TE label range step for the destination LTP
           of the connectivity matrix entry information source.";
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 40]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
        case otn {
          uses l1-types:otn-label-step;
        }
@@ -2283,6 +2290,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          "Augment TE label hop for the underlay backup path
           of the connectivity matrix entry information source.";
        case otn {
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 41]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
          uses l1-types:otn-label-hop;
        }
      }
@@ -2290,14 +2305,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:information-source-entry/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/"
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 41]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
            + "tet:optimizations/tet:algorithm/tet:metric/"
            + "tet:optimization-metric/"
            + "tet:explicit-route-exclude-objects/"
@@ -2339,6 +2346,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           by the path computation of the connectivity matrix entry
           information source.";
        case otn {
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 42]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
          uses l1-types:otn-label-hop;
        }
      }
@@ -2346,14 +2361,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:information-source-entry/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/"
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 42]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
            + "tet:path-properties/tet:path-route-objects/"
            + "tet:path-route-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
@@ -2395,6 +2402,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:tunnel-termination-point/"
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 43]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
            + "tet:local-link-connectivities/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-end/"
@@ -2402,14 +2417,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        when "../../../../../../../../"
           + "nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 43]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2451,6 +2458,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        when "../../../../../../../../../"
           + "nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 44]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2458,14 +2473,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        description
          "Augment TE label hop for the underlay primary path
           of the TTP Local Link Connectivities.";
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 44]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
        case otn {
          uses l1-types:otn-label-hop;
        }
@@ -2507,6 +2514,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
             OTN topology type.";
        }
        description
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 45]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
          "Augment TE label hop for the explicit route objects excluded
           by the path computation of the TTP Local Link
           Connectivities.";
@@ -2514,13 +2529,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          uses l1-types:otn-label-hop;
        }
      }
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 45]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:tunnel-termination-point/"
@@ -2562,6 +2570,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        description
          "Augment TE label hop for the computed path route objects
           of the TTP Local Link Connectivities.";
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 46]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
        case otn {
          uses l1-types:otn-label-hop;
        }
@@ -2570,14 +2586,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:tunnel-termination-point/"
            + "tet:local-link-connectivities/"
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 46]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
            + "tet:local-link-connectivity/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-start/tet:te-label/tet:technology" {
@@ -2618,6 +2626,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      }
 
      augment "/nw:networks/nw:network/nw:node/tet:te/"
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 47]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
            + "tet:tunnel-termination-point/"
            + "tet:local-link-connectivities/"
            + "tet:local-link-connectivity/"
@@ -2626,14 +2642,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        when "../../../../../../../../"
           + "nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 47]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2674,6 +2682,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
        when "../../../../../../../../../../"
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 48]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
           + "nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
          description
@@ -2682,14 +2698,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
        description
          "Augment TE label hop for the underlay backup path
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 48]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
           of the TTP Local Link Connectivity entry.";
        case otn {
          uses l1-types:otn-label-hop;
@@ -2730,6 +2738,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:explicit-route-include-objects/"
            + "tet:route-object-include-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 49]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
        when "../../../../../../../../../../../"
           + "nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
@@ -2738,14 +2754,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
             OTN topology type.";
        }
        description
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 49]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
          "Augment TE label hop for the explicit route objects included
           by the path computation of the TTP Local Link
           Connectivity entry.";
@@ -2786,6 +2794,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            "Augmentation parameters apply only for networks with
             OTN topology type.";
        }
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 50]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
        description
          "Augment TE label hop for the underlay primary path
           of the TE link.";
@@ -2793,14 +2809,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          uses l1-types:otn-label-hop;
        }
      }
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 50]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
      augment "/nw:networks/nw:network/nt:link/tet:te/"
            + "tet:te-link-attributes/"
@@ -2842,6 +2850,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
            + "tet:te-link-attributes/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-end/tet:te-label/tet:technology" {
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 51]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
        when "../../../../../../../nw:network-types/tet:te-topology/"
           + "otnt:otn-topology" {
          description
@@ -2850,14 +2866,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
        description
          "Augment TE label range end for the TE link.";
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 51]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
        case otn {
          uses l1-types:otn-label-start-end;
        }
@@ -2898,6 +2906,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
      }
 
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 52]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      augment "/nw:networks/nw:network/nt:link/tet:te/"
            + "tet:information-source-entry/"
            + "tet:label-restrictions/tet:label-restriction/"
@@ -2906,14 +2922,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           + "otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 52]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
             OTN topology type.";
        }
        description
@@ -2954,6 +2962,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        }
      }
 
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 53]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      augment "/nw:networks/tet:te/tet:templates/"
            + "tet:link-template/tet:te-link-attributes/"
            + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
@@ -2962,14 +2978,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          "Augment TE label hop for the underlay backup path
           of the TE link template.";
        case otn {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 53]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
          uses l1-types:otn-label-hop;
        }
      }
@@ -3009,6 +3017,15 @@ Internet-Draft           OTN Topology YANG Model           November 2024
    }
    <CODE ENDS>
 
+
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 54]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
 4.  IANA Considerations
 
    It is proposed to IANA to assign new URIs from the "IETF XML
@@ -3017,14 +3034,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
          URI: urn:ietf:params:xml:ns:yang:ietf-otn-topology
          Registrant Contact: The IESG
          XML: N/A; the requested URI is an XML namespace.
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 54]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
    This document registers a YANG module in the YANG Module Names
    registry [RFC7950].
@@ -3039,48 +3048,302 @@ Internet-Draft           OTN Topology YANG Model           November 2024
 
 5.  Security Considerations
 
-   The YANG module specified in this document defines a schema for data
-   that is designed to be accessed via network management protocols such
-   as NETCONF [RFC6241] or RESTCONF [RFC8040].  The lowest NETCONF layer
-   is the secure transport layer, and the mandatory-to-implement secure
-   transport is Secure Shell (SSH) [RFC6242].  The lowest RESTCONF layer
-   is HTTPS, and the mandatory-to-implement secure transport is TLS
-   [RFC8446].
+   This section is modeled after the template described in Section 3.7
+   of [I-D.ietf-netmod-rfc8407bis].
 
-   The NETCONF access control model [RFC8341] provides the means to
-   restrict access for particular NETCONF or RESTCONF users to a
-   preconfigured subset of all available NETCONF or RESTCONF protocol
-   operations and content.
+   The "ietf-te-types" and the "ietf-te-packet-types" YANG modules
+   define data models that are designed to be accessed via YANG-based
+   management protocols, such as NETCONF [RFC6241] and RESTCONF
+   [RFC8040].  These protocols have to use a secure transport layer
+   (e.g., SSH [RFC4252], TLS [RFC8446], and QUIC [RFC9000]) and have to
+   use mutual authentication.
+
+   The Network Configuration Access Control Model (NACM) [RFC8341]
+   provides the means to restrict access for particular NETCONF or
+   RESTCONF users to a preconfigured subset of all available NETCONF or
+   RESTCONF protocol operations and content.
 
    There are a number of data nodes defined in this YANG module that are
    writable/creatable/deletable (i.e., config true, which is the
-   default).  These data nodes may be considered sensitive or vulnerable
+   default).  These data nodes can be considered sensitive or vulnerable
    in some network environments.  Write operations (e.g., edit-config)
    to these data nodes without proper protection can have a negative
-   effect on network operations.
+   effect on network operations.  Specifically, the following subtrees
+   and data nodes have particular sensitivities/vulnerabilities:
+
+   *  "/nw:networks/nw:network/nw:network-types/tet:te-topology/
+      otnt:otn-topology"
+
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 55]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
+      This subtree specifies the OTN topology type.  Modifying the
+      configurations can render the OTN topology type invalid.  By
+      making such modifications, a malicious attacker may disable the
+      OTN capabilities on the related networks and cause traffic to be
+      disrupted or misrouted.
+
+   *  "/nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/
+      otnt:otn-node"
+
+      This subtree specifies the OTN node type.  By configuring the OTN
+      node type, an attacker may create an unauthorized OTN traffic
+      path.  By removing it, a malicious attacker may cause OTN traffic
+      to be disabled or misrouted.  Such traffic changes may also affect
+      the traffic on the surrounding OTN nodes and OTN links in this OTN
+      topology and the connected OTN topologies.
+
+   *  "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      otnt:otn-link/otnt:odtu-flex-type"
+
+      This node is used, together with the other attributes in the otn-
+      bandwidth container, to compute the OTN bandwidth information for
+      an OTN link, as described in Section 2.3.  By configuring,
+      modifying or removing this data node, a malicious attacker may
+      modify the OTN bandwidth.  The consequences of modifying the OTN
+      bandwidth are reported below for the otn-bandwidth container.
+
+   *  "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      otnt:otn-link/otnt:tsg"
+
+      This node represents the TSG of the OTN link, as described in
+      Section 2.2.  By configuring, modifying or removing this data
+      node, a malicious attacker may modify the resouces assigned to the
+      OTN LSPs setup over that OTN link.  The consequences of modifying
+      the TSG would be to disrupt the traffic carried by the OTN LSPs
+      setup over that OTN link.
+
+   *  "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      otnt:otn-link/otnt:distance"
+
+      This node is describes the geographical distance between a pair of
+      OTN link termination points.  By configuring, modifying or
+      removing the distance, an attacker may cause OTN traffic to be
+      misrouted.  Such traffic changes may also affect the traffic on
+      the surrounding OTN nodes and OTN links in this OTN topology and
+      the connected OTN topologies.
+
+   *  "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      otnt:client-svc"
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 56]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
+      This subtree specifies the client traffic type supported by a
+      link.  By configuring it, an attacker may create an unauthorized
+      client traffic path.  By removing it, a malicious attacker may
+      cause client traffic to be disabled or misrouted.  Such traffic
+      changes may also affect the traffic on the surrounding OTN nodes
+      and OTN links in this OTN topology and the connected OTN
+      topologies.
+
+   *  "/nw:networks/nw:network/nw:node/nt:termination-point/tet:te/
+      otnt:otn-link-tp/otnt:odtu-flex-type"
+
+      This node is used, together with the other attributes in the otn-
+      bandwidth container, to compute the OTN bandwidth information for
+      an OTN link termination point, as described in Section 2.3.  By
+      configuring, modifying or removing this data node, a malicious
+      attacker may modify the OTN bandwidth.  The consequences of
+      modifying the OTN bandwidth are reported below for the otn-
+      bandwidth container.
+
+   *  "/nw:networks/nw:network/nw:node/nt:termination-point/tet:te/
+      otnt:client-svc"
+
+      This subtree specifies the client traffic type supported by a link
+      termination point.  By configuring it, an attacker may create an
+      unauthorized client traffic path.  By removing it, a malicious
+      attacker may cause client traffic to be disabled or misrouted.
+      Such traffic changes may also affect the traffic on the
+      surrounding OTN nodes and OTN links in this OTN topology and the
+      connected topologies.
+
+   *  "otnt:otn-bandwidth"
+
+      This subtree specifies the configurations of OTN technology-
+      specific information under any occurrence of the tet:te-bandwidth
+      container, as defined in [RFC8795] (e.g.,
+      "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      tet:max-resv-link-bandwidth/tet:te-bandwidth/otnt:otn-bandwidth").
+      By configuring the OTN bandwidth attributes, an attacker may
+      create an unauthorized OTN traffic path.  By removing or modifying
+      it, a malicious attacker may cause OTN traffic to be disabled or
+      misrouted.  Such traffic changes may also affect the traffic on
+      the surrounding OTN nodes and OTN links in this OTN topology and
+      the connected OTN topologies.
+
+   *  "otnt:otn-label-range"
+
+
+
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 57]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
+      This subtree specifies the configurations of OTN technology-
+      specific label range information under any occurrence of the
+      tet:te-label-restriction container, as defined in [RFC8795] (e.g.,
+      "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      tet:label-restrictions/tet:label-restriction\otnt:otn-label-
+      range").  By configuring the OTN label range attributes, an
+      attacker may create an unauthorized OTN traffic path.  By removing
+      or modifying, a malicious attacker may cause OTN traffic to be
+      disabled or misrouted.  Such traffic changes may also affect the
+      traffic on the surrounding OTN nodes and OTN links in this OTN
+      topology and the connected OTN topologies.
+
+   *  "otnt:otn-label"
+
+      This subtree specifies the configurations of OTN technology-
+      specific label information under any occurrence of the tet:te-
+      label container, as defined in [RFC8795] (e.g.,
+      "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      tet:label-restrictions/tet:label-restriction/tet:label-start/
+      tet:te-label/tet:technology/otnt:otn-label").  By configuring,
+      removing or modifying the OTN label attributes, a malicious
+      attacker may cause OTN traffic to be disabled or misrouted.  Such
+      traffic changes may also affect the traffic on the surrounding OTN
+      nodes and OTN links in this OTN topology and the connected OTN
+      topologies.
 
    Some of the readable data nodes in this YANG module may be considered
    sensitive or vulnerable in some network environments.  It is thus
    important to control read access (e.g., via get, get-config, or
-   notification) to these data nodes.
+   notification) to these data nodes.  Specifically, the following
+   subtrees and data nodes have particular sensitivities/
+   vulnerabilities:
 
-   The sensitivity and vulnerability considerations outlined in
-   Section 8 of [RFC8795] also apply to the OTN technology-specific
-   attributes defined in this module, which augment those subtrees.
+   *  "/nw:networks/nw:network/nw:network-types/tet:te-topology/
+      otnt:otn-topology"
+
+      Unauthorized access to this subtree can disclose the OTN topology
+      type.
+
+   *  "/nw:networks/nw:network/nw:node/tet:te/tet:te-node-attributes/
+      otnt:otn-node"
+
+      Unauthorized access to this subtree can disclose the OTN nodes.
+
+   *  "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      otnt:otn-link/otnt:odtu-flex-type"
+
+
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 58]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
+      This node is used, together with the other attributes in the otn-
+      bandwidth container, to compute the OTN bandwidth information for
+      an OTN link, as described in Section 2.3.  Unauthorized access to
+      this data node can disclose the OTN bandwidth information of OTN
+      links.
+
+   *  "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      otnt:otn-link/otnt:tsg"
+
+      Unauthorized access to this data node can disclose configuration
+      information of OTN links.
+
+   *  "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      otnt:otn-link/otnt:distance"
+
+      Unauthorized access to this data node can disclose state
+      information of OTN links.
+
+   *  "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      otnt:client-svc"
+
+      Unauthorized access to this data node can disclose capabilities of
+      OTN links.
+
+   *  "/nw:networks/nw:network/nw:node/nt:termination-point/tet:te/
+      otnt:otn-link-tp/otnt:odtu-flex-type"
+
+      This node is used, together with the other attributes in the otn-
+      bandwidth container, to compute the OTN bandwidth information for
+      an OTN link termination point, as described in Section 2.3.
+      Unauthorized access to this data node can disclose the OTN
+      bandwidth information of OTN link termination points.
+
+   *  "/nw:networks/nw:network/nw:node/nt:termination-point/tet:te/
+      otnt:client-svc"
+
+      Unauthorized access to this data node can disclose capabilities of
+      OTN link termination points.
+
+   *  "otnt:otn-bandwidth"
+
+      This subtree specifies the configurations of OTN technology-
+      specific information under any occurrence of the tet:te-bandwidth
+      container, as defined in [RFC8795] (e.g.,
+      "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      tet:max-resv-link-bandwidth/tet:te-bandwidth/otnt:otn-bandwidth").
+      Unauthorized access to this data node can disclose the OTN
+      bandwidth information of OTN links and link termination points.
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 59]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
+   *  "otnt:otn-label-range"
+
+      This subtree specifies the configurations of OTN technology-
+      specific label range information under any occurrence of the
+      tet:te-label-restriction container, as defined in [RFC8795] (e.g.,
+      "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      tet:label-restrictions/tet:label-restriction\otnt:otn-label-
+      range").  Unauthorized access to this data node can disclose the
+      state information of OTN links and link termination points.
+
+   *  "otnt:otn-label"
+
+      This subtree specifies the configurations of OTN technology-
+      specific label information under any occurrence of the tet:te-
+      label container, as defined in [RFC8795] (e.g.,
+      "/nw:networks/nw:network/nt:link/tet:te/tet:te-link-attributes/
+      tet:label-restrictions/tet:label-restriction/tet:label-start/
+      tet:te-label/tet:technology/otnt:otn-label").  Unauthorized access
+      to this data node can disclose the state information of OTN links
+      and link termination points.
+
+   This YANG module does not define RPC operations.
+
+   This YANG module uses groupings from other YANG modules that define
+   nodes that may be considered sensitive or vulnerable in network
+   environments.  Refer to the Security Considerations of
+   [I-D.ietf-ccamp-layer1-types] for information as to which nodes may
+   be considered sensitive or vulnerable in network environments.
+
+   Finally, the YANG module described in this document augments the
+   "ietf-network" YANG module [RFC8345] and the "ietf-te-topology" YANG
+   module [RFC8795] by adding data nodes.  The security considerations
+   for the subtrees described in those RFCs apply equally to the new
+   data nodes that this module adds.
 
 6.  References
 
 6.1.  Normative References
-
-
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 55]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
    [I-D.ietf-ccamp-layer1-types]
               Zheng, H. and I. Busi, "Common YANG Data Types for Layer 1
@@ -3088,6 +3351,16 @@ Internet-Draft           OTN Topology YANG Model           November 2024
               ccamp-layer1-types-18, 23 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
               layer1-types-18>.
+
+
+
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 60]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
 
    [ITU-T_G.709]
               ITU-T Recommendation G.709, "Interfaces for the optical
@@ -3107,10 +3380,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
               (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
               <https://www.rfc-editor.org/rfc/rfc6241>.
 
-   [RFC6242]  Wasserman, M., "Using the NETCONF Protocol over Secure
-              Shell (SSH)", RFC 6242, DOI 10.17487/RFC6242, June 2011,
-              <https://www.rfc-editor.org/rfc/rfc6242>.
-
    [RFC7139]  Zhang, F., Ed., Zhang, G., Belotti, S., Ceccarelli, D.,
               and K. Pithewan, "GMPLS Signaling Extensions for Control
               of Evolving G.709 Optical Transport Networks", RFC 7139,
@@ -3121,22 +3390,9 @@ Internet-Draft           OTN Topology YANG Model           November 2024
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7950>.
 
-   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
-              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
-              <https://www.rfc-editor.org/rfc/rfc8040>.
-
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
-
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 56]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
    [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
               Access Control Model", STD 91, RFC 8341,
@@ -3153,9 +3409,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
               Network Topologies", RFC 8345, DOI 10.17487/RFC8345, March
               2018, <https://www.rfc-editor.org/rfc/rfc8345>.
 
-   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
-              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://www.rfc-editor.org/rfc/rfc8446>.
+
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 61]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
 
    [RFC8795]  Liu, X., Bryskin, I., Beeram, V., Saad, T., Shah, H., and
               O. Gonzalez de Dios, "YANG Data Model for Traffic
@@ -3173,6 +3434,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
               transport-nbi-app-statement-17>.
 
+   [I-D.ietf-netmod-rfc8407bis]
+              Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
+              Authors and Reviewers of Documents Containing YANG Data
+              Models", Work in Progress, Internet-Draft, draft-ietf-
+              netmod-rfc8407bis-20, 21 October 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
+              rfc8407bis-20>.
+
    [I-D.ietf-teas-actn-yang]
               Lee, Y., Zheng, H., Ceccarelli, D., Yoon, B. Y., and S.
               Belotti, "Applicability of YANG models for Abstraction and
@@ -3181,31 +3450,51 @@ Internet-Draft           OTN Topology YANG Model           November 2024
               2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
               teas-actn-yang-11>.
 
+   [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
+              Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
+              January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
+
    [RFC7062]  Zhang, F., Ed., Li, D., Li, H., Belotti, S., and D.
               Ceccarelli, "Framework for GMPLS and PCE Control of G.709
               Optical Transport Networks", RFC 7062,
               DOI 10.17487/RFC7062, November 2013,
               <https://www.rfc-editor.org/rfc/rfc7062>.
 
+   [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
+              RFC 7951, DOI 10.17487/RFC7951, August 2016,
+              <https://www.rfc-editor.org/rfc/rfc7951>.
 
 
-Zheng, et al.              Expires 11 May 2025                 [Page 57]
+
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 62]
 
 Internet-Draft           OTN Topology YANG Model           November 2024
 
 
-   [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
-              RFC 7951, DOI 10.17487/RFC7951, August 2016,
-              <https://www.rfc-editor.org/rfc/rfc7951>.
+   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
+              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
+              <https://www.rfc-editor.org/rfc/rfc8040>.
 
    [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
               BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
               <https://www.rfc-editor.org/rfc/rfc8340>.
 
+   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
+              <https://www.rfc-editor.org/rfc/rfc8446>.
+
    [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
               Abstraction and Control of TE Networks (ACTN)", RFC 8453,
               DOI 10.17487/RFC8453, August 2018,
               <https://www.rfc-editor.org/rfc/rfc8453>.
+
+   [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
+              Multiplexed and Secure Transport", RFC 9000,
+              DOI 10.17487/RFC9000, May 2021,
+              <https://www.rfc-editor.org/rfc/rfc9000>.
 
 Appendix A.  YANG Tree
 
@@ -3233,6 +3522,14 @@ Appendix A.  YANG Tree
        +--rw client-svc!
           +--rw supported-client-signal*   identityref
      augment /nw:networks/nw:network/nw:node/nt:termination-point/tet:te
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 63]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                /tet:interface-switching-capability/tet:max-lsp-bandwidth
                /tet:te-bandwidth/tet:technology:
        +--:(otn)
@@ -3242,14 +3539,6 @@ Appendix A.  YANG Tree
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:te-node-attributes/tet:connectivity-matrices
                /tet:path-constraints/tet:te-bandwidth/tet:technology:
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 58]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
        +--:(otn)
           +--rw otn-bandwidth
              +--rw odulist* [odu-type]
@@ -3289,6 +3578,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              |  +--ro number?      uint16
              |  +--ro ts-number?   uint16
              +--ro odtu-flex-type?   l1-types:odtu-flex-type
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 64]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:tunnel-termination-point/tet:client-layer-adaptation
                /tet:switching-capability/tet:te-bandwidth
@@ -3298,14 +3595,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              +--rw odulist* [odu-type]
              |  +--rw odu-type     identityref
              |  +--rw number?      uint16
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 59]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
              |  +--rw ts-number?   uint16
              +--rw odtu-flex-type?   l1-types:odtu-flex-type
      augment /nw:networks/nw:network/nw:node/tet:te
@@ -3345,6 +3634,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        +--rw otn-bandwidth
           +--rw odulist* [odu-type]
              +--rw odu-type     identityref
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 65]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
              +--rw number?      uint16
              +--rw ts-number?   uint16
      augment /nw:networks/nw:network/nt:link/tet:te
@@ -3354,14 +3651,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           +--rw odulist* [odu-type]
              +--rw odu-type     identityref
              +--rw number?      uint16
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 60]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
              +--rw ts-number?   uint16
      augment /nw:networks/nw:network/nt:link/tet:te
                /tet:te-link-attributes/tet:unreserved-bandwidth
@@ -3401,6 +3690,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        +--ro otn-bandwidth
           +--ro odulist* [odu-type]
              +--ro odu-type     identityref
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 66]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
              +--ro number?      uint16
              +--ro ts-number?   uint16
      augment /nw:networks/tet:te/tet:templates/tet:link-template
@@ -3410,14 +3707,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        +--:(otn)
           +--rw otn-bandwidth
              +--rw odu-type?        identityref
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 61]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
              +--rw max-ts-number?   uint16
      augment /nw:networks/tet:te/tet:templates/tet:link-template
                /tet:te-link-attributes/tet:max-link-bandwidth
@@ -3457,6 +3746,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                /tet:label-restriction:
        +--rw otn-label-range!
           +--rw range-type?      otn-label-range-type
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 67]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
           +--rw tsg?             identityref
           +--rw odu-type-list*   identityref
           +--rw priority?        uint8
@@ -3466,14 +3763,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                /tet:label-restriction:
        +--rw otn-label-range!
           +--rw range-type?      otn-label-range-type
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 62]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
           +--rw tsg?             identityref
           +--rw odu-type-list*   identityref
           +--rw priority?        uint8
@@ -3513,6 +3802,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           +--rw odu-type-list*   identityref
           +--rw priority?        uint8
      augment /nw:networks/nw:network/nw:node/tet:te
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 68]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                /tet:tunnel-termination-point
                /tet:local-link-connectivities
                /tet:local-link-connectivity/tet:label-restrictions
@@ -3522,14 +3819,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           +--rw tsg?             identityref
           +--rw odu-type-list*   identityref
           +--rw priority?        uint8
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 63]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
      augment /nw:networks/nw:network/nt:link/tet:te
                /tet:te-link-attributes/tet:label-restrictions
                /tet:label-restriction:
@@ -3569,6 +3858,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        +--:(otn)
           +--rw otn-label
              +--rw tpn?   otn-tpn
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 69]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
              +--rw ts?    otn-ts
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:te-node-attributes/tet:connectivity-matrices
@@ -3578,14 +3875,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           +--rw otn-label-step
              +--rw tpn?   otn-tpn
              +--rw ts?    otn-ts
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 64]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:te-node-attributes/tet:connectivity-matrices
                /tet:underlay/tet:primary-path/tet:path-element/tet:type
@@ -3625,6 +3914,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                /tet:label-hop/tet:te-label/tet:technology:
        +--:(otn)
           +--rw otn-label
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 70]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
              +--rw tpn?       otn-tpn
              +--rw tsg?       identityref
              +--rw ts-list?   string
@@ -3634,14 +3931,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                /tet:path-route-object/tet:type/tet:label/tet:label-hop
                /tet:te-label/tet:technology:
        +--:(otn)
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 65]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
           +--ro otn-label
              +--ro tpn?       otn-tpn
              +--ro tsg?       identityref
@@ -3681,6 +3970,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           +--rw otn-label
              +--rw tpn?   otn-tpn
              +--rw ts?    otn-ts
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 71]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:te-node-attributes/tet:connectivity-matrices
                /tet:connectivity-matrix/tet:to/tet:label-restrictions
@@ -3690,14 +3987,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           +--rw otn-label
              +--rw tpn?   otn-tpn
              +--rw ts?    otn-ts
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 66]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:te-node-attributes/tet:connectivity-matrices
                /tet:connectivity-matrix/tet:to/tet:label-restrictions
@@ -3737,6 +4026,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           +--rw otn-label
              +--rw tpn?       otn-tpn
              +--rw tsg?       identityref
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 72]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
              +--rw ts-list?   string
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:te-node-attributes/tet:connectivity-matrices
@@ -3746,14 +4043,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                /tet:route-object-include-object/tet:type/tet:label
                /tet:label-hop/tet:te-label/tet:technology:
        +--:(otn)
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 67]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
           +--rw otn-label
              +--rw tpn?       otn-tpn
              +--rw tsg?       identityref
@@ -3793,6 +4082,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              +--ro tpn?   otn-tpn
              +--ro ts?    otn-ts
      augment /nw:networks/nw:network/nw:node/tet:te
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 73]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                /tet:information-source-entry/tet:connectivity-matrices
                /tet:underlay/tet:primary-path/tet:path-element/tet:type
                /tet:label/tet:label-hop/tet:te-label/tet:technology:
@@ -3802,14 +4099,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              +--ro tsg?       identityref
              +--ro ts-list?   string
      augment /nw:networks/nw:network/nw:node/tet:te
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 68]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
                /tet:information-source-entry/tet:connectivity-matrices
                /tet:underlay/tet:backup-path/tet:path-element/tet:type
                /tet:label/tet:label-hop/tet:te-label/tet:technology:
@@ -3849,6 +4138,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                /tet:te-label/tet:technology:
        +--:(otn)
           +--ro otn-label
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 74]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
              +--ro tpn?       otn-tpn
              +--ro tsg?       identityref
              +--ro ts-list?   string
@@ -3858,14 +4155,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                /tet:label-restriction/tet:label-start/tet:te-label
                /tet:technology:
        +--:(otn)
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 69]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
           +--ro otn-label
              +--ro tpn?   otn-tpn
              +--ro ts?    otn-ts
@@ -3905,6 +4194,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              +--ro tpn?   otn-tpn
              +--ro ts?    otn-ts
      augment /nw:networks/nw:network/nw:node/tet:te
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 75]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                /tet:information-source-entry/tet:connectivity-matrices
                /tet:connectivity-matrix/tet:to/tet:label-restrictions
                /tet:label-restriction/tet:label-step/tet:technology:
@@ -3914,14 +4211,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              +--ro ts?    otn-ts
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:information-source-entry/tet:connectivity-matrices
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 70]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
                /tet:connectivity-matrix/tet:underlay/tet:primary-path
                /tet:path-element/tet:type/tet:label/tet:label-hop
                /tet:te-label/tet:technology:
@@ -3961,6 +4250,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                /tet:label-hop/tet:te-label/tet:technology:
        +--:(otn)
           +--ro otn-label
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 76]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
              +--ro tpn?       otn-tpn
              +--ro tsg?       identityref
              +--ro ts-list?   string
@@ -3970,14 +4267,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                /tet:path-route-objects/tet:path-route-object/tet:type
                /tet:label/tet:label-hop/tet:te-label/tet:technology:
        +--:(otn)
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 71]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
           +--ro otn-label
              +--ro tpn?       otn-tpn
              +--ro tsg?       identityref
@@ -4017,6 +4306,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
           +--rw otn-label
              +--rw tpn?       otn-tpn
              +--rw tsg?       identityref
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 77]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
              +--rw ts-list?   string
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:tunnel-termination-point
@@ -4026,14 +4323,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
        +--:(otn)
           +--rw otn-label
              +--rw tpn?       otn-tpn
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 72]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
              +--rw tsg?       identityref
              +--rw ts-list?   string
      augment /nw:networks/nw:network/nw:node/tet:te
@@ -4073,6 +4362,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:tunnel-termination-point
                /tet:local-link-connectivities
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 78]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                /tet:local-link-connectivity/tet:label-restrictions
                /tet:label-restriction/tet:label-start/tet:te-label
                /tet:technology:
@@ -4082,14 +4379,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              +--rw ts?    otn-ts
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:tunnel-termination-point
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 73]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
                /tet:local-link-connectivities
                /tet:local-link-connectivity/tet:label-restrictions
                /tet:label-restriction/tet:label-end/tet:te-label
@@ -4129,6 +4418,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              +--rw tpn?       otn-tpn
              +--rw tsg?       identityref
              +--rw ts-list?   string
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 79]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
      augment /nw:networks/nw:network/nw:node/tet:te
                /tet:tunnel-termination-point
                /tet:local-link-connectivities
@@ -4138,14 +4435,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                /tet:route-object-exclude-object/tet:type/tet:label
                /tet:label-hop/tet:te-label/tet:technology:
        +--:(otn)
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 74]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
           +--rw otn-label
              +--rw tpn?       otn-tpn
              +--rw tsg?       identityref
@@ -4185,6 +4474,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              +--rw ts-list?   string
      augment /nw:networks/nw:network/nt:link/tet:te
                /tet:te-link-attributes/tet:underlay/tet:backup-path
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 80]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                /tet:path-element/tet:type/tet:label/tet:label-hop
                /tet:te-label/tet:technology:
        +--:(otn)
@@ -4194,14 +4491,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              +--rw ts-list?   string
      augment /nw:networks/nw:network/nt:link/tet:te
                /tet:te-link-attributes/tet:label-restrictions
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 75]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
                /tet:label-restriction/tet:label-start/tet:te-label
                /tet:technology:
        +--:(otn)
@@ -4241,6 +4530,14 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              +--ro ts?    otn-ts
      augment /nw:networks/nw:network/nt:link/tet:te
                /tet:information-source-entry/tet:label-restrictions
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 81]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                /tet:label-restriction/tet:label-step/tet:technology:
        +--:(otn)
           +--ro otn-label-step
@@ -4250,14 +4547,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                /tet:te-link-attributes/tet:underlay/tet:primary-path
                /tet:path-element/tet:type/tet:label/tet:label-hop
                /tet:te-label/tet:technology:
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 76]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
        +--:(otn)
           +--rw otn-label
              +--rw tpn?       otn-tpn
@@ -4296,6 +4585,15 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              +--rw tpn?   otn-tpn
              +--rw ts?    otn-ts
 
+
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 82]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
 Appendix B.  JSON Examples
 
    This appendix contains an example of an instance data tree in JSON
@@ -4303,16 +4601,6 @@ Appendix B.  JSON Examples
 
    The example instantiates the "ietf-otn-topology" model for the OTN
    topology depicted in Figure 2 below.
-
-
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 77]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
    The OTN topology consists of three nodes (D1, D2, and D3) with three
    link termination (LTPs) each: two LTPs which terminates the links
@@ -4354,21 +4642,18 @@ Internet-Draft           OTN Topology YANG Model           November 2024
       switching capability and the client-svc presence container is
       instantiated;
 
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 83]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
    *  LTP 2 on Node D2 is an example of an LTP which can support only
       10G OTN (ODU2) signal: the interface-switching-capability list
       indicates support for OTN switching capability and the client-svc
       presence container is not instantiated;
-
-
-
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 78]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
    *  LTP 3 on Node D3 is an example of an LTP which can support only
       10G (e.g., 10GE and STM-64) client signals: the interface-
@@ -4413,19 +4698,19 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              }
            },
            "ietf-te-topology:te-topology-identifier": {
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 84]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
              "topology-id": "otn-topology-example"
            },
            "ietf-te-topology:te": {},
            "node": [
              {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 79]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
                "node-id": "example:D1",
                "ietf-te-topology:te-node-id": "192.0.0.1",
                "ietf-te-topology:te": {
@@ -4469,19 +4754,19 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                      "name": "Interface 3 of Node D1"
                    }
                  }
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 85]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                ]
              },
              {
                "node-id": "example:D2",
                "ietf-te-topology:te-node-id": "192.0.0.2",
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 80]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
                "ietf-te-topology:te": {
                  "te-node-attributes": {
                    "name": "Node D2",
@@ -4525,19 +4810,19 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                "ietf-te-topology:te": {
                  "te-node-attributes": {
                    "name": "Node D3",
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 86]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                    "ietf-otn-topology:otn-node": {}
                  }
                },
                "ietf-network-topology:termination-point": [
                  {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 81]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
                    "tp-id": "example:D3-1",
                    "ietf-te-topology:te-tp-id": 1,
                    "ietf-te-topology:te": {
@@ -4581,19 +4866,19 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                        "encoding": "ietf-te-types:lsp-encoding-oduk"
                      }
                    ],
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 87]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                    "max-link-bandwidth": {
                      "te-bandwidth": {
                        "ietf-otn-topology:otn-bandwidth": {
                          "odulist": [
                            {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 82]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
                              "odu-type": "ietf-layer1-types:ODU4",
                              "number": 1
                            },
@@ -4637,19 +4922,19 @@ Internet-Draft           OTN Topology YANG Model           November 2024
              {
                "link-id": "example:link/D2-3/D3-2",
                "ietf-te-topology:te": {
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 88]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                  "te-link-attributes": {
                    "name": "Link between Node D2 and Node D3 (forward d\
    irection)",
                    "interface-switching-capability": [
                      {
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 83]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
                        "switching-capability": "ietf-te-types:switching\
    -otn",
                        "encoding": "ietf-te-types:lsp-encoding-oduk"
@@ -4693,19 +4978,19 @@ Internet-Draft           OTN Topology YANG Model           November 2024
                  "te-link-attributes": {
                    "name": "Link between Node D1 and Node D3 (reverse d\
    irection)"
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 89]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
                  }
                }
              },
              {
                "link-id": "example:link/D1-3/D3-1",
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 84]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
-
                "ietf-te-topology:te": {
                  "te-link-attributes": {
                    "name": "Link between Node D1 and Node D3 (forward d\
@@ -4746,21 +5031,23 @@ Internet-Draft           OTN Topology YANG Model           November 2024
      }
    }
 
+
+
+
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 90]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
 Acknowledgments
 
    We would like to thank Igor Bryskin, Zhe Liu, Zheyu Fan and Daniele
    Ceccarelli for their comments and discussions.
 
 Contributors
-
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 85]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
-
 
    Aihua Guo
    Futurewei
@@ -4802,6 +5089,15 @@ Internet-Draft           OTN Topology YANG Model           November 2024
    Email: victor.lopez@nokia.com
 
 
+
+
+
+
+Zheng, et al.              Expires 12 May 2025                 [Page 91]
+
+Internet-Draft           OTN Topology YANG Model           November 2024
+
+
    Yunbo Li
    China Mobile
    Email: liyunbo@chinamobile.com
@@ -4810,12 +5106,6 @@ Internet-Draft           OTN Topology YANG Model           November 2024
    Dieter Beller
    Nokia
    Email: dieter.beller@nokia.com
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 86]
-
-Internet-Draft           OTN Topology YANG Model           November 2024
 
 
    TBD
@@ -4859,14 +5149,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-
-
-
-Zheng, et al.              Expires 11 May 2025                 [Page 87]
+Zheng, et al.              Expires 12 May 2025                 [Page 92]
