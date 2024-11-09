@@ -1,3 +1,4 @@
 .refcache
 *.bash
+*.log
 background/
