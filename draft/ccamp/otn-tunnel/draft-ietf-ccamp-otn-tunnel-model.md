@@ -242,40 +242,9 @@ in {{!I-D.ietf-ccamp-layer1-types}}.
 ~~~~
 {: #fig-otn-tunnel-yang sourcecode-markers="true" sourcecode-name="ietf-otn-tunnel@2024-03-21.yang"}
 
-# Security Considerations
-
-The YANG module specified in this document defines a schema for data
-that is designed to be accessed via network management protocols such
-as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
-is the secure transport layer, and the mandatory-to-implement secure
-transport is Secure Shell (SSH) {{!RFC6242}}.  The lowest RESTCONF layer
-is HTTPS, and the mandatory-to-implement secure transport is TLS
-{{!RFC8446}}.
-
-The NETCONF access control model {{!RFC8341}} provides the means to
-restrict access for particular NETCONF or RESTCONF users to a
-preconfigured subset of all available NETCONF or RESTCONF protocol
-operations and content.
-
-There are a number of data nodes defined in this YANG module that are
-writable/creatable/deletable (i.e., config true, which is the
-default).  These data nodes may be considered sensitive or vulnerable
-in some network environments.  Write operations (e.g., edit-config)
-to these data nodes without proper protection can have a negative
-effect on network operations.  Considerations in Section 10 of
-{{!I-D.ietf-teas-yang-te}} are also applicable to their subtrees in the
-module defined in this document.
-
-Some of the readable data nodes in this YANG module may be considered
-sensitive or vulnerable in some network environments.  It is thus
-important to control read access (e.g., via get, get-config, or
-notification) to these data nodes.  Considerations in Section 10 of
-{{!I-D.ietf-teas-yang-te}} are also applicable to their subtrees in the
-module defined in this document.
-
 # IANA Considerations
 
-This document requests IANA to register the following URIs in the "ns" subregistry within the "IETF XML Registry" {{!RFC3688}}. Following the format in {{!RFC3688}}, the following registrations are requested.
+IANA is requested to register the following URI in the "ns" subregistry within the "IETF XML Registry" {{!RFC3688}}:
 
 ~~~~
       URI: urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
@@ -283,7 +252,7 @@ This document requests IANA to register the following URIs in the "ns" subregist
       XML: N/A; the requested URI is an XML namespace.
 ~~~~
 
-This document requests IANA to register the following YANG modules in the "IANA Module Names" {{!RFC6020}}. Following the format in {{!RFC6020}}, the following registrations are requested:
+IANA is requested to register the following YANG module in the "YANG Module Names" subregistry {{!RFC6020}} within the "YANG Parameters" registry.
 
 ~~~~
       name:         ietf-otn-tunnel
@@ -292,12 +261,72 @@ This document requests IANA to register the following YANG modules in the "IANA 
       reference:    RFC XXXX
 ~~~~
 
-RFC Editor Note: Please replace XXXX with the number assigned to the
-RFC once this draft becomes an RFC.
+> RFC Editor Note: Please replace XXXX with the number assigned to the RFC once this draft becomes an RFC.
+
+# Security Considerations
+
+This section is modeled after the template described in Section 3.7
+of {{?I-D.ietf-netmod-rfc8407bis}}.
+
+The "ietf-te-types" and the "ietf-te-packet-types" YANG modules define data models that are
+designed to be accessed via YANG-based management protocols, such as
+NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These protocols have to
+use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
+QUIC {{?RFC9000}}) and have to use mutual authentication.
+
+The Network Configuration Access Control Model (NACM) {{!RFC8341}}
+provides the means to restrict access for particular NETCONF or
+RESTCONF users to a preconfigured subset of all available NETCONF or
+RESTCONF protocol operations and content.
+
+There are a number of data nodes defined in this YANG module that are writable/creatable/deletable (i.e., config true, which is the default).
+These data nodes can be considered sensitive or vulnerable in some network environments.
+Write operations (e.g., edit-config) to these data nodes without proper protection can have a negative effect on network operations.
+Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:
+
+- "otnt:otn-bandwidth"
+
+> This subtree specifies the configurations of OTN technology-specific information under any occurrence of the tet:te-bandwidth container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:te-bandwidth/te:technology/otnt:otn/otnt:otn-bandwidth"). By configuring the OTN bandwidth attributes, an attacker may create an unauthorized OTN traffic path. By removing or modifying it, a malicious attacker may cause OTN traffic to be disabled or misrouted.
+
+- "otnt:otn-label-range"
+
+> This subtree specifies the configurations of OTN technology-specific label range information under any occurrence of the tet:label-restriction container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:primary-paths/te:primary-path/te:path-in-segment/te:label-restrictions/te:label-restriction/otnt:otn-label-range"). By configuring the OTN label range attributes, an attacker may create an unauthorized OTN traffic path. By removing or modifying, a malicious attacker may cause OTN traffic to be disabled or misrouted.
+
+- "otnt:otn-label"
+
+> This subtree specifies the configurations of OTN technology-specific label information under any occurrence of the tet:te-label container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:primary-paths/te:primary-path/te:explicit-route-objects/te:route-object-include-exclude/te:type/te:label/te:label-hop/te:te-label/te:technology/otnt:otn/otnt:otn-label"). By configuring, removing or modifying the OTN label attributes, a malicious attacker may cause OTN traffic to be disabled or misrouted.
+
+Some of the readable data nodes in this YANG module may be considered
+sensitive or vulnerable in some network environments.
+It is thus important to control read access (e.g., via get, get-config, or
+notification) to these data nodes.
+Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:
+
+- "otnt:otn-bandwidth"
+
+> This subtree specifies the configurations of OTN technology-specific information under any occurrence of the tet:te-bandwidth container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:te-bandwidth/te:technology/otnt:otn/otnt:otn-bandwidth"). Unauthorized access to this data node can disclose the OTN bandwidth information of OTN tunnels and LSPs.
+
+- "otnt:otn-label-range"
+
+> This subtree specifies the configurations of OTN technology-specific label range information under any occurrence of the tet:label-restriction container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:primary-paths/te:primary-path/te:path-in-segment/te:label-restrictions/te:label-restriction/otnt:otn-label-range"). Unauthorized access to this data node can disclose the state information of OTN tunnels and LSPs.
+
+- "otnt:otn-label"
+
+> This subtree specifies the configurations of OTN technology-specific label information under any occurrence of the tet:te-label container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:primary-paths/te:primary-path/te:explicit-route-objects/te:route-object-include-exclude/te:type/te:label/te:label-hop/te:te-label/te:technology/otnt:otn/otnt:otn-label"). Unauthorized access to this data node can disclose the state information of OTN tunnels and LSPs.
+
+This YANG module does not define RPC operations.
+
+This YANG module uses groupings from other YANG modules that
+define nodes that may be considered sensitive or vulnerable
+in network environments. Refer to the Security Considerations
+of {{!I-D.ietf-ccamp-layer1-types}} for information as to which nodes may
+be considered sensitive or vulnerable in network environments.
+
+Finally, the YANG module described in this document augments the "ietf-te" YANG module {{!I-D.ietf-teas-yang-te}} by adding data nodes. The security considerations for the subtrees described in those RFCs apply equally to the new data nodes that this module adds.
 
 --- back
 
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+We would like to thank Yu Chaode for his comments and discussions.
