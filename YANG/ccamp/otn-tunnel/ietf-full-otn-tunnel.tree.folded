@@ -287,14 +287,14 @@ abel
      |     |  |  +--rw type?              identityref
      |     |  |  +--rw id?                uint16
      |     |  |  +--rw source
-     |     |  |     +--rw id?     te-gen-node-id
+     |     |  |     +--rw id?     union
      |     |  |     +--rw type?   enumeration
      |     |  +--rw association-object-extended* [association-key]
      |     |     +--rw association-key    string
      |     |     +--rw type?              identityref
      |     |     +--rw id?                uint16
      |     |     +--rw source
-     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |  +--rw id?     union
      |     |     |  +--rw type?   enumeration
      |     |     +--rw global-source?     uint32
      |     |     +--rw extended-id?       yang:hex-string
@@ -377,7 +377,7 @@ abel
      |     |     +--rw name                            string
      |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
-     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |  +--rw id?     union
      |     |     |  +--rw type?   enumeration
      |     |     +--rw compute-only?                   empty
      |     |     +--rw use-path-computation?           boolean
@@ -392,7 +392,7 @@ abel
      |     |     |  |  +--rw type?              identityref
      |     |     |  |  +--rw id?                uint16
      |     |     |  |  +--rw source
-     |     |     |  |     +--rw id?     te-gen-node-id
+     |     |     |  |     +--rw id?     union
      |     |     |  |     +--rw type?   enumeration
      |     |     |  +--rw association-object-extended*
      |     |     |          [association-key]
@@ -400,7 +400,7 @@ abel
      |     |     |     +--rw type?              identityref
      |     |     |     +--rw id?                uint16
      |     |     |     +--rw source
-     |     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |     |  +--rw id?     union
      |     |     |     |  +--rw type?   enumeration
      |     |     |     +--rw global-source?     uint32
      |     |     |     +--rw extended-id?       yang:hex-string
@@ -552,8 +552,8 @@ ng
      |     |     |     |  |                            te-label-dire\
 ction
      |     |     |     |  x--rw tiebreakers
-     |     |     |     |     +--rw tiebreaker* [tiebreaker-type]
-     |     |     |     |        +--rw tiebreaker-type    identityref
+     |     |     |     |     x--rw tiebreaker* [tiebreaker-type]
+     |     |     |     |        x--rw tiebreaker-type    identityref
      |     |     |     +--:(objective-function)
      |     |     |              {path-optimization-objective-functio\
 n}?
@@ -962,7 +962,7 @@ yload-rate
      |     |     |  +--rw path-computation-method?
      |     |     |  |       identityref
      |     |     |  +--rw path-computation-server
-     |     |     |  |  +--rw id?     te-gen-node-id
+     |     |     |  |  +--rw id?     union
      |     |     |  |  +--rw type?   enumeration
      |     |     |  +--rw compute-only?                        empty
      |     |     |  +--rw use-path-computation?
@@ -976,7 +976,7 @@ yload-rate
      |     |     |  |  |  +--rw type?              identityref
      |     |     |  |  |  +--rw id?                uint16
      |     |     |  |  |  +--rw source
-     |     |     |  |  |     +--rw id?     te-gen-node-id
+     |     |     |  |  |     +--rw id?     union
      |     |     |  |  |     +--rw type?   enumeration
      |     |     |  |  +--rw association-object-extended*
      |     |     |  |          [association-key]
@@ -984,7 +984,7 @@ yload-rate
      |     |     |  |     +--rw type?              identityref
      |     |     |  |     +--rw id?                uint16
      |     |     |  |     +--rw source
-     |     |     |  |     |  +--rw id?     te-gen-node-id
+     |     |     |  |     |  +--rw id?     union
      |     |     |  |     |  +--rw type?   enumeration
      |     |     |  |     +--rw global-source?     uint32
      |     |     |  |     +--rw extended-id?       yang:hex-string
@@ -1144,8 +1144,8 @@ tring
      |     |     |  |     |  |                            te-label-d\
 irection
      |     |     |  |     |  x--rw tiebreakers
-     |     |     |  |     |     +--rw tiebreaker* [tiebreaker-type]
-     |     |     |  |     |        +--rw tiebreaker-type
+     |     |     |  |     |     x--rw tiebreaker* [tiebreaker-type]
+     |     |     |  |     |        x--rw tiebreaker-type
      |     |     |  |     |                identityref
      |     |     |  |     +--:(objective-function)
      |     |     |  |              {path-optimization-objective-func\
@@ -1595,7 +1595,7 @@ ware-n
      |     |     +--rw name                            string
      |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
-     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |  +--rw id?     union
      |     |     |  +--rw type?   enumeration
      |     |     +--rw compute-only?                   empty
      |     |     +--rw use-path-computation?           boolean
@@ -1609,7 +1609,7 @@ ware-n
      |     |     |  |  +--rw type?              identityref
      |     |     |  |  +--rw id?                uint16
      |     |     |  |  +--rw source
-     |     |     |  |     +--rw id?     te-gen-node-id
+     |     |     |  |     +--rw id?     union
      |     |     |  |     +--rw type?   enumeration
      |     |     |  +--rw association-object-extended*
      |     |     |          [association-key]
@@ -1617,7 +1617,7 @@ ware-n
      |     |     |     +--rw type?              identityref
      |     |     |     +--rw id?                uint16
      |     |     |     +--rw source
-     |     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |     |  +--rw id?     union
      |     |     |     |  +--rw type?   enumeration
      |     |     |     +--rw global-source?     uint32
      |     |     |     +--rw extended-id?       yang:hex-string
@@ -1769,8 +1769,8 @@ ng
      |     |     |     |  |                            te-label-dire\
 ction
      |     |     |     |  x--rw tiebreakers
-     |     |     |     |     +--rw tiebreaker* [tiebreaker-type]
-     |     |     |     |        +--rw tiebreaker-type    identityref
+     |     |     |     |     x--rw tiebreaker* [tiebreaker-type]
+     |     |     |     |        x--rw tiebreaker-type    identityref
      |     |     |     +--:(objective-function)
      |     |     |              {path-optimization-objective-functio\
 n}?
@@ -2194,7 +2194,7 @@ yload-rate
      |     |     +--rw name                            string
      |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
-     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |  +--rw id?     union
      |     |     |  +--rw type?   enumeration
      |     |     +--rw compute-only?                   empty
      |     |     +--rw use-path-computation?           boolean
@@ -2207,7 +2207,7 @@ yload-rate
      |     |     |  |  +--rw type?              identityref
      |     |     |  |  +--rw id?                uint16
      |     |     |  |  +--rw source
-     |     |     |  |     +--rw id?     te-gen-node-id
+     |     |     |  |     +--rw id?     union
      |     |     |  |     +--rw type?   enumeration
      |     |     |  +--rw association-object-extended*
      |     |     |          [association-key]
@@ -2215,7 +2215,7 @@ yload-rate
      |     |     |     +--rw type?              identityref
      |     |     |     +--rw id?                uint16
      |     |     |     +--rw source
-     |     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |     |  +--rw id?     union
      |     |     |     |  +--rw type?   enumeration
      |     |     |     +--rw global-source?     uint32
      |     |     |     +--rw extended-id?       yang:hex-string
@@ -2367,8 +2367,8 @@ ng
      |     |     |     |  |                            te-label-dire\
 ction
      |     |     |     |  x--rw tiebreakers
-     |     |     |     |     +--rw tiebreaker* [tiebreaker-type]
-     |     |     |     |        +--rw tiebreaker-type    identityref
+     |     |     |     |     x--rw tiebreaker* [tiebreaker-type]
+     |     |     |     |        x--rw tiebreaker-type    identityref
      |     |     |     +--:(objective-function)
      |     |     |              {path-optimization-objective-functio\
 n}?

@@ -282,14 +282,14 @@ module: ietf-te
      |     |  |  +--rw type?              identityref
      |     |  |  +--rw id?                uint16
      |     |  |  +--rw source
-     |     |  |     +--rw id?     te-gen-node-id
+     |     |  |     +--rw id?     union
      |     |  |     +--rw type?   enumeration
      |     |  +--rw association-object-extended* [association-key]
      |     |     +--rw association-key    string
      |     |     +--rw type?              identityref
      |     |     +--rw id?                uint16
      |     |     +--rw source
-     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |  +--rw id?     union
      |     |     |  +--rw type?   enumeration
      |     |     +--rw global-source?     uint32
      |     |     +--rw extended-id?       yang:hex-string
@@ -372,7 +372,7 @@ module: ietf-te
      |     |     +--rw name                            string
      |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
-     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |  +--rw id?     union
      |     |     |  +--rw type?   enumeration
      |     |     +--rw compute-only?                   empty
      |     |     +--rw use-path-computation?           boolean
@@ -387,7 +387,7 @@ module: ietf-te
      |     |     |  |  +--rw type?              identityref
      |     |     |  |  +--rw id?                uint16
      |     |     |  |  +--rw source
-     |     |     |  |     +--rw id?     te-gen-node-id
+     |     |     |  |     +--rw id?     union
      |     |     |  |     +--rw type?   enumeration
      |     |     |  +--rw association-object-extended*
      |     |     |          [association-key]
@@ -395,7 +395,7 @@ module: ietf-te
      |     |     |     +--rw type?              identityref
      |     |     |     +--rw id?                uint16
      |     |     |     +--rw source
-     |     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |     |  +--rw id?     union
      |     |     |     |  +--rw type?   enumeration
      |     |     |     +--rw global-source?     uint32
      |     |     |     +--rw extended-id?       yang:hex-string
@@ -529,8 +529,8 @@ module: ietf-te
      |     |     |     |  |                    +--rw direction?
      |     |     |     |  |                            te-label-direction
      |     |     |     |  x--rw tiebreakers
-     |     |     |     |     +--rw tiebreaker* [tiebreaker-type]
-     |     |     |     |        +--rw tiebreaker-type    identityref
+     |     |     |     |     x--rw tiebreaker* [tiebreaker-type]
+     |     |     |     |        x--rw tiebreaker-type    identityref
      |     |     |     +--:(objective-function)
      |     |     |              {path-optimization-objective-function}?
      |     |     |        +--rw objective-function
@@ -921,7 +921,7 @@ module: ietf-te
      |     |     |  +--rw path-computation-method?
      |     |     |  |       identityref
      |     |     |  +--rw path-computation-server
-     |     |     |  |  +--rw id?     te-gen-node-id
+     |     |     |  |  +--rw id?     union
      |     |     |  |  +--rw type?   enumeration
      |     |     |  +--rw compute-only?                        empty
      |     |     |  +--rw use-path-computation?
@@ -935,7 +935,7 @@ module: ietf-te
      |     |     |  |  |  +--rw type?              identityref
      |     |     |  |  |  +--rw id?                uint16
      |     |     |  |  |  +--rw source
-     |     |     |  |  |     +--rw id?     te-gen-node-id
+     |     |     |  |  |     +--rw id?     union
      |     |     |  |  |     +--rw type?   enumeration
      |     |     |  |  +--rw association-object-extended*
      |     |     |  |          [association-key]
@@ -943,7 +943,7 @@ module: ietf-te
      |     |     |  |     +--rw type?              identityref
      |     |     |  |     +--rw id?                uint16
      |     |     |  |     +--rw source
-     |     |     |  |     |  +--rw id?     te-gen-node-id
+     |     |     |  |     |  +--rw id?     union
      |     |     |  |     |  +--rw type?   enumeration
      |     |     |  |     +--rw global-source?     uint32
      |     |     |  |     +--rw extended-id?       yang:hex-string
@@ -1077,8 +1077,8 @@ module: ietf-te
      |     |     |  |     |  |                    +--rw direction?
      |     |     |  |     |  |                            te-label-direction
      |     |     |  |     |  x--rw tiebreakers
-     |     |     |  |     |     +--rw tiebreaker* [tiebreaker-type]
-     |     |     |  |     |        +--rw tiebreaker-type
+     |     |     |  |     |     x--rw tiebreaker* [tiebreaker-type]
+     |     |     |  |     |        x--rw tiebreaker-type
      |     |     |  |     |                identityref
      |     |     |  |     +--:(objective-function)
      |     |     |  |              {path-optimization-objective-function}?
@@ -1503,7 +1503,7 @@ module: ietf-te
      |     |     +--rw name                            string
      |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
-     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |  +--rw id?     union
      |     |     |  +--rw type?   enumeration
      |     |     +--rw compute-only?                   empty
      |     |     +--rw use-path-computation?           boolean
@@ -1517,7 +1517,7 @@ module: ietf-te
      |     |     |  |  +--rw type?              identityref
      |     |     |  |  +--rw id?                uint16
      |     |     |  |  +--rw source
-     |     |     |  |     +--rw id?     te-gen-node-id
+     |     |     |  |     +--rw id?     union
      |     |     |  |     +--rw type?   enumeration
      |     |     |  +--rw association-object-extended*
      |     |     |          [association-key]
@@ -1525,7 +1525,7 @@ module: ietf-te
      |     |     |     +--rw type?              identityref
      |     |     |     +--rw id?                uint16
      |     |     |     +--rw source
-     |     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |     |  +--rw id?     union
      |     |     |     |  +--rw type?   enumeration
      |     |     |     +--rw global-source?     uint32
      |     |     |     +--rw extended-id?       yang:hex-string
@@ -1659,8 +1659,8 @@ module: ietf-te
      |     |     |     |  |                    +--rw direction?
      |     |     |     |  |                            te-label-direction
      |     |     |     |  x--rw tiebreakers
-     |     |     |     |     +--rw tiebreaker* [tiebreaker-type]
-     |     |     |     |        +--rw tiebreaker-type    identityref
+     |     |     |     |     x--rw tiebreaker* [tiebreaker-type]
+     |     |     |     |        x--rw tiebreaker-type    identityref
      |     |     |     +--:(objective-function)
      |     |     |              {path-optimization-objective-function}?
      |     |     |        +--rw objective-function
@@ -2066,7 +2066,7 @@ module: ietf-te
      |     |     +--rw name                            string
      |     |     +--rw path-computation-method?        identityref
      |     |     +--rw path-computation-server
-     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |  +--rw id?     union
      |     |     |  +--rw type?   enumeration
      |     |     +--rw compute-only?                   empty
      |     |     +--rw use-path-computation?           boolean
@@ -2079,7 +2079,7 @@ module: ietf-te
      |     |     |  |  +--rw type?              identityref
      |     |     |  |  +--rw id?                uint16
      |     |     |  |  +--rw source
-     |     |     |  |     +--rw id?     te-gen-node-id
+     |     |     |  |     +--rw id?     union
      |     |     |  |     +--rw type?   enumeration
      |     |     |  +--rw association-object-extended*
      |     |     |          [association-key]
@@ -2087,7 +2087,7 @@ module: ietf-te
      |     |     |     +--rw type?              identityref
      |     |     |     +--rw id?                uint16
      |     |     |     +--rw source
-     |     |     |     |  +--rw id?     te-gen-node-id
+     |     |     |     |  +--rw id?     union
      |     |     |     |  +--rw type?   enumeration
      |     |     |     +--rw global-source?     uint32
      |     |     |     +--rw extended-id?       yang:hex-string
@@ -2221,8 +2221,8 @@ module: ietf-te
      |     |     |     |  |                    +--rw direction?
      |     |     |     |  |                            te-label-direction
      |     |     |     |  x--rw tiebreakers
-     |     |     |     |     +--rw tiebreaker* [tiebreaker-type]
-     |     |     |     |        +--rw tiebreaker-type    identityref
+     |     |     |     |     x--rw tiebreaker* [tiebreaker-type]
+     |     |     |     |        x--rw tiebreaker-type    identityref
      |     |     |     +--:(objective-function)
      |     |     |              {path-optimization-objective-function}?
      |     |     |        +--rw objective-function
