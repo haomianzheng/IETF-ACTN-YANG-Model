@@ -1,5 +1,6 @@
 .refcache
 background
 *.bash
+*.log
 background/
 *.xml

@@ -44,7 +44,7 @@ module ietf-layer1-types {
     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
     they appear in all capitals, as shown here.";
 
-  revision "2024-02-22" {
+  revision "2024-07-12" {
     description
       "Initial Version";
     reference
@@ -1004,9 +1004,9 @@ module ietf-layer1-types {
           description "Number of ODUs.";
         }
         leaf ts-number {
-          when 'derived-from-or-self(../odu-type,"ODUflex") or
-                derived-from-or-self(../odu-type,
-                "ODUflex-resizable")' {
+          when 'derived-from-or-self(../odu-type,"l1-types:ODUflex")
+                or derived-from-or-self(../odu-type,
+                "l1-types:ODUflex-resizable")' {
             description
               "Applicable when odu-type is ODUflex or
               ODUflex-resizable.";
@@ -1035,9 +1035,9 @@ module ietf-layer1-types {
         description "ODU type";
       }
       choice oduflex-type {
-        when 'derived-from-or-self(./odu-type,"ODUflex") or
-              derived-from-or-self(./odu-type,
-              "ODUflex-resizable")' {
+        when 'derived-from-or-self(../odu-type,"l1-types:ODUflex") or
+              derived-from-or-self(../odu-type,
+              "l1-types:ODUflex-resizable")' {
           description
             "Applicable when odu-type is ODUflex or
              ODUflex-resizable.";
