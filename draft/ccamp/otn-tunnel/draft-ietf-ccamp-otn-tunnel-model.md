@@ -17,8 +17,7 @@ venue:
   type: "Working Group"
   mail: "ccamp@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ccamp/"
-  github: "haomianzheng/ccamp-client-pm-yang"
-  latest: "https://haomianzheng.github.io/ccamp-client-pm-yang/draft-zheng-ccamp-client-pm-yang.html"
+  github: "haomianzheng/IETF-ACTN-YANG-Model"
 
 author:
   -
@@ -69,7 +68,9 @@ contributor:
     org: Nokia
     email: dieter.beller@nokia.com
   -
-    name: TBD
+    name: To-Be-Added
+    org: To-Be-Added
+    email: To-Be-Added
   -
     name: Xian Zhang
     org: Huawei Technologies

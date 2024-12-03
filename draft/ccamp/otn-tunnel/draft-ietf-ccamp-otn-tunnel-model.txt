@@ -5,12 +5,12 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 5 June 2025                                          S. Belotti
+Expires: 6 June 2025                                          S. Belotti
                                                                 V. Lopez
                                                                    Nokia
                                                                    Y. Xu
                                                                    CAICT
-                                                         2 December 2024
+                                                         3 December 2024
 
 
 A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label
@@ -28,11 +28,8 @@ About This Document
 
    This note is to be removed before publishing as an RFC.
 
-   The latest revision of this draft can be found at
-   https://haomianzheng.github.io/ccamp-client-pm-yang/draft-zheng-
-   ccamp-client-pm-yang.html.  Status information for this document may
-   be found at https://datatracker.ietf.org/doc/draft-ietf-ccamp-otn-
-   tunnel-model/.
+   Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-ietf-ccamp-otn-tunnel-model/.
 
    Discussion of this document takes place on the Common Control and
    Measurement Plane Working Group mailing list (mailto:ccamp@ietf.org),
@@ -40,35 +37,33 @@ About This Document
    Subscribe at https://www.ietf.org/mailman/listinfo/ccamp/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/haomianzheng/ccamp-client-pm-yang.
+   https://github.com/haomianzheng/IETF-ACTN-YANG-Model.
 
 Status of This Memo
 
    This Internet-Draft is submitted in full conformance with the
    provisions of BCP 78 and BCP 79.
 
-
-
-
-
-
-
-Zheng, et al.              Expires 5 June 2025                  [Page 1]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
    Internet-Drafts are working documents of the Internet Engineering
    Task Force (IETF).  Note that other groups may also distribute
    working documents as Internet-Drafts.  The list of current Internet-
    Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+
+
+
+
+Zheng, et al.              Expires 6 June 2025                  [Page 1]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
 
    Internet-Drafts are draft documents valid for a maximum of six months
    and may be updated, replaced, or obsoleted by other documents at any
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 June 2025.
+   This Internet-Draft will expire on 6 June 2025.
 
 Copyright Notice
 
@@ -86,10 +81,10 @@ Copyright Notice
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Terminology and Notations . . . . . . . . . . . . . . . .   3
      1.2.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .   3
-     1.3.  Prefix in Data Node Names . . . . . . . . . . . . . . . .   4
+     1.3.  Prefix in Data Node Names . . . . . . . . . . . . . . . .   3
    2.  OTN Tunnel Model Description  . . . . . . . . . . . . . . . .   4
      2.1.  Overview of OTN Tunnel Model  . . . . . . . . . . . . . .   4
      2.2.  Bandwidth Augmentation  . . . . . . . . . . . . . . . . .   5
@@ -105,21 +100,19 @@ Table of Contents
    Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  48
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  49
 
-
-
-
-
-Zheng, et al.              Expires 5 June 2025                  [Page 2]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
 1.  Introduction
 
    OTN transport networks, specified in [ITU-T_G.709], can carry various
    types of client signals.  In many cases, the client signal is carried
    over an OTN tunnel across connected domains in a multi-domain
    network.
+
+
+
+Zheng, et al.              Expires 6 June 2025                  [Page 2]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
 
    This document provides YANG model for creating OTN tunnel.  The model
    augments the generic TE Tunnel model specified in
@@ -163,18 +156,19 @@ Internet-Draft              OTN Tunnel Model               December 2024
    Section 3 of this this document.  The meaning of the symbols in these
    diagrams is defined in [RFC8340].
 
-
-
-Zheng, et al.              Expires 5 June 2025                  [Page 3]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
 1.3.  Prefix in Data Node Names
 
    In this document, names of data nodes and other data model objects
    are prefixed using the standard prefix associated with the
    corresponding YANG imported modules, as shown in the following table.
+
+
+
+
+Zheng, et al.              Expires 6 June 2025                  [Page 3]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
 
                +==========+===================+============+
                | Prefix   | YANG module       | Reference  |
@@ -217,15 +211,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
 
           Figure 1: Relationship between OTN and TE tunnel models
 
-
-
-
-
-Zheng, et al.              Expires 5 June 2025                  [Page 4]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
    It is also worth noting that the OTN tunnel provisioning is usually
    based on the OTN topology.  Therefore the OTN tunnel model is usually
    used together with OTN topology model specified in
@@ -233,6 +218,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
    few type modules, including ietf-layer1-types, ietf-te-types and
    ietf-inet-types.  The OTN-specific attributes in [RFC7139], including
    the Tributary Slot (TS) and Tributary Port Number (TPN), can be used
+
+
+
+Zheng, et al.              Expires 6 June 2025                  [Page 4]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
    to represent the bandwidth and label information.  These attributes
    have been specified in [I-D.ietf-ccamp-layer1-types] and used in this
    document for augmentation of the generic TE tunnel model.
@@ -274,14 +267,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
                 +--:(cbr)
                 |  +--rw client-type             identityref
                 +--:(gfp-n-k)
-
-
-
-Zheng, et al.              Expires 5 June 2025                  [Page 5]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
                 |  +--rw gfp-n                   uint8
                 |  +--rw gfp-k?                  gfp-k
                 +--:(flexe-client)
@@ -289,6 +274,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
                 +--:(flexe-aware)
                 |  +--rw flexe-aware-n           uint16
                 +--:(packet)
+
+
+
+Zheng, et al.              Expires 6 June 2025                  [Page 5]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
                    +--rw opuflex-payload-rate    union
      augment /te:te/te:tunnels/te:tunnel/te:te-bandwidth/te:technology:
        +--:(otn)
@@ -330,14 +323,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:computed-paths-properties
                /te:computed-path-properties/te:path-properties
-
-
-
-Zheng, et al.              Expires 5 June 2025                  [Page 6]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
                /te:te-bandwidth/te:technology:
        +--:(otn)
           +--ro otn-bandwidth
@@ -345,6 +330,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
              +--ro (oduflex-type)?
                 +--:(generic)
                 |  +--ro nominal-bit-rate        union
+
+
+
+Zheng, et al.              Expires 6 June 2025                  [Page 6]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
                 +--:(cbr)
                 |  +--ro client-type             identityref
                 +--:(gfp-n-k)
@@ -386,14 +379,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
              +--ro (oduflex-type)?
                 +--:(generic)
                 |  +--ro nominal-bit-rate        union
-
-
-
-Zheng, et al.              Expires 5 June 2025                  [Page 7]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
                 +--:(cbr)
                 |  +--ro client-type             identityref
                 +--:(gfp-n-k)
@@ -401,6 +386,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
                 |  +--ro gfp-k?                  gfp-k
                 +--:(flexe-client)
                 |  +--ro flexe-client            flexe-client-rate
+
+
+
+Zheng, et al.              Expires 6 June 2025                  [Page 7]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
                 +--:(flexe-aware)
                 |  +--ro flexe-aware-n           uint16
                 +--:(packet)
@@ -442,14 +435,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
                 +--:(flexe-client)
                 |  +--ro flexe-client            flexe-client-rate
                 +--:(flexe-aware)
-
-
-
-Zheng, et al.              Expires 5 June 2025                  [Page 8]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
                 |  +--ro flexe-aware-n           uint16
                 +--:(packet)
                    +--ro opuflex-payload-rate    union
@@ -457,6 +442,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
                /te:secondary-reverse-path/te:te-bandwidth/te:technology:
        +--:(otn)
           +--rw otn-bandwidth
+
+
+
+Zheng, et al.              Expires 6 June 2025                  [Page 8]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
              +--rw odu-type?                     identityref
              +--rw (oduflex-type)?
                 +--:(generic)
@@ -498,14 +491,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
                /te:label-restrictions/te:label-restriction:
        +--rw otn-label-range
           +--rw range-type?      otn-label-range-type
-
-
-
-Zheng, et al.              Expires 5 June 2025                  [Page 9]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
           +--rw tsg?             identityref
           +--rw odu-type-list*   identityref
           +--rw priority?        uint8
@@ -513,6 +498,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
                /te:named-path-constraint/te:path-out-segment
                /te:label-restrictions/te:label-restriction:
        +--rw otn-label-range
+
+
+
+Zheng, et al.              Expires 6 June 2025                  [Page 9]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
           +--rw range-type?      otn-label-range-type
           +--rw tsg?             identityref
           +--rw odu-type-list*   identityref
@@ -554,14 +547,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction:
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 10]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
        +--rw otn-label-range
           +--rw range-type?      otn-label-range-type
           +--rw tsg?             identityref
@@ -569,6 +554,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
           +--rw priority?        uint8
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-out-segment
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 10]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
                /te:label-restrictions/te:label-restriction:
        +--rw otn-label-range
           +--rw range-type?      otn-label-range-type
@@ -610,14 +603,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
              +--rw tsg?       identityref
              +--rw ts-list?   string
      augment /te:te/te:globals/te:named-path-constraints
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 11]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
                /te:named-path-constraint/te:path-in-segment
                /te:label-restrictions/te:label-restriction
                /te:label-start/te:te-label/te:technology:
@@ -625,6 +610,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
           +--rw otn-label
              +--rw tpn?   otn-tpn
              +--rw ts?    otn-ts
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 11]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-end
@@ -666,14 +659,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
              +--rw tpn?   otn-tpn
              +--rw ts?    otn-ts
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 12]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
                /te:primary-path/te:optimizations/te:algorithm/te:metric
                /te:optimization-metric/te:explicit-route-exclude-objects
                /te:route-object-exclude-object/te:type/te:label
@@ -681,6 +666,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
        +--:(otn)
           +--rw otn-label
              +--rw tpn?       otn-tpn
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 12]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
              +--rw tsg?       identityref
              +--rw ts-list?   string
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
@@ -722,14 +715,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-in-segment/te:label-restrictions
                /te:label-restriction/te:label-end/te:te-label
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 13]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
                /te:technology:
        +--:(otn)
           +--rw otn-label
@@ -737,6 +722,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
              +--rw ts?    otn-ts
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-in-segment/te:label-restrictions
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 13]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
                /te:label-restriction/te:label-step/te:technology:
        +--:(otn)
           +--rw otn-label-step
@@ -778,14 +771,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
              +--ro ts-list?   string
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path/te:optimizations
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 14]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
                /te:algorithm/te:metric/te:optimization-metric
                /te:explicit-route-exclude-objects
                /te:route-object-exclude-object/te:type/te:label
@@ -793,6 +778,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
        +--:(otn)
           +--rw otn-label
              +--rw tpn?       otn-tpn
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 14]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
              +--rw tsg?       identityref
              +--rw ts-list?   string
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
@@ -834,14 +827,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
           +--rw otn-label
              +--rw tpn?   otn-tpn
              +--rw ts?    otn-ts
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 15]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:path-in-segment/te:label-restrictions
@@ -849,6 +834,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
                /te:technology:
        +--:(otn)
           +--rw otn-label
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 15]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
              +--rw tpn?   otn-tpn
              +--rw ts?    otn-ts
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
@@ -890,14 +883,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
                /te:computed-paths-properties/te:computed-path-properties
                /te:path-properties/te:path-route-objects
                /te:path-route-object/te:type/te:label/te:label-hop
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 16]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
                /te:te-label/te:technology:
        +--:(otn)
           +--ro otn-label
@@ -905,6 +890,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
              +--ro tsg?       identityref
              +--ro ts-list?   string
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 16]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
                /te:secondary-path/te:optimizations/te:algorithm
                /te:metric/te:optimization-metric
                /te:explicit-route-exclude-objects
@@ -946,14 +939,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
              +--rw ts-list?   string
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-in-segment
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 17]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
                /te:label-restrictions/te:label-restriction
                /te:label-start/te:te-label/te:technology:
        +--:(otn)
@@ -961,6 +946,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
              +--rw tpn?   otn-tpn
              +--rw ts?    otn-ts
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 17]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
                /te:secondary-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-end
                /te:te-label/te:technology:
@@ -1002,14 +995,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
              +--rw ts?    otn-ts
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:computed-paths-properties
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 18]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
                /te:computed-path-properties/te:path-properties
                /te:path-route-objects/te:path-route-object/te:type
                /te:label/te:label-hop/te:te-label/te:technology:
@@ -1017,6 +1002,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
           +--ro otn-label
              +--ro tpn?       otn-tpn
              +--ro tsg?       identityref
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 18]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
              +--ro ts-list?   string
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:optimizations/te:algorithm
@@ -1058,14 +1051,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
              +--rw tpn?       otn-tpn
              +--rw tsg?       identityref
              +--rw ts-list?   string
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 19]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction
@@ -1073,6 +1058,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
        +--:(otn)
           +--rw otn-label
              +--rw tpn?   otn-tpn
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 19]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
              +--rw ts?    otn-ts
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:path-in-segment
@@ -1114,14 +1107,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
           +--rw otn-label-step
              +--rw tpn?   otn-tpn
              +--rw ts?    otn-ts
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 20]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:computed-paths-properties
                /te:computed-path-properties/te:path-properties
@@ -1129,6 +1114,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
                /te:label/te:label-hop/te:te-label/te:technology:
        +--:(otn)
           +--ro otn-label
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 20]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
              +--ro tpn?       otn-tpn
              +--ro tsg?       identityref
              +--ro ts-list?   string
@@ -1170,20 +1163,20 @@ Internet-Draft              OTN Tunnel Model               December 2024
 
      organization
        "IETF CCAMP Working Group";
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 21]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
      contact
        "WG Web:   <http://tools.ietf.org/wg/ccamp/>
         WG List:  <mailto:ccamp@ietf.org>
 
         Editor:   Haomian Zheng
                   <mailto:zhenghaomian@huawei.com>
+
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 21]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
 
         Editor:   Italo Busi
                   <mailto:italo.busi@huawei.com>
@@ -1226,14 +1219,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
        // information and remove this note
      }
 
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 22]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
     /*
      * Data nodes
      */
@@ -1241,6 +1226,13 @@ Internet-Draft              OTN Tunnel Model               December 2024
      /*
       * Augment TE bandwidth
       */
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 22]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
 
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/"
@@ -1282,14 +1274,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
        case otn {
          uses l1-types:otn-path-bandwidth;
        }
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 23]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -1298,6 +1282,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:te-bandwidth/te:technology" {
        description
          "Augment TE bandwidth of the primary reverse path.";
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 23]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
        case otn {
          uses l1-types:otn-path-bandwidth;
        }
@@ -1338,14 +1330,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
        case otn {
          uses l1-types:otn-path-bandwidth;
        }
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 24]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -1354,6 +1338,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:te-bandwidth/te:technology" {
        description
          "Augment TE bandwidth of the secondary reverse path.";
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 24]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
        case otn {
          uses l1-types:otn-path-bandwidth;
        }
@@ -1394,14 +1386,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
          "Augment TE label range information for the egress segment
          of the named path constraint.";
        uses l1-types:otn-label-range-info;
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 25]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -1410,6 +1394,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:label-restriction" {
        description
          "Augment TE label range information for the ingress segment
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 25]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
          of the primay path.";
        uses l1-types:otn-label-range-info;
      }
@@ -1450,14 +1442,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:secondary-paths/te:secondary-path/"
            + "te:path-in-segment/te:label-restrictions/"
            + "te:label-restriction" {
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 26]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
        description
          "Augment TE label range information for the ingress segment
          of the secondary path.";
@@ -1466,6 +1450,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 26]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
            + "te:path-out-segment/te:label-restrictions/"
            + "te:label-restriction" {
        description
@@ -1506,14 +1498,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
        description
          "Augment TE label hop for the explicit route objects always
          excluded by the path computation with the named path
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 27]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
          constraint.";
        case otn {
          uses l1-types:otn-label-hop;
@@ -1522,6 +1506,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
 
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/"
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 27]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
            + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
@@ -1562,14 +1554,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
 
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/te:path-in-segment/"
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 28]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
            + "te:label-restrictions/te:label-restriction/"
            + "te:label-step/te:technology" {
        description
@@ -1578,6 +1562,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
        case otn {
          uses l1-types:otn-label-step;
        }
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 28]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
      }
 
      augment "/te:te/te:globals/te:named-path-constraints/"
@@ -1618,14 +1610,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
        }
      }
 
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 29]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:optimizations/te:algorithm/te:metric/"
@@ -1634,6 +1618,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 29]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
          route objects excluded by the path computation of the primary
          path.";
        case otn {
@@ -1674,14 +1666,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 30]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
        description
          "Augment TE label hop for the explicit route objects included
          or excluded by the path computation of the primary path.";
@@ -1689,6 +1673,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
          uses l1-types:otn-label-hop;
        }
      }
+
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 30]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
@@ -1730,14 +1722,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 31]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
            + "te:path-out-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-start/"
            + "te:te-label/te:technology" {
@@ -1746,6 +1730,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
          of the primay path.";
        case otn {
          uses l1-types:otn-label-start-end;
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 31]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
        }
      }
 
@@ -1786,14 +1778,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
          primary path.";
        case otn {
          uses l1-types:otn-label-hop;
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 32]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
        }
      }
 
@@ -1802,6 +1786,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:primary-reverse-path/"
            + "te:optimizations/te:algorithm/te:metric/"
            + "te:optimization-metric/te:explicit-route-exclude-objects/"
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 32]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
            + "te:route-object-exclude-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -1842,14 +1834,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
          path.";
        case otn {
          uses l1-types:otn-label-hop;
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 33]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
        }
      }
 
@@ -1858,6 +1842,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:primary-reverse-path/"
            + "te:explicit-route-objects/"
            + "te:route-object-include-exclude/"
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 33]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
            + "te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
@@ -1898,14 +1890,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 34]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
            + "te:path-in-segment/te:label-restrictions/"
@@ -1914,6 +1898,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
          "Augment TE label range step for the ingress segment
          of the primay reverse path.";
        case otn {
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 34]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
          uses l1-types:otn-label-step;
        }
      }
@@ -1954,14 +1946,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
        description
          "Augment TE label range step for the egress segment
          of the primay reverse path.";
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 35]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
        case otn {
          uses l1-types:otn-label-step;
        }
@@ -1970,6 +1954,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 35]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
            + "te:computed-paths-properties/te:computed-path-properties/"
            + "te:path-properties/te:path-route-objects/"
            + "te:path-route-object/te:type/te:label/"
@@ -2010,14 +2002,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
        case otn {
          uses l1-types:otn-label-hop;
        }
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 36]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2026,6 +2010,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:route-object-exclude-always/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
        description
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 36]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
          "Augment TE label hop for the explicit route objects always
          excluded by the path computation of the secondary path.";
        case otn {
@@ -2066,14 +2058,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the ingress segment
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 37]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
          of the secondary path.";
        case otn {
          uses l1-types:otn-label-start-end;
@@ -2082,6 +2066,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
            + "te:path-in-segment/te:label-restrictions/"
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 37]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
            + "te:label-restriction/te:label-step/te:technology" {
        description
          "Augment TE label range step for the ingress segment
@@ -2122,14 +2114,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:path-out-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-step/te:technology" {
        description
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 38]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
          "Augment TE label range step for the egress segment
          of the secondary path.";
        case otn {
@@ -2138,6 +2122,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 38]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
            + "te:secondary-paths/te:secondary-path/"
            + "te:computed-paths-properties/"
            + "te:computed-path-properties/"
@@ -2178,14 +2170,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
          route objects included by the path computation of the
          secondary reverse path.";
        case otn {
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 39]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
          uses l1-types:otn-label-hop;
        }
      }
@@ -2194,6 +2178,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
            + "te:explicit-route-objects/"
            + "te:route-object-exclude-always/te:type/te:label/"
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 39]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects always
@@ -2234,14 +2226,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
            + "te:path-in-segment/te:label-restrictions/"
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 40]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
            + "te:label-restriction/te:label-end/"
            + "te:te-label/te:technology" {
        description
@@ -2250,6 +2234,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
        case otn {
          uses l1-types:otn-label-start-end;
        }
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 40]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2290,14 +2282,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
        }
      }
 
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 41]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
            + "te:path-out-segment/te:label-restrictions/"
@@ -2306,6 +2290,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
          "Augment TE label range step for the egress segment
          of the secondary reverse path.";
        case otn {
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 41]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
+
          uses l1-types:otn-label-step;
        }
      }
@@ -2345,15 +2337,6 @@ Internet-Draft              OTN Tunnel Model               December 2024
    IANA is requested to register the following URI in the "ns"
    subregistry within the "IETF XML Registry" [RFC3688]:
 
-
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 42]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
          URI: urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
          Registrant Contact: The IESG
          XML: N/A; the requested URI is an XML namespace.
@@ -2361,6 +2344,15 @@ Internet-Draft              OTN Tunnel Model               December 2024
    IANA is requested to register the following YANG module in the "YANG
    Module Names" subregistry [RFC6020] within the "YANG Parameters"
    registry.
+
+
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 42]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
 
          name:         ietf-otn-tunnel
          namespace:    urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
@@ -2402,20 +2394,21 @@ Internet-Draft              OTN Tunnel Model               December 2024
       container, as defined in [I-D.ietf-teas-yang-te] (e.g.,
       "/te:te/te:tunnels/te:tunnel/te:te-
       bandwidth/te:technology/otnt:otn/otnt:otn-bandwidth").  By
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 43]
-
-Internet-Draft              OTN Tunnel Model               December 2024
-
-
       configuring the OTN bandwidth attributes, an attacker may create
       an unauthorized OTN traffic path.  By removing or modifying it, a
       malicious attacker may cause OTN traffic to be disabled or
       misrouted.
 
    *  "otnt:otn-label-range"
+
+
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 43]
+
+Internet-Draft              OTN Tunnel Model               December 2024
+
 
       This subtree specifies the configurations of OTN technology-
       specific label range information under any occurrence of the
@@ -2461,7 +2454,14 @@ Internet-Draft              OTN Tunnel Model               December 2024
 
 
 
-Zheng, et al.              Expires 5 June 2025                 [Page 44]
+
+
+
+
+
+
+
+Zheng, et al.              Expires 6 June 2025                 [Page 44]
 
 Internet-Draft              OTN Tunnel Model               December 2024
 
@@ -2517,7 +2517,7 @@ Internet-Draft              OTN Tunnel Model               December 2024
 
 
 
-Zheng, et al.              Expires 5 June 2025                 [Page 45]
+Zheng, et al.              Expires 6 June 2025                 [Page 45]
 
 Internet-Draft              OTN Tunnel Model               December 2024
 
@@ -2573,7 +2573,7 @@ Internet-Draft              OTN Tunnel Model               December 2024
 
 
 
-Zheng, et al.              Expires 5 June 2025                 [Page 46]
+Zheng, et al.              Expires 6 June 2025                 [Page 46]
 
 Internet-Draft              OTN Tunnel Model               December 2024
 
@@ -2629,7 +2629,7 @@ Internet-Draft              OTN Tunnel Model               December 2024
 
 
 
-Zheng, et al.              Expires 5 June 2025                 [Page 47]
+Zheng, et al.              Expires 6 June 2025                 [Page 47]
 
 Internet-Draft              OTN Tunnel Model               December 2024
 
@@ -2670,7 +2670,9 @@ Contributors
    Email: dieter.beller@nokia.com
 
 
-   TBD
+   To-Be-Added
+   To-Be-Added
+   Email: To-Be-Added
 
 
    Xian Zhang
@@ -2680,14 +2682,15 @@ Contributors
 
    Lei Wang
    China Mobile
-   Email: wangleiyj@chinamobile.com
 
 
 
-
-Zheng, et al.              Expires 5 June 2025                 [Page 48]
+Zheng, et al.              Expires 6 June 2025                 [Page 48]
 
 Internet-Draft              OTN Tunnel Model               December 2024
+
+
+   Email: wangleiyj@chinamobile.com
 
 
    Oscar Gonzalez de Dios
@@ -2738,7 +2741,4 @@ Authors' Addresses
 
 
 
-
-
-
-Zheng, et al.              Expires 5 June 2025                 [Page 49]
+Zheng, et al.              Expires 6 June 2025                 [Page 49]
