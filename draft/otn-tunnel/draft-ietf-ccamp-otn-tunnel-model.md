@@ -232,14 +232,14 @@ in {{!I-D.ietf-ccamp-layer1-types}}.
 # OTN Tunnel YANG Tree
 
 ~~~~ ascii-art
-{::include ../../../YANG/ccamp/otn-tunnel/ietf-otn-tunnel.tree.folded}
+{::include-fold ../../yang/otn-tunnel/ietf-otn-tunnel.tree}
 ~~~~
-{: #fig-otn-tunnel-tree artwork-name="ietf-otn-tunnel.tree.folded"}
+{: #fig-otn-tunnel-tree artwork-name="ietf-otn-tunnel.tree"}
 
 # OTN Tunnel YANG Code
 
 ~~~~ yang
-{::include ../../../YANG/ccamp/otn-tunnel/ietf-otn-tunnel.yang}
+{::include ../../yang/otn-tunnel/ietf-otn-tunnel.yang}
 ~~~~
 {: #fig-otn-tunnel-yang sourcecode-markers="true" sourcecode-name="ietf-otn-tunnel@2024-03-21.yang"}
 
