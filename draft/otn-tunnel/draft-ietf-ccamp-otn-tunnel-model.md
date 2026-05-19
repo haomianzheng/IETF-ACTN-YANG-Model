@@ -115,9 +115,20 @@ This document provides YANG model for creating OTN tunnel.  The model
 augments the generic TE Tunnel model specified in
 {{!I-D.ietf-teas-yang-te}}.
 
-The YANG module ietf-otn-tunnel defined in this document conforms to
-the Network Management Datastore Architecture (NMDA) defined in
-{{!RFC8342}}.
+## Editorial Note (To be removed by RFC Editor)
+
+> Note to the RFC Editor: This section is to be removed prior to publication.
+
+This document contains placeholder values that need to be replaced
+with finalized values at the time of publication.  This note
+summarizes all of the substitutions that are needed.
+
+Please apply the following replacements:
+
+- XXXX --> the assigned RFC number for this I-D
+- YYYY --> the assigned RFC number fpr {{!I-D.ietf-ccamp-layer1-types}}
+- ZZZZ --> the assigned RFC number for {{!I-D.ietf-teas-yang-te}}
+- 2026-05-19 --> the actual date of the publication of this document
 
 ## Terminology and Notations
 
@@ -164,11 +175,6 @@ corresponding YANG imported modules, as shown in the following table.
 | otn-tnl     | ietf-otn-tunnel         | RFC XXXX
 | te          | ietf-te                 | \[RFC ZZZZ]
 {: #tab-prefixes title="Prefixes and corresponding YANG modules"}
-
-RFC Editor Note: Please replace XXXX with the number assigned to the
-RFC once this draft becomes an RFC.  Please replace YYYY with the RFC
-numbers assigned to {{!I-D.ietf-ccamp-layer1-types}}.  Please replace
-ZZZZ with the RFC numbers assigned to {{!I-D.ietf-teas-yang-te}}.
 
 # OTN Tunnel Model Description
 
@@ -227,49 +233,42 @@ container with the OTN technology specific attributes using the otn-
 label-start-end, otn-label-hop and otn-label-step groupings defined
 in {{!I-D.ietf-ccamp-layer1-types}}.
 
-{: #yang-tree}
-
-# OTN Tunnel YANG Tree
-
-~~~~ ascii-art
-{::include-fold ../../yang/otn-tunnel/ietf-otn-tunnel.tree}
-~~~~
-{: #fig-otn-tunnel-tree artwork-name="ietf-otn-tunnel.tree"}
-
-# OTN Tunnel YANG Code
+# OTN Tunnel YANG Code {#yang}
 
 ~~~~ yang
 {::include ../../yang/otn-tunnel/ietf-otn-tunnel.yang}
 ~~~~
-{: #fig-otn-tunnel-yang sourcecode-markers="true" sourcecode-name="ietf-otn-tunnel@2024-03-21.yang"}
+{: #fig-otn-tunnel-yang sourcecode-markers="true" sourcecode-name="ietf-otn-tunnel@2026-05-19.yang"}
 
 # IANA Considerations
 
-IANA is requested to register the following URI in the "ns" subregistry within the "IETF XML Registry" {{!RFC3688}}:
+IANA is requested to register the following URI in the "ns"
+registry within the "IETF XML Registry" group {{?RFC3688}}:
 
 ~~~~
-      URI: urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
-      Registrant Contact: The IESG
-      XML: N/A; the requested URI is an XML namespace.
+   URI: urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
+   Registrant Contact: The IESG
+   XML: N/A; the requested URI is an XML namespace.
 ~~~~
 
-IANA is requested to register the following YANG module in the "YANG Module Names" subregistry {{!RFC6020}} within the "YANG Parameters" registry.
+IANA is requested to register the following YANG module in the "YANG
+Module Names" registry {{!RFC6020}} within the "YANG Parameters"
+registry group.
 
 ~~~~
-      name:         ietf-otn-tunnel
-      namespace:    urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
-      prefix:       otn-tnl
-      reference:    RFC XXXX
+   Name:         ietf-otn-tunnel
+   Maintained by IANA?  N
+   Namespace:    urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
+   Prefix:       otn-tnl
+   Reference:    RFC XXXX
 ~~~~
-
-> RFC Editor Note: Please replace XXXX with the number assigned to the RFC once this draft becomes an RFC.
 
 # Security Considerations
 
-This section is modeled after the template described in Section 3.7
-of {{?I-D.ietf-netmod-rfc8407bis}}.
+This section is modeled after the template described in {{Section 3.7
+of ?RFC9907}}.
 
-The "ietf-te-types" and the "ietf-te-packet-types" YANG modules define data models that are
+The "ietf-otn-tunnel" YANG module defines a data model that is
 designed to be accessed via YANG-based management protocols, such as
 NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These protocols have to
 use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
@@ -326,6 +325,15 @@ be considered sensitive or vulnerable in network environments.
 Finally, the YANG module described in this document augments the "ietf-te" YANG module {{!I-D.ietf-teas-yang-te}} by adding data nodes. The security considerations for the subtrees described in those RFCs apply equally to the new data nodes that this module adds.
 
 --- back
+
+# OTN Tunnel YANG Tree {#yang-tree}
+
+This appendix presents the complete tree of the YANG data model defined in module "ietf-otn-tunnel.yang", defined in {{yang}}. See {{?RFC8340}} for an explanation of the symbols used.
+
+~~~~ ascii-art
+{::include-fold ../../yang/otn-tunnel/ietf-otn-tunnel.tree}
+~~~~
+{: #fig-otn-tunnel-tree artwork-name="ietf-otn-tunnel.tree"}
 
 # Acknowledgments
 {:numbered="false"}

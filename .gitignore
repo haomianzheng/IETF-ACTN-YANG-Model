@@ -3,5 +3,4 @@ background
 *.bash
 background/
 *.xml
-*.bash
 temp/
