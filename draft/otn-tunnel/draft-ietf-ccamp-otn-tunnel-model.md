@@ -186,7 +186,7 @@ basic model and augments it with OTN-specific parameters, including
 the bandwidth information and label information.  {{fig-overview}} shows the
 augmentation relationship.
 
-~~~~ ascii-art
+~~~~ aasvg
                            +----------------+
               TE generic   |     ietf-te    |
                            +----------------+
