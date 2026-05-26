@@ -1,12 +1,40 @@
-# "Internet-Draft with YANG Modules" Template Repository
+<!-- regenerate: on (set to off if you edit this file) -->
 
-Use this repository as a template if you want to start working on
-[IETF](https://www.ietf.org/) documents with YANG Modules. This covers validation of YANG modules, generation of trees, and validation of JSON examples.
+# CCAMP Drafts
 
-[Click here to create a new repository using the template](https://github.com/IETF-OPS-AD/I-D-with-yang-template/generate).
-Make sure to check "Include all branches" when creating your repository.
+This is the working area for IETF [CCAMP Working Group](https://datatracker.ietf.org/group/ccamp/documents/) Internet-Drafts.
 
-Once you have created your own repository, start work by
-[renaming the `draft-todo-yourname-protocol.md` file](../../edit/main/draft-todo-yourname-protocol.md) and adding your YANG files under "yang" folder.
+## A YANG Data Model for Optical Transport Network Topology
 
-This repository leverages [martinthomson/internet-draft-template](https://github.com/martinthomson/internet-draft-template) to build I-Ds and extends it to provide required tools to support IETF documents that include YANG mdoules.
+* [Editor's Copy](https://haomianzheng.github.io/IETF-ACTN-YANG-Model/#go.draft-ietf-ccamp-otn-topo-yang.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-ccamp-otn-topo-yang)
+* [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang)
+* [Compare Editor's Copy to Working Group Draft](https://haomianzheng.github.io/IETF-ACTN-YANG-Model/#go.draft-ietf-ccamp-otn-topo-yang.diff)
+
+## A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label Switched Paths
+
+* [Editor's Copy](https://haomianzheng.github.io/IETF-ACTN-YANG-Model/#go.draft-ietf-ccamp-otn-tunnel-model.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-ccamp-otn-tunnel-model)
+* [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-tunnel-model)
+* [Compare Editor's Copy to Working Group Draft](https://haomianzheng.github.io/IETF-ACTN-YANG-Model/#go.draft-ietf-ccamp-otn-tunnel-model.diff)
+
+
+## Contributing
+
+See the
+[guidelines for contributions](https://github.com/haomianzheng/IETF-ACTN-YANG-Model/blob/main/CONTRIBUTING.md).
+
+The contributing file also has tips on how to make contributions, if you
+don't already know how to do that.
+
+## Command Line Usage
+
+Formatted text and HTML versions of the draft can be built using `make`.
+
+```sh
+$ make
+```
+
+Command line usage requires that you have the necessary software installed.  See
+[the instructions](https://github.com/martinthomson/i-d-template/blob/main/doc/SETUP.md).
+

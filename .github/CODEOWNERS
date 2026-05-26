@@ -1,0 +1,4 @@
+# Automatically generated CODEOWNERS
+# Regenerate with `make update-codeowners`
+draft-ietf-ccamp-otn-topo-yang.md zhenghaomian@huawei.com italo.busi@huawei.com xufeng.liu.ietf@gmail.com sergio.belotti@nokia.com oscar.gonzalezdedios@telefonica.com
+draft-ietf-ccamp-otn-tunnel-model.md zhenghaomian@huawei.com italo.busi@huawei.com sergio.belotti@nokia.com victor.lopez@nokia.com xuyunbin@caict.ac.cn
