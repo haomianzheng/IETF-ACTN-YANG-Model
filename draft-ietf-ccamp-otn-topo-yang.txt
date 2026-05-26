@@ -2,7 +2,7 @@
 
 
 
-Common Control and Measurement Plane                            H. Zheng
+CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
 Expires: 27 November 2026                                         X. Liu
@@ -4012,6 +4012,8 @@ Appendix B.  JSON Examples
 
                      Figure 2: Example of OTN topology
 
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
    {
      "ietf-network:networks": {
        "network": [
@@ -4044,7 +4046,8 @@ Appendix B.  JSON Examples
                      "name": "Interface 1 of Node D1",
                      "interface-switching-capability": [
                        {
-                         "switching-capability": "ietf-te-types:switching-otn",
+                         "switching-capability": "ietf-te-types:\
+                                                         switching-otn",
                          "encoding": "ietf-te-types:lsp-encoding-oduk"
                        }
                      ],
@@ -4096,7 +4099,8 @@ Appendix B.  JSON Examples
                      "name": "Interface 2 of Node D2",
                      "interface-switching-capability": [
                        {
-                         "switching-capability": "ietf-te-types:switching-otn",
+                         "switching-capability": "ietf-te-types:\
+                                                         switching-otn",
                          "encoding": "ietf-te-types:lsp-encoding-oduk"
                        }
                      ]
@@ -4156,10 +4160,12 @@ Appendix B.  JSON Examples
                "link-id": "example:link/D1-2/D2-1",
                "ietf-te-topology:te": {
                  "te-link-attributes": {
-                   "name": "Link between Node D1 and Node D2 (forward direction)",
+                   "name": "Link between Node D1 and Node D2 (forward \
+                                                            direction)",
                    "interface-switching-capability": [
                      {
-                       "switching-capability": "ietf-te-types:switching-otn",
+                       "switching-capability": "ietf-te-types:switching\
+                                                                  -otn",
                        "encoding": "ietf-te-types:lsp-encoding-oduk"
                      }
                    ],
@@ -4203,7 +4209,8 @@ Appendix B.  JSON Examples
                "link-id": "example:link/D2-1/D1-2",
                "ietf-te-topology:te": {
                  "te-link-attributes": {
-                   "name": "Link between Node D1 and Node D2 (reverse direction)"
+                   "name": "Link between Node D1 and Node D2 (reverse \
+                                                             direction)"
                  }
                }
              },
@@ -4211,10 +4218,12 @@ Appendix B.  JSON Examples
                "link-id": "example:link/D2-3/D3-2",
                "ietf-te-topology:te": {
                  "te-link-attributes": {
-                   "name": "Link between Node D2 and Node D3 (forward direction)",
+                   "name": "Link between Node D2 and Node D3 (forward \
+                                                            direction)",
                    "interface-switching-capability": [
                      {
-                       "switching-capability": "ietf-te-types:switching-otn",
+                       "switching-capability": "ietf-te-types:switching\
+                                                                  -otn",
                        "encoding": "ietf-te-types:lsp-encoding-oduk"
                      }
                    ],
@@ -4245,7 +4254,8 @@ Appendix B.  JSON Examples
                "link-id": "example:link/D3-2/D2-3",
                "ietf-te-topology:te": {
                  "te-link-attributes": {
-                   "name": "Link between Node D2 and Node D3 (reverse direction)"
+                   "name": "Link between Node D2 and Node D3 (reverse \
+                                                             direction)"
                  }
                }
              },
@@ -4253,7 +4263,8 @@ Appendix B.  JSON Examples
                "link-id": "example:link/D3-1/D1-3",
                "ietf-te-topology:te": {
                  "te-link-attributes": {
-                   "name": "Link between Node D1 and Node D3 (reverse direction)"
+                   "name": "Link between Node D1 and Node D3 (reverse \
+                                                             direction)"
                  }
                }
              },
@@ -4261,10 +4272,12 @@ Appendix B.  JSON Examples
                "link-id": "example:link/D1-3/D3-1",
                "ietf-te-topology:te": {
                  "te-link-attributes": {
-                   "name": "Link between Node D1 and Node D3 (forward direction)",
+                   "name": "Link between Node D1 and Node D3 (forward \
+                                                            direction)",
                    "interface-switching-capability": [
                      {
-                       "switching-capability": "ietf-te-types:switching-otn",
+                       "switching-capability": "ietf-te-types:switching\
+                                                                  -otn",
                        "encoding": "ietf-te-types:lsp-encoding-oduk"
                      }
                    ],

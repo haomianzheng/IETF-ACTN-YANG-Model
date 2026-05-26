@@ -1061,7 +1061,7 @@ svg {
 <div id="internal-metadata" class="document-information">
 <dl id="identifiers">
 <dt class="label-workgroup">Workgroup:</dt>
-<dd class="workgroup">Common Control and Measurement Plane</dd>
+<dd class="workgroup">CCAMP Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
 <dd class="internet-draft">draft-ietf-ccamp-otn-topo-yang-latest</dd>
 <dt class="label-published">Published:</dt>
@@ -5272,6 +5272,8 @@ instantiated.<a href="#appendix-B-9.3.1" class="pilcrow">¶</a></p>
 </div>
 <div class="breakable lang-json sourcecode" id="appendix-B-11">
 <pre>
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
 {
   "ietf-network:networks": {
     "network": [
@@ -5304,7 +5306,8 @@ instantiated.<a href="#appendix-B-9.3.1" class="pilcrow">¶</a></p>
                   "name": "Interface 1 of Node D1",
                   "interface-switching-capability": [
                     {
-                      "switching-capability": "ietf-te-types:switching-otn",
+                      "switching-capability": "ietf-te-types:\
+                                                      switching-otn",
                       "encoding": "ietf-te-types:lsp-encoding-oduk"
                     }
                   ],
@@ -5356,7 +5359,8 @@ instantiated.<a href="#appendix-B-9.3.1" class="pilcrow">¶</a></p>
                   "name": "Interface 2 of Node D2",
                   "interface-switching-capability": [
                     {
-                      "switching-capability": "ietf-te-types:switching-otn",
+                      "switching-capability": "ietf-te-types:\
+                                                      switching-otn",
                       "encoding": "ietf-te-types:lsp-encoding-oduk"
                     }
                   ]
@@ -5416,10 +5420,12 @@ instantiated.<a href="#appendix-B-9.3.1" class="pilcrow">¶</a></p>
             "link-id": "example:link/D1-2/D2-1",
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "name": "Link between Node D1 and Node D2 (forward direction)",
+                "name": "Link between Node D1 and Node D2 (forward \
+                                                         direction)",
                 "interface-switching-capability": [
                   {
-                    "switching-capability": "ietf-te-types:switching-otn",
+                    "switching-capability": "ietf-te-types:switching\
+                                                               -otn",
                     "encoding": "ietf-te-types:lsp-encoding-oduk"
                   }
                 ],
@@ -5463,7 +5469,8 @@ instantiated.<a href="#appendix-B-9.3.1" class="pilcrow">¶</a></p>
             "link-id": "example:link/D2-1/D1-2",
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "name": "Link between Node D1 and Node D2 (reverse direction)"
+                "name": "Link between Node D1 and Node D2 (reverse \
+                                                          direction)"
               }
             }
           },
@@ -5471,10 +5478,12 @@ instantiated.<a href="#appendix-B-9.3.1" class="pilcrow">¶</a></p>
             "link-id": "example:link/D2-3/D3-2",
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "name": "Link between Node D2 and Node D3 (forward direction)",
+                "name": "Link between Node D2 and Node D3 (forward \
+                                                         direction)",
                 "interface-switching-capability": [
                   {
-                    "switching-capability": "ietf-te-types:switching-otn",
+                    "switching-capability": "ietf-te-types:switching\
+                                                               -otn",
                     "encoding": "ietf-te-types:lsp-encoding-oduk"
                   }
                 ],
@@ -5505,7 +5514,8 @@ instantiated.<a href="#appendix-B-9.3.1" class="pilcrow">¶</a></p>
             "link-id": "example:link/D3-2/D2-3",
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "name": "Link between Node D2 and Node D3 (reverse direction)"
+                "name": "Link between Node D2 and Node D3 (reverse \
+                                                          direction)"
               }
             }
           },
@@ -5513,7 +5523,8 @@ instantiated.<a href="#appendix-B-9.3.1" class="pilcrow">¶</a></p>
             "link-id": "example:link/D3-1/D1-3",
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "name": "Link between Node D1 and Node D3 (reverse direction)"
+                "name": "Link between Node D1 and Node D3 (reverse \
+                                                          direction)"
               }
             }
           },
@@ -5521,10 +5532,12 @@ instantiated.<a href="#appendix-B-9.3.1" class="pilcrow">¶</a></p>
             "link-id": "example:link/D1-3/D3-1",
             "ietf-te-topology:te": {
               "te-link-attributes": {
-                "name": "Link between Node D1 and Node D3 (forward direction)",
+                "name": "Link between Node D1 and Node D3 (forward \
+                                                         direction)",
                 "interface-switching-capability": [
                   {
-                    "switching-capability": "ietf-te-types:switching-otn",
+                    "switching-capability": "ietf-te-types:switching\
+                                                               -otn",
                     "encoding": "ietf-te-types:lsp-encoding-oduk"
                   }
                 ],
