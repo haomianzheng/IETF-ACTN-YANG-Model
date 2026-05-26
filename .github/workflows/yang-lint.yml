@@ -1,0 +1,23 @@
+name: "Check Syntax of YANG Modules & Generate Trees"
+
+on:
+  push:
+    paths:
+    - '**.yang'
+    - '**.json'    
+  pull_request:
+    paths:
+    - '**.yang'
+    - '**.json'    
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: "YANG linting and tree generation"
+    runs-on: ubuntu-latest
+    steps:
+    - name: "YANG linting and tree generation"
+      uses: IETF-OPS-AD/I-D-with-yang-tools@main

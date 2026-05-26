@@ -1,0 +1,14 @@
+{
+  "ietf-yang-library:modules-state": {
+    "module-set-id": "",
+    "module": [
+      {
+        "name": "ietf-test",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-test",
+        "revision": "",
+        "conformance-type": "implement",
+        "feature": []		  
+      }
+    ]
+  }
+}
