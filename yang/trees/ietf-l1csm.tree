@@ -1,0 +1,32 @@
+module: ietf-l1csm
+  +--rw l1-connectivity
+     +--rw access
+     |  +--rw unis
+     |     +--rw uni* [uni-id]
+     |        +--rw uni-id                     string
+     |        +--rw (uni-access-type)?
+     |           +--:(mef)
+     |           |  +--rw protocol             identityref
+     |           |  +--rw coding               identityref
+     |           |  +--rw optical-interface    identityref
+     |           +--:(itu)
+     |              +--rw client-signal        identityref
+     +--rw services
+        +--rw service* [service-id]
+           +--rw service-id    string
+           +--rw endpoints
+              +--rw endpoint* [endpoint-id]
+                 +--rw endpoint-id    string
+                 +--rw uni
+                         -> /l1-connectivity/access/unis/uni/uni-id
+
+  grouping protocol-coding-optical-interface:
+    +-- protocol             identityref
+    +-- coding               identityref
+    +-- optical-interface    identityref
+  grouping subscriber-l1vc-endpoint-attributes:
+    +-- endpoints
+       +-- endpoint* [endpoint-id]
+          +-- endpoint-id    string
+          +-- uni
+                  -> /l1-connectivity/access/unis/uni/uni-id
