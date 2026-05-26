@@ -4,7 +4,7 @@
 
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
-Intended status: Informational                       Huawei Technologies
+Intended status: Standards Track                     Huawei Technologies
 Expires: 27 November 2026                                     S. Belotti
                                                                 V. Lopez
                                                                    Nokia
