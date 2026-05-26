@@ -9,15 +9,15 @@ number:
 date:
 consensus: true
 v: 3
-area: Routing
-workgroup: CCAMP Working Group
+area: "Routing"
+workgroup: "Common Control and Measurement Plane"
 venue:
-  group: Common Control and Measurement Plane
-  type: Working Group
-  mail: ccamp@ietf.org
-  arch: https://mailarchive.ietf.org/arch/browse/ccamp/
-  github: haomianzheng/IETF-ACTN-YANG-Model
-  latest: https://haomianzheng.github.io/IETF-ACTN-YANG-Model/draft-ietf-ccamp-otn-tunnel-model.html
+  group: "Common Control and Measurement Plane"
+  type: "Working Group"
+  mail: "ccamp@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/ccamp/"
+  github: "haomianzheng/IETF-ACTN-YANG-Model"
+  latest: "https://haomianzheng.github.io/IETF-ACTN-YANG-Model/draft-ietf-ccamp-otn-tunnel-model.html"
 
 author:
   -
