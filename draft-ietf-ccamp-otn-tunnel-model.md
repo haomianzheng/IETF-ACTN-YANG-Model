@@ -1,7 +1,7 @@
 ---
 title: "A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label Switched Paths"
 abbrev: "OTN Tunnel Model"
-category: info
+category: std
 
 docname: draft-ietf-ccamp-otn-tunnel-model-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
@@ -10,7 +10,7 @@ date:
 consensus: true
 v: 3
 area: "Routing"
-workgroup: "Common Control and Measurement Plane"
+workgroup: "CCAMP Working Group"
 venue:
   group: "Common Control and Measurement Plane"
   type: "Working Group"
@@ -98,37 +98,245 @@ informative:
 
 --- abstract
 
-TODO Abstract
-
+This document describes the YANG data model for tunnels in OTN TE
+networks.  The model can be used to do the configuration in order to
+establish the tunnel in OTN network.  This work is independent with
+the control plane protocols.
 
 --- middle
 
 # Introduction
 
-TODO Introduction
+OTN transport networks, specified in {{ITU-T_G.709}}, can carry various
+types of client signals.  In many cases, the client signal is carried
+over an OTN tunnel across connected domains in a multi-domain
+network.
 
+This document provides YANG model for creating OTN tunnel.  The model
+augments the generic TE Tunnel model specified in
+{{!I-D.ietf-teas-yang-te}}.
 
-# Conventions and Definitions
+## Editorial Note (To be removed by RFC Editor)
 
-{::boilerplate bcp14-tagged}
+> Note to the RFC Editor: This section is to be removed prior to publication.
 
-# Operational Considerations
+This document contains placeholder values that need to be replaced
+with finalized values at the time of publication.  This note
+summarizes all of the substitutions that are needed.
 
-TBC per {{?I-D.opsarea-rfc5706bis}}.
+Please apply the following replacements:
 
-# Security Considerations
+- XXXX --> the assigned RFC number for this I-D
+- YYYY --> the assigned RFC number fpr {{!I-D.ietf-ccamp-layer1-types}}
+- ZZZZ --> the assigned RFC number for {{!I-D.ietf-teas-yang-te}}
+- 2026-05-19 --> the actual date of the publication of this document
 
-TODO Security
+## Terminology and Notations
 
+Refer to {{!I-D.ietf-ccamp-otn-topo-yang}} for the OTN specific terms
+terms used in this document.
+
+The following terms are defined in {{!RFC7950}} and are not redefined
+here:
+
+-  client
+
+-  server
+
+-  augment
+
+-  data model
+
+-  data node
+
+The following terms are defined in {{!RFC6241}} and are not redefined
+here:
+
+-  configuration data
+
+-  state data
+
+The terminology for describing YANG data models is found in
+{{!RFC7950}}.
+
+## Tree Diagram
+
+A simplified graphical representation of the data model is used in
+{{yang-tree}} of this this document.  The meaning of the symbols in these
+diagrams is defined in {{?RFC8340}}.
+
+## Prefix in Data Node Names
+
+In this document, names of data nodes and other data model objects
+are prefixed using the standard prefix associated with the
+corresponding YANG imported modules, as shown in the following table.
+
+| Prefix      | YANG module             | Reference
+| l1-types    | ietf-layer1-types       | \[RFC YYYY]
+| otn-tnl     | ietf-otn-tunnel         | RFC XXXX
+| te          | ietf-te                 | \[RFC ZZZZ]
+{: #tab-prefixes title="Prefixes and corresponding YANG modules"}
+
+# OTN Tunnel Model Description
+
+## Overview of OTN Tunnel Model
+
+This document aims to describe the data model for OTN tunnel.  The
+OTN tunnel model is using TE tunnel {{!I-D.ietf-teas-yang-te}} as a
+basic model and augments it with OTN-specific parameters, including
+the bandwidth information and label information.  {{fig-overview}} shows the
+augmentation relationship.
+
+~~~~ aasvg
+                           +----------------+
+              TE generic   |     ietf-te    |
+                           +----------------+
+                                    ^
+                                    |
+                                    | Augments
+                                    |
+                           +--------+--------+
+              OTN          | ietf-otn-tunnel |
+                           +-----------------+
+~~~~
+{: #fig-overview title="Relationship between OTN and TE tunnel models"}
+
+It is also worth noting that the OTN tunnel provisioning is usually
+based on the OTN topology.  Therefore the OTN tunnel model is usually
+used together with OTN topology model specified in
+{{!I-D.ietf-ccamp-otn-topo-yang}}.  The OTN tunnel model also imports a
+few type modules, including ietf-layer1-types, ietf-te-types and
+ietf-inet-types.  The OTN-specific attributes in {{!RFC7139}}, including
+the Tributary Slot (TS) and Tributary Port Number (TPN), can be used
+to represent the bandwidth and label information.  These attributes
+have been specified in {{!I-D.ietf-ccamp-layer1-types}} and used in this
+document for augmentation of the generic TE tunnel model.
+
+More scenarios and model applications can be found in
+{{?I-D.ietf-ccamp-transport-nbi-app-statement}} and
+{{?I-D.ietf-teas-actn-yang}}.
+
+## Bandwidth Augmentation
+
+The model augments all the occurrences of the te-bandwidth container
+with the OTN technology specific attributes using the otn-link-
+bandwidth and otn-path-bandwidth groupings defined in
+{{!I-D.ietf-ccamp-layer1-types}}.
+
+## Label Augmentation
+
+The model augments all the occurrences of the label-restriction list
+with OTN technology specific attributes using the otn-label-range-
+info grouping defined in {{!I-D.ietf-ccamp-layer1-types}}.
+
+Moreover, the model augments all the occurrences of the te-label
+container with the OTN technology specific attributes using the otn-
+label-start-end, otn-label-hop and otn-label-step groupings defined
+in {{!I-D.ietf-ccamp-layer1-types}}.
+
+# OTN Tunnel YANG Code {#yang}
+
+~~~~ yang
+{::include yang/ietf-otn-tunnel.yang}
+~~~~
+{: #fig-otn-tunnel-yang sourcecode-markers="true" sourcecode-name="ietf-otn-tunnel@2026-05-19.yang"}
 
 # IANA Considerations
 
-This document has no IANA actions.
+IANA is requested to register the following URI in the "ns"
+registry within the "IETF XML Registry" group {{?RFC3688}}:
 
+~~~~
+   URI: urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
+   Registrant Contact: The IESG
+   XML: N/A; the requested URI is an XML namespace.
+~~~~
+
+IANA is requested to register the following YANG module in the "YANG
+Module Names" registry {{!RFC6020}} within the "YANG Parameters"
+registry group.
+
+~~~~
+   Name:         ietf-otn-tunnel
+   Maintained by IANA?  N
+   Namespace:    urn:ietf:params:xml:ns:yang:ietf-otn-tunnel
+   Prefix:       otn-tnl
+   Reference:    RFC XXXX
+~~~~
+
+# Security Considerations
+
+This section is modeled after the template described in {{Section 3.7
+of ?RFC9907}}.
+
+The "ietf-otn-tunnel" YANG module defines a data model that is
+designed to be accessed via YANG-based management protocols, such as
+NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These protocols have to
+use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
+QUIC {{?RFC9000}}) and have to use mutual authentication.
+
+The Network Configuration Access Control Model (NACM) {{!RFC8341}}
+provides the means to restrict access for particular NETCONF or
+RESTCONF users to a preconfigured subset of all available NETCONF or
+RESTCONF protocol operations and content.
+
+There are a number of data nodes defined in this YANG module that are writable/creatable/deletable (i.e., config true, which is the default).
+These data nodes can be considered sensitive or vulnerable in some network environments.
+Write operations (e.g., edit-config) to these data nodes without proper protection can have a negative effect on network operations.
+Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:
+
+- "otnt:otn-bandwidth"
+
+> This subtree specifies the configurations of OTN technology-specific information under any occurrence of the tet:te-bandwidth container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:te-bandwidth/te:technology/otnt:otn/otnt:otn-bandwidth"). By configuring the OTN bandwidth attributes, an attacker may create an unauthorized OTN traffic path. By removing or modifying it, a malicious attacker may cause OTN traffic to be disabled or misrouted.
+
+- "otnt:otn-label-range"
+
+> This subtree specifies the configurations of OTN technology-specific label range information under any occurrence of the tet:label-restriction container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:primary-paths/te:primary-path/te:path-in-segment/te:label-restrictions/te:label-restriction/otnt:otn-label-range"). By configuring the OTN label range attributes, an attacker may create an unauthorized OTN traffic path. By removing or modifying, a malicious attacker may cause OTN traffic to be disabled or misrouted.
+
+- "otnt:otn-label"
+
+> This subtree specifies the configurations of OTN technology-specific label information under any occurrence of the tet:te-label container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:primary-paths/te:primary-path/te:explicit-route-objects/te:route-object-include-exclude/te:type/te:label/te:label-hop/te:te-label/te:technology/otnt:otn/otnt:otn-label"). By configuring, removing or modifying the OTN label attributes, a malicious attacker may cause OTN traffic to be disabled or misrouted.
+
+Some of the readable data nodes in this YANG module may be considered
+sensitive or vulnerable in some network environments.
+It is thus important to control read access (e.g., via get, get-config, or
+notification) to these data nodes.
+Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:
+
+- "otnt:otn-bandwidth"
+
+> This subtree specifies the configurations of OTN technology-specific information under any occurrence of the tet:te-bandwidth container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:te-bandwidth/te:technology/otnt:otn/otnt:otn-bandwidth"). Unauthorized access to this data node can disclose the OTN bandwidth information of OTN tunnels and LSPs.
+
+- "otnt:otn-label-range"
+
+> This subtree specifies the configurations of OTN technology-specific label range information under any occurrence of the tet:label-restriction container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:primary-paths/te:primary-path/te:path-in-segment/te:label-restrictions/te:label-restriction/otnt:otn-label-range"). Unauthorized access to this data node can disclose the state information of OTN tunnels and LSPs.
+
+- "otnt:otn-label"
+
+> This subtree specifies the configurations of OTN technology-specific label information under any occurrence of the tet:te-label container, as defined in {{!I-D.ietf-teas-yang-te}} (e.g., "/te:te/te:tunnels/te:tunnel/te:primary-paths/te:primary-path/te:explicit-route-objects/te:route-object-include-exclude/te:type/te:label/te:label-hop/te:te-label/te:technology/otnt:otn/otnt:otn-label"). Unauthorized access to this data node can disclose the state information of OTN tunnels and LSPs.
+
+This YANG module does not define RPC operations.
+
+This YANG module uses groupings from other YANG modules that
+define nodes that may be considered sensitive or vulnerable
+in network environments. Refer to the Security Considerations
+of {{!I-D.ietf-ccamp-layer1-types}} for information as to which nodes may
+be considered sensitive or vulnerable in network environments.
+
+Finally, the YANG module described in this document augments the "ietf-te" YANG module {{!I-D.ietf-teas-yang-te}} by adding data nodes. The security considerations for the subtrees described in those RFCs apply equally to the new data nodes that this module adds.
 
 --- back
+
+# OTN Tunnel YANG Tree {#yang-tree}
+
+This appendix presents the complete tree of the YANG data model defined in module "ietf-otn-tunnel.yang", defined in {{yang}}. See {{?RFC8340}} for an explanation of the symbols used.
+
+~~~~ ascii-art
+{::include-fold yang/trees/ietf-otn-tunnel.tree}
+~~~~
+{: #fig-otn-tunnel-tree artwork-name="ietf-otn-tunnel.tree"}
 
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+We would like to thank Yu Chaode for his comments and discussions.
