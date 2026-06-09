@@ -4,6 +4,13 @@
 
 This is the working area for IETF [CCAMP Working Group](https://datatracker.ietf.org/group/ccamp/documents/) Internet-Drafts.
 
+## Common YANG Data Types for Layer 1 Networks
+
+* [Editor's Copy](https://haomianzheng.github.io/IETF-ACTN-YANG-Model/#go.draft-ietf-ccamp-layer1-types.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-ccamp-layer1-types)
+* [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-layer1-types)
+* [Compare Editor's Copy to Working Group Draft](https://haomianzheng.github.io/IETF-ACTN-YANG-Model/#go.draft-ietf-ccamp-layer1-types.diff)
+
 ## A YANG Data Model for Optical Transport Network Topology
 
 * [Editor's Copy](https://haomianzheng.github.io/IETF-ACTN-YANG-Model/#go.draft-ietf-ccamp-otn-topo-yang.html)
