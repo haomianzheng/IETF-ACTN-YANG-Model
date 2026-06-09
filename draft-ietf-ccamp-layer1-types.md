@@ -10,7 +10,7 @@ date:
 consensus: true
 v: 3
 area: "Routing"
-workgroup: "Common Control and Measurement Plane"
+workgroup: "CCAMP Working Group"
 venue:
   group: "Common Control and Measurement Plane"
   type: "Working Group"
@@ -23,7 +23,7 @@ author:
   -
     name: Haomian Zheng
     org: Huawei Technologies
-    street: H1, Huawei Industrial Base, Songshan Lake
+    street: H1, Huawei Xiliu Beipo Village, Songshan Lake
     city: Dongguan
     region: Guangdong
     code: 523808
