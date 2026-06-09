@@ -172,7 +172,7 @@ informative:
 
 --- abstract
 
-This document defines a collection of common common data types,
+This document defines a collection of common data types,
 identities, and groupings in the YANG data modeling language. These
 derived common common data types, identities, and groupings are
 intended to be imported by modules that model Layer 1 configuration
