@@ -36,12 +36,12 @@ keyword:
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "Common Control and Measurement Plane"
+  type: "Working Group"
+  mail: "ccamp@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/ccamp/"
+  github: "haomianzheng/IETF-ACTN-YANG-Model"
+  latest: "https://haomianzheng.github.io/IETF-ACTN-YANG-Model/draft-ietf-ccamp-layer1-types.html"
 
 author:
  -

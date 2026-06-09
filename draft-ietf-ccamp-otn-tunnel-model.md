@@ -10,7 +10,7 @@ date:
 consensus: true
 v: 3
 area: "Routing"
-workgroup: "CCAMP Working Group"
+workgroup: "Common Control and Measurement Plane"
 venue:
   group: "Common Control and Measurement Plane"
   type: "Working Group"
