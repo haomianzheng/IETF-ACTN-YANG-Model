@@ -681,6 +681,8 @@ embedded comments following the conventions in Section 3.2 of
 {{?I-D.ietf-ccamp-transport-nbi-app-statement}} and have been folded
 using the tool in {{?RFC8792}}.
 
+> Note that this JSON example has been simplified for readability and therefore cannot be validated against the reference YANG model.
+
 ~~~~ json
 {::include-fold yang/examples/odu-label-restrictions-examples.json}
 ~~~~
