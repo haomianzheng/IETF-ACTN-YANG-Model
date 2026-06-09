@@ -18,6 +18,7 @@
 /versioned/
 Gemfile.lock
 archive.json
+draft-ietf-ccamp-layer1-types.xml
 draft-ietf-ccamp-otn-topo-yang.xml
 draft-ietf-ccamp-otn-tunnel-model.xml
 package-lock.json
