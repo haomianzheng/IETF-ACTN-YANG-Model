@@ -52,7 +52,7 @@ contributor:
   -
     name: Aihua Guo
     org: Futurewei
-    email: aihuaguo@futurewei.com
+    email: aihuaguo.ietf@gmail.com
   -
     name: Young Lee
     org: Samsung
@@ -68,7 +68,7 @@ contributor:
     email: oscar.gonzalezdedios@telefonica.com
   -
     name: Xufeng Liu
-    org: Volta Networks
+    org: Individual
     email: xufeng.liu.ietf@gmail.com
   -
     name: Yunbin Xu
@@ -84,7 +84,7 @@ contributor:
     email: rrao@infinera.com
   -
     name: Victor Lopez
-    org: Telefonica
+    org: Nokia
     email: victor.lopez@nokia.com
   -
     name: Yunbo Li
