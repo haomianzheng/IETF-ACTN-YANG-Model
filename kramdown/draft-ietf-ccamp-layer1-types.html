@@ -1,0 +1,3772 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>Common YANG Data Types for Layer 1 Networks</title>
+<meta content="Haomian Zheng" name="author">
+<meta content="
+       This document defines a collection of common common data types,
+identities, and groupings in the YANG data modeling language. These
+derived common common data types, identities, and groupings are
+intended to be imported by modules that model Layer 1 configuration
+and state capabilities. The Layer 1 types are representative of
+Layer 1 client signals applicable to transport networks, such as
+Optical Transport Networks (OTN). The Optical Transport Network
+(OTN) data structures are included in this document as Layer 1 types. 
+    " name="description">
+<meta content="xml2rfc 3.33.0" name="generator">
+<meta content="draft-ietf-ccamp-layer1-types-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.33.0
+    Python 3.12.13
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.1
+    intervaltree 3.2.1
+    Jinja2 3.1.6
+    lxml 6.0.2
+    platformdirs 4.9.6
+    pycountry 24.6.1
+    PyYAML 6.0.3
+    requests 2.33.1
+    wcwidth 0.7.0
+-->
+<link href="draft-ietf-ccamp-layer1-types.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+}
+
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 680;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1 {
+  &#title {
+    font-size: 32px;
+    line-height: 40px;
+    clear: both;
+    margin: 1.5em 0 0.2em;
+  }
+  &#rfcnum {
+    margin: 1.5em 0 0.2em;
+    & + h1#title {
+      margin: 0.2em 0;
+    }
+  }
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+  & code, & samp, & tt {
+    font-size: 16px;
+    line-height: 0;
+  }
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight {
+  margin: 1em 0;
+  &.art-text {
+    background-color: var(--highlight-color);
+    border: 1px solid var(--line-color);
+    border-radius: 3px;
+    padding: 0.5em 1em 0;
+    margin-bottom: 0.5em;
+    & pre {
+      padding: 0;
+      width: auto;
+    }
+  }
+  & > *:first-child {
+    border: none;
+    margin: 0;
+    float: right;
+    clear: both;
+  }
+  & > *:nth-child(2) {
+    clear: both;
+    display: block;
+    border: none;
+  }
+}
+svg {
+  display: block;
+  /* font-family isn't space-separated, but =~ will have to do */
+  &[font-family~="monospace" i], & [font-family~="monospace" i] {
+    font-family: var(--font-mono);
+  }
+}
+.alignCenter {
+  margin: 1em 0;
+  &.art-text {
+    background-color: var(--highlight-color);
+    border: 1px solid var(--line-color);
+    border-radius: 3px;
+    padding: 0.5em 1em 0;
+    margin-bottom: 0.5em;
+    & pre {
+      padding: 0;
+      width: auto;
+    }
+  }
+  & > *:first-child {
+    border: none;
+    /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+       support flexbox yet.
+    */
+    display: table;
+    margin: 0 auto;
+  }
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+  & li {
+    margin-top: 0.5em;
+  }
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+      float: none;
+    }
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+
+  &:not(.dlNewline) > dt {
+    float: left;
+    margin-right: 2ch;
+    min-width: 8ch;
+  }
+  & > dd {
+    margin-bottom: .8em;
+    margin-left: var(--indent) !important; /* stupid element overrides */
+    min-height: 2ex;
+  }
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a {
+  text-decoration: none;
+  &[href] {
+    color: var(--link-color);
+    &:hover { text-decoration: underline; }
+    &.selfRef {
+      color: var(--text-color);
+      &:hover {
+        text-decoration: none;
+        background-color: var(--highlight-color);
+      }
+    }
+  }
+}
+.iref + a[href].internal {
+  color: var(--text-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+  & blockquote {
+    margin: 0.8em 0.4em 0.4em;
+  }
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+  caption-side: bottom;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) {
+    & p {
+      margin: -2px 0;
+      max-height: 0;
+      transition: max-height 2s ease, margin 0.5s ease 0.5s;
+      overflow: hidden;
+    }
+    &:hover p,
+    & h2:target ~ p {
+      margin: 0.5em 0;
+      max-height: 500px;
+      overflow: auto;
+    }
+  }
+  pre, svg {
+    display: inline-block;
+    /* In the horizontal direction, sometimes people make over-sized figures.
+       Scrollbars for those is therefore necessary: auto adds them as necessary..
+       In the vertical direction, the line-height can combine with the font
+       asender/descender height to produce scrollbars: hidden avoids that. */
+    overflow: auto hidden;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+  &.right { margin-left: auto; }
+  &.center { margin-left: auto; margin-right: auto; }
+  &.left { margin-right: auto; }
+  & .text-left { text-align: left; }
+  & .text-center { text-align: center; }
+  & .text-right { text-align: right; }
+  & caption {
+    margin: 0;
+    padding: 3px 0 3px 1em;
+  }
+  & p { margin: 0; }
+}
+
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
+  @media not print {
+    :hover > &, &:focus {
+      opacity: 1;
+    }
+    &[href]:hover {
+      color: var(--pilcrow-strong);
+      background-color: transparent;
+    }
+  }
+  @media print {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+  & .prepared {
+    float: right;
+  }
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
+}
+
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
+}
+
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
+}
+
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses {
+    & > section {
+      column-count: 2;
+      column-gap: 20px;
+    }
+    & > section > h2 {
+      column-span: all;
+    }
+    /* hack for break-inside: avoid-column */
+    & address {
+      display: inline-block;
+      break-inside: avoid-column;
+    }
+  }
+}
+
+/* Comments */
+.rfcEditorRemove {
+  & p:first-of-type {
+    font-style: italic;
+  }
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+
+@media screen {
+  #toc {
+    & nav {
+      font-family: var(--font-title);
+      font-weight: 360;
+      & > ul { margin-bottom: 2em; }
+      & ul {
+        margin: 0 0 0 4px;
+        & :is(p, li) {
+          margin: 2px 0;
+        }
+      }
+    }
+    & a.toplink {
+      float: right;
+    }
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+    & h2 {
+      margin: 0;
+      padding: 2px 0 2px 6px;
+      padding-right: 1em;
+      font-size: 18px;
+      line-height: 24px;
+      min-width: 190px;
+      text-align: right;
+      background-color: #444;
+      color: white;
+      cursor: pointer;
+      &::before { /* css hamburger */
+        float: right;
+        position: relative;
+        width: 1em;
+        height: 1px;
+        left: -164px;
+        margin: 8px 0 0 0;
+        background: white none repeat scroll 0 0;
+        box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+        content: "";
+      }
+    }
+    & nav {
+      display: none;
+      background-color: var(--background-color);
+      padding: 0.5em 1em 1em;
+      overflow: auto;
+      overscroll-behavior: contain;
+      height: calc(100vh - 48px);
+      border-left: 1px solid #ddd;
+    }
+    &.active {
+      opacity: 1;
+      & nav { display: block; }
+    }
+    /* Make the collapsed ToC header render white on gray also when it's a link */
+    & h2 a,
+    & h2 a:is(:link, :focus, :hover),
+    & a.toplink,
+    & a.toplink:hover {
+      color: white;
+      background-color: #444;
+      text-decoration: none;
+    }
+    & a.toplink {
+      margin: 2px 0.5em 0;
+    }
+  }
+}
+
+/* TOC layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    & h2 {
+      margin: 0;
+      padding: 0.25em 1em 1em 0;
+    }
+    & nav {
+      display: block;
+      height: calc(90vh - 84px);
+      bottom: 0;
+      padding: 0.5em 0 2em;
+      overflow: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+    }
+    & a.toplink {
+      margin: 8px 0.5em 0;
+    }
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc {
+    page-break-before: always;
+    border-top: none;
+    padding-top: 0;
+  }
+  #n-introduction {
+    page-break-before: always;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg {
+  & :is([stroke="black"], [stroke^="#000"]) {
+    stroke: var(--text-color);
+  }
+  & :is([stroke="white"], [stroke^="#fff"]) {
+    stroke: var(--background-color);
+  }
+  & :is([fill="black"], [fill^="#000"], :not([fill])) {
+    fill: var(--text-color);
+  }
+  & :is([fill="white"], [fill^="#fff"]) {
+    fill: var(--background-color);
+  }
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">L1 Common YANG Types</td>
+<td class="right">June 2026</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Zheng</td>
+<td class="center">Expires 11 December 2026</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">Common Control and Measurement Plane</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-ietf-ccamp-layer1-types-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2026-06-09" class="published">9 June 2026</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Standards Track</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2026-12-11">11 December 2026</time></dd>
+<dt class="label-authors">Author:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">H. Zheng</div>
+<div class="org">Huawei Technologies</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">Common YANG Data Types for Layer 1 Networks</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document defines a collection of common common data types,
+identities, and groupings in the YANG data modeling language. These
+derived common common data types, identities, and groupings are
+intended to be imported by modules that model Layer 1 configuration
+and state capabilities. The Layer 1 types are representative of
+Layer 1 client signals applicable to transport networks, such as
+Optical Transport Networks (OTN). The Optical Transport Network
+(OTN) data structures are included in this document as Layer 1 types.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-about-this-document">
+<a href="#name-about-this-document" class="section-name selfRef">About This Document</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">
+        The latest revision of this draft can be found at <span><a href="https://haomianzheng.github.io/IETF-ACTN-YANG-Model/draft-ietf-ccamp-layer1-types.html">https://haomianzheng.github.io/IETF-ACTN-YANG-Model/draft-ietf-ccamp-layer1-types.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-ccamp-layer1-types/">https://datatracker.ietf.org/doc/draft-ietf-ccamp-layer1-types/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">
+        Discussion of this document takes place on the
+        Common Control and Measurement Plane Working Group mailing list (<span><a href="mailto:ccamp@ietf.org">mailto:ccamp@ietf.org</a></span>),
+        which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/ccamp/">https://mailarchive.ietf.org/arch/browse/ccamp/</a></span>.
+        Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/ccamp/">https://www.ietf.org/mailman/listinfo/ccamp/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+<p id="section-note.1-4">Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/haomianzheng/IETF-ACTN-YANG-Model">https://github.com/haomianzheng/IETF-ACTN-YANG-Model</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 11 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2026 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-terminology-and-notations" class="internal xref">Terminology and Notations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-prefix-in-data-node-names" class="internal xref">Prefix in Data Node Names</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-layer-1-types-overview" class="internal xref">Layer 1 Types Overview</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-relationship-with-other-mod" class="internal xref">Relationship with other Modules</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-content-in-layer-1-type-mod" class="internal xref">Content in Layer 1 Type Module</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-otn-label-and-label-range" class="internal xref">OTN Label and Label Range</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-oduflex" class="internal xref">ODUflex</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.1">
+                    <p id="section-toc.1-1.4.2.4.2.1.1"><a href="#section-4.4.1" class="auto internal xref">4.4.1</a>.  <a href="#name-resizable-oduflex" class="internal xref">Resizable ODUflex</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-yang-tree-for-layer1-types" class="internal xref">YANG Tree for Layer1 Types</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-yang-code-for-layer1-types" class="internal xref">YANG Code for Layer1 Types</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-examples-of-otn-label-range" class="internal xref">Examples of OTN Label Ranges</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">This document specifies common data types, groupings, and identities
+for use in YANG <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> data models of Layer 1 networks. The
+derived types and groupings apply to Traffic Engineered (TE) Layer 1
+networks.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">The Layer 1 (L1) Optical Transport Network (OTN) is specified in
+<span>[<a href="#RFC7062" class="cite xref">RFC7062</a>]</span>. The corresponding routing and signaling protocols are
+specified in <span>[<a href="#RFC7138" class="cite xref">RFC7138</a>]</span> and <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span>. The types and groupings
+defined in this document are consistent with those documents, and can
+be imported into other Layer 1 data models, including but not limited
+to, <span>[<a href="#I-D.ietf-ccamp-otn-topo-yang" class="cite xref">I-D.ietf-ccamp-otn-topo-yang</a>]</span>,
+<span>[<a href="#I-D.ietf-ccamp-otn-tunnel-model" class="cite xref">I-D.ietf-ccamp-otn-tunnel-model</a>]</span>,
+<span>[<a href="#I-D.ietf-ccamp-client-signal-yang" class="cite xref">I-D.ietf-ccamp-client-signal-yang</a>]</span> and <span>[<a href="#I-D.ietf-ccamp-l1csm-yang" class="cite xref">I-D.ietf-ccamp-l1csm-yang</a>]</span>.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">The document is consistent with other specifications, including
+<span>[<a href="#MEF_63" class="cite xref">MEF_63</a>]</span> for Layer 1 service attributes, <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span> and
+<span>[<a href="#ITU-T_G.Sup43" class="cite xref">ITU-T_G.Sup43</a>]</span> for OTN data plane definitions.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The YANG data model in this document only defines groupings, typedef,
+and identities. It does not define any configuration or state data,
+as specified in the Network Management Datastore Architecture defined
+in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="terminology-and-notations">
+<section id="section-2">
+      <h2 id="name-terminology-and-notations">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-terminology-and-notations" class="section-name selfRef">Terminology and Notations</a>
+      </h2>
+<p id="section-2-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
+"<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
+described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
+appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">Specific terms used within this document are as follows:<a href="#section-2-2" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-3">
+        <dt id="section-2-3.1">OTN:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.2">
+          <p id="section-2-3.2.1">Optical Transport Network.<a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.3">ODU:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.4">
+          <p id="section-2-3.4.1">Optical Data Unit. An ODU has the frame structure and
+overhead, as defined in Figure 12-1 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>. ODUs can be
+formed in two ways: a) by encapsulating a single non-OTN client,
+such as SONET/SDH (Synchronous Optical Network / Synchronous
+Digital Hierarchy) or Ethernet, or b) by multiplexing lower-rate
+ODUs. In general, the ODU layer represents the path layer in OTN.
+The only exception is the ODUCn signal (defined below), which is
+defined to be a section-layer signal. In the classification based
+on bitrates of the ODU signals, ODUs are of two types: fixed rate
+and flexible rate. Flexible-rate ODUs, called "ODUflex", have a
+rate that is 239/238 times the bitrate of the client signal they
+encapsulate.<a href="#section-2-3.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.5">ODUCn:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.6">
+          <p id="section-2-3.6.1">Optical Data Unit-C. This signal has a bandwidth of
+approximately 100 Gbit/s and is of a slightly higher bitrate than
+the fixed rate ODU4 signal. This signal has the format defined in
+Figure 12-1 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>. This signal represents the building
+block for constructing a higher-rate signal called "ODUCn".<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.7">ODUk:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.8">
+          <p id="section-2-3.8.1">Optical Data Unit-k, where k is one of {0, 1, 2, 2e, 3, 4}.
+The term "ODUk" refers to an ODU whose bitrate is fully specified
+by the index k. The bitrates of the ODUk signal for k = {0, 1, 2,
+2e, 3, 4} are approximately 1.25 Gbit/s, 2.5 Gbit/s, 10 Gbit/s,
+10.3 Gbit/s, 40 Gbit/s, and 100 Gbit/s, respectively.<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.9">LO ODU:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.10">
+          <p id="section-2-3.10.1">Lower Order ODU. The LO ODUj (j can be 0, 1, 2, 2e, 3, 4,
+that is either directly mapped into an OTUk (k = j) or multiplexed
+into a server HO ODUk (k &gt; j) container.<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.11">HO ODU:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.12">
+          <p id="section-2-3.12.1">Higher Order ODU. The HO ODUk (k can be 1, 2, 2e, 3, or 4)
+represents the entity transporting a multiplex of LO ODUj
+tributary signals in its OPUk area.<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+<p id="section-2-4">The reader may also refer to <span>[<a href="#RFC7062" class="cite xref">RFC7062</a>]</span> and <span>[<a href="#RFC9376" class="cite xref">RFC9376</a>]</span> for other key
+terms used in this document. The terminology for describing YANG
+data models can be found in <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>.<a href="#section-2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="prefix-in-data-node-names">
+<section id="section-3">
+      <h2 id="name-prefix-in-data-node-names">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-prefix-in-data-node-names" class="section-name selfRef">Prefix in Data Node Names</a>
+      </h2>
+<p id="section-3-1">In this document, the names of data nodes and other data model
+objects are prefixed using the standard prefix associated with the
+corresponding YANG imported modules, as shown in <a href="#tab-prefixes" class="auto internal xref">Table 1</a>.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<span id="name-prefixes-and-corresponding-"></span><div id="tab-prefixes">
+<table class="center" id="table-1">
+        <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-prefixes-and-corresponding-" class="selfRef">Prefixes and Corresponding YANG Modules</a>
+        </caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Prefix</th>
+            <th class="text-left" rowspan="1" colspan="1">YANG module</th>
+            <th class="text-left" rowspan="1" colspan="1">Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">rt-types</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-routing-types</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8294" class="cite xref">RFC8294</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">l1-types</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-layer1-types</td>
+            <td class="text-left" rowspan="1" colspan="1">[RFCYYYY]</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-3-3.1">
+          <p id="section-3-3.1.1">RFC Editor Note:
+Please replace XXXX with the number assigned to the RFC once this draft becomes an RFC.<a href="#section-3-3.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="DM">
+<section id="section-4">
+      <h2 id="name-layer-1-types-overview">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-layer-1-types-overview" class="section-name selfRef">Layer 1 Types Overview</a>
+      </h2>
+<div id="relationship-with-other-modules">
+<section id="section-4.1">
+        <h3 id="name-relationship-with-other-mod">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-relationship-with-other-mod" class="section-name selfRef">Relationship with other Modules</a>
+        </h3>
+<p id="section-4.1-1">This document defines one YANG module for common Layer 1 types. The
+aim is to specify common Layer 1 TE types (i.e., typedef, identity,
+grouping) that can be imported by layer 1 specific technology, for
+example, layer 1 OTN, in its technology-specific modules, such as
+topology and tunnels. It is worth noting that the generic traffic-
+engineering (TE) types module is specified as ietf-te-types in
+<span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>, and both YANG modules, ietf-te-types
+and ietf-layer1-types, will need importing when the OTN is
+configured. Generic attributes such as te-bandwidth and te-label,
+which are specified as ietf-te-types in
+<span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>, need to be augmented with the OTN-specific
+attributes, such as odu-type, which are specified as ietf-layer1-types in this document, when OTN is configured.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="content-in-layer-1-type-module">
+<section id="section-4.2">
+        <h3 id="name-content-in-layer-1-type-mod">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-content-in-layer-1-type-mod" class="section-name selfRef">Content in Layer 1 Type Module</a>
+        </h3>
+<p id="section-4.2-1">The module ietf-layer1-types contains the following YANG reusable
+types and groupings:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.2-2">
+          <dt id="section-4.2-2.1">tributary-slot-granularity:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.2">
+            <p id="section-4.2-2.2.1">This specifies the granularity levels for tributary slots utilized
+by the server layer Optical Data Unit (ODU). Specifically, it
+addresses how ODU links, including both Higher Order Optical Data
+Unit-k (HO ODUk) and Optical Data Unit-Cn (ODUCn), accommodate
+client layer ODUs within Label Switched Paths (LSPs). These
+client layer ODUs could be Lower Order Optical Data Unit-j (LO
+ODUj) or ODUk, respectively. The specified granularity levels for
+these configurations are 1.25G, 2.5G, and 5G.<a href="#section-4.2-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.3">odu-type:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.4">
+            <p id="section-4.2-2.4.1">This specifies the type of ODUk LSP, including the types specified
+in <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span> and <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span>.<a href="#section-4.2-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.5"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.6">
+            <p id="section-4.2-2.6.1">Since, as described in <span>[<a href="#RFC7963" class="cite xref">RFC7963</a>]</span>, <span>[<a href="#ITU-T_G.Sup43" class="cite xref">ITU-T_G.Sup43</a>]</span> does not
+guarantee interoperability in the data plane for these containers,
+the type of ODUk LSPs defined in <span>[<a href="#ITU-T_G.Sup43" class="cite xref">ITU-T_G.Sup43</a>]</span> and <span>[<a href="#RFC7963" class="cite xref">RFC7963</a>]</span> can
+be defined in vendor-specific YANG modules using the odu-type
+identity, defined in this document, as the base.<a href="#section-4.2-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.7">client-signal:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.8">
+            <p id="section-4.2-2.8.1">This specifies the common Layer 1 client signal types, including
+ETH <span>[<a href="#IEEE_802.3" class="cite xref">IEEE_802.3</a>]</span>, STM-n <span>[<a href="#ITU-T_G.707" class="cite xref">ITU-T_G.707</a>]</span>, OC <span>[<a href="#ANSI_T1.105" class="cite xref">ANSI_T1.105</a>]</span> and Fiber
+Channel <span>[<a href="#ANSI_INCITS_230" class="cite xref">ANSI_INCITS_230</a>]</span>. The input was based on the G-PID types
+specified in <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span>.<a href="#section-4.2-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.9">otn-label-range-type:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.10">
+            <p id="section-4.2-2.10.1">The label range type of OTN is represented in one of two ways,
+tributary slots (TS) and tributary port number (TPN), as specified
+in <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span>. Two representations are enumerated in the otn-
+label-range-type.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.11">otn-link-bandwidth:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.12">
+            <p id="section-4.2-2.12.1">This grouping defines the link bandwidth information, usually as
+the number of ODUs that can be supported by the link for each ODU
+type: for example an OTN link with 100G bandwidth can support
+either 1xODU4, 10xODU2 or 80xODU0.<a href="#section-4.2-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.13"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.14">
+            <p id="section-4.2-2.14.1">It is also used to represent the ODUflex resources available on a
+link, as described in <a href="#ODUflex" class="auto internal xref">Section 4.4</a>.<a href="#section-4.2-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.15"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.16">
+            <p id="section-4.2-2.16.1">This grouping could be used in the OTN topology model for link
+bandwidth representation. In general, all the bandwidth-related
+sections, which are defined in a generic module, e.g., using the
+groupings defined in <span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>, need to be
+augmented with this grouping when used to represent the bandwidth
+of an OTN link.<a href="#section-4.2-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.17">otn-path-bandwidth:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.18">
+            <p id="section-4.2-2.18.1">This grouping defines the path bandwidth information, usually as
+the type of ODU (e.g., ODU0, ODU2, ODU4) being set up along the
+path.<a href="#section-4.2-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.19"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.20">
+            <p id="section-4.2-2.20.1">In the case of ODUflex paths, more information about the bandwidth
+of the ODUflex needs to be provided, as described in <a href="#ODUflex" class="auto internal xref">Section 4.4</a>.<a href="#section-4.2-2.20.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.21"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.22">
+            <p id="section-4.2-2.22.1">This grouping could be used in the OTN topology model for path
+bandwidth representation as well as when setting up the OTN
+tunnel. In general, all the bandwidth-related sections, which are
+defined in a generic module, e.g., using the groupings defined in
+<span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>, need to be augmented with this
+grouping when used to represent the bandwidth of an OTN tunnel or
+path.<a href="#section-4.2-2.22.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.23">otn-label-range-info:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.24">
+            <p id="section-4.2-2.24.1">This grouping is used to augment the label-restriction list,
+defined in <span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>, with OTN technology-
+specific attributes, as defined in <a href="#label" class="auto internal xref">Section 4.3</a>.<a href="#section-4.2-2.24.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.25">otn-label-start-end:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.26">
+            <p id="section-4.2-2.26.1">This grouping is used to augment the label-start and label-end
+containers within the label-restriction list, defined in
+<span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>, with OTN technology-specific
+attributes, as defined in <a href="#label" class="auto internal xref">Section 4.3</a>.<a href="#section-4.2-2.26.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.27">otn-label-step:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.28">
+            <p id="section-4.2-2.28.1">This grouping is used to augment the label-step container within
+the label-restriction list, defined in
+<span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>, with OTN technology-specific
+attributes, as defined in <a href="#label" class="auto internal xref">Section 4.3</a>.<a href="#section-4.2-2.28.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.29">otn-label-hop:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.30">
+            <p id="section-4.2-2.30.1">This grouping is used to augment the label-hop container, defined
+in <span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>, with OTN technology-specific
+attributes, as defined in <a href="#label" class="auto internal xref">Section 4.3</a>.<a href="#section-4.2-2.30.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.31">optical-interface-func:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.32">
+            <p id="section-4.2-2.32.1">The optical interface function is specified in <span>[<a href="#MEF_63" class="cite xref">MEF_63</a>]</span>.
+Identities that describe the functionality are specified to encode
+bits for transmission and to decode bits upon reception.<a href="#section-4.2-2.32.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="label">
+<section id="section-4.3">
+        <h3 id="name-otn-label-and-label-range">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-otn-label-and-label-range" class="section-name selfRef">OTN Label and Label Range</a>
+        </h3>
+<p id="section-4.3-1">As described in <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span>, the OTN label usually represents the
+Tributary Port Number (TPN) and the related set of Tributary Slots
+(TS) assigned to a client layer ODU LSP (LO ODUj or ODUk) on a given
+server layer ODU (HO-ODU or ODUCn, respectively) Link (e.g., ODU2 LSP
+over ODU3 Link). Some special OTN label values are also defined for
+an ODUk LSP being set up over an OTUk Link.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">The same OTN label <span class="bcp14">MUST</span> be assigned to the same ODUk LSP at the two
+ends of an OTN Link.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+<p id="section-4.3-3">As described in <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span>, TPN can be a number from 1 to 4095 and TS
+are numbered from 1 to 4095, although the actual maximum values
+depend on the type of server layer ODU. For example, a server layer
+ODU4 provides 80 tributary slots (numbered from 1 to 80), and the TPN
+values can be any number from 1 to 80.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.3-4">The OTN Label Range specifies the available values for the Tributary
+Port Number (TPN) and Tributary Slots (TS) for setting up ODUk Label
+Switched Paths (LSPs) over an OTN Link, with priorities as defined in
+<span>[<a href="#RFC4203" class="cite xref">RFC4203</a>]</span>. This range is established according to the guidelines in
+<span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span>.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+<p id="section-4.3-5">The OTN Label Range is defined by the label-restriction list, defined
+in <span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>, which, for OTN, <span class="bcp14">SHOULD</span> be
+augmented using the otn-label-range-info grouping.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
+<p id="section-4.3-6">Each entry in the label-restriction list represents either the range
+of the available TPN values or the range of the available TS values:
+the range-type attribute in the otn-label-range-info grouping defines
+the type of range for each list entry.<a href="#section-4.3-6" class="pilcrow">¶</a></p>
+<p id="section-4.3-7">Each entry of the label-restriction list, as defined in
+<span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>, defines a label-start, a label-end, a
+label-step, and a range-bitmap. The label-start and label-end
+definitions for OTN <span class="bcp14">SHOULD</span> be augmented using the otn-label-start-end
+grouping. The label-step definition for OTN <span class="bcp14">SHOULD</span> be augmented
+using the otn-label-step grouping. It is expected that the otn-
+label-step will always be equal to its default value (i.e., 1), which
+is defined in <span>[<a href="#I-D.ietf-teas-rfc8776-update" class="cite xref">I-D.ietf-teas-rfc8776-update</a>]</span>.<a href="#section-4.3-7" class="pilcrow">¶</a></p>
+<p id="section-4.3-8">As described in <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span>, in some cases, the TPN assignment rules
+are flexible (e.g., ODU4 Link) while in other cases the TPN
+assignment rules are fixed (e.g., ODU1 Link). In the former case,
+both TPN and TS ranges are reported, while in the latter case, the
+TPN range is not reported which indicates that the TPN <span class="bcp14">SHALL</span> be set
+equal to the TS number assigned to the ODUk LSP.<a href="#section-4.3-8" class="pilcrow">¶</a></p>
+<p id="section-4.3-9">As described in <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span>, in some cases, the TPN assignment rules
+depend on the TS Granularity (e.g., ODU2 or ODU3 Links). Different
+entries in the label-restriction list will report different TPN
+ranges for each TS granularity supported by the link, as indicated by
+the tsg attribute in the otn-label-range-info grouping.<a href="#section-4.3-9" class="pilcrow">¶</a></p>
+<p id="section-4.3-10">As described in <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span>, in some cases the TPN ranges are different
+for different types of ODUk LSPs. For example, on an ODU2 Link with
+1.25G TS granularity, the TPN range is 1-4 for ODU1 but 1-8 for ODU0
+and ODUflex. Therefore, different entries in the label-restriction
+list will report different TPN ranges for a different set of ODUk
+types, as indicated by the odu-type-list in the otn-label-range-info
+grouping.<a href="#section-4.3-10" class="pilcrow">¶</a></p>
+<p id="section-4.3-11">Appendix A provides some examples of how the TPN and TS label ranges
+described in Table 3 and Table 4 of <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span> can be represented in
+YANG using the groupings defined in this document.<a href="#section-4.3-11" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="ODUflex">
+<section id="section-4.4">
+        <h3 id="name-oduflex">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-oduflex" class="section-name selfRef">ODUflex</a>
+        </h3>
+<p id="section-4.4-1">ODUflex is a type of ODU with a flexible bit rate which is configured
+when setting up an ODUflex LSP.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-2"><span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span> defines six types of ODUflex: ODUflex(CBR),
+ODUflex(GFP), ODUflex(GFP,n,k), ODUflex(IMP), ODUflex(IMP,s), and
+ODUflex(FlexE-aware).<a href="#section-4.4-2" class="pilcrow">¶</a></p>
+<p id="section-4.4-3">The main difference between these types of ODUflex is the formula
+used to calculate the nominal bit rate of the ODUflex, as described
+in Table 7-2 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>. A YANG choice has been defined to
+describe these cases:<a href="#section-4.4-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-4.4-4">
+<pre>
+       +--rw (oduflex-type)?
+          +--:(generic)
+          |  +--rw nominal-bit-rate        union
+          +--:(cbr)
+          |  +--rw client-type             identityref
+          +--:(gfp-n-k)
+          |  +--rw gfp-n                   uint8
+          |  +--rw gfp-k?                  l1-types:gfp-k
+          +--:(flexe-client)
+          |  +--rw flexe-client
+          |          l1-types:flexe-client-rate
+          +--:(flexe-aware)
+          |  +--rw flexe-aware-n           uint16
+          +--:(packet)
+             +--rw opuflex-payload-rate    union
+</pre><a href="#section-4.4-4" class="pilcrow">¶</a>
+</div>
+<p id="section-4.4-5">The OPUflex payload rate can be expressed either in a floating point
+notation or a scientific notation, as defined in <span>[<a href="#IEEE_754" class="cite xref">IEEE_754</a>]</span> and
+<span>[<a href="#ISO_IEC_9899_1999" class="cite xref">ISO_IEC_9899_1999</a>]</span>.<a href="#section-4.4-5" class="pilcrow">¶</a></p>
+<p id="section-4.4-6">The 'generic' case has been added to allow the ODUflex nominal bit
+rate to be defined independently of the type of ODUflex. This could
+be useful for forward compatibility in the transit domain/nodes where
+the set up of ODUflex LSPs does not depend on the ODUflex type.<a href="#section-4.4-6" class="pilcrow">¶</a></p>
+<p id="section-4.4-7">In order to simplify interoperability the 'generic' case <span class="bcp14">SHOULD</span> be
+used only when needed; the ODUflex type-specific case <span class="bcp14">SHOULD</span> be used
+whenever possible.<a href="#section-4.4-7" class="pilcrow">¶</a></p>
+<p id="section-4.4-8">The 'cbr' case is used for Constant Bit Rate (CBR) client signals.
+The client-type indicates which CBR client signal is carried by the
+ODUflex and, implicitly, the client signal bit rate, which is then
+used to calculate the ODUflex(CBR) nominal bit rate as described in
+Table 7-2 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>.<a href="#section-4.4-8" class="pilcrow">¶</a></p>
+<p id="section-4.4-9">The 'gfp-n-k' case is used for GFP-F mapped client signals based on
+ODUk.ts and 'n' 1.25G tributary slots. 'gfp-k' defines the nominal
+bit-rate of the ODUk.ts which, together with the value of 'gfp-n', is
+used to calculate the ODUflex(GFP,n,k) nominal bit rate as described
+in Table 7-8 and Table L-7 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span> . With a few exceptions,
+shown in Table L-7 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>, the nominal bit-rate of the
+ODUk.ts could be inferred from the value of 'n', as shown in
+Table 7-8 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span> and therefore the 'gfp-k' is optional.<a href="#section-4.4-9" class="pilcrow">¶</a></p>
+<p id="section-4.4-10">The 'flexe-client' case is used for Idle Mapping Procedure (IMP)
+mapped FlexE client signals, The 'flexe-client' represents the type
+of FlexE client carried by the ODUflex which implicitly defines the
+value of 's' used to calculate the ODUflex(s) nominal bit rate as
+described in Table 7-2 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>. The '10G' and '40G'
+enumeration values are used for 10G and 40G FlexE clients to
+implicitly define the values of s=2 and s=8. For the 'n x 25G' FlexE
+Clients the value of 'n' is used to define the value of s=5 x n.<a href="#section-4.4-10" class="pilcrow">¶</a></p>
+<p id="section-4.4-11">The 'flexe-aware' case is used for FlexE-aware client signals. The
+flexe-aware-n represents the value n (n = n1 + n2 + ... + np) which
+is used to calculate the ODUflex(FlexE-aware) nominal bit rate as
+described in Table 7-2 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>.<a href="#section-4.4-11" class="pilcrow">¶</a></p>
+<p id="section-4.4-12">The 'packet' case is used for both the GFP-F mapped client signals
+and the IMP mapped client signals. The opuflex-payload-rate is
+either the GFP-F encapsulated-packet client nominal bit rate or the
+64b/66b encoded-packet client nominal bit rate. The calculation of
+ODUflex(GFP) nominal bit rate is defined in Section 12.2.5 of
+<span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>, and the calculation of ODUflex(IMP) nominal bit rate
+is defined in Section 12.2.6 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>. The same formula is
+used in both cases.<a href="#section-4.4-12" class="pilcrow">¶</a></p>
+<p id="section-4.4-13">Sections 5.1 and 5.2 of <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span> defines two rules to compute the
+number of tributary slots to be allocated to ODUflex(CBR) and
+ODUflex(GFP) LSPs when carried over a HO-ODUk link. According to
+Section 19.6 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>, the rules in Section 5.2 apply only to
+ODUflex(GFP,n,k) while the rules defined in Section 5.1 apply to any
+other ODUflex type, including, but not limited, to ODUflex(CBR).
+Section 20.5 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span> defines the rules for computing the
+number of tributary slots to be allocated to ODUflex LSPs when
+carried over an ODUCn link.<a href="#section-4.4-13" class="pilcrow">¶</a></p>
+<p id="section-4.4-14">In order to compute the number of tributary slots required to set up
+an ODUflex LSP, or ODUflex LSPs, the type of Optical channel Data
+Tributary Unit (ODTU) is reported for the OTN Links or the OTN LTPs
+(Link Termination Points).<a href="#section-4.4-14" class="pilcrow">¶</a></p>
+<p id="section-4.4-15">Following the <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span> definitions, the rules defined for
+ODUflex(GFP,n,k) are used only when the 'gfp-n-k' case is used. In
+all the other cases, including the (generic) case, the rules defined
+for any other ODUflex type are used.<a href="#section-4.4-15" class="pilcrow">¶</a></p>
+<p id="section-4.4-16">The number of available ODUs, defined for each ODUk type, including
+ODUflex, does not provide sufficient information to infer the OTN
+link bandwidth availability for ODUflex LSPs.<a href="#section-4.4-16" class="pilcrow">¶</a></p>
+<p id="section-4.4-17">The OTN link bandwidth definitions for ODUflex LSPs also depend on
+the number of tributary slots (TS) and on the type of ODTU used to
+compute the number of TS required to set up an ODUflex LSP, according
+to the rules defined in Section 19.6 and Section 20.5 of
+<span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>, as described above.<a href="#section-4.4-17" class="pilcrow">¶</a></p>
+<p id="section-4.4-18">Similarly, bandwidth constraints for ODUflex LSPs of the OTN
+connectivity matrix and of the OTN local link connectivity entries
+depend also on the number of tributary slots (TS) and on the type of
+ODTU used to compute the number of TS required to set up an ODUflex
+LSP along the underlay path, according to the rules defined in
+Section 19.6 and Section 20.5 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>, as described above.
+For example, with reference to Figure 1 of <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span>, the
+connectivity matrix entry or the local link connectivity entry
+corresponding to the A-C underlay path, would report 2 Tributary
+Slots (TS) with ODTU4.ts ODTU type.<a href="#section-4.4-18" class="pilcrow">¶</a></p>
+<div id="Resize">
+<section id="section-4.4.1">
+          <h4 id="name-resizable-oduflex">
+<a href="#section-4.4.1" class="section-number selfRef">4.4.1. </a><a href="#name-resizable-oduflex" class="section-name selfRef">Resizable ODUflex</a>
+          </h4>
+<p id="section-4.4.1-1">Resizable ODUflex is a special type of ODUflex that supports the
+procedures defined in <span>[<a href="#ITU-T_G.7044" class="cite xref">ITU-T_G.7044</a>]</span> for hitless resizing of the
+ODUflex nominal bit rate.<a href="#section-4.4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.1-2">Two odu-type identities have been defined for ODUflex:<a href="#section-4.4.1-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.4.1-3.1">
+              <p id="section-4.4.1-3.1.1">The ODUflex identity, which is used with any type of non-resizable
+ODUflex, as defined in Table 7-2 of <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span>.<a href="#section-4.4.1-3.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.4.1-3.2">
+              <p id="section-4.4.1-3.2.1">The ODUflex-resizable identity, which is used only with resizable
+ODUflex(GFP,n,k).<a href="#section-4.4.1-3.2.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-4.4.1-4">These two identities are used to identify whether an ODUflex(GFP,n,k)
+LSP does or does not support the <span>[<a href="#ITU-T_G.7044" class="cite xref">ITU-T_G.7044</a>]</span> hitless resizing
+procedures. They also identify whether an OTN link only supports the
+set up of non-resizable ODUflex LSPs or also supports the set up of
+resizable ODUflex(GFP,n,k) LSP but with different capabilities (e.g.,
+a lower number of LSPs).<a href="#section-4.4.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="tree">
+<section id="section-5">
+      <h2 id="name-yang-tree-for-layer1-types">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-yang-tree-for-layer1-types" class="section-name selfRef">YANG Tree for Layer1 Types</a>
+      </h2>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-5-1">
+<pre>
+module: ietf-layer1-types
+
+  grouping otn-link-bandwidth:
+    +-- otn-bandwidth
+       +-- odulist* [odu-type]
+          +-- odu-type     identityref
+          +-- number?      uint16
+          +-- ts-number?   uint16
+  grouping otn-path-bandwidth:
+    +-- otn-bandwidth
+       +-- odu-type?                     identityref
+       +-- (oduflex-type)?
+          +--:(generic)
+          |  +-- nominal-bit-rate        union
+          +--:(cbr)
+          |  +-- client-type             identityref
+          +--:(gfp-n-k)
+          |  +-- gfp-n                   uint8
+          |  +-- gfp-k?                  gfp-k
+          +--:(flexe-client)
+          |  +-- flexe-client            flexe-client-rate
+          +--:(flexe-aware)
+          |  +-- flexe-aware-n           uint16
+          +--:(packet)
+             +-- opuflex-payload-rate    union
+  grouping otn-max-path-bandwidth:
+    +-- otn-bandwidth
+       +-- odu-type?        identityref
+       +-- max-ts-number?   uint16
+  grouping otn-label-range-info:
+    +-- otn-label-range
+       +-- range-type?      otn-label-range-type
+       +-- tsg?             identityref
+       +-- odu-type-list*   identityref
+       +-- priority?        uint8
+  grouping otn-label-start-end:
+    +-- otn-label
+       +-- tpn?   otn-tpn
+       +-- ts?    otn-ts
+  grouping otn-label-hop:
+    +-- otn-label
+       +-- tpn?       otn-tpn
+       +-- tsg?       identityref
+       +-- ts-list?   string
+  grouping otn-label-step:
+    +-- otn-label-step
+       +-- tpn?   otn-tpn
+       +-- ts?    otn-ts
+</pre><a href="#section-5-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="code">
+<section id="section-6">
+      <h2 id="name-yang-code-for-layer1-types">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-yang-code-for-layer1-types" class="section-name selfRef">YANG Code for Layer1 Types</a>
+      </h2>
+<div class="breakable lang-yang sourcecode" id="section-6-1">
+<pre>&lt;CODE BEGINS&gt; file "ietf-layer1-types@2024-02-22.yang"
+
+module ietf-layer1-types {
+  yang-version 1.1;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-layer1-types";
+  prefix "l1-types";
+
+  import ietf-routing-types {
+    prefix rt-types;
+    reference
+      "RFC 8294: Common YANG Data Types for the Routing Area";
+  }
+
+  organization
+    "IETF CCAMP Working Group";
+  contact
+    "WG Web: &lt;https://datatracker.ietf.org/wg/ccamp/&gt;
+     WG List: &lt;mailto:ccamp@ietf.org&gt;
+
+     Editor: Haomian Zheng
+             &lt;mailto:zhenghaomian@huawei.com&gt;
+
+     Editor: Italo Busi
+             &lt;mailto:Italo.Busi@huawei.com&gt;";
+
+  description
+    "This module defines Layer 1 YANG types. The model fully conforms
+     to the Network Management Datastore Architecture (NMDA).
+
+     Copyright (c) 2024 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Revised BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC XXXX; see
+     the RFC itself for full legal notices.
+
+    The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
+    NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
+    'MAY', and 'OPTIONAL' in this document are to be interpreted as
+    described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
+    they appear in all capitals, as shown here.";
+
+  revision "2024-02-22" {
+    description
+      "Initial Version";
+    reference
+      "RFC XXXX: A YANG Data Model for Layer 1 Types";
+    // RFC Editor: replace RFC XXXX with actual RFC number,
+    // update date information and remove this note.
+  }
+
+  /*
+   * Identities
+   */
+
+  identity tributary-slot-granularity {
+    description
+      "Tributary Slot Granularity (TSG).";
+    reference
+      "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+       Transport Network (OTN)";
+  }
+
+    identity tsg-1.25G {
+      base tributary-slot-granularity;
+      description
+        "1.25G tributary slot granularity.";
+    }
+
+    identity tsg-2.5G {
+      base tributary-slot-granularity;
+      description
+        "2.5G tributary slot granularity.";
+    }
+
+    identity tsg-5G {
+      base tributary-slot-granularity;
+      description
+        "5G tributary slot granularity.";
+    }
+
+  identity odu-type {
+    description
+      "Base identity from which specific Optical Data Unit (ODU)
+      type is derived.";
+    reference
+      "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+       G.709 Optical Transport Networks
+
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+       Transport Network (OTN)";
+  }
+
+    identity ODU0 {
+      base odu-type;
+      description
+        "ODU0 type (1.24Gb/s).";
+      reference
+        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity ODU1 {
+      base odu-type;
+      description
+        "ODU1 type (2.49Gb/s).";
+      reference
+        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity ODU2 {
+      base odu-type;
+      description
+        "ODU2 type (10.03Gb/s).";
+      reference
+        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity ODU2e {
+      base odu-type;
+      description
+        "ODU2e type (10.39Gb/s).";
+      reference
+        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity ODU3 {
+      base odu-type;
+      description
+        "ODU3 type (40.31Gb/s).";
+      reference
+        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity ODU4 {
+      base odu-type;
+      description
+        "ODU4 type (104.79Gb/s).";
+      reference
+        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity ODUflex {
+      base odu-type;
+      description
+        "ODUflex type (flexible bit rate, not resizable).
+
+        It could be used for any type of ODUflex, including
+        ODUflex(CBR), ODUflex(GFP), ODUflex(GFP,n,k), ODUflex(IMP,s),
+        ODUflex(IMP) and ODUflex(FlexE-aware).";
+      reference
+        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity ODUflex-resizable {
+      base odu-type;
+      description
+        "ODUflex protocol (flexible bit rate, resizable).
+
+        It could be used only for ODUflex(GFP,n,k).";
+      reference
+        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+  identity protocol {
+    description
+      "Base identity from which specific protocol is derived.";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+    identity Ethernet {
+      base protocol;
+      description
+        "Ethernet protocol.";
+      reference
+        "MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity Fibre-Channel {
+      base protocol;
+      description
+        "Fibre-Channel (FC) protocol.";
+      reference
+        "MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity SDH {
+      base protocol;
+      description
+        "SDH protocol.";
+      reference
+        "MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity SONET {
+      base protocol;
+      description
+        "SONET protocol.";
+      reference
+        "MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+  identity client-signal {
+    description
+      "Base identity from which specific Constant Bit Rate (CBR)
+      client signal is derived";
+  }
+
+  identity coding-func {
+    description
+      "Base identity from which specific coding function
+       is derived.";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+    identity ETH-1Gb {
+      base client-signal;
+      description
+        "Client signal type of 1GbE.";
+      reference
+        "IEEE 802.3-2018, Clause 36: IEEE Standard for Ethernet
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity ETH-10Gb-LAN {
+      base client-signal;
+      description
+        "Client signal type of ETH-10Gb-LAN (10.3 Gb/s).";
+      reference
+        "IEEE 802.3-2018, Clause 49: IEEE Standard for Ethernet
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity ETH-10Gb-WAN {
+      base client-signal;
+      description
+        "Client signal type of ETH-10Gb-WAN (9.95 Gb/s).";
+      reference
+        "IEEE 802.3-2018, Clause 50: IEEE Standard for Ethernet
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity ETH-40Gb {
+      base client-signal;
+      description
+        "Client signal type of 40GbE.";
+      reference
+        "IEEE 802.3-2018, Clause 82: IEEE Standard for Ethernet
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity ETH-100Gb {
+      base client-signal;
+      description
+        "Client signal type of 100GbE.";
+      reference
+        "IEEE 802.3-2018, Clause 82: IEEE Standard for Ethernet
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)";
+    }
+
+    identity STM-1 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of STM-1;
+        STM-1 G.707 (N=1) coding function.";
+      reference
+        "ITU-T G.707 v7.0 (01/2007): Network node interface for the
+        synchronous digital hierarchy (SDH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity STM-4 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of STM-4;
+        STM-4 G.707 (N=4) coding function.";
+      reference
+        "ITU-T G.707 v7.0 (01/2007): Network node interface for the
+        synchronous digital hierarchy (SDH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity STM-16 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of STM-16;
+        STM-16 G.707 (N=16) coding function.";
+      reference
+        "ITU-T G.707 v7.0 (01/2007): Network node interface for the
+        synchronous digital hierarchy (SDH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity STM-64 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of STM-64;
+        STM-64 G.707 (N=64) coding function.";
+      reference
+        "ITU-T G.707 v7.0 (01/2007): Network node interface for the
+        synchronous digital hierarchy (SDH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity STM-256 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of STM-256;
+        STM-256 G.707 (N=256) coding function.";
+      reference
+        "ITU-T G.707 v7.0 (01/2007): Network node interface for the
+        synchronous digital hierarchy (SDH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity OC-3 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of OC3;
+        OC-3 GR-253-CORE (N=3) coding function.";
+      reference
+        "ANSI T1.105-2001: Synchronous Optical Network (SONET)
+        Basic Description including Multiplex Structure, Rates,
+        and Formats
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity OC-12 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of OC12;
+        OC-12 GR-253-CORE (N=12) coding function.";
+      reference
+        "ANSI T1.105-2001: Synchronous Optical Network (SONET)
+        Basic Description including Multiplex Structure, Rates,
+        and Formats
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity OC-48 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of OC48;
+        OC-48 GR-253-CORE (N=48) coding function.";
+      reference
+        "ANSI T1.105-2001: Synchronous Optical Network (SONET)
+        Basic Description including Multiplex Structure, Rates,
+        and Formats
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity OC-192 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of OC192;
+        OC-192 GR-253-CORE (N=192) coding function.";
+      reference
+        "ANSI T1.105-2001: Synchronous Optical Network (SONET)
+        Basic Description including Multiplex Structure, Rates,
+        and Formats
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity OC-768 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of OC768;
+        OC-768 GR-253-CORE (N=768) coding function.";
+      reference
+        "ANSI T1.105-2001: Synchronous Optical Network (SONET)
+        Basic Description including Multiplex Structure, Rates,
+        and Formats
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity FC-100 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of Fibre Channel FC-100;
+        FC-100 FC-FS-2 (1.0625 Gb/s) coding function.";
+      reference
+        "ANSI INCITS 230-1994 R1999): Information Technology -
+        Fibre Channel - Physical and Signaling Interface (FC-PH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity FC-200 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of Fibre Channel FC-200;
+        FC-200 FC-FS-2 (2.125 Gb/s) coding function.";
+      reference
+        "ANSI INCITS 230-1994 R1999): Information Technology -
+        Fibre Channel - Physical and Signaling Interface (FC-PH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity FC-400 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of Fibre Channel FC-400;
+        FC-400 FC-FS-2 (4.250 Gb/s) coding function.";
+      reference
+        "ANSI INCITS 230-1994 R1999): Information Technology -
+        Fibre Channel - Physical and Signaling Interface (FC-PH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity FC-800 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of Fibre Channel FC-800;
+        FC-800 FC-FS-2 (8.500 Gb/s) coding function.";
+      reference
+        "ANSI INCITS 230-1994 R1999): Information Technology -
+        Fibre Channel - Physical and Signaling Interface (FC-PH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity FC-1200 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of Fibre Channel FC-1200;
+        FC-1200 FC-10GFC (10.51875 Gb/s) coding function.";
+      reference
+        "ANSI INCITS 230-1994 R1999): Information Technology -
+        Fibre Channel - Physical and Signaling Interface (FC-PH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity FC-1600 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of Fibre Channel FC-1600;
+        FC-1600 FC-FS-3 (14.025 Gb/s) coding function.";
+      reference
+        "ANSI INCITS 230-1994 R1999): Information Technology -
+        Fibre Channel - Physical and Signaling Interface (FC-PH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity FC-3200 {
+      base client-signal;
+      base coding-func;
+      description
+        "Client signal type of Fibre Channel FC-3200;
+        FC-3200 FC-FS-4 (28.05 Gb/s) coding function.";
+      reference
+        "ANSI INCITS 230-1994 R1999): Information Technology -
+        Fibre Channel - Physical and Signaling Interface (FC-PH)
+
+        RFC7139: GMPLS Signaling Extensions for Control of Evolving
+        G.709 Optical Transport Networks
+
+        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+        Transport Network (OTN)
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity ETH-1000X {
+      base coding-func;
+      description
+        "1000BASE-X PCS clause 36 coding function.";
+      reference
+        "IEEE 802.3-2018, Clause 36: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity ETH-10GW {
+      base coding-func;
+      description
+        "IEEE 802.3-2018, Clause 50: IEEE Standard for Ethernet
+
+        10GBASE-W (WAN PHY) PCS clause 49 and WIS clause 50
+        coding function.";
+      reference
+        "MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity ETH-10GR {
+      base coding-func;
+      description
+        "10GBASE-R (LAN PHY) PCS clause 49 coding function.";
+      reference
+        "IEEE 802.3-2018, Clause 49: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity ETH-40GR {
+      base coding-func;
+      description
+        "40GBASE-R PCS clause 82 coding function.";
+      reference
+        "IEEE 802.3-2018, Clause 82: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity ETH-100GR {
+      base coding-func;
+      description
+        "100GBASE-R PCS clause 82 coding function.";
+      reference
+        "IEEE 802.3-2018, Clause 82: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+  identity optical-interface-func {
+    description
+      "Base identity from which optical-interface-function
+       is derived.";
+    reference
+      "MEF63: Subscriber Layer 1 Service Attributes";
+  }
+
+    identity SX-PMD-1000 {
+      base optical-interface-func;
+      description
+        "SX-PMD-clause-38 Optical Interface function for
+        1000BASE-X PCS-36.";
+      reference
+        "IEEE 802.3-2018, Clause 38: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity LX-PMD-1000 {
+      base optical-interface-func;
+      description
+        "LX-PMD-clause-38 Optical Interface function for
+        1000BASE-X PCS-36.";
+      reference
+        "IEEE 802.3-2018, Clause 38: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity LX10-PMD-1000 {
+      base optical-interface-func;
+      description
+        "LX10-PMD-clause-59 Optical Interface function for
+        1000BASE-X PCS-36.";
+      reference
+        "IEEE 802.3-2018, Clause 59: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity BX10-PMD-1000 {
+      base optical-interface-func;
+      description
+        "BX10-PMD-clause-59 Optical Interface function for
+        1000BASE-X PCS-36.";
+      reference
+        "IEEE 802.3-2018, Clause 59: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity LW-PMD-10G {
+      base optical-interface-func;
+      description
+        "LW-PMD-clause-52 Optical Interface function for
+        10GBASE-W PCS-49-WIS-50.";
+      reference
+        "IEEE 802.3-2018, Clause 52: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity EW-PMD-10G {
+      base optical-interface-func;
+      description
+        "EW-PMD-clause-52 Optical Interface function for
+        10GBASE-W PCS-49-WIS-50.";
+      reference
+        "IEEE 802.3-2018, Clause 52: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity LR-PMD-10G {
+      base optical-interface-func;
+      description
+        "LR-PMD-clause-52 Optical Interface function for
+        10GBASE-R PCS-49.";
+      reference
+        "IEEE 802.3-2018, Clause 52: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity ER-PMD-10G {
+      base optical-interface-func;
+      description
+        "ER-PMD-clause-52 Optical Interface function for
+        10GBASE-R PCS-49.";
+      reference
+        "IEEE 802.3-2018, Clause 52: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity LR4-PMD-40G {
+      base optical-interface-func;
+      description
+        "LR4-PMD-clause-87 Optical Interface function for
+        40GBASE-R PCS-82.";
+      reference
+        "IEEE 802.3-2018, Clause 87: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity ER4-PMD-40G {
+      base optical-interface-func;
+      description
+        "ER4-PMD-clause-87 Optical Interface function for
+        40GBASE-R PCS-82.";
+      reference
+        "IEEE 802.3-2018, Clause 87: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity FR-PMD-40G {
+      base optical-interface-func;
+      description
+        "FR-PMD-clause-89 Optical Interface function for
+        40GBASE-R PCS-82.";
+      reference
+        "IEEE 802.3-2018, Clause 89: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity LR4-PMD-100G {
+      base optical-interface-func;
+      description
+        "LR4-PMD-clause-88 Optical Interface function for
+        100GBASE-R PCS-82.";
+      reference
+        "IEEE 802.3-2018, Clause 88: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+    identity ER4-PMD-100G {
+      base optical-interface-func;
+      description
+        "ER4-PMD-clause-88 Optical Interface function for
+        100GBASE-R PCS-82.";
+      reference
+        "IEEE 802.3-2018, Clause 88: IEEE Standard for Ethernet
+
+        MEF63: Subscriber Layer 1 Service Attributes";
+    }
+
+  /*
+   * Typedefs
+   */
+
+  typedef otn-tpn {
+    type uint16 {
+      range "1..4095";
+    }
+    description
+      "Tributary Port Number (TPN) for OTN.";
+    reference
+      "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+       G.709 Optical Transport Networks.";
+  }
+
+  typedef otn-ts {
+    type uint16 {
+      range "1..4095";
+    }
+    description
+      "Tributary Slot (TS) for OTN.";
+    reference
+      "RFC7139: GMPLS Signaling Extensions for Control of Evolving
+       G.709 Optical Transport Networks.";
+  }
+
+  typedef otn-label-range-type {
+    type enumeration {
+      enum trib-slot {
+        description
+          "Defines a range of OTN tributary slots (TS).";
+      }
+      enum trib-port {
+        description
+          "Defines a range of OTN tributary ports (TPN).";
+      }
+    }
+    description
+      "Defines the type of OTN label range: TS or TPN.";
+  }
+
+  typedef gfp-k {
+    type enumeration {
+      enum 2 {
+        description
+          "The ODU2.ts rate (1,249,177.230 kbit/s) is used
+           to compute the rate of an ODUflex(GFP,n,2).";
+      }
+      enum 3 {
+        description
+          "The ODU3.ts rate (1,254,470.354 kbit/s) is used
+           to compute the rate of an ODUflex(GFP,n,3).";
+      }
+      enum 4 {
+        description
+          "The ODU4.ts rate (1,301,467.133 kbit/s) is used
+           to compute the rate of an ODUflex(GFP,n,4).";
+      }
+    }
+    description
+      "The ODUk.ts used to compute the rate of an ODUflex(GFP,n,k).";
+    reference
+      "ITU-T G.709 v6.0 (06/2020), Table 7-8 and L.7: Interfaces for
+       the Optical Transport Network (OTN)";
+  }
+
+  typedef flexe-client-rate {
+    type union {
+      type uint16;
+      type enumeration {
+        enum "10G" {
+          description
+            "Represents a 10G FlexE Client signal (s=2).";
+        }
+        enum "40G" {
+          description
+            "Represents a 40G FlexE Client signal (s=8).";
+        }
+      }
+    }
+    description
+      "The FlexE Client signal rate (s x 5,156,250.000 kbit/s)
+       used to compute the rate of an ODUflex(IMP, s).
+
+       Valid values for s are s=2 (10G), s=4 (40G) and
+       s=5 x n (n x 25G).
+
+       In the first two cases an enumeration value
+       (either 10G or 40G) is used, while in the latter case
+       the value of n is used.";
+    reference
+      "ITU-T G.709 v6.0 (06/2020), Table 7-2: Interfaces for the
+       Optical Transport Network (OTN)";
+  }
+
+  typedef odtu-flex-type {
+    type enumeration {
+      enum "2" {
+        description
+          "The ODTU2.ts ODTU type.";
+      }
+      enum "3" {
+        description
+          "The ODTU3.ts ODTU type.";
+      }
+      enum "4" {
+        description
+          "The ODTU4.ts ODTU type.";
+      }
+      enum "Cn" {
+        description
+          "The ODTUCn.ts ODTU type.";
+      }
+    }
+    description
+      "The type of Optical Data Tributary Unit (ODTU),
+      whose nominal bitrate is used to compute the number of
+      Tributary Slots (TS) required by an ODUflex LSP, according to
+      the (19-1a) and (20-1a) formulas defined in G.709.";
+    reference
+      "ITU-T G.709 v6.0 (06/2020), Table 7-7, clause 19.6 and
+      clause 20.5: Interfaces for the Optical Transport
+      Network (OTN)";
+  }
+
+  typedef bandwidth-scientific-notation {
+    type string {
+      pattern
+        '0(\.0?)?([eE](\+)?0?)?|'
+      + '[1-9](\.[0-9]{0,6})?[eE](\+)?(9[0-6]|[1-8][0-9]|0?[0-9])?';
+    }
+    units "bps";
+    description
+      "Bandwidth values, expressed using the scientific notation
+      in bits per second.
+
+      The encoding format is the external decimal-significant
+      character sequences specified in IEEE 754 and ISO/IEC 9899:1999
+      for 32-bit decimal floating-point numbers:
+      (-1)**(S) * 10**(Exponent) * (Significant),
+      where Significant uses 7 digits.
+
+      An implementation for this representation MAY use decimal32
+      or binary32. The range of the Exponent is from -95 to +96
+      for decimal32, and from -38 to +38 for binary32.
+      As a bandwidth value, the format is restricted to be
+      normalized, non-negative, and non-fraction:
+      n.dddddde{+}dd, N.DDDDDDE{+}DD, 0e0 or 0E0,
+      where 'd' and 'D' are decimal digits; 'n' and 'N' are
+      non-zero decimal digits; 'e' and 'E' indicate a power of ten.
+      Some examples are 0e0, 1e10, and 9.953e9.";
+    reference
+      "IEEE Std 754-2001: IEEE Standard for Floating-Point
+      Arithmetic
+
+      ISO/IEC 9899:1999: Information technology - Programming
+      Languages - C";
+  }
+
+  /*
+   * Groupings
+   */
+
+  grouping otn-link-bandwidth {
+    description
+      "Bandwidth attributes for OTN links.";
+    container otn-bandwidth {
+      description
+        "Bandwidth attributes for OTN links.";
+      list odulist {
+        key "odu-type";
+        description
+          "OTN bandwidth definition";
+        leaf odu-type {
+          type identityref {
+            base odu-type;
+          }
+          description "ODU type";
+        }
+        leaf number {
+          type uint16;
+          description "Number of ODUs.";
+        }
+        leaf ts-number {
+          when 'derived-from-or-self(../odu-type,"ODUflex") or
+                derived-from-or-self(../odu-type,
+                "ODUflex-resizable")' {
+            description
+              "Applicable when odu-type is ODUflex or
+              ODUflex-resizable.";
+          }
+          type uint16 {
+            range "1..4095";
+          }
+          description
+            "The number of Tributary Slots (TS) that
+            could be used by all the ODUflex LSPs.";
+        }
+      }
+    }
+  }
+
+  grouping otn-path-bandwidth {
+    description
+      "Bandwidth attributes for OTN paths.";
+    container otn-bandwidth {
+      description
+        "Bandwidth attributes for OTN paths.";
+      leaf odu-type {
+        type identityref {
+          base odu-type;
+        }
+        description "ODU type";
+      }
+      choice oduflex-type {
+        when 'derived-from-or-self(./odu-type,"ODUflex") or
+              derived-from-or-self(./odu-type,
+              "ODUflex-resizable")' {
+          description
+            "Applicable when odu-type is ODUflex or
+             ODUflex-resizable.";
+        }
+        description
+          "Types of ODUflex used to compute the ODUflex
+           nominal bit rate.";
+        reference
+          "ITU-T G.709 v6.0 (06/2020), Table 7-2: Interfaces for the
+           Optical Transport Network (OTN)";
+        case generic {
+          leaf nominal-bit-rate {
+            type union {
+              type l1-types:bandwidth-scientific-notation;
+              type rt-types:bandwidth-ieee-float32;
+            }
+            mandatory true;
+            description
+              "Nominal ODUflex bit rate.";
+          }
+        }
+        case cbr {
+          leaf client-type {
+            type identityref {
+              base client-signal;
+            }
+            mandatory true;
+            description
+              "The type of Constant Bit Rate (CBR) client signal
+              of an ODUflex(CBR).";
+          }
+        }
+        case gfp-n-k {
+          leaf gfp-n {
+            type uint8 {
+              range "1..80";
+            }
+            mandatory true;
+            description
+              "The value of n for an ODUflex(GFP,n,k).";
+            reference
+              "ITU-T G.709 v6.0 (06/2020), Tables 7-8 and L.7:
+               Interfaces for the Optical Transport Network (OTN)";
+          }
+          leaf gfp-k {
+            type gfp-k;
+            description
+              "The value of k for an ODUflex(GFP,n,k).
+
+               If omitted, it is calculated from the value of gfp-n
+               as described in Table 7-8 of G.709.";
+            reference
+              "ITU-T G.709 v6.0 (06/2020), Tables 7-8 and L.7:
+               Interfaces for the Optical Transport Network (OTN)";
+          }
+        }
+        case flexe-client {
+          leaf flexe-client {
+            type flexe-client-rate;
+            mandatory true;
+            description
+              "The rate of the FlexE-client for an ODUflex(IMP,s).";
+          }
+        }
+        case flexe-aware {
+          leaf flexe-aware-n {
+            type uint16;
+            mandatory true;
+            description
+              "The rate of FlexE-aware client signal
+               for ODUflex(FlexE-aware)";
+          }
+        }
+        case packet {
+          leaf opuflex-payload-rate {
+            type union {
+              type l1-types:bandwidth-scientific-notation;
+              type rt-types:bandwidth-ieee-float32;
+            }
+            mandatory true;
+            description
+              "Either the GFP-F encapsulated packet client nominal
+               bit rate for an ODUflex(GFP) or the 64b/66b encoded
+               packet client nominal bit rate for an ODUflex(IMP).";
+          }
+        }
+      }
+    }
+  }
+
+  grouping otn-max-path-bandwidth {
+    description
+      "Maximum bandwidth attributes for OTN paths.";
+    container otn-bandwidth {
+      description
+        "Maximum bandwidth attributes for OTN paths.";
+      leaf odu-type {
+        type identityref {
+          base odu-type;
+        }
+        description "ODU type.";
+      }
+      leaf max-ts-number {
+        when 'derived-from-or-self(../odu-type,"ODUflex") or
+              derived-from-or-self(../odu-type,
+              "ODUflex-resizable")' {
+          description
+            "Applicable when odu-type is ODUflex or
+             ODUflex-resizable.";
+        }
+        type uint16 {
+          range "1..4095";
+        }
+        description
+          "The maximum number of Tributary Slots (TS) that could be
+          used by an ODUflex LSP.";
+      }
+    }
+  }
+
+  grouping otn-label-range-info {
+    description
+      "Label range information for OTN.
+
+       This grouping SHOULD be used together with the
+       otn-label-start-end and otn-label-step groupings to provide
+       OTN technology-specific label information to the models which
+       use the label-restriction-info grouping defined in the module
+       ietf-te-types.";
+    container otn-label-range {
+      description
+        "Label range information for OTN.";
+      leaf range-type {
+        type otn-label-range-type;
+        description "The type of range (e.g., TPN or TS)
+          to which the label range applies";
+      }
+      leaf tsg {
+        type identityref {
+          base tributary-slot-granularity;
+        }
+        description
+          "Tributary slot granularity (TSG) to which the label range
+          applies.
+
+          This leaf MUST be present when the range-type is TS.
+
+          This leaf MAY be omitted when mapping an ODUk over an OTUk
+          Link. In this case the range-type is tpn, with only one
+          entry (ODUk), and the tpn range has only one value (1).";
+        reference
+          "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+          Transport Network (OTN)";
+      }
+      leaf-list odu-type-list {
+        type identityref {
+          base odu-type;
+        }
+        description
+          "List of ODU types to which the label range applies.
+
+          An Empty odu-type-list means that the label range
+          applies to all the supported ODU types.";
+      }
+      leaf priority {
+        type uint8 {
+          range 0..7;
+        }
+        description
+          "Priority in Interface Switching Capability
+          Descriptor (ISCD).";
+        reference
+          "RFC4203: OSPF Extensions in Support of Generalized
+          Multi-Protocol Label Switching (GMPLS)";
+      }
+    }
+  }
+
+  grouping otn-label-start-end {
+    description
+      "The OTN label-start or label-end used to specify an OTN label
+       range.
+
+       This grouping is dependent on the range-type defined in the
+       otn-label-range-info grouping.
+
+       This grouping SHOULD be used together with the
+       otn-label-range-info and otn-label-step groupings to provide
+       OTN technology-specific label information to the models which
+       use the label-restriction-info grouping defined in the module
+       ietf-te-types.";
+    container otn-label {
+      description
+        "Label start or label end for OTN.
+
+        It is either a TPN or a TS depending on the OTN label range
+        type specified in the 'range-type' leaf defined in the
+        otn-label-range-info grouping.";
+      leaf tpn {
+        when "../../../../otn-label-range/range-type =
+              'trib-port'" {
+          description
+            "Valid only when range-type represented by
+            trib-port.";
+        }
+        type otn-tpn;
+        description
+          "Tributary Port Number (TPN).";
+        reference
+          "RFC7139: GMPLS Signaling Extensions for Control of
+          Evolving G.709 Optical Transport Networks";
+      }
+      leaf ts {
+        when "../../../../otn-label-range/range-type =
+              'trib-slot'" {
+          description
+            "Valid only when range-type represented by
+            trib-slot.";
+        }
+        type otn-ts;
+        description
+          "Tributary Slot (TS) number.";
+        reference
+          "RFC7139: GMPLS Signaling Extensions for Control of
+          Evolving G.709 Optical Transport Networks";
+      }
+    }
+  }
+
+  grouping otn-label-hop {
+    description "OTN Label";
+    reference
+      "RFC7139, section 6: GMPLS Signaling Extensions for Control of
+       Evolving G.709 Optical Transport Networks";
+    container otn-label {
+      description
+        "Label hop for OTN.";
+      leaf tpn {
+        type otn-tpn;
+        description
+          "Tributary Port Number (TPN).";
+        reference
+          "RFC7139: GMPLS Signaling Extensions for Control of
+          Evolving G.709 Optical Transport Networks";
+      }
+      leaf tsg {
+        type identityref {
+          base tributary-slot-granularity;
+        }
+        description "Tributary Slot Granularity (TSG).";
+        reference
+          "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+          Transport Network (OTN)";
+      }
+      leaf ts-list {
+        type string {
+            pattern "([1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?"
+                  + "(,[1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?)*)";
+          }
+        description
+          "A list of available Tributary Slots (TS) ranging
+          between 1 and 4095. If multiple values or
+          ranges are given, they all MUST be disjoint
+          and MUST be in ascending order.
+          For example 1-20,25,50-1000.";
+        reference
+          "RFC 7139: GMPLS Signaling Extensions for Control
+          of Evolving G.709 Optical Transport Networks";
+      }
+    }
+  }
+
+  grouping otn-label-step {
+    description
+      "Label step for OTN.
+
+       This grouping is dependent on the range-type defined in the
+       otn-label-range-info grouping.
+
+       This grouping SHOULD be used together with the
+       otn-label-range-info and otn-label-start-end groupings to
+       provide OTN technology-specific label information to the
+       models which use the label-restriction-info grouping defined
+       in the module ietf-te-types.";
+    container otn-label-step {
+      description
+        "Label step for OTN.
+
+        It is either a TPN or a TS depending on the OTN label range
+        type specified in the 'range-type' leaf defined in the
+        otn-label-range-info grouping.";
+      leaf tpn {
+        when "../../../otn-label-range/range-type =
+              'trib-port'" {
+          description
+            "Valid only when range-type represented by
+            trib-port.";
+        }
+        type otn-tpn;
+        description
+          "Label step which represents possible increments for
+          Tributary Port Number (TPN).";
+        reference
+          "RFC7139: GMPLS Signaling Extensions for Control of
+          Evolving G.709 Optical Transport Networks";
+      }
+      leaf ts {
+        when "../../../otn-label-range/range-type =
+              'trib-slot'" {
+          description
+            "Valid only when range-type represented by
+            trib-slot";
+        }
+        type otn-ts;
+        description
+          "Label step which represents possible increments for
+          Tributary Slot (TS) number.";
+        reference
+          "RFC7139: GMPLS Signaling Extensions for Control of
+          Evolving G.709 Optical Transport Networks";
+      }
+    }
+  }
+}
+
+&lt;CODE ENDS&gt;</pre><a href="#section-6-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="Security">
+<section id="section-7">
+      <h2 id="name-security-considerations">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-7-1">The YANG module specified in this document defines a schema for data
+that is designed to be accessed via network management protocols such
+as NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. The lowest NETCONF layer
+is the secure transport layer, and the mandatory-to-implement secure
+transport is Secure Shell (SSH) <span>[<a href="#RFC6242" class="cite xref">RFC6242</a>]</span>. The lowest RESTCONF layer
+is HTTPS, and the mandatory-to-implement secure transport is TLS
+<span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">If using secure channels, such as SSH for NETCONF or TLS for
+RESTCONF, an array of secure validation methods are availible. These
+methods range from public key and password authentication to host
+identity verification. It is strongly advised to not use options
+that require no authentication. However, it is important to
+acknowledge that not all authentication methods offer the same level
+of security. For instance, password-based authentication is notably
+susceptible to security threats such as phishing attacks and password
+reuse.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">The NETCONF access control model <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> provides the means to
+restrict access for particular NETCONF or RESTCONF users to a
+preconfigured subset of all available NETCONF or RESTCONF protocol
+operations and content.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-4">The YANG module in this document defines layer 1 type definitions
+(i.e., typedef, identity and grouping statements) in YANG data
+modeling language to be imported and used by other layer 1
+technology-specific modules. When imported and used, the resultant
+schema will have data nodes that can be writable, or readable. The
+access to such data nodes may be considered sensitive or vulnerable
+in some network environments. Write operations (e.g., edit-config)
+to these data nodes without proper protection can have a negative
+effect on network operations.<a href="#section-7-4" class="pilcrow">¶</a></p>
+<p id="section-7-5">The security considerations spelled out in the YANG 1.1 specification
+<span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> apply for this document as well.<a href="#section-7-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="IANA">
+<section id="section-8">
+      <h2 id="name-iana-considerations">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-8-1">It is proposed that IANA should assign new URIs from the "IETF XML
+Registry" <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span> as follows:<a href="#section-8-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-8-2">
+<pre>
+      URI: urn:ietf:params:xml:ns:yang:ietf-layer1-types
+      Registrant Contact: The IESG
+      XML: N/A; the requested URI is an XML namespace.
+</pre><a href="#section-8-2" class="pilcrow">¶</a>
+</div>
+<p id="section-8-3">This document registers a YANG module in the YANG Module Names
+registry <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>.<a href="#section-8-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-8-4">
+<pre>
+      name:         ietf-layer1-types
+      namespace:    urn:ietf:params:xml:ns:yang:ietf-layer1-types
+      prefix:       l1-types
+      reference:    RFC XXXX
+</pre><a href="#section-8-4" class="pilcrow">¶</a>
+</div>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-8-5.1">
+          <p id="section-8-5.1.1">RFC Editor Note: Please replace XXXX with the number assigned to the
+RFC once this draft becomes an RFC.<a href="#section-8-5.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="sec-combined-references">
+<section id="section-9">
+      <h2 id="name-references">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<div id="sec-normative-references">
+<section id="section-9.1">
+        <h3 id="name-normative-references">
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="ANSI_INCITS_230">[ANSI_INCITS_230]</dt>
+        <dd>
+<span class="refAuthor">American National Standards Institute</span>, <span class="refTitle">"Information Technology - Fibre Channel - Physical and Signaling Interface (FC-PH)."</span>, <span class="seriesInfo">ANSI INCITS 230-1994 (R1999) </span>, <time datetime="1994-01" class="refDate">January 1994</time>, <span>&lt;<a href="https://webstore.ansi.org/standards/incits/ansiincits2301994r1999">https://webstore.ansi.org/standards/incits/ansiincits2301994r1999</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ANSI_T1.105">[ANSI_T1.105]</dt>
+        <dd>
+<span class="refAuthor">American National Standards Institute</span>, <span class="refTitle">"Synchronous Optical Network (SONET) Basic Description including Multiplex Structure, Rates, and Formats"</span>, <span class="seriesInfo">ANSI T1.105-2001 </span>, <time datetime="2001-05" class="refDate">May 2001</time>, <span>&lt;<a href="https://webstore.ansi.org/standards/atis/t11052001">https://webstore.ansi.org/standards/atis/t11052001</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-teas-rfc8776-update">[I-D.ietf-teas-rfc8776-update]</dt>
+        <dd>
+<span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Guo, A.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">I. Bryskin</span>, <span class="refTitle">"Common YANG Data Types for Traffic Engineering"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-rfc8776-update-23</span>, <time datetime="2026-05-20" class="refDate">20 May 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-23">https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-23</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IEEE_754">[IEEE_754]</dt>
+        <dd>
+<span class="refAuthor">Institute of Electrical and Electronics Engineers</span>, <span class="refTitle">"IEEE Standard for Floating-Point Arithmetic"</span>, <span class="seriesInfo">IEEE 754-2019 </span>, <time datetime="2019-07" class="refDate">July 2019</time>, <span>&lt;<a href="https://ieeexplore.ieee.org/document/8766229">https://ieeexplore.ieee.org/document/8766229</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IEEE_802.3">[IEEE_802.3]</dt>
+        <dd>
+<span class="refAuthor">Institute of Electrical and Electronics Engineers</span>, <span class="refTitle">"IEEE Standard for Ethernet"</span>, <span class="seriesInfo">IEEE 802.3-2018 </span>, <time datetime="2018-06" class="refDate">June 2018</time>, <span>&lt;<a href="https://ieeexplore.ieee.org/document/8457469">https://ieeexplore.ieee.org/document/8457469</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ISO_IEC_9899_1999">[ISO_IEC_9899_1999]</dt>
+        <dd>
+<span class="refAuthor">International Organization for Standardization</span>, <span class="refTitle">"Programming Languages - C"</span>, <span class="seriesInfo">ISO/IEC 9899:1999 </span>, <time datetime="1999-12" class="refDate">December 1999</time>, <span>&lt;<a href="https://www.iso.org/standard/29237.">https://www.iso.org/standard/29237.</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ITU-T_G.7044">[ITU-T_G.7044]</dt>
+        <dd>
+<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Hitless adjustment of ODUflex(GFP)"</span>, <span class="seriesInfo">ITU-T G.7044 </span>, <time datetime="2011-10" class="refDate">October 2011</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.7044">https://www.itu.int/rec/T-REC-G.7044</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ITU-T_G.707">[ITU-T_G.707]</dt>
+        <dd>
+<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Network node interface for the synchronous digital hierarchy (SDH)"</span>, <span class="seriesInfo">ITU-T G.707 </span>, <time datetime="2007-01" class="refDate">January 2007</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.707">https://www.itu.int/rec/T-REC-G.707</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ITU-T_G.709">[ITU-T_G.709]</dt>
+        <dd>
+<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Interfaces for the optical transport network"</span>, <span class="seriesInfo">ITU-T G.709 </span>, <time datetime="2020-06" class="refDate">June 2020</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.709">https://www.itu.int/rec/T-REC-G.709</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="MEF_63">[MEF_63]</dt>
+        <dd>
+<span class="refAuthor">Metro Ethernet Forum</span>, <span class="refTitle">"Subscriber Layer1 Service Attributes Technical Specification"</span>, <span class="seriesInfo">MEF 63 </span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.mef.net/wp-content/uploads/2018/08/MEF-63.pdf">https://www.mef.net/wp-content/uploads/2018/08/MEF-63.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC3688">[RFC3688]</dt>
+        <dd>
+<span class="refAuthor">Mealling, M.</span>, <span class="refTitle">"The IETF XML Registry"</span>, <span class="seriesInfo">BCP 81</span>, <span class="seriesInfo">RFC 3688</span>, <span class="seriesInfo">DOI 10.17487/RFC3688</span>, <time datetime="2004-01" class="refDate">January 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3688">https://www.rfc-editor.org/rfc/rfc3688</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4203">[RFC4203]</dt>
+        <dd>
+<span class="refAuthor">Kompella, K., Ed.</span> and <span class="refAuthor">Y. Rekhter, Ed.</span>, <span class="refTitle">"OSPF Extensions in Support of Generalized Multi-Protocol Label Switching (GMPLS)"</span>, <span class="seriesInfo">RFC 4203</span>, <span class="seriesInfo">DOI 10.17487/RFC4203</span>, <time datetime="2005-10" class="refDate">October 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4203">https://www.rfc-editor.org/rfc/rfc4203</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6241">[RFC6241]</dt>
+        <dd>
+<span class="refAuthor">Enns, R., Ed.</span>, <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refAuthor">Schoenwaelder, J., Ed.</span>, and <span class="refAuthor">A. Bierman, Ed.</span>, <span class="refTitle">"Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6241</span>, <span class="seriesInfo">DOI 10.17487/RFC6241</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6241">https://www.rfc-editor.org/rfc/rfc6241</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6242">[RFC6242]</dt>
+        <dd>
+<span class="refAuthor">Wasserman, M.</span>, <span class="refTitle">"Using the NETCONF Protocol over Secure Shell (SSH)"</span>, <span class="seriesInfo">RFC 6242</span>, <span class="seriesInfo">DOI 10.17487/RFC6242</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6242">https://www.rfc-editor.org/rfc/rfc6242</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7139">[RFC7139]</dt>
+        <dd>
+<span class="refAuthor">Zhang, F., Ed.</span>, <span class="refAuthor">Zhang, G.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Ceccarelli, D.</span>, and <span class="refAuthor">K. Pithewan</span>, <span class="refTitle">"GMPLS Signaling Extensions for Control of Evolving G.709 Optical Transport Networks"</span>, <span class="seriesInfo">RFC 7139</span>, <span class="seriesInfo">DOI 10.17487/RFC7139</span>, <time datetime="2014-03" class="refDate">March 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7139">https://www.rfc-editor.org/rfc/rfc7139</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7950">[RFC7950]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"The YANG 1.1 Data Modeling Language"</span>, <span class="seriesInfo">RFC 7950</span>, <span class="seriesInfo">DOI 10.17487/RFC7950</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7950">https://www.rfc-editor.org/rfc/rfc7950</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8040">[RFC8040]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Bjorklund, M.</span>, and <span class="refAuthor">K. Watsen</span>, <span class="refTitle">"RESTCONF Protocol"</span>, <span class="seriesInfo">RFC 8040</span>, <span class="seriesInfo">DOI 10.17487/RFC8040</span>, <time datetime="2017-01" class="refDate">January 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8040">https://www.rfc-editor.org/rfc/rfc8040</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8294">[RFC8294]</dt>
+        <dd>
+<span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Qu, Y.</span>, <span class="refAuthor">Lindem, A.</span>, <span class="refAuthor">Hopps, C.</span>, and <span class="refAuthor">L. Berger</span>, <span class="refTitle">"Common YANG Data Types for the Routing Area"</span>, <span class="seriesInfo">RFC 8294</span>, <span class="seriesInfo">DOI 10.17487/RFC8294</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8294">https://www.rfc-editor.org/rfc/rfc8294</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8341">[RFC8341]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"Network Configuration Access Control Model"</span>, <span class="seriesInfo">STD 91</span>, <span class="seriesInfo">RFC 8341</span>, <span class="seriesInfo">DOI 10.17487/RFC8341</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8341">https://www.rfc-editor.org/rfc/rfc8341</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8446">[RFC8446]</dt>
+      <dd>
+<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-9.2">
+        <h3 id="name-informative-references">
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.ietf-ccamp-client-signal-yang">[I-D.ietf-ccamp-client-signal-yang]</dt>
+        <dd>
+<span class="refAuthor">Zheng, H.</span>, <span class="refAuthor">Guo, A.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Snitser, A.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"A YANG Data Model for Transport Network Client Signals"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-client-signal-yang-17</span>, <time datetime="2026-02-04" class="refDate">4 February 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-client-signal-yang-17">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-client-signal-yang-17</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-ccamp-l1csm-yang">[I-D.ietf-ccamp-l1csm-yang]</dt>
+        <dd>
+<span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Lee, K.</span>, <span class="refAuthor">Zheng, H.</span>, <span class="refAuthor">de Dios, O. G.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"A YANG Data Model for L1 Connectivity Service Model (L1CSM)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-l1csm-yang-26</span>, <time datetime="2024-04-11" class="refDate">11 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-l1csm-yang-26">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-l1csm-yang-26</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-ccamp-otn-topo-yang">[I-D.ietf-ccamp-otn-topo-yang]</dt>
+        <dd>
+<span class="refAuthor">Zheng, H.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Belotti, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Optical Transport Network Topology"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-otn-topo-yang-20</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang-20">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-topo-yang-20</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-ccamp-otn-tunnel-model">[I-D.ietf-ccamp-otn-tunnel-model]</dt>
+        <dd>
+<span class="refAuthor">Zheng, H.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Lopez, V.</span>, and <span class="refAuthor">Y. Xu</span>, <span class="refTitle">"A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label Switched Paths"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-otn-tunnel-model-25</span>, <time datetime="2026-05-27" class="refDate">27 May 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-tunnel-model-25">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-otn-tunnel-model-25</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-ccamp-transport-nbi-app-statement">[I-D.ietf-ccamp-transport-nbi-app-statement]</dt>
+        <dd>
+<span class="refAuthor">Busi, I.</span>, <span class="refAuthor">King, D.</span>, <span class="refAuthor">Zheng, H.</span>, and <span class="refAuthor">Y. Xu</span>, <span class="refTitle">"Transport Northbound Interface Applicability Statement"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-transport-nbi-app-statement-17</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-transport-nbi-app-statement-17">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-transport-nbi-app-statement-17</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ITU-T_G.Sup43">[ITU-T_G.Sup43]</dt>
+        <dd>
+<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Transport of IEEE 10GBASE-R in optical transport networks (OTN)"</span>, <span class="seriesInfo">ITU-T G.Sup43 </span>, <time datetime="2011-11" class="refDate">November 2011</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.Sup43">https://www.itu.int/rec/T-REC-G.Sup43</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7062">[RFC7062]</dt>
+        <dd>
+<span class="refAuthor">Zhang, F., Ed.</span>, <span class="refAuthor">Li, D.</span>, <span class="refAuthor">Li, H.</span>, <span class="refAuthor">Belotti, S.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"Framework for GMPLS and PCE Control of G.709 Optical Transport Networks"</span>, <span class="seriesInfo">RFC 7062</span>, <span class="seriesInfo">DOI 10.17487/RFC7062</span>, <time datetime="2013-11" class="refDate">November 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7062">https://www.rfc-editor.org/rfc/rfc7062</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7138">[RFC7138]</dt>
+        <dd>
+<span class="refAuthor">Ceccarelli, D., Ed.</span>, <span class="refAuthor">Zhang, F.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Rao, R.</span>, and <span class="refAuthor">J. Drake</span>, <span class="refTitle">"Traffic Engineering Extensions to OSPF for GMPLS Control of Evolving G.709 Optical Transport Networks"</span>, <span class="seriesInfo">RFC 7138</span>, <span class="seriesInfo">DOI 10.17487/RFC7138</span>, <time datetime="2014-03" class="refDate">March 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7138">https://www.rfc-editor.org/rfc/rfc7138</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7963">[RFC7963]</dt>
+        <dd>
+<span class="refAuthor">Ali, Z.</span>, <span class="refAuthor">Bonfanti, A.</span>, <span class="refAuthor">Hartley, M.</span>, and <span class="refAuthor">F. Zhang</span>, <span class="refTitle">"RSVP-TE Extension for Additional Signal Types in G.709 Optical Transport Networks (OTNs)"</span>, <span class="seriesInfo">RFC 7963</span>, <span class="seriesInfo">DOI 10.17487/RFC7963</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7963">https://www.rfc-editor.org/rfc/rfc7963</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8342">[RFC8342]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M.</span>, <span class="refAuthor">Schoenwaelder, J.</span>, <span class="refAuthor">Shafer, P.</span>, <span class="refAuthor">Watsen, K.</span>, and <span class="refAuthor">R. Wilton</span>, <span class="refTitle">"Network Management Datastore Architecture (NMDA)"</span>, <span class="seriesInfo">RFC 8342</span>, <span class="seriesInfo">DOI 10.17487/RFC8342</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8342">https://www.rfc-editor.org/rfc/rfc8342</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8792">[RFC8792]</dt>
+        <dd>
+<span class="refAuthor">Watsen, K.</span>, <span class="refAuthor">Auerswald, E.</span>, <span class="refAuthor">Farrel, A.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Handling Long Lines in Content of Internet-Drafts and RFCs"</span>, <span class="seriesInfo">RFC 8792</span>, <span class="seriesInfo">DOI 10.17487/RFC8792</span>, <time datetime="2020-06" class="refDate">June 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8792">https://www.rfc-editor.org/rfc/rfc8792</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9376">[RFC9376]</dt>
+      <dd>
+<span class="refAuthor">Wang, Q., Ed.</span>, <span class="refAuthor">Valiveti, R., Ed.</span>, <span class="refAuthor">Zheng, H., Ed.</span>, <span class="refAuthor">van Helvoort, H.</span>, and <span class="refAuthor">S. Belotti</span>, <span class="refTitle">"Applicability of GMPLS for beyond 100 Gbit/s Optical Transport Network"</span>, <span class="seriesInfo">RFC 9376</span>, <span class="seriesInfo">DOI 10.17487/RFC9376</span>, <time datetime="2023-03" class="refDate">March 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9376">https://www.rfc-editor.org/rfc/rfc9376</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="app1">
+<section id="appendix-A">
+      <h2 id="name-examples-of-otn-label-range">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-examples-of-otn-label-range" class="section-name selfRef">Examples of OTN Label Ranges</a>
+      </h2>
+<p id="appendix-A-1">This appendix provides some examples of how the TPN and TS label
+ranges described in Table 3 and Table 4 of <span>[<a href="#RFC7139" class="cite xref">RFC7139</a>]</span> can be
+represented in YANG using the groupings defined in this document.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2">It also considers the OTUk links in addition to HO-ODUk links.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<p id="appendix-A-3">The JSON code examples provided in this appendix provides some
+embedded comments following the conventions in Section 3.2 of
+<span>[<a href="#I-D.ietf-ccamp-transport-nbi-app-statement" class="cite xref">I-D.ietf-ccamp-transport-nbi-app-statement</a>]</span> and have been folded
+using the tool in <span>[<a href="#RFC8792" class="cite xref">RFC8792</a>]</span>.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
+<div class="breakable lang-json sourcecode" id="appendix-A-4">
+<pre>
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
+{
+  "// examples of label-restrictions for different OTN Links": [
+    {
+      "// example": "HO-ODU1 or OTU1 Link",
+      "label-restrictions": {
+        "label-restriction": [
+          {
+            "index ": 1,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "// not-present tsg": "",
+              "odu-type-list": "[ ODU1 ]",
+              "// default priority": 7
+            },
+            "// tpn-range": 1,
+            "// comment": "Since no TS range and no TSG are \
+reported for ODU1, the link is an OTU1 Link. TS allocation is not \
+needed and TPN shall be set to '1' for mapping ODU1 over OTU1. This \
+            entry is not present if the OTN Link is an HO-ODU1 Link."
+          },
+          {
+            "index ": 2,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODU0 ]",
+              "// default priority": 7
+            },
+            "// ts-range": "1-2",
+            "// comment": "Since no TPN range is reported for ODU0 \
+with 1.25G TSG, the TPN allocation rule is fixed (TPN = TS#) for \
+mapping LO-ODU0 over HO-ODU1 with 1.25G TSG. See Table 4 of [RFC7139\
+                                                                  ]."
+          }
+        ]
+      }
+    },
+    {
+      "// example": "HO-ODU2 or OTU2 Link",
+      "label-restrictions": {
+        "label-restriction": [
+          {
+            "index ": 1,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "// not-present tsg": "",
+              "odu-type-list": "[ ODU2 ]",
+              "// default priority": 7
+            },
+            "// tpn-range": 1,
+            "// comment": "Since no TS range and no TSG are \
+reported for ODU2, the link is an OTU2 Link. TS allocation is not \
+needed and TPN shall be set to '1' for mapping ODU2 over OTU2. This \
+            entry is not present if the OTN Link is an HO-ODU2 Link."
+          },
+          {
+            "index ": 2,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, \
+                                                             ODU1 ]",
+              "// default priority": 7
+            },
+            "// ts-range": "1-8"
+          },
+          {
+            "index ": 3,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G ",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0 ]",
+              "// default priority": 7
+            },
+            "// tpn-range": "1-8",
+            "// comment": "Since this TPN range is reported for \
+ODUflex and ODU0 with 1.25G TSG, the TPN assignment rule is \
+flexible within a common range for mapping LO-ODUflex and LO-ODU0 \
+              over HO-ODU2 with 1.25G TSG. See Table 4 of [RFC7139]."
+          },
+          {
+            "index ": 4,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODU1 ]",
+              "// default priority": 7
+            },
+            "// tpn-range": "1-4",
+            "// comment": "Since this TPN range is reported for \
+ODU1 with 1.25G TSG, the TPN assignment rule is flexible within a \
+common range for mapping LO-ODU1 over HO-ODU2 with 1.25G TSG. See \
+                                               Table 4 of [RFC7139]."
+          },
+          {
+            "index ": 5,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-2.5G",
+              "odu-type-list": "[ ODU1 ]",
+              "// default priority": 7
+            },
+            "// ts-range": "1-4",
+            "// comment": "Since no TPN range is reported for ODU1 \
+with 2.5G TSG, the TPN allocation rule is fixed (TPN = TS#) for \
+mapping LO-ODU1 over HO-ODU2 with 2.5G TSG. See Table 3 of [RFC7139]\
+                                                                   ."
+          }
+        ]
+      }
+    },
+    {
+      "// example": "HO-ODU3 or OTU3 Link",
+      "label-restrictions": {
+        "label-restriction": [
+          {
+            "index ": 1,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "// not-present tsg": "",
+              "odu-type-list": "[ ODU3 ]",
+              "// default priority": 7
+            },
+            "// tpn-range": 1,
+            "// comment": "Since no TS range and no TSG are \
+reported for ODU3, the link is an OTU3 Link. TS allocation is not \
+needed and TPN shall be set to '1' for mapping ODU3 over OTU3. This \
+            entry is not present if the OTN Link is an HO-ODU3 Link."
+          },
+          {
+            "index ": 2,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, \
+                                                ODU1, ODU2, ODU2e ]",
+              "// default priority": 7
+            },
+            "// ts-range": "1-32"
+          },
+          {
+            "index ": 3,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, \
+                                                            ODU2e ]",
+              "// default priority": 7
+            },
+            "// tpn-range": "1-32",
+            "// comment": "Since this TPN range is reported for \
+ODUflex, ODU0 and ODU2e with 1.25G TSG, the TPN assignment rule is \
+flexible within a common range for mapping LO-ODUflex, LO-ODU0 and \
+     LO-ODU2e over HO-ODU3 with 1.25G TSG. See Table 4 of [RFC7139]."
+          },
+          {
+            "index ": 4,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODU1 ]",
+              "// default priority": 7
+            },
+            "// tpn-range": "1-16",
+            "// comment": "Since this TPN range is reported for \
+ODU1 with 1.25G TSG, the TPN assignment rule is flexible within a \
+common range for mapping LO-ODU1 over HO-ODU3 with 1.25G TSG. See \
+                                               Table 4 of [RFC7139]."
+          },
+          {
+            "index ": 5,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODU2 ]",
+              "// default priority": 7
+            },
+            "// tpn-range": "1-4",
+            "// comment": "Since this TPN range is reported for \
+ODU2 with 1.25G TSG, the TPN assignment rule is flexible within a \
+common range for mapping LO-ODU2 over HO-ODU3 with 1.25G TSG. See \
+                                               Table 4 of [RFC7139]."
+          },
+          {
+            "index ": 6,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-2.5G",
+              "odu-type-list": "[ ODU1, ODU2 ]",
+              "// default priority": 7
+            },
+            "// ts-range": "1-16"
+          },
+          {
+            "index ": 7,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-2.5G ",
+              "odu-type-list": "[ ODU2 ]",
+              "// default priority": 7
+            },
+            "// tpn-range": "1-4",
+            "// comment": "Since this TPN range is reported for \
+ODU2 with 2.5G TSG, the TPN assignment rule is flexible within a \
+common range for mapping LO-ODU2 over HO-ODU3. Since no TPN range \
+is reported for ODU1 with 2.5G TSG, the TPN allocation rule is \
+fixed (TPN = TS#) for mapping LO-ODU1 over HO-ODU3 with 2.5G TSG. \
+                                           See Table 3 of [RFC7139]."
+          }
+        ]
+      }
+    },
+    {
+      "// example": "HO-ODU4 or OTU4 Link",
+      "label-restrictions": {
+        "label-restriction": [
+          {
+            "index ": 1,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "// not-present tsg": "",
+              "odu-type-list": "[ ODU4 ]",
+              "// default priority": 7
+            },
+            "// tpn-range": 1,
+            "// comment": "Since no TS range and no TSG are \
+reported for ODU4, the link is an OTU4 Link. TS allocation is not \
+needed and TPN shall be set to '1' for mapping ODU4 over OTU4. This \
+            entry is not present if the OTN Link is an HO-ODU4 Link."
+          },
+          {
+            "index ": 2,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, \
+                                          ODU1, ODU2, ODU2e, ODU3 ]",
+              "// default priority": 7
+            },
+            "// ts-range": "1-80"
+          },
+          {
+            "index ": 3,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-1.25G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, \
+                                          ODU1, ODU2, ODU2e, ODU3 ]",
+              "// default priority": 7
+            },
+            "// tpn-range": "1-80",
+            "// comment": "Since this TPN range is reported for any \
+LO-ODUj with 1.25G TSG, the TPN assignment rule is flexible within \
+a common range for mapping any LO-ODUj over HO-ODU4 with 1.25G TSG. \
+                                           See Table 4 of [RFC7139]."
+          }
+        ]
+      }
+    },
+    {
+      "// example": "ODUC1 Link",
+      "label-restrictions": {
+        "label-restriction": [
+          {
+            "index ": 1,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-slot",
+              "tsg": "tsg-5G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, \
+                                    ODU1, ODU2, ODU2e, ODU3, ODU4 ]",
+              "// default priority": 7
+            },
+            "// ts-range": "1-20",
+            "// comment": "Since the TS range is specified for any \
+                                ODUk, the OTN Link is an ODUCn Link."
+          },
+          {
+            "index ": 2,
+            "// default restriction": "inclusive",
+            "otn-label-range": {
+              "range-type": "label-range-trib-port",
+              "tsg": "tsg-5G",
+              "odu-type-list": "[ ODUFlex-cbr, ODUFlex-gfp, ODU0, \
+                                    ODU1, ODU2, ODU2e, ODU3, ODU4 ]",
+              "// default priority": 7
+            },
+            "// tpn-range": "1-10",
+            "// comment": "Since this TPN range is reported for any \
+ODUk with 5G TSG, the TPN assignment rule is flexible within a \
+           common range for mapping any ODUk over ODUCn with 5G TSG."
+          }
+        ]
+      }
+    }
+  ]
+}
+</pre><a href="#appendix-A-4" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-B">
+      <h2 id="name-acknowledgments">
+<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-B-1">The authors and the working group give their sincere thanks to Robert
+Wilton for the YANG doctor review, to Tom Petch for his comments
+during the model and document development, and to Deborah Brungard
+for her support in addressing IESG review comments on the scope of
+this document.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-C">
+      <h2 id="name-authors-address">
+<a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Haomian Zheng</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:zhenghaomian@huawei.com" class="email">zhenghaomian@huawei.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
