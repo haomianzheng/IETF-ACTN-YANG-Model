@@ -2,7 +2,7 @@
 
 
 
-Common Control and Measurement Plane                            H. Zheng
+CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
 Expires: 11 December 2026                                    9 June 2026
@@ -2592,7 +2592,7 @@ Authors' Addresses
 
    Haomian Zheng
    Huawei Technologies
-   H1, Huawei Industrial Base, Songshan Lake
+   H1, Huawei Xiliu Beipo Village, Songshan Lake
    Dongguan
    Guangdong, 523808
    China
