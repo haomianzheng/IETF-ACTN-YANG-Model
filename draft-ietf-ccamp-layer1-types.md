@@ -20,10 +20,80 @@ venue:
   latest: "https://haomianzheng.github.io/IETF-ACTN-YANG-Model/draft-ietf-ccamp-layer1-types.html"
 
 author:
- -
-    fullname: Haomian Zheng
-    organization: Huawei Technologies
+  -
+    name: Haomian Zheng
+    org: Huawei Technologies
+    street: H1, Huawei Industrial Base, Songshan Lake
+    city: Dongguan
+    region: Guangdong
+    code: 523808
+    country: China
     email: zhenghaomian@huawei.com
+  -
+    name: Italo Busi
+    org: Huawei Technologies
+    city: Milan
+    country: Italy
+    email: italo.busi@huawei.com
+
+contributor:
+  -
+    name: Dieter Beller
+    org: Nokia
+    email: dieter.beller@nokia.com
+  -
+    name: Sergio Belotti
+    org: Nokia
+    email: sergio.belotti@nokia.com
+  -
+    name: Yanlei Zheng
+    org: China Unicom
+    email: zhengyanlei@chinaunicom.cn
+  -
+    name: Aihua Guo
+    org: Futurewei
+    email: aihuaguo@futurewei.com
+  -
+    name: Young Lee
+    org: Samsung
+    email: younglee.tx@gmail.com
+  -
+    name: Lei Wang
+    org: China Mobile
+    email: wangleiyj@chinamobile.com
+  -
+    name: Oscar Gonzalez de Dios
+    ins: O. Gonzalez de Dios
+    org: Telefonica
+    email: oscar.gonzalezdedios@telefonica.com
+  -
+    name: Xufeng Liu
+    org: Volta Networks
+    email: xufeng.liu.ietf@gmail.com
+  -
+    name: Yunbin Xu
+    org: CAICT
+    email: xuyunbin@caict.ac.cn
+  -
+    name: Anurag Sharma
+    org: Google
+    email: ansha@google.com
+  -
+    name: Rajan Rao
+    org: Infinera
+    email: rrao@infinera.com
+  -
+    name: Victor Lopez
+    org: Telefonica
+    email: victor.lopez@nokia.com
+  -
+    name: Yunbo Li
+    org: China Mobile
+    email: liyunbo@chinamobile.com
+  -
+    name: Daniel King
+    org: Old Dog Consulting
+    email: daniel@olddog.co.uk
 
 normative:
   ANSI_INCITS_230:
@@ -178,6 +248,7 @@ by the index k. The bitrates of the ODUk signal for k = {0, 1, 2,
 
 LO ODU:
 : Lower Order ODU. The LO ODUj (j can be 0, 1, 2, 2e, 3, 4,
+or flex) represents the container transporting a client of the OTN
 that is either directly mapped into an OTUk (k = j) or multiplexed
 into a server HO ODUk (k > j) container.
 
@@ -586,7 +657,7 @@ Registry" {{!RFC3688}} as follows:
       XML: N/A; the requested URI is an XML namespace.
 ~~~~
 
-This document registers a YANG module in the YANG Module Names
+This document registers following YANG modules in the YANG Module Names
 registry {{!RFC7950}}.
 
 ~~~~
