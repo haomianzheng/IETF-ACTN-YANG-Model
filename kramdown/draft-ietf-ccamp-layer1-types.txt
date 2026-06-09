@@ -3,9 +3,9 @@
 
 
 Common Control and Measurement Plane                            H. Zheng
-Internet-Draft                                       Huawei Technologies
-Intended status: Standards Track                             9 June 2026
-Expires: 11 December 2026
+Internet-Draft                                                   I. Busi
+Intended status: Standards Track                     Huawei Technologies
+Expires: 11 December 2026                                    9 June 2026
 
 
               Common YANG Data Types for Layer 1 Networks
@@ -90,7 +90,8 @@ Table of Contents
      9.2.  Informative References
    Appendix A.  Examples of OTN Label Ranges
    Acknowledgments
-   Author's Address
+   Contributors
+   Authors' Addresses
 
 1.  Introduction
 
@@ -155,6 +156,7 @@ Table of Contents
       10.3 Gbit/s, 40 Gbit/s, and 100 Gbit/s, respectively.
 
    LO ODU:  Lower Order ODU.  The LO ODUj (j can be 0, 1, 2, 2e, 3, 4,
+      or flex) represents the container transporting a client of the OTN
       that is either directly mapped into an OTUk (k = j) or multiplexed
       into a server HO ODUk (k > j) container.
 
@@ -1968,8 +1970,8 @@ Table of Contents
          Registrant Contact: The IESG
          XML: N/A; the requested URI is an XML namespace.
 
-   This document registers a YANG module in the YANG Module Names
-   registry [RFC7950].
+   This document registers following YANG modules in the YANG Module
+   Names registry [RFC7950].
 
          name:         ietf-layer1-types
          namespace:    urn:ietf:params:xml:ns:yang:ietf-layer1-types
@@ -2514,8 +2516,91 @@ Acknowledgments
    for her support in addressing IESG review comments on the scope of
    this document.
 
-Author's Address
+Contributors
+
+   Dieter Beller
+   Nokia
+   Email: dieter.beller@nokia.com
+
+
+   Sergio Belotti
+   Nokia
+   Email: sergio.belotti@nokia.com
+
+
+   Yanlei Zheng
+   China Unicom
+   Email: zhengyanlei@chinaunicom.cn
+
+
+   Aihua Guo
+   Futurewei
+   Email: aihuaguo@futurewei.com
+
+
+   Young Lee
+   Samsung
+   Email: younglee.tx@gmail.com
+
+
+   Lei Wang
+   China Mobile
+   Email: wangleiyj@chinamobile.com
+
+
+   Oscar Gonzalez de Dios
+   Telefonica
+   Email: oscar.gonzalezdedios@telefonica.com
+
+
+   Xufeng Liu
+   Volta Networks
+   Email: xufeng.liu.ietf@gmail.com
+
+
+   Yunbin Xu
+   CAICT
+   Email: xuyunbin@caict.ac.cn
+
+
+   Anurag Sharma
+   Google
+   Email: ansha@google.com
+
+
+   Rajan Rao
+   Infinera
+   Email: rrao@infinera.com
+
+
+   Victor Lopez
+   Telefonica
+   Email: victor.lopez@nokia.com
+
+
+   Yunbo Li
+   China Mobile
+   Email: liyunbo@chinamobile.com
+
+
+   Daniel King
+   Old Dog Consulting
+   Email: daniel@olddog.co.uk
+
+
+Authors' Addresses
 
    Haomian Zheng
    Huawei Technologies
+   H1, Huawei Industrial Base, Songshan Lake
+   Dongguan
+   Guangdong, 523808
+   China
    Email: zhenghaomian@huawei.com
+
+
+   Italo Busi
+   Huawei Technologies
+   Milan
+   Italy
+   Email: italo.busi@huawei.com

@@ -6,6 +6,7 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>Common YANG Data Types for Layer 1 Networks</title>
 <meta content="Haomian Zheng" name="author">
+<meta content="Italo Busi" name="author">
 <meta content="
        This document defines a collection of common common data types,
 identities, and groupings in the YANG data modeling language. These
@@ -1052,7 +1053,7 @@ svg {
 <td class="right">June 2026</td>
 </tr></thead>
 <tfoot><tr>
-<td class="left">Zheng</td>
+<td class="left">Zheng &amp; Busi</td>
 <td class="center">Expires 11 December 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
@@ -1072,10 +1073,14 @@ svg {
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
 <dd class="expires"><time datetime="2026-12-11">11 December 2026</time></dd>
-<dt class="label-authors">Author:</dt>
+<dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
       <div class="author-name">H. Zheng</div>
+<div class="org">Huawei Technologies</div>
+</div>
+<div class="author">
+      <div class="author-name">I. Busi</div>
 <div class="org">Huawei Technologies</div>
 </div>
 </dd>
@@ -1218,7 +1223,10 @@ Optical Transport Networks (OTN). The Optical Transport Network
             <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1303,6 +1311,7 @@ by the index k. The bitrates of the ODUk signal for k = {0, 1, 2,
 <dt id="section-2-3.9">LO ODU:</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.10">
           <p id="section-2-3.10.1">Lower Order ODU. The LO ODUj (j can be 0, 1, 2, 2e, 3, 4,
+or flex) represents the container transporting a client of the OTN
 that is either directly mapped into an OTUk (k = j) or multiplexed
 into a server HO ODUk (k &gt; j) container.<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
 </dd>
@@ -3219,7 +3228,7 @@ Registry" <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span> as fol
       XML: N/A; the requested URI is an XML namespace.
 </pre><a href="#section-8-2" class="pilcrow">¶</a>
 </div>
-<p id="section-8-3">This document registers a YANG module in the YANG Module Names
+<p id="section-8-3">This document registers following YANG modules in the YANG Module Names
 registry <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-8-4">
 <pre>
@@ -3745,17 +3754,153 @@ for her support in addressing IESG review comments on the scope of
 this document.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="authors-addresses">
+<div id="contributors">
 <section id="appendix-C">
-      <h2 id="name-authors-address">
-<a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
+      <h2 id="name-contributors">
+<a href="#name-contributors" class="section-name selfRef">Contributors</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Dieter Beller</span></div>
+<div dir="auto" class="left"><span class="org">Nokia</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:dieter.beller@nokia.com" class="email">dieter.beller@nokia.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Sergio Belotti</span></div>
+<div dir="auto" class="left"><span class="org">Nokia</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:sergio.belotti@nokia.com" class="email">sergio.belotti@nokia.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Yanlei Zheng</span></div>
+<div dir="auto" class="left"><span class="org">China Unicom</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:zhengyanlei@chinaunicom.cn" class="email">zhengyanlei@chinaunicom.cn</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Aihua Guo</span></div>
+<div dir="auto" class="left"><span class="org">Futurewei</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:aihuaguo@futurewei.com" class="email">aihuaguo@futurewei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Young Lee</span></div>
+<div dir="auto" class="left"><span class="org">Samsung</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:younglee.tx@gmail.com" class="email">younglee.tx@gmail.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Lei Wang</span></div>
+<div dir="auto" class="left"><span class="org">China Mobile</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:wangleiyj@chinamobile.com" class="email">wangleiyj@chinamobile.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Oscar Gonzalez de Dios</span></div>
+<div dir="auto" class="left"><span class="org">Telefonica</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:oscar.gonzalezdedios@telefonica.com" class="email">oscar.gonzalezdedios@telefonica.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Xufeng Liu</span></div>
+<div dir="auto" class="left"><span class="org">Volta Networks</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:xufeng.liu.ietf@gmail.com" class="email">xufeng.liu.ietf@gmail.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Yunbin Xu</span></div>
+<div dir="auto" class="left"><span class="org">CAICT</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:xuyunbin@caict.ac.cn" class="email">xuyunbin@caict.ac.cn</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Anurag Sharma</span></div>
+<div dir="auto" class="left"><span class="org">Google</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:ansha@google.com" class="email">ansha@google.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Rajan Rao</span></div>
+<div dir="auto" class="left"><span class="org">Infinera</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:rrao@infinera.com" class="email">rrao@infinera.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Victor Lopez</span></div>
+<div dir="auto" class="left"><span class="org">Telefonica</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:victor.lopez@nokia.com" class="email">victor.lopez@nokia.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Yunbo Li</span></div>
+<div dir="auto" class="left"><span class="org">China Mobile</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:liyunbo@chinamobile.com" class="email">liyunbo@chinamobile.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Daniel King</span></div>
+<div dir="auto" class="left"><span class="org">Old Dog Consulting</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:daniel@olddog.co.uk" class="email">daniel@olddog.co.uk</a>
+</div>
+</address>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-D">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Haomian Zheng</span></div>
 <div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div dir="auto" class="left"><span class="street-address">H1, Huawei Industrial Base, Songshan Lake</span></div>
+<div dir="auto" class="left"><span class="locality">Dongguan</span></div>
+<div dir="auto" class="left">
+<span class="region">Guangdong</span>, <span class="postal-code">523808</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">China</span></div>
 <div class="email">
 <span>Email:</span>
 <a href="mailto:zhenghaomian@huawei.com" class="email">zhenghaomian@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Italo Busi</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div dir="auto" class="left">
+<span class="locality">Milan</span> </div>
+<div dir="auto" class="left"><span class="country-name">Italy</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:italo.busi@huawei.com" class="email">italo.busi@huawei.com</a>
 </div>
 </address>
 </section>
