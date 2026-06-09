@@ -204,11 +204,6 @@ The document is consistent with other specifications, including
 {{MEF_63}} for Layer 1 service attributes, {{ITU-T_G.709}} and
 {{ITU-T_G.Sup43}} for OTN data plane definitions.
 
-The YANG data model in this document only defines groupings, typedef,
-and identities. It does not define any configuration or state data,
-as specified in the Network Management Datastore Architecture defined
-in {{?RFC8342}}.
-
 # Terminology and Notations
 
 {::boilerplate bcp14-tagged}
@@ -606,7 +601,7 @@ a lower number of LSPs).
 ~~~~ yang
 {::include yang/ietf-layer1-types.yang}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-layer1-types@2024-02-22.yang"}
+{: sourcecode-markers="true" sourcecode-name="ietf-layer1-types@2026-06-10.yang"}
 
 # Security Considerations {#Security}
 
