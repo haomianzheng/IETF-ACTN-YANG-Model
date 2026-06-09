@@ -2,7 +2,7 @@
 
 
 
-CCAMP Working Group                                             H. Zheng
+Common Control and Measurement Plane                            H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
 Expires: 11 December 2026                                     S. Belotti
