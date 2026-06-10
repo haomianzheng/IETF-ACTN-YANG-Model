@@ -930,3 +930,10 @@ module: ietf-otn-topology
        +--rw otn-label-step
           +--rw tpn?   otn-tpn
           +--rw ts?    otn-ts
+
+  grouping label-range-info:
+    +-- otn-label-range!
+       +-- range-type?      otn-label-range-type
+       +-- tsg?             identityref
+       +-- odu-type-list*   identityref
+       +-- priority?        uint8
