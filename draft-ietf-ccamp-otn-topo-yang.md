@@ -10,9 +10,9 @@ date:
 consensus: true
 v: 3
 area: "Routing"
-workgroup: "Common Control and Measurement Plane"
+workgroup: "CCAMP Working Group"
 venue:
-  group: "Common Control and Measurement Plane"
+  group: "CCAMP Working Group"
   type: "Working Group"
   mail: "ccamp@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ccamp/"
@@ -35,7 +35,7 @@ author:
     email: italo.busi@huawei.com
   -
     name: Xufeng Liu
-    org: Alef Edge
+    org: Individual
     email: xufeng.liu.ietf@gmail.com
   -
     name: Sergio Belotti
@@ -71,7 +71,7 @@ contributor:
   -
     name: Xian Zhang
     org: Huawei Technologies
-    email: Huawei Technologies
+    email: zhang.xian@huawei.com
   -
     name: Huub van Helvoort
     ins: H. van Helvoort
@@ -90,7 +90,9 @@ contributor:
     org: Nokia
     email: dieter.beller@nokia.com
   -
-    name: TBD
+    name: Yanlei Zheng
+    org: China Unicom
+    email: zhengyanlei@chinaunicom.cn
 
 normative:
   ITU-T_G.709:
