@@ -31,10 +31,10 @@ About This Document
    layer1-types.html.  Status information for this document may be found
    at https://datatracker.ietf.org/doc/draft-ietf-ccamp-layer1-types/.
 
-   Discussion of this document takes place on the Common Control and
-   Measurement Plane Working Group mailing list (mailto:ccamp@ietf.org),
-   which is archived at https://mailarchive.ietf.org/arch/browse/ccamp/.
-   Subscribe at https://www.ietf.org/mailman/listinfo/ccamp/.
+   Discussion of this document takes place on the CCAMP Working Group
+   Working Group mailing list (mailto:ccamp@ietf.org), which is archived
+   at https://mailarchive.ietf.org/arch/browse/ccamp/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/ccamp/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/haomianzheng/IETF-ACTN-YANG-Model.
@@ -505,7 +505,7 @@ Table of Contents
      grouping otn-link-bandwidth:
        +-- otn-bandwidth
           +-- odulist* [odu-type]
-             +-- odu-type     identityref
+             +-- odu-type?    identityref
              +-- number?      uint16
              +-- ts-number?   uint16
      grouping otn-path-bandwidth:
@@ -1487,9 +1487,9 @@ Table of Contents
                "Number of ODUs.";
            }
            leaf ts-number {
-             when "derived-from-or-self(../odu-type,'ODUflex') or
-                   derived-from-or-self(../odu-type,
-                   'ODUflex-resizable')" {
+             when "derived-from-or-self(../odu-type,'l1-types:ODUflex')
+                   or derived-from-or-self(../odu-type,
+                   'l1-types:ODUflex-resizable')" {
                description
                  "Applicable when odu-type is ODUflex or
                   ODUflex-resizable.";
@@ -1519,9 +1519,9 @@ Table of Contents
              "ODU type";
          }
          choice oduflex-type {
-           when "derived-from-or-self(./odu-type,'ODUflex') or
-                 derived-from-or-self(./odu-type,
-                 'ODUflex-resizable')" {
+           when "derived-from-or-self(./odu-type,'l1-types:ODUflex')
+                 or derived-from-or-self(./odu-type,
+                 'l1-types:ODUflex-resizable')" {
              description
                "Applicable when odu-type is ODUflex or
                 ODUflex-resizable.";
@@ -1628,9 +1628,9 @@ Table of Contents
              "ODU type.";
          }
          leaf max-ts-number {
-           when "derived-from-or-self(../odu-type,'ODUflex') or
-                 derived-from-or-self(../odu-type,
-                 'ODUflex-resizable')" {
+           when "derived-from-or-self(../odu-type,'l1-types:ODUflex')
+                 or derived-from-or-self(../odu-type,
+                 'l1-types:ODUflex-resizable')" {
              description
                "Applicable when odu-type is ODUflex or
                 ODUflex-resizable.";

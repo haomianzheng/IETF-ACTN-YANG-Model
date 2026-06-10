@@ -1108,7 +1108,7 @@ Optical Transport Networks (OTN). The Optical Transport Network
         Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-ccamp-layer1-types/">https://datatracker.ietf.org/doc/draft-ietf-ccamp-layer1-types/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
-        Common Control and Measurement Plane Working Group mailing list (<span><a href="mailto:ccamp@ietf.org">mailto:ccamp@ietf.org</a></span>),
+        CCAMP Working Group Working Group mailing list (<span><a href="mailto:ccamp@ietf.org">mailto:ccamp@ietf.org</a></span>),
         which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/ccamp/">https://mailarchive.ietf.org/arch/browse/ccamp/</a></span>.
         Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/ccamp/">https://www.ietf.org/mailman/listinfo/ccamp/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
@@ -1748,7 +1748,7 @@ module: ietf-layer1-types
   grouping otn-link-bandwidth:
     +-- otn-bandwidth
        +-- odulist* [odu-type]
-          +-- odu-type     identityref
+          +-- odu-type?    identityref
           +-- number?      uint16
           +-- ts-number?   uint16
   grouping otn-path-bandwidth:
@@ -2738,9 +2738,9 @@ module ietf-layer1-types {
             "Number of ODUs.";
         }
         leaf ts-number {
-          when "derived-from-or-self(../odu-type,'ODUflex') or
-                derived-from-or-self(../odu-type,
-                'ODUflex-resizable')" {
+          when "derived-from-or-self(../odu-type,'l1-types:ODUflex')
+                or derived-from-or-self(../odu-type,
+                'l1-types:ODUflex-resizable')" {
             description
               "Applicable when odu-type is ODUflex or
                ODUflex-resizable.";
@@ -2770,9 +2770,9 @@ module ietf-layer1-types {
           "ODU type";
       }
       choice oduflex-type {
-        when "derived-from-or-self(./odu-type,'ODUflex') or
-              derived-from-or-self(./odu-type,
-              'ODUflex-resizable')" {
+        when "derived-from-or-self(./odu-type,'l1-types:ODUflex')
+              or derived-from-or-self(./odu-type,
+              'l1-types:ODUflex-resizable')" {
           description
             "Applicable when odu-type is ODUflex or
              ODUflex-resizable.";
@@ -2879,9 +2879,9 @@ module ietf-layer1-types {
           "ODU type.";
       }
       leaf max-ts-number {
-        when "derived-from-or-self(../odu-type,'ODUflex') or
-              derived-from-or-self(../odu-type,
-              'ODUflex-resizable')" {
+        when "derived-from-or-self(../odu-type,'l1-types:ODUflex')
+              or derived-from-or-self(../odu-type,
+              'l1-types:ODUflex-resizable')" {
           description
             "Applicable when odu-type is ODUflex or
              ODUflex-resizable.";
