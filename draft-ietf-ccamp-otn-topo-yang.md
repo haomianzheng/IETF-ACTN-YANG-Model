@@ -165,9 +165,6 @@ protocol extensions to support GMPLS and Path Computation Element
 {{Section 6 of !RFC8795}} provides guidelines for writing technology-
 specific TE topology augmentations.
 
-The YANG data model in this document conforms to the Network
-Management Datastore Architecture defined in {{!RFC8342}}.
-
 ## Terminology and Notations
 
 Some of the key terms used in this document are listed as follows.
