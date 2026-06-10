@@ -98,9 +98,10 @@ normative:
   ITU-T_G.709:
     title: Interfaces for the optical transport network
     author:
-      org: ITU-T Recommendation G.709
-    date: March 2020
+      org: International Telecommunication Union
+    date: June 2020
     seriesinfo: ITU-T G.709
+    target: https://www.itu.int/rec/T-REC-G.709
 
 informative:
 
@@ -387,7 +388,7 @@ RFC once this draft becomes an RFC.
 # Security Considerations
 
 This section is modeled after the template described in Section 3.7
-of {{?I-D.ietf-netmod-rfc8407bis}}.
+of {{?RFC9907}}.
 
 The "ietf-te-types" and the "ietf-te-packet-types" YANG modules define data models that are
 designed to be accessed via YANG-based management protocols, such as
