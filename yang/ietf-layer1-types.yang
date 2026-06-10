@@ -933,9 +933,9 @@ module ietf-layer1-types {
             "Number of ODUs.";
         }
         leaf ts-number {
-          when "derived-from-or-self(../odu-type,'ODUflex') or
-                derived-from-or-self(../odu-type,
-                'ODUflex-resizable')" {
+          when "derived-from-or-self(../odu-type,'l1-types:ODUflex')
+                or derived-from-or-self(../odu-type,
+                'l1-types:ODUflex-resizable')" {
             description
               "Applicable when odu-type is ODUflex or
                ODUflex-resizable.";
@@ -965,9 +965,9 @@ module ietf-layer1-types {
           "ODU type";
       }
       choice oduflex-type {
-        when "derived-from-or-self(./odu-type,'ODUflex') or
-              derived-from-or-self(./odu-type,
-              'ODUflex-resizable')" {
+        when "derived-from-or-self(./odu-type,'l1-types:ODUflex')
+              or derived-from-or-self(./odu-type,
+              'l1-types:ODUflex-resizable')" {
           description
             "Applicable when odu-type is ODUflex or
              ODUflex-resizable.";
@@ -1074,9 +1074,9 @@ module ietf-layer1-types {
           "ODU type.";
       }
       leaf max-ts-number {
-        when "derived-from-or-self(../odu-type,'ODUflex') or
-              derived-from-or-self(../odu-type,
-              'ODUflex-resizable')" {
+        when "derived-from-or-self(../odu-type,'l1-types:ODUflex')
+              or derived-from-or-self(../odu-type,
+              'l1-types:ODUflex-resizable')" {
           description
             "Applicable when odu-type is ODUflex or
              ODUflex-resizable.";
