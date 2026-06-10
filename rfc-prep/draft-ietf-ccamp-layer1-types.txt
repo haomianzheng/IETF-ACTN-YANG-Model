@@ -5,7 +5,7 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 11 December 2026                                    9 June 2026
+Expires: 12 December 2026                                   10 June 2026
 
 
               Common YANG Data Types for Layer 1 Networks
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 December 2026.
+   This Internet-Draft will expire on 12 December 2026.
 
 Copyright Notice
 
@@ -505,7 +505,7 @@ Table of Contents
      grouping otn-link-bandwidth:
        +-- otn-bandwidth
           +-- odulist* [odu-type]
-             +-- odu-type?    identityref
+             +-- odu-type     identityref
              +-- number?      uint16
              +-- ts-number?   uint16
      grouping otn-path-bandwidth:
@@ -596,7 +596,7 @@ Table of Contents
         described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
         they appear in all capitals, as shown here.";
 
-     revision 2026-06-09 {
+     revision 2026-06-10 {
        description
          "Initial Version";
        reference
