@@ -1,29 +1,26 @@
 module ietf-otn-topology {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-otn-topology";
-  prefix "otnt";
+  prefix otnt;
 
   import ietf-network {
-    prefix "nw";
+    prefix nw;
     reference
       "RFC 8345: A YANG Data Model for Network Topologies";
   }
-
   import ietf-network-topology {
-    prefix "nt";
+    prefix nt;
     reference
       "RFC 8345: A YANG Data Model for Network Topologies";
   }
-
   import ietf-te-topology {
-    prefix "tet";
+    prefix tet;
     reference
       "RFC 8795: YANG Data Model for Traffic Engineering
-       (TE) Topologies";
+                 (TE) Topologies";
   }
-
   import ietf-layer1-types {
-    prefix "l1-types";
+    prefix l1-types;
     reference
       "RFC YYYY: A YANG Data Model for Layer 1 Types";
   }
@@ -50,7 +47,6 @@ module ietf-otn-topology {
 
      Editor: Oscar Gonzalez de Dios
              <mailto:oscar.gonzalezdedios@telefonica.com>";
-
   description
     "This module defines a protocol independent Layer 1/ODU topology
      data model.
@@ -78,8 +74,8 @@ module ietf-otn-topology {
     description
       "Initial Revision";
     reference
-      "RFC XXXX: A YANG Data Model for Optical Transport Network 
-      Topology";
+      "RFC XXXX: A YANG Data Model for Optical Transport Network
+                 Topology";
   }
   // RFC Editor: replace XXXX with actual RFC number, update date
   // information and remove this note
@@ -90,48 +86,52 @@ module ietf-otn-topology {
 
   grouping label-range-info {
     description
-      "OTN technology-specific label range related information with 
-      a presence container indicating that the label range is an 
-      OTN technology-specific label range.
+      "OTN technology-specific label range related information with
+       a presence container indicating that the label range is an
+       OTN technology-specific label range.
 
-      This grouping SHOULD be used together with the
-      otn-label-start-end and otn-label-step groupings to provide
-      OTN technology-specific label information to the models which
-      use the label-restriction-info grouping defined in the module
-      ietf-te-types.";
+       This grouping SHOULD be used together with the
+       otn-label-start-end and otn-label-step groupings to provide
+       OTN technology-specific label information to the models which
+       use the label-restriction-info grouping defined in the module
+       ietf-te-types.";
     uses l1-types:otn-label-range-info {
-      refine otn-label-range {
+      refine "otn-label-range" {
         presence
           "Indicates the label range is an OTN label range.
-          
-          This container MUST NOT be present if there are other 
-          presence containers or attributes indicating another type 
-          of label range.";
+
+           This container MUST NOT be present if there are other
+           presence containers or attributes indicating another type
+           of label range.";
       }
     }
   }
 
- /*
-  * Data nodes
-  */
+  /*
+   * Data nodes
+   */
 
   augment "/nw:networks/nw:network/nw:network-types/"
         + "tet:te-topology" {
+    description
+      "augment network types to include OTN.";
     container otn-topology {
       presence "indicates a topology type of Optical Transport
                 Network (OTN)-electrical layer.";
-      description "OTN topology type";
+      description
+        "OTN topology type";
     }
-    description "augment network types to include OTN.";
   }
 
   augment "/nw:networks/nw:network/nw:node/tet:te"
         + "/tet:te-node-attributes" {
-    when "../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
-      description "Augment only for OTN.";
+    when '../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
+      description
+        "Augment only for OTN.";
     }
-    description "Augment TE node attributes.";
+    description
+      "Augment TE node attributes.";
     container otn-node {
       presence "The TE node is an OTN node.";
       description
@@ -141,12 +141,13 @@ module ietf-otn-topology {
 
   augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:te-link-attributes" {
-    when "../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
-      description "Augment only for OTN.";
+    when '../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
+      description
+        "Augment only for OTN.";
     }
-    description "Augment link configuration";
-
+    description
+      "Augment link configuration";
     container otn-link {
       description
         "Attributes of the OTN Link.";
@@ -154,28 +155,30 @@ module ietf-otn-topology {
         type l1-types:odtu-flex-type;
         description
           "The type of Optical Data Tributary Unit (ODTU)
-          whose nominal bitrate is used to compute the number of
-          Tributary Slots (TS) required by the ODUflex LSPs set up
-          on this OTN Link.";
+           whose nominal bitrate is used to compute the number of
+           Tributary Slots (TS) required by the ODUflex LSPs set up
+           on this OTN Link.";
       }
       leaf tsg {
         type identityref {
           base l1-types:tributary-slot-granularity;
         }
-        description "Tributary slot granularity.";
+        description
+          "Tributary slot granularity.";
         reference
           "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-          Transport Network (OTN)";
+                     Transport Network (OTN)";
       }
       leaf distance {
         type uint32;
-        description "distance in the unit of kilometers";
+        description
+          "distance in the unit of kilometers";
       }
     }
     container client-svc {
       presence
         "When present, indicates that the Link supports Constant
-        Bit Rate (CBR) client signals.";
+         Bit Rate (CBR) client signals.";
       description
         "Attributes of the Link supporting CBR client signals.";
       leaf-list supported-client-signal {
@@ -191,13 +194,13 @@ module ietf-otn-topology {
 
   augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
         + "tet:te" {
-    when "../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
-      description "Augment only for OTN.";
+    when '../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
+      description
+        "Augment only for OTN.";
     }
     description
       "Augment link termination point (LTP) configuration.";
-
     container otn-link-tp {
       description
         "Attributes of the OTN Link Termination Point (LTP).";
@@ -205,15 +208,15 @@ module ietf-otn-topology {
         type l1-types:odtu-flex-type;
         description
           "The type of Optical Data Tributary Unit (ODTU)
-          whose nominal bitrate is used to compute the number of
-          Tributary Slots (TS) required by the ODUflex LSPs set up
-          on this OTN Link Termination Point (LTP).";
+           whose nominal bitrate is used to compute the number of
+           Tributary Slots (TS) required by the ODUflex LSPs set up
+           on this OTN Link Termination Point (LTP).";
       }
     }
     container client-svc {
       presence
-        "When present, indicates that the Link Termination Point 
-        (LTP) supports Constant Bit Rate (CBR) client signals.";
+        "When present, indicates that the Link Termination Point
+         (LTP) supports Constant Bit Rate (CBR) client signals.";
       description
         "OTN LTP Service attributes.";
       leaf-list supported-client-signal {
@@ -232,10 +235,10 @@ module ietf-otn-topology {
 
   augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
         + "tet:te/"
-        + "tet:interface-switching-capability/tet:max-lsp-bandwidth/"
-        + "tet:te-bandwidth/tet:technology" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+        + "tet:interface-switching-capability/"
+        + "tet:max-lsp-bandwidth/tet:te-bandwidth/tet:technology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -247,9 +250,9 @@ module ietf-otn-topology {
       uses l1-types:otn-max-path-bandwidth {
         description
           "The odtu-flex-type attribute of the OTN Link Termination
-          Point (LTP) is used to compute the number of Tributary
-          Slots (TS) required by the ODUflex LSPs set up on this
-          OTN LTP.";
+           Point (LTP) is used to compute the number of Tributary
+           Slots (TS) required by the ODUflex LSPs set up on this
+           OTN LTP.";
       }
     }
   }
@@ -257,8 +260,8 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -268,17 +271,17 @@ module ietf-otn-topology {
        connectivity matrices.";
     case otn {
       uses l1-types:otn-link-bandwidth {
-        augment otn-bandwidth {
+        augment "otn-bandwidth" {
           description
             "Augment OTN link bandwidth information.";
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
               "The type of Optical Data Tributary Unit (ODTU)
-              whose nominal bitrate is used to compute the number of
-              Tributary Slots (TS) required by the ODUflex LSPs
-              set up along the underlay paths of these OTN
-              connectivity matrices.";
+               whose nominal bitrate is used to compute the number of
+               Tributary Slots (TS) required by the ODUflex LSPs
+               set up along the underlay paths of these OTN
+               connectivity matrices.";
           }
         }
       }
@@ -289,8 +292,8 @@ module ietf-otn-topology {
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
         + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
-    when "../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -300,17 +303,17 @@ module ietf-otn-topology {
        connectivity matrix entry.";
     case otn {
       uses l1-types:otn-link-bandwidth {
-        augment otn-bandwidth {
+        augment "otn-bandwidth" {
           description
             "Augment OTN link bandwidth information.";
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
               "The type of Optical Data Tributary Unit (ODTU)
-              whose nominal bitrate is used to compute the number of
-              Tributary Slots (TS) required by the ODUflex LSPs
-              set up along the underlay path of this OTN
-              connectivity matrix entry.";
+               whose nominal bitrate is used to compute the number of
+               Tributary Slots (TS) required by the ODUflex LSPs
+               set up along the underlay path of this OTN
+               connectivity matrix entry.";
           }
         }
       }
@@ -320,8 +323,8 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -331,17 +334,17 @@ module ietf-otn-topology {
        connectivity matrices information source.";
     case otn {
       uses l1-types:otn-link-bandwidth {
-        augment otn-bandwidth {
+        augment "otn-bandwidth" {
           description
             "Augment OTN link bandwidth information.";
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
               "The type of Optical Data Tributary Unit (ODTU)
-              whose nominal bitrate is used to compute the number of
-              Tributary Slots (TS) required by the ODUflex LSPs
-              set up along the underlay paths of these OTN
-              connectivity matrices.";
+               whose nominal bitrate is used to compute the number of
+               Tributary Slots (TS) required by the ODUflex LSPs
+               set up along the underlay paths of these OTN
+               connectivity matrices.";
           }
         }
       }
@@ -352,8 +355,8 @@ module ietf-otn-topology {
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
         + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
-    when "../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -363,17 +366,17 @@ module ietf-otn-topology {
        connectivity matrix entry information source";
     case otn {
       uses l1-types:otn-link-bandwidth {
-        augment otn-bandwidth {
+        augment "otn-bandwidth" {
           description
             "Augment OTN link bandwidth information.";
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
               "The type of Optical Data Tributary Unit (ODTU)
-              whose nominal bitrate is used to compute the number of
-              Tributary Slots (TS) required by the ODUflex LSPs
-              set up along the underlay path of this OTN
-              connectivity matrix entry.";
+               whose nominal bitrate is used to compute the number of
+               Tributary Slots (TS) required by the ODUflex LSPs
+               set up along the underlay path of this OTN
+               connectivity matrix entry.";
           }
         }
       }
@@ -384,8 +387,8 @@ module ietf-otn-topology {
         + "tet:tunnel-termination-point/"
         + "tet:client-layer-adaptation/tet:switching-capability/"
         + "tet:te-bandwidth/tet:technology" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -395,17 +398,17 @@ module ietf-otn-topology {
        (TTP)";
     case otn {
       uses l1-types:otn-link-bandwidth {
-        augment otn-bandwidth {
+        augment "otn-bandwidth" {
           description
             "Augment OTN link bandwidth information.";
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
               "The type of Optical Data Tributary Unit (ODTU)
-              whose nominal bitrate is used to compute the number of
-              Tributary Slots (TS) required by the ODUflex LSPs
-              terminated on this OTN Tunnel Termination Point
-              (TTP).";
+               whose nominal bitrate is used to compute the number of
+               Tributary Slots (TS) required by the ODUflex LSPs
+               terminated on this OTN Tunnel Termination Point
+               (TTP).";
           }
         }
       }
@@ -416,8 +419,8 @@ module ietf-otn-topology {
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/tet:path-constraints/"
         + "tet:te-bandwidth/tet:technology" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -427,17 +430,17 @@ module ietf-otn-topology {
        Local Link Connectivities.";
     case otn {
       uses l1-types:otn-link-bandwidth {
-        augment otn-bandwidth {
+        augment "otn-bandwidth" {
           description
             "Augment OTN link bandwidth information.";
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
               "The type of Optical Data Tributary Unit (ODTU)
-              whose nominal bitrate is used to compute the number of
-              Tributary Slots (TS) required by the ODUflex LSPs
-              set up along the underlay paths of these OTN Local
-              Link Connectivities.";
+               whose nominal bitrate is used to compute the number of
+               Tributary Slots (TS) required by the ODUflex LSPs
+               set up along the underlay paths of these OTN Local
+               Link Connectivities.";
           }
         }
       }
@@ -449,8 +452,8 @@ module ietf-otn-topology {
         + "tet:local-link-connectivities/"
         + "tet:local-link-connectivity/tet:path-constraints/"
         + "tet:te-bandwidth/tet:technology" {
-    when "../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -460,17 +463,17 @@ module ietf-otn-topology {
        Local Link Connectivity entry.";
     case otn {
       uses l1-types:otn-link-bandwidth {
-        augment otn-bandwidth {
+        augment "otn-bandwidth" {
           description
             "Augment OTN link bandwidth information.";
           leaf odtu-flex-type {
             type l1-types:odtu-flex-type;
             description
               "The type of Optical Data Tributary Unit (ODTU)
-              whose nominal bitrate is used to compute the number of
-              Tributary Slots (TS) required by the ODUflex LSPs
-              set up along the underlay path of this OTN Local
-              Link Connectivity entry.";
+               whose nominal bitrate is used to compute the number of
+               Tributary Slots (TS) required by the ODUflex LSPs
+               set up along the underlay path of this OTN Local
+               Link Connectivity entry.";
           }
         }
       }
@@ -479,10 +482,10 @@ module ietf-otn-topology {
 
   augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:te-link-attributes/"
-        + "tet:interface-switching-capability/tet:max-lsp-bandwidth/"
-        + "tet:te-bandwidth/tet:technology" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+        + "tet:interface-switching-capability/"
+        + "tet:max-lsp-bandwidth/tet:te-bandwidth/tet:technology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -493,8 +496,8 @@ module ietf-otn-topology {
       uses l1-types:otn-max-path-bandwidth {
         description
           "The odtu-flex-type attribute of the OTN Link is used
-          to compute the number of Tributary Slots (TS) required
-          by the ODUflex LSPs set up on this OTN Link.";
+           to compute the number of Tributary Slots (TS) required
+           by the ODUflex LSPs set up on this OTN Link.";
       }
     }
   }
@@ -503,8 +506,8 @@ module ietf-otn-topology {
         + "tet:te-link-attributes/"
         + "tet:max-link-bandwidth/"
         + "tet:te-bandwidth" {
-    when "../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -514,8 +517,8 @@ module ietf-otn-topology {
     uses l1-types:otn-link-bandwidth {
       description
         "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on this OTN Link.";
+         to compute the number of Tributary Slots (TS) required
+         by the ODUflex LSPs set up on this OTN Link.";
     }
   }
 
@@ -523,8 +526,8 @@ module ietf-otn-topology {
         + "tet:te-link-attributes/"
         + "tet:max-resv-link-bandwidth/"
         + "tet:te-bandwidth" {
-    when "../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -534,8 +537,8 @@ module ietf-otn-topology {
     uses l1-types:otn-link-bandwidth {
       description
         "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on this OTN Link.";
+         to compute the number of Tributary Slots (TS) required
+         by the ODUflex LSPs set up on this OTN Link.";
     }
   }
 
@@ -543,8 +546,8 @@ module ietf-otn-topology {
         + "tet:te-link-attributes/"
         + "tet:unreserved-bandwidth/"
         + "tet:te-bandwidth" {
-    when "../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -554,8 +557,8 @@ module ietf-otn-topology {
     uses l1-types:otn-link-bandwidth {
       description
         "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on this OTN Link.";
+         to compute the number of Tributary Slots (TS) required
+         by the ODUflex LSPs set up on this OTN Link.";
     }
   }
 
@@ -564,8 +567,8 @@ module ietf-otn-topology {
         + "tet:interface-switching-capability/"
         + "tet:max-lsp-bandwidth/"
         + "tet:te-bandwidth/tet:technology" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -577,8 +580,8 @@ module ietf-otn-topology {
       uses l1-types:otn-max-path-bandwidth {
         description
           "The odtu-flex-type attribute of the OTN Link is used
-          to compute the number of Tributary Slots (TS) required
-          by the ODUflex LSPs set up on this OTN Link.";
+           to compute the number of Tributary Slots (TS) required
+           by the ODUflex LSPs set up on this OTN Link.";
       }
     }
   }
@@ -587,8 +590,8 @@ module ietf-otn-topology {
         + "tet:information-source-entry/"
         + "tet:max-link-bandwidth/"
         + "tet:te-bandwidth" {
-    when "../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -599,8 +602,8 @@ module ietf-otn-topology {
     uses l1-types:otn-link-bandwidth {
       description
         "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on this OTN Link.";
+         to compute the number of Tributary Slots (TS) required
+         by the ODUflex LSPs set up on this OTN Link.";
     }
   }
 
@@ -608,8 +611,8 @@ module ietf-otn-topology {
         + "tet:information-source-entry/"
         + "tet:max-resv-link-bandwidth/"
         + "tet:te-bandwidth" {
-    when "../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -620,8 +623,8 @@ module ietf-otn-topology {
     uses l1-types:otn-link-bandwidth {
       description
         "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on this OTN Link.";
+         to compute the number of Tributary Slots (TS) required
+         by the ODUflex LSPs set up on this OTN Link.";
     }
   }
 
@@ -629,8 +632,8 @@ module ietf-otn-topology {
         + "tet:information-source-entry/"
         + "tet:unreserved-bandwidth/"
         + "tet:te-bandwidth" {
-    when "../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -641,8 +644,8 @@ module ietf-otn-topology {
     uses l1-types:otn-link-bandwidth {
       description
         "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on this OTN Link.";
+         to compute the number of Tributary Slots (TS) required
+         by the ODUflex LSPs set up on this OTN Link.";
     }
   }
 
@@ -658,9 +661,9 @@ module ietf-otn-topology {
       uses l1-types:otn-max-path-bandwidth {
         description
           "The odtu-flex-type attribute of the OTN Link is used
-          to compute the number of Tributary Slots (TS) required
-          by the ODUflex LSPs set up on the OTN Link that uses this
-          Link Template.";
+           to compute the number of Tributary Slots (TS) required
+           by the ODUflex LSPs set up on the OTN Link that uses this
+           Link Template.";
       }
     }
   }
@@ -674,9 +677,9 @@ module ietf-otn-topology {
     uses l1-types:otn-link-bandwidth {
       description
         "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on the OTN Link that uses this
-        Link Template.";
+         to compute the number of Tributary Slots (TS) required
+         by the ODUflex LSPs set up on the OTN Link that uses this
+         Link Template.";
     }
   }
 
@@ -690,9 +693,9 @@ module ietf-otn-topology {
     uses l1-types:otn-link-bandwidth {
       description
         "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on the OTN Link that uses this
-        Link Template.";
+         to compute the number of Tributary Slots (TS) required
+         by the ODUflex LSPs set up on the OTN Link that uses this
+         Link Template.";
     }
   }
 
@@ -705,9 +708,9 @@ module ietf-otn-topology {
     uses l1-types:otn-link-bandwidth {
       description
         "The odtu-flex-type attribute of the OTN Link is used
-        to compute the number of Tributary Slots (TS) required
-        by the ODUflex LSPs set up on the OTN Link that uses this
-        Link Template.";
+         to compute the number of Tributary Slots (TS) required
+         by the ODUflex LSPs set up on the OTN Link that uses this
+         Link Template.";
     }
   }
 
@@ -718,8 +721,8 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:label-restrictions/tet:label-restriction" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -734,8 +737,8 @@ module ietf-otn-topology {
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/tet:from/"
         + "tet:label-restrictions/tet:label-restriction" {
-    when "../../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../nw:network-types/'
+       + 'tet:te-topology/otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -750,8 +753,8 @@ module ietf-otn-topology {
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/tet:to/"
         + "tet:label-restrictions/tet:label-restriction" {
-    when "../../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../nw:network-types/'
+       + 'tet:te-topology/otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -766,8 +769,8 @@ module ietf-otn-topology {
         + "tet:information-source-entry/"
         + "tet:connectivity-matrices/tet:label-restrictions/"
         + "tet:label-restriction" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -782,8 +785,8 @@ module ietf-otn-topology {
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
         + "tet:from/tet:label-restrictions/tet:label-restriction" {
-    when "../../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../nw:network-types/'
+       + 'tet:te-topology/otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -798,8 +801,8 @@ module ietf-otn-topology {
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
         + "tet:to/tet:label-restrictions/tet:label-restriction" {
-    when "../../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../nw:network-types/'
+       + 'tet:te-topology/otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -814,8 +817,8 @@ module ietf-otn-topology {
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
         + "tet:label-restrictions/tet:label-restriction" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -831,8 +834,8 @@ module ietf-otn-topology {
         + "tet:local-link-connectivities/"
         + "tet:local-link-connectivity/"
         + "tet:label-restrictions/tet:label-restriction" {
-    when "../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -846,8 +849,8 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:te-link-attributes/"
         + "tet:label-restrictions/tet:label-restriction" {
-    when "../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -860,8 +863,8 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:information-source-entry/"
         + "tet:label-restrictions/tet:label-restriction" {
-    when "../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -889,8 +892,8 @@ module ietf-otn-topology {
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-start/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../nw:network-types/'
+       + 'tet:te-topology/otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -908,8 +911,8 @@ module ietf-otn-topology {
         + "tet:label-restrictions/"
         + "tet:label-restriction/tet:label-end/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../nw:network-types/'
+       + 'tet:te-topology/otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -927,8 +930,8 @@ module ietf-otn-topology {
         + "tet:label-restrictions/"
         + "tet:label-restriction/tet:label-step/"
         + "tet:technology" {
-    when "../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -946,9 +949,9 @@ module ietf-otn-topology {
         + "tet:underlay/tet:primary-path/tet:path-element/"
         + "tet:type/tet:label/tet:label-hop/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -966,9 +969,9 @@ module ietf-otn-topology {
         + "tet:underlay/tet:backup-path/tet:path-element/"
         + "tet:type/tet:label/tet:label-hop/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -989,9 +992,9 @@ module ietf-otn-topology {
         + "tet:route-object-exclude-object/"
         + "tet:type/tet:label/tet:label-hop/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1013,9 +1016,9 @@ module ietf-otn-topology {
         + "tet:route-object-include-object/"
         + "tet:type/tet:label/tet:label-hop/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1034,9 +1037,9 @@ module ietf-otn-topology {
         + "tet:path-properties/tet:path-route-objects/"
         + "tet:path-route-object/tet:type/tet:label/tet:label-hop/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1055,9 +1058,9 @@ module ietf-otn-topology {
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-start/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1076,9 +1079,9 @@ module ietf-otn-topology {
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-end/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1097,9 +1100,9 @@ module ietf-otn-topology {
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-step/"
         + "tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1111,16 +1114,16 @@ module ietf-otn-topology {
       uses l1-types:otn-label-step;
     }
   }
-  
+
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/tet:to/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-start/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1139,9 +1142,9 @@ module ietf-otn-topology {
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-end/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1160,9 +1163,9 @@ module ietf-otn-topology {
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-step/"
         + "tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1174,16 +1177,16 @@ module ietf-otn-topology {
       uses l1-types:otn-label-step;
     }
   }
-  
+
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:te-node-attributes/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
         + "tet:underlay/tet:primary-path/tet:path-element/"
         + "tet:type/tet:label/tet:label-hop/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1202,9 +1205,9 @@ module ietf-otn-topology {
         + "tet:underlay/tet:backup-path/tet:path-element/"
         + "tet:type/tet:label/tet:label-hop/"
         + "tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1224,9 +1227,9 @@ module ietf-otn-topology {
         + "tet:explicit-route-exclude-objects/"
         + "tet:route-object-exclude-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1246,9 +1249,9 @@ module ietf-otn-topology {
         + "tet:explicit-route-include-objects/"
         + "tet:route-object-include-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1267,9 +1270,9 @@ module ietf-otn-topology {
         + "tet:path-properties/tet:path-route-objects/"
         + "tet:path-route-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1287,9 +1290,9 @@ module ietf-otn-topology {
         + "tet:connectivity-matrices/tet:label-restrictions/"
         + "tet:label-restriction/"
         + "tet:label-start/tet:te-label/tet:technology" {
-    when "../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1307,9 +1310,9 @@ module ietf-otn-topology {
         + "tet:connectivity-matrices/tet:label-restrictions/"
         + "tet:label-restriction/"
         + "tet:label-end/tet:te-label/tet:technology" {
-    when "../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1327,9 +1330,9 @@ module ietf-otn-topology {
         + "tet:connectivity-matrices/tet:label-restrictions/"
         + "tet:label-restriction/"
         + "tet:label-step/tet:technology" {
-    when "../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1341,14 +1344,15 @@ module ietf-otn-topology {
       uses l1-types:otn-label-step;
     }
   }
-  
+
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
-        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
-        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+        + "tet:underlay/tet:primary-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/tet:te-label/"
+        + "tet:technology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1366,9 +1370,9 @@ module ietf-otn-topology {
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1389,9 +1393,9 @@ module ietf-otn-topology {
         + "tet:explicit-route-exclude-objects/"
         + "tet:route-object-exclude-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1412,9 +1416,9 @@ module ietf-otn-topology {
         + "tet:explicit-route-include-objects/"
         + "tet:route-object-include-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1433,9 +1437,9 @@ module ietf-otn-topology {
         + "tet:path-properties/tet:path-route-objects/"
         + "tet:path-route-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1454,9 +1458,9 @@ module ietf-otn-topology {
         + "tet:from/tet:label-restrictions/"
         + "tet:label-restriction/"
         + "tet:label-start/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1468,15 +1472,16 @@ module ietf-otn-topology {
       uses l1-types:otn-label-start-end;
     }
   }
+
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
         + "tet:from/tet:label-restrictions/"
         + "tet:label-restriction/"
         + "tet:label-end/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1495,9 +1500,9 @@ module ietf-otn-topology {
         + "tet:from/tet:label-restrictions/"
         + "tet:label-restriction/"
         + "tet:label-step/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1509,15 +1514,15 @@ module ietf-otn-topology {
       uses l1-types:otn-label-step;
     }
   }
-  
+
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
         + "tet:to/tet:label-restrictions/tet:label-restriction/"
         + "tet:label-start/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1535,9 +1540,9 @@ module ietf-otn-topology {
         + "tet:connectivity-matrix/"
         + "tet:to/tet:label-restrictions/tet:label-restriction/"
         + "tet:label-end/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1555,9 +1560,9 @@ module ietf-otn-topology {
         + "tet:connectivity-matrix/"
         + "tet:to/tet:label-restrictions/tet:label-restriction/"
         + "tet:label-step/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1569,15 +1574,16 @@ module ietf-otn-topology {
       uses l1-types:otn-label-step;
     }
   }
-  
+
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:information-source-entry/tet:connectivity-matrices/"
         + "tet:connectivity-matrix/"
-        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
-        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+        + "tet:underlay/tet:primary-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/tet:te-label/"
+        + "tet:technology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1595,9 +1601,9 @@ module ietf-otn-topology {
         + "tet:connectivity-matrix/"
         + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1618,9 +1624,9 @@ module ietf-otn-topology {
         + "tet:explicit-route-exclude-objects/"
         + "tet:route-object-exclude-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1642,9 +1648,9 @@ module ietf-otn-topology {
         + "tet:explicit-route-include-objects/"
         + "tet:route-object-include-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1664,9 +1670,9 @@ module ietf-otn-topology {
         + "tet:path-properties/tet:path-route-objects/"
         + "tet:path-route-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1680,14 +1686,14 @@ module ietf-otn-topology {
   }
 
   augment "/nw:networks/nw:network/nw:node/tet:te/"
-      + "tet:tunnel-termination-point/"
-      + "tet:local-link-connectivities/"
-      + "tet:label-restrictions/tet:label-restriction/"
-      + "tet:label-start/"
-      + "tet:te-label/tet:technology" {
-    when "../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+        + "tet:tunnel-termination-point/"
+        + "tet:local-link-connectivities/"
+        + "tet:label-restrictions/tet:label-restriction/"
+        + "tet:label-start/"
+        + "tet:te-label/tet:technology" {
+    when '../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1705,10 +1711,10 @@ module ietf-otn-topology {
         + "tet:local-link-connectivities/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-end/"
-        + "tet:te-label/tet:technology"{
-    when "../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+        + "tet:te-label/tet:technology" {
+    when '../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1726,10 +1732,10 @@ module ietf-otn-topology {
         + "tet:local-link-connectivities/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-step/"
-        + "tet:technology"{
-    when "../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+        + "tet:technology" {
+    when '../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1745,11 +1751,12 @@ module ietf-otn-topology {
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
-        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
-        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+        + "tet:underlay/tet:primary-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/tet:te-label/"
+        + "tet:technology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1767,9 +1774,9 @@ module ietf-otn-topology {
         + "tet:local-link-connectivities/"
         + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1790,9 +1797,9 @@ module ietf-otn-topology {
         + "tet:explicit-route-exclude-objects/"
         + "tet:route-object-exclude-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1814,9 +1821,9 @@ module ietf-otn-topology {
         + "tet:explicit-route-include-objects/"
         + "tet:route-object-include-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1836,9 +1843,9 @@ module ietf-otn-topology {
         + "tet:path-properties/tet:path-route-objects/"
         + "tet:path-route-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1857,9 +1864,9 @@ module ietf-otn-topology {
         + "tet:local-link-connectivity/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-start/tet:te-label/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1878,9 +1885,9 @@ module ietf-otn-topology {
         + "tet:local-link-connectivity/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-end/tet:te-label/tet:technology" {
-    when "../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1899,9 +1906,9 @@ module ietf-otn-topology {
         + "tet:local-link-connectivity/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-step/tet:technology" {
-    when "../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1913,16 +1920,17 @@ module ietf-otn-topology {
       uses l1-types:otn-label-step;
     }
   }
-  
+
   augment "/nw:networks/nw:network/nw:node/tet:te/"
         + "tet:tunnel-termination-point/"
         + "tet:local-link-connectivities/"
         + "tet:local-link-connectivity/"
-        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
-        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+        + "tet:underlay/tet:primary-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/tet:te-label/"
+        + "tet:technology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1941,9 +1949,9 @@ module ietf-otn-topology {
         + "tet:local-link-connectivity/"
         + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1965,9 +1973,9 @@ module ietf-otn-topology {
         + "tet:explicit-route-exclude-objects/"
         + "tet:route-object-exclude-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -1990,9 +1998,9 @@ module ietf-otn-topology {
         + "tet:explicit-route-include-objects/"
         + "tet:route-object-include-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -2013,9 +2021,9 @@ module ietf-otn-topology {
         + "tet:path-properties/tet:path-route-objects/"
         + "tet:path-route-object/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -2027,13 +2035,15 @@ module ietf-otn-topology {
       uses l1-types:otn-label-hop;
     }
   }
+
   augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:te-link-attributes/"
-        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
-        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+        + "tet:underlay/tet:primary-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/tet:te-label/"
+        + "tet:technology" {
+    when '../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -2050,9 +2060,9 @@ module ietf-otn-topology {
         + "tet:te-link-attributes/"
         + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
         + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-    when "../../../../../../../../"
-       + "nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../../'
+       + 'nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -2069,8 +2079,8 @@ module ietf-otn-topology {
         + "tet:te-link-attributes/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-start/tet:te-label/tet:technology" {
-    when "../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -2086,8 +2096,8 @@ module ietf-otn-topology {
         + "tet:te-link-attributes/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-end/tet:te-label/tet:technology" {
-    when "../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -2103,8 +2113,8 @@ module ietf-otn-topology {
         + "tet:te-link-attributes/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-step/tet:technology" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -2115,13 +2125,13 @@ module ietf-otn-topology {
       uses l1-types:otn-label-step;
     }
   }
-  
+
   augment "/nw:networks/nw:network/nt:link/tet:te/"
         + "tet:information-source-entry/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-start/tet:te-label/tet:technology" {
-    when "../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -2138,8 +2148,8 @@ module ietf-otn-topology {
         + "tet:information-source-entry/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-end/tet:te-label/tet:technology" {
-    when "../../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -2156,8 +2166,8 @@ module ietf-otn-topology {
         + "tet:information-source-entry/"
         + "tet:label-restrictions/tet:label-restriction/"
         + "tet:label-step/tet:technology" {
-    when "../../../../../../nw:network-types/tet:te-topology/"
-       + "otnt:otn-topology" {
+    when '../../../../../../nw:network-types/tet:te-topology/'
+       + 'otnt:otn-topology' {
       description
         "Augmentation parameters apply only for networks with
          OTN topology type.";
@@ -2169,11 +2179,12 @@ module ietf-otn-topology {
       uses l1-types:otn-label-step;
     }
   }
-  
+
   augment "/nw:networks/tet:te/tet:templates/"
         + "tet:link-template/tet:te-link-attributes/"
-        + "tet:underlay/tet:primary-path/tet:path-element/tet:type/"
-        + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
+        + "tet:underlay/tet:primary-path/tet:path-element/"
+        + "tet:type/tet:label/tet:label-hop/tet:te-label/"
+        + "tet:technology" {
     description
       "Augment TE label hop for the underlay primary path
        of the TE link template.";
