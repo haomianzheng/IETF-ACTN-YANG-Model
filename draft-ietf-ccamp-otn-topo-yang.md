@@ -359,7 +359,7 @@ This YANG module references {{!RFC8345}}, {{!RFC8795}},
 ~~~~ yang
 {::include yang/ietf-otn-topology.yang}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-otn-topology@2024-06-21.yang"}
+{: sourcecode-markers="true" sourcecode-name="ietf-otn-topology@2026-06-10.yang"}
 
 # IANA Considerations
 
