@@ -477,8 +477,8 @@ Table of Contents
 
      augment "/nw:networks/nw:network/nw:node/tet:te"
            + "/tet:te-node-attributes" {
-       when '../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augment only for OTN.";
        }
@@ -493,8 +493,8 @@ Table of Contents
 
      augment "/nw:networks/nw:network/nt:link/tet:te/"
            + "tet:te-link-attributes" {
-       when '../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augment only for OTN.";
        }
@@ -546,8 +546,8 @@ Table of Contents
 
      augment "/nw:networks/nw:network/nw:node/nt:termination-point/"
            + "tet:te" {
-       when '../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augment only for OTN.";
        }
@@ -589,8 +589,8 @@ Table of Contents
            + "tet:te/"
            + "tet:interface-switching-capability/"
            + "tet:max-lsp-bandwidth/tet:te-bandwidth/tet:technology" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -612,8 +612,8 @@ Table of Contents
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:te-node-attributes/tet:connectivity-matrices/"
            + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -644,8 +644,8 @@ Table of Contents
            + "tet:te-node-attributes/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/"
            + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
-       when '../../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -675,8 +675,8 @@ Table of Contents
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:information-source-entry/tet:connectivity-matrices/"
            + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -707,8 +707,8 @@ Table of Contents
            + "tet:information-source-entry/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/"
            + "tet:path-constraints/tet:te-bandwidth/tet:technology" {
-       when '../../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -739,8 +739,8 @@ Table of Contents
            + "tet:tunnel-termination-point/"
            + "tet:client-layer-adaptation/tet:switching-capability/"
            + "tet:te-bandwidth/tet:technology" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -771,8 +771,8 @@ Table of Contents
            + "tet:tunnel-termination-point/"
            + "tet:local-link-connectivities/tet:path-constraints/"
            + "tet:te-bandwidth/tet:technology" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -804,8 +804,8 @@ Table of Contents
            + "tet:local-link-connectivities/"
            + "tet:local-link-connectivity/tet:path-constraints/"
            + "tet:te-bandwidth/tet:technology" {
-       when '../../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -836,8 +836,8 @@ Table of Contents
            + "tet:te-link-attributes/"
            + "tet:interface-switching-capability/"
            + "tet:max-lsp-bandwidth/tet:te-bandwidth/tet:technology" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -858,8 +858,8 @@ Table of Contents
            + "tet:te-link-attributes/"
            + "tet:max-link-bandwidth/"
            + "tet:te-bandwidth" {
-       when '../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -878,8 +878,8 @@ Table of Contents
            + "tet:te-link-attributes/"
            + "tet:max-resv-link-bandwidth/"
            + "tet:te-bandwidth" {
-       when '../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -898,8 +898,8 @@ Table of Contents
            + "tet:te-link-attributes/"
            + "tet:unreserved-bandwidth/"
            + "tet:te-bandwidth" {
-       when '../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -919,8 +919,8 @@ Table of Contents
            + "tet:interface-switching-capability/"
            + "tet:max-lsp-bandwidth/"
            + "tet:te-bandwidth/tet:technology" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -942,8 +942,8 @@ Table of Contents
            + "tet:information-source-entry/"
            + "tet:max-link-bandwidth/"
            + "tet:te-bandwidth" {
-       when '../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -963,8 +963,8 @@ Table of Contents
            + "tet:information-source-entry/"
            + "tet:max-resv-link-bandwidth/"
            + "tet:te-bandwidth" {
-       when '../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -984,8 +984,8 @@ Table of Contents
            + "tet:information-source-entry/"
            + "tet:unreserved-bandwidth/"
            + "tet:te-bandwidth" {
-       when '../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1073,8 +1073,8 @@ Table of Contents
      augment "/nw:networks/nw:network/nw:node/tet:te/"
            + "tet:te-node-attributes/tet:connectivity-matrices/"
            + "tet:label-restrictions/tet:label-restriction" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1089,8 +1089,8 @@ Table of Contents
            + "tet:te-node-attributes/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/tet:from/"
            + "tet:label-restrictions/tet:label-restriction" {
-       when '../../../../../../../../nw:network-types/'
-          + 'tet:te-topology/otnt:otn-topology' {
+       when "../../../../../../../../nw:network-types/
+             tet:te-topology/otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1105,8 +1105,8 @@ Table of Contents
            + "tet:te-node-attributes/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/tet:to/"
            + "tet:label-restrictions/tet:label-restriction" {
-       when '../../../../../../../../nw:network-types/'
-          + 'tet:te-topology/otnt:otn-topology' {
+       when "../../../../../../../../nw:network-types/
+             tet:te-topology/otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1121,8 +1121,8 @@ Table of Contents
            + "tet:information-source-entry/"
            + "tet:connectivity-matrices/tet:label-restrictions/"
            + "tet:label-restriction" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1137,8 +1137,8 @@ Table of Contents
            + "tet:information-source-entry/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/"
            + "tet:from/tet:label-restrictions/tet:label-restriction" {
-       when '../../../../../../../../nw:network-types/'
-          + 'tet:te-topology/otnt:otn-topology' {
+       when "../../../../../../../../nw:network-types/
+             tet:te-topology/otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1153,8 +1153,8 @@ Table of Contents
            + "tet:information-source-entry/tet:connectivity-matrices/"
            + "tet:connectivity-matrix/"
            + "tet:to/tet:label-restrictions/tet:label-restriction" {
-       when '../../../../../../../../nw:network-types/'
-          + 'tet:te-topology/otnt:otn-topology' {
+       when "../../../../../../../../nw:network-types/
+             tet:te-topology/otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1169,8 +1169,8 @@ Table of Contents
            + "tet:tunnel-termination-point/"
            + "tet:local-link-connectivities/"
            + "tet:label-restrictions/tet:label-restriction" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1186,8 +1186,8 @@ Table of Contents
            + "tet:local-link-connectivities/"
            + "tet:local-link-connectivity/"
            + "tet:label-restrictions/tet:label-restriction" {
-       when '../../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1201,8 +1201,8 @@ Table of Contents
      augment "/nw:networks/nw:network/nt:link/tet:te/"
            + "tet:te-link-attributes/"
            + "tet:label-restrictions/tet:label-restriction" {
-       when '../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1215,8 +1215,8 @@ Table of Contents
      augment "/nw:networks/nw:network/nt:link/tet:te/"
            + "tet:information-source-entry/"
            + "tet:label-restrictions/tet:label-restriction" {
-       when '../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1244,8 +1244,8 @@ Table of Contents
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-start/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../nw:network-types/'
-          + 'tet:te-topology/otnt:otn-topology' {
+       when "../../../../../../../../nw:network-types/
+             tet:te-topology/otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1263,8 +1263,8 @@ Table of Contents
            + "tet:label-restrictions/"
            + "tet:label-restriction/tet:label-end/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../nw:network-types/'
-          + 'tet:te-topology/otnt:otn-topology' {
+       when "../../../../../../../../nw:network-types/
+             tet:te-topology/otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1282,8 +1282,8 @@ Table of Contents
            + "tet:label-restrictions/"
            + "tet:label-restriction/tet:label-step/"
            + "tet:technology" {
-       when '../../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1301,9 +1301,9 @@ Table of Contents
            + "tet:underlay/tet:primary-path/tet:path-element/"
            + "tet:type/tet:label/tet:label-hop/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1321,9 +1321,9 @@ Table of Contents
            + "tet:underlay/tet:backup-path/tet:path-element/"
            + "tet:type/tet:label/tet:label-hop/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1344,9 +1344,9 @@ Table of Contents
            + "tet:route-object-exclude-object/"
            + "tet:type/tet:label/tet:label-hop/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1368,9 +1368,9 @@ Table of Contents
            + "tet:route-object-include-object/"
            + "tet:type/tet:label/tet:label-hop/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1389,9 +1389,9 @@ Table of Contents
            + "tet:path-properties/tet:path-route-objects/"
            + "tet:path-route-object/tet:type/tet:label/tet:label-hop/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1410,9 +1410,9 @@ Table of Contents
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-start/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1431,9 +1431,9 @@ Table of Contents
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-end/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1452,9 +1452,9 @@ Table of Contents
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-step/"
            + "tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1473,9 +1473,9 @@ Table of Contents
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-start/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1494,9 +1494,9 @@ Table of Contents
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-end/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1515,9 +1515,9 @@ Table of Contents
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-step/"
            + "tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1536,9 +1536,9 @@ Table of Contents
            + "tet:underlay/tet:primary-path/tet:path-element/"
            + "tet:type/tet:label/tet:label-hop/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1557,9 +1557,9 @@ Table of Contents
            + "tet:underlay/tet:backup-path/tet:path-element/"
            + "tet:type/tet:label/tet:label-hop/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1579,9 +1579,9 @@ Table of Contents
            + "tet:explicit-route-exclude-objects/"
            + "tet:route-object-exclude-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1601,9 +1601,9 @@ Table of Contents
            + "tet:explicit-route-include-objects/"
            + "tet:route-object-include-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1622,9 +1622,9 @@ Table of Contents
            + "tet:path-properties/tet:path-route-objects/"
            + "tet:path-route-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1642,9 +1642,9 @@ Table of Contents
            + "tet:connectivity-matrices/tet:label-restrictions/"
            + "tet:label-restriction/"
            + "tet:label-start/tet:te-label/tet:technology" {
-       when '../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1662,9 +1662,9 @@ Table of Contents
            + "tet:connectivity-matrices/tet:label-restrictions/"
            + "tet:label-restriction/"
            + "tet:label-end/tet:te-label/tet:technology" {
-       when '../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1682,9 +1682,9 @@ Table of Contents
            + "tet:connectivity-matrices/tet:label-restrictions/"
            + "tet:label-restriction/"
            + "tet:label-step/tet:technology" {
-       when '../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1702,9 +1702,9 @@ Table of Contents
            + "tet:underlay/tet:primary-path/tet:path-element/"
            + "tet:type/tet:label/tet:label-hop/tet:te-label/"
            + "tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1722,9 +1722,9 @@ Table of Contents
            + "tet:information-source-entry/tet:connectivity-matrices/"
            + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1745,9 +1745,9 @@ Table of Contents
            + "tet:explicit-route-exclude-objects/"
            + "tet:route-object-exclude-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1768,9 +1768,9 @@ Table of Contents
            + "tet:explicit-route-include-objects/"
            + "tet:route-object-include-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1789,9 +1789,9 @@ Table of Contents
            + "tet:path-properties/tet:path-route-objects/"
            + "tet:path-route-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1810,9 +1810,9 @@ Table of Contents
            + "tet:from/tet:label-restrictions/"
            + "tet:label-restriction/"
            + "tet:label-start/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1831,9 +1831,9 @@ Table of Contents
            + "tet:from/tet:label-restrictions/"
            + "tet:label-restriction/"
            + "tet:label-end/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1852,9 +1852,9 @@ Table of Contents
            + "tet:from/tet:label-restrictions/"
            + "tet:label-restriction/"
            + "tet:label-step/tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1872,9 +1872,9 @@ Table of Contents
            + "tet:connectivity-matrix/"
            + "tet:to/tet:label-restrictions/tet:label-restriction/"
            + "tet:label-start/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1892,9 +1892,9 @@ Table of Contents
            + "tet:connectivity-matrix/"
            + "tet:to/tet:label-restrictions/tet:label-restriction/"
            + "tet:label-end/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1912,9 +1912,9 @@ Table of Contents
            + "tet:connectivity-matrix/"
            + "tet:to/tet:label-restrictions/tet:label-restriction/"
            + "tet:label-step/tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1933,9 +1933,9 @@ Table of Contents
            + "tet:underlay/tet:primary-path/tet:path-element/"
            + "tet:type/tet:label/tet:label-hop/tet:te-label/"
            + "tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1953,9 +1953,9 @@ Table of Contents
            + "tet:connectivity-matrix/"
            + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -1976,9 +1976,9 @@ Table of Contents
            + "tet:explicit-route-exclude-objects/"
            + "tet:route-object-exclude-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2000,9 +2000,9 @@ Table of Contents
            + "tet:explicit-route-include-objects/"
            + "tet:route-object-include-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2022,9 +2022,9 @@ Table of Contents
            + "tet:path-properties/tet:path-route-objects/"
            + "tet:path-route-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2043,9 +2043,9 @@ Table of Contents
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-start/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2064,9 +2064,9 @@ Table of Contents
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-end/"
            + "tet:te-label/tet:technology" {
-       when '../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2085,9 +2085,9 @@ Table of Contents
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-step/"
            + "tet:technology" {
-       when '../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2106,9 +2106,9 @@ Table of Contents
            + "tet:underlay/tet:primary-path/tet:path-element/"
            + "tet:type/tet:label/tet:label-hop/tet:te-label/"
            + "tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2126,9 +2126,9 @@ Table of Contents
            + "tet:local-link-connectivities/"
            + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2149,9 +2149,9 @@ Table of Contents
            + "tet:explicit-route-exclude-objects/"
            + "tet:route-object-exclude-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2173,9 +2173,9 @@ Table of Contents
            + "tet:explicit-route-include-objects/"
            + "tet:route-object-include-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2195,9 +2195,9 @@ Table of Contents
            + "tet:path-properties/tet:path-route-objects/"
            + "tet:path-route-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2216,9 +2216,9 @@ Table of Contents
            + "tet:local-link-connectivity/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-start/tet:te-label/tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2237,9 +2237,9 @@ Table of Contents
            + "tet:local-link-connectivity/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-end/tet:te-label/tet:technology" {
-       when '../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2258,9 +2258,9 @@ Table of Contents
            + "tet:local-link-connectivity/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-step/tet:technology" {
-       when '../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2280,9 +2280,9 @@ Table of Contents
            + "tet:underlay/tet:primary-path/tet:path-element/"
            + "tet:type/tet:label/tet:label-hop/tet:te-label/"
            + "tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2301,9 +2301,9 @@ Table of Contents
            + "tet:local-link-connectivity/"
            + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2325,9 +2325,9 @@ Table of Contents
            + "tet:explicit-route-exclude-objects/"
            + "tet:route-object-exclude-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2350,9 +2350,9 @@ Table of Contents
            + "tet:explicit-route-include-objects/"
            + "tet:route-object-include-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2373,9 +2373,9 @@ Table of Contents
            + "tet:path-properties/tet:path-route-objects/"
            + "tet:path-route-object/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2393,9 +2393,9 @@ Table of Contents
            + "tet:underlay/tet:primary-path/tet:path-element/"
            + "tet:type/tet:label/tet:label-hop/tet:te-label/"
            + "tet:technology" {
-       when '../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2412,9 +2412,9 @@ Table of Contents
            + "tet:te-link-attributes/"
            + "tet:underlay/tet:backup-path/tet:path-element/tet:type/"
            + "tet:label/tet:label-hop/tet:te-label/tet:technology" {
-       when '../../../../../../../../'
-          + 'nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../../
+             nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2431,8 +2431,8 @@ Table of Contents
            + "tet:te-link-attributes/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-start/tet:te-label/tet:technology" {
-       when '../../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2448,8 +2448,8 @@ Table of Contents
            + "tet:te-link-attributes/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-end/tet:te-label/tet:technology" {
-       when '../../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2465,8 +2465,8 @@ Table of Contents
            + "tet:te-link-attributes/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-step/tet:technology" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2482,8 +2482,8 @@ Table of Contents
            + "tet:information-source-entry/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-start/tet:te-label/tet:technology" {
-       when '../../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2500,8 +2500,8 @@ Table of Contents
            + "tet:information-source-entry/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-end/tet:te-label/tet:technology" {
-       when '../../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -2518,8 +2518,8 @@ Table of Contents
            + "tet:information-source-entry/"
            + "tet:label-restrictions/tet:label-restriction/"
            + "tet:label-step/tet:technology" {
-       when '../../../../../../nw:network-types/tet:te-topology/'
-          + 'otnt:otn-topology' {
+       when "../../../../../../nw:network-types/tet:te-topology/
+             otnt:otn-topology" {
          description
            "Augmentation parameters apply only for networks with
             OTN topology type.";
@@ -3921,6 +3921,13 @@ Appendix A.  YANG Tree
           +--rw otn-label-step
              +--rw tpn?   otn-tpn
              +--rw ts?    otn-ts
+
+     grouping label-range-info:
+       +-- otn-label-range!
+          +-- range-type?      otn-label-range-type
+          +-- tsg?             identityref
+          +-- odu-type-list*   identityref
+          +-- priority?        uint8
 
 Appendix B.  JSON Examples
 

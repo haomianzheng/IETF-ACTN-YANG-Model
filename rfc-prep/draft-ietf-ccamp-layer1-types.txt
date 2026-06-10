@@ -505,7 +505,7 @@ Table of Contents
      grouping otn-link-bandwidth:
        +-- otn-bandwidth
           +-- odulist* [odu-type]
-             +-- odu-type?    identityref
+             +-- odu-type     identityref
              +-- number?      uint16
              +-- ts-number?   uint16
      grouping otn-path-bandwidth:
