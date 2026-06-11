@@ -97,67 +97,75 @@ contributor:
 
 normative:
   ANSI_INCITS_230:
-    title: Information Technology - Fibre Channel - Physical and Signaling Interface (FC-PH).
+    title: Information Technology - Fibre Channel - Physical and Signaling Interface (FC-PH)
     author:
       org: American National Standards Institute
-    date: January 1994
-    seriesinfo: ANSI INCITS 230-1994 (R1999)
+    date: 1994-01
+    seriesinfo:
+      ANSI: INCITS 230-1994 (R1999)
     target: https://webstore.ansi.org/standards/incits/ansiincits2301994r1999
   ANSI_T1.105:
     title: Synchronous Optical Network (SONET) Basic Description including Multiplex Structure, Rates, and Formats
     author:
       org: American National Standards Institute
-    date: May 2001
+    date: 2001-05
     seriesinfo: ANSI T1.105-2001
     target: https://webstore.ansi.org/standards/atis/t11052001
   IEEE_754:
     title: IEEE Standard for Floating-Point Arithmetic
     author:
       org: Institute of Electrical and Electronics Engineers
-    date: July 2019
-    seriesinfo: IEEE 754-2019
+    date: 2019-07
+    seriesinfo:
+      IEEE: 754-2019
     target: https://ieeexplore.ieee.org/document/8766229
   IEEE_802.3:
     title: IEEE Standard for Ethernet
     author:
       org: Institute of Electrical and Electronics Engineers
-    date: June 2018
-    seriesinfo: IEEE 802.3-2018
-    target: https://ieeexplore.ieee.org/document/8457469
-  ISO_IEC_9899_1999:
-    title: Programming Languages - C
+    date: 2022-07
+    seriesinfo:
+      IEEE: 802.3-2022
+    target: https://ieeexplore.ieee.org/document/9844436
+  ISO_IEC_9899_2024:
+    title: Information technology -- Programming languages -- C
     author:
       org: International Organization for Standardization
-    date: December 1999
-    seriesinfo: ISO/IEC 9899:1999
-    target: https://www.iso.org/standard/29237.
+    date: 2024-10
+    seriesinfo:
+      ISO: ISO/IEC 9899:2024
+    target: https://www.iso.org/standard/82075.html
   ITU-T_G.7044:
     title: Hitless adjustment of ODUflex(GFP)
     author:
       org: International Telecommunication Union
-    date: October 2011
-    seriesinfo: ITU-T G.7044
+    date: 2011-10
+    seriesinfo:
+      ITU-T: G.7044/Y.1347
     target: https://www.itu.int/rec/T-REC-G.7044
   ITU-T_G.707:
     title: Network node interface for the synchronous digital hierarchy (SDH)
     author:
       org: International Telecommunication Union
-    date: January 2007
-    seriesinfo: ITU-T G.707
+    date: 2007-01
+    seriesinfo:
+      ITU-T: G.707/Y.1322
     target: https://www.itu.int/rec/T-REC-G.707
   ITU-T_G.709:
     title: Interfaces for the optical transport network
     author:
       org: International Telecommunication Union
-    date: June 2020
-    seriesinfo: ITU-T G.709
+    date: 2020-06
+    seriesinfo:
+      ITU-T: G.709/Y.1331
     target: https://www.itu.int/rec/T-REC-G.709
   MEF_63:
-    title: Subscriber Layer1 Service Attributes Technical Specification
+    title: Subscriber Layer1 Service Attributes
     author:
       org: Metro Ethernet Forum
-    date: August 2018
-    seriesinfo: MEF 63
+    date: 2018-08
+    seriesinfo:
+      MEF: 63
     target: https://www.mef.net/wp-content/uploads/2018/08/MEF-63.pdf
 
 informative:
@@ -165,8 +173,9 @@ informative:
     title: Transport of IEEE 10GBASE-R in optical transport networks (OTN)
     author:
       org: International Telecommunication Union
-    date: November 2011
-    seriesinfo: ITU-T G.Sup43
+    date: 2011-02
+    seriesinfo:
+      ITU-T: G.Sup43
     target: https://www.itu.int/rec/T-REC-G.Sup43
 
 
@@ -479,7 +488,7 @@ describe these cases:
 
 The OPUflex payload rate can be expressed either in a floating point
 notation or a scientific notation, as defined in {{IEEE_754}} and
-{{ISO_IEC_9899_1999}}.
+{{ISO_IEC_9899_2024}}.
 
 The 'generic' case has been added to allow the ODUflex nominal bit
 rate to be defined independently of the type of ODUflex. This could
