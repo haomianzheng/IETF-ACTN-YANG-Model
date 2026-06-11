@@ -610,7 +610,7 @@ a lower number of LSPs).
 ~~~~ yang
 {::include yang/ietf-layer1-types.yang}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-layer1-types@2026-06-10.yang"}
+{: sourcecode-markers="true" sourcecode-name="ietf-layer1-types@2026-06-11.yang"}
 
 # Security Considerations {#Security}
 

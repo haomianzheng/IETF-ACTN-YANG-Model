@@ -42,7 +42,7 @@ module ietf-layer1-types {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-06-10 {
+  revision 2026-06-11 {
     description
       "Initial Version";
     reference
@@ -886,7 +886,7 @@ module ietf-layer1-types {
 
        The encoding format is the external decimal-significant
        character sequences specified in IEEE 754 and
-       ISO/IEC 9899:1999 for 32-bit decimal floating-point numbers:
+       ISO/IEC 9899 for 32-bit decimal floating-point numbers:
        (-1)**(S) * 10**(Exponent) * (Significant),
        where Significant uses 7 digits.
 
@@ -900,9 +900,9 @@ module ietf-layer1-types {
        non-zero decimal digits; 'e' and 'E' indicate a power of ten.
        Some examples are 0e0, 1e10, and 9.953e9.";
     reference
-      "IEEE Std 754-2001: IEEE Standard for Floating-Point
+      "IEEE Std 754-2019: IEEE Standard for Floating-Point
                  Arithmetic
-       ISO/IEC 9899:1999: Information technology - Programming
+       ISO/IEC 9899:2024: Information technology - Programming
                  Languages - C";
   }
 
