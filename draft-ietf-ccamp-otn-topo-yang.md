@@ -99,8 +99,9 @@ normative:
     title: Interfaces for the optical transport network
     author:
       org: International Telecommunication Union
-    date: June 2020
-    seriesinfo: ITU-T G.709
+    date: 2020-06
+    seriesinfo:
+      ITU-T: G.709/Y.1331
     target: https://www.itu.int/rec/T-REC-G.709
 
 informative:
