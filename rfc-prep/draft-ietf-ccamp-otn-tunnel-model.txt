@@ -5,12 +5,12 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 12 December 2026                                     S. Belotti
+Expires: 13 December 2026                                     S. Belotti
                                                                 V. Lopez
                                                                    Nokia
                                                                    Y. Xu
                                                                    CAICT
-                                                            10 June 2026
+                                                            11 June 2026
 
 
 A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 December 2026.
+   This Internet-Draft will expire on 13 December 2026.
 
 Copyright Notice
 

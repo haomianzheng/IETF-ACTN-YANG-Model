@@ -5,7 +5,7 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 12 December 2026                                   10 June 2026
+Expires: 13 December 2026                                   11 June 2026
 
 
               Common YANG Data Types for Layer 1 Networks
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 December 2026.
+   This Internet-Draft will expire on 13 December 2026.
 
 Copyright Notice
 
@@ -387,7 +387,7 @@ Table of Contents
 
    The OPUflex payload rate can be expressed either in a floating point
    notation or a scientific notation, as defined in [IEEE_754] and
-   [ISO_IEC_9899_1999].
+   [ISO_IEC_9899_2024].
 
    The 'generic' case has been added to allow the ODUflex nominal bit
    rate to be defined independently of the type of ODUflex.  This could
@@ -1919,8 +1919,8 @@ Table of Contents
    [ANSI_INCITS_230]
               American National Standards Institute, "Information
               Technology - Fibre Channel - Physical and Signaling
-              Interface (FC-PH).", ANSI INCITS 230-1994 (R1999) ,
-              January 1994, <https://webstore.ansi.org/standards/incits/
+              Interface (FC-PH)", ANSI INCITS 230-1994 (R1999), January
+              1994, <https://webstore.ansi.org/standards/incits/
               ansiincits2301994r1999>.
 
    [ANSI_T1.105]
@@ -1938,39 +1938,39 @@ Table of Contents
               draft-ietf-teas-rfc8776-update-23>.
 
    [IEEE_754] Institute of Electrical and Electronics Engineers, "IEEE
-              Standard for Floating-Point Arithmetic", IEEE 754-2019 ,
+              Standard for Floating-Point Arithmetic", IEEE 754-2019,
               July 2019, <https://ieeexplore.ieee.org/document/8766229>.
 
    [IEEE_802.3]
               Institute of Electrical and Electronics Engineers, "IEEE
-              Standard for Ethernet", IEEE 802.3-2018 , June 2018,
-              <https://ieeexplore.ieee.org/document/8457469>.
+              Standard for Ethernet", IEEE 802.3-2022, July 2022,
+              <https://ieeexplore.ieee.org/document/9844436>.
 
-   [ISO_IEC_9899_1999]
+   [ISO_IEC_9899_2024]
               International Organization for Standardization,
-              "Programming Languages - C", ISO/IEC 9899:1999 , December
-              1999, <https://www.iso.org/standard/29237.>.
+              "Information technology -- Programming languages -- C",
+              ISO ISO/IEC 9899:2024, October 2024,
+              <https://www.iso.org/standard/82075.html>.
 
    [ITU-T_G.7044]
               International Telecommunication Union, "Hitless adjustment
-              of ODUflex(GFP)", ITU-T G.7044 , October 2011,
+              of ODUflex(GFP)", ITU-T G.7044/Y.1347, October 2011,
               <https://www.itu.int/rec/T-REC-G.7044>.
 
    [ITU-T_G.707]
               International Telecommunication Union, "Network node
               interface for the synchronous digital hierarchy (SDH)",
-              ITU-T G.707 , January 2007,
+              ITU-T G.707/Y.1322, January 2007,
               <https://www.itu.int/rec/T-REC-G.707>.
 
    [ITU-T_G.709]
               International Telecommunication Union, "Interfaces for the
-              optical transport network", ITU-T G.709 , June 2020,
+              optical transport network", ITU-T G.709/Y.1331, June 2020,
               <https://www.itu.int/rec/T-REC-G.709>.
 
    [MEF_63]   Metro Ethernet Forum, "Subscriber Layer1 Service
-              Attributes Technical Specification", MEF 63 , August 2018,
-              <https://www.mef.net/wp-content/uploads/2018/08/MEF-
-              63.pdf>.
+              Attributes", MEF 63, August 2018, <https://www.mef.net/wp-
+              content/uploads/2018/08/MEF-63.pdf>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -2071,8 +2071,8 @@ Table of Contents
 
    [ITU-T_G.Sup43]
               International Telecommunication Union, "Transport of IEEE
-              10GBASE-R in optical transport networks (OTN)", ITU-T
-              G.Sup43 , November 2011,
+              10GBASE-R in optical transport networks (OTN)",
+              ITU-T G.Sup43, February 2011,
               <https://www.itu.int/rec/T-REC-G.Sup43>.
 
    [RFC7062]  Zhang, F., Ed., Li, D., Li, H., Belotti, S., and D.
