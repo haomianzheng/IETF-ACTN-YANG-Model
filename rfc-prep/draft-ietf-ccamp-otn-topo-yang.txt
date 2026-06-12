@@ -5,13 +5,13 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 13 December 2026                                         X. Liu
+Expires: 14 December 2026                                         X. Liu
                                                               Individual
                                                               S. Belotti
                                                                    Nokia
                                                      O. Gonzalez de Dios
                                                               Telefonica
-                                                            11 June 2026
+                                                            12 June 2026
 
 
         A YANG Data Model for Optical Transport Network Topology
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 December 2026.
+   This Internet-Draft will expire on 14 December 2026.
 
 Copyright Notice
 
@@ -4376,7 +4376,7 @@ Authors' Addresses
 
    Haomian Zheng
    Huawei Technologies
-   H1, Huawei Industrial Base, Songshan Lake
+   H1, Huawei Xiliu Beipo Village, Songshan Lake
    Dongguan
    Guangdong, 523808
    China

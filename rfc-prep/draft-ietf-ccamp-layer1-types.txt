@@ -5,7 +5,7 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 13 December 2026                                   11 June 2026
+Expires: 14 December 2026                                   12 June 2026
 
 
               Common YANG Data Types for Layer 1 Networks
@@ -15,8 +15,8 @@ Abstract
 
    This document defines a collection of common data types, identities,
    and groupings in the YANG data modeling language.  These derived
-   common common data types, identities, and groupings are intended to
-   be imported by modules that model Layer 1 configuration and state
+   common data types, identities, and groupings are intended to be
+   imported by modules that model Layer 1 configuration and state
    capabilities.  The Layer 1 types are representative of Layer 1 client
    signals applicable to transport networks, such as Optical Transport
    Networks (OTN).  The Optical Transport Network (OTN) data structures
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 December 2026.
+   This Internet-Draft will expire on 14 December 2026.
 
 Copyright Notice
 
@@ -174,7 +174,7 @@ Table of Contents
                +==========+====================+===========+
                | rt-types | ietf-routing-types | [RFC8294] |
                +----------+--------------------+-----------+
-               | l1-types | ietf-layer1-types  | [RFCYYYY] |
+               | l1-types | ietf-layer1-types  | RFC XXXX  |
                +----------+--------------------+-----------+
 
                   Table 1: Prefixes and Corresponding YANG
@@ -233,7 +233,7 @@ Table of Contents
    otn-label-range-type:  The label range type of OTN is represented in
       one of two ways, tributary slots (TS) and tributary port number
       (TPN), as specified in [RFC7139].  Two representations are
-      enumerated in the otn- label-range-type.
+      enumerated in the otn-label-range-type.
 
    otn-link-bandwidth:  This grouping defines the link bandwidth
       information, usually as the number of ODUs that can be supported
@@ -267,7 +267,7 @@ Table of Contents
 
    otn-label-range-info:  This grouping is used to augment the label-
       restriction list, defined in [I-D.ietf-teas-rfc8776-update], with
-      OTN technology- specific attributes, as defined in Section 4.3.
+      OTN technology-specific attributes, as defined in Section 4.3.
 
    otn-label-start-end:  This grouping is used to augment the label-
       start and label-end containers within the label-restriction list,
