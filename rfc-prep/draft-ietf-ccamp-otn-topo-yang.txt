@@ -349,7 +349,7 @@ Table of Contents
    This YANG module references [RFC8345], [RFC8795],
    [I-D.ietf-ccamp-layer1-types] and [ITU-T_G.709].
 
-   <CODE BEGINS> file "ietf-otn-topology@2026-06-10.yang"
+   <CODE BEGINS> file "ietf-otn-topology@2026-06-12.yang"
    module ietf-otn-topology {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-otn-topology";
@@ -422,7 +422,7 @@ Table of Contents
         described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
         they appear in all capitals, as shown here.";
 
-     revision 2026-06-10 {
+     revision 2026-06-12 {
        description
          "Initial Revision";
        reference
