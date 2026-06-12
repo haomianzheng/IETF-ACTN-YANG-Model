@@ -12,7 +12,7 @@ v: 3
 area: "Routing"
 workgroup: "CCAMP Working Group"
 venue:
-  group: "Common Control and Measurement Plane"
+  group: "CCAMP Working Group"
   type: "Working Group"
   mail: "ccamp@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ccamp/"
@@ -52,7 +52,7 @@ contributor:
   -
     name: Aihua Guo
     org: Futurewei
-    email: aihuaguo@futurewei.com
+    email: aihuaguo.ietf@gmail.com
   -
     name: Young Lee
     org: Samsung
@@ -68,7 +68,7 @@ contributor:
     email: oscar.gonzalezdedios@telefonica.com
   -
     name: Xufeng Liu
-    org: Volta Networks
+    org: Individual
     email: xufeng.liu.ietf@gmail.com
   -
     name: Yunbin Xu
@@ -84,7 +84,7 @@ contributor:
     email: rrao@infinera.com
   -
     name: Victor Lopez
-    org: Telefonica
+    org: Nokia
     email: victor.lopez@nokia.com
   -
     name: Yunbo Li
@@ -97,67 +97,76 @@ contributor:
 
 normative:
   ANSI_INCITS_230:
-    title: Information Technology - Fibre Channel - Physical and Signaling Interface (FC-PH).
+    title: Information Technology - Fibre Channel - Physical and Signaling Interface (FC-PH)
     author:
       org: American National Standards Institute
-    date: January 1994
-    seriesinfo: ANSI INCITS 230-1994 (R1999)
+    date: 1994-01
+    seriesinfo:
+      ANSI: INCITS 230-1994 (R1999)
     target: https://webstore.ansi.org/standards/incits/ansiincits2301994r1999
   ANSI_T1.105:
     title: Synchronous Optical Network (SONET) Basic Description including Multiplex Structure, Rates, and Formats
     author:
       org: American National Standards Institute
-    date: May 2001
-    seriesinfo: ANSI T1.105-2001
+    date: 2001-05
+    seriesinfo:
+      ANSI: T1.105-2001
     target: https://webstore.ansi.org/standards/atis/t11052001
   IEEE_754:
     title: IEEE Standard for Floating-Point Arithmetic
     author:
       org: Institute of Electrical and Electronics Engineers
-    date: July 2019
-    seriesinfo: IEEE 754-2019
+    date: 2019-07
+    seriesinfo:
+      IEEE: 754-2019
     target: https://ieeexplore.ieee.org/document/8766229
   IEEE_802.3:
     title: IEEE Standard for Ethernet
     author:
       org: Institute of Electrical and Electronics Engineers
-    date: June 2018
-    seriesinfo: IEEE 802.3-2018
-    target: https://ieeexplore.ieee.org/document/8457469
-  ISO_IEC_9899_1999:
-    title: Programming Languages - C
+    date: 2022-07
+    seriesinfo:
+      IEEE: 802.3-2022
+    target: https://ieeexplore.ieee.org/document/9844436
+  ISO_IEC_9899:
+    title: Information technology -- Programming languages -- C
     author:
       org: International Organization for Standardization
-    date: December 1999
-    seriesinfo: ISO/IEC 9899:1999
-    target: https://www.iso.org/standard/29237.
+    date: 2024-10
+    seriesinfo:
+      ISO/IEC: 9899:2024
+    target: https://www.iso.org/standard/82075.html
   ITU-T_G.7044:
     title: Hitless adjustment of ODUflex(GFP)
     author:
       org: International Telecommunication Union
-    date: October 2011
-    seriesinfo: ITU-T G.7044
+    date: 2011-10
+    seriesinfo:
+      ITU-T: G.7044/Y.1347 (2011)
     target: https://www.itu.int/rec/T-REC-G.7044
   ITU-T_G.707:
     title: Network node interface for the synchronous digital hierarchy (SDH)
     author:
       org: International Telecommunication Union
-    date: January 2007
-    seriesinfo: ITU-T G.707
+    date: 2007-01
+    seriesinfo:
+      ITU-T: G.707/Y.1322 (2007)
     target: https://www.itu.int/rec/T-REC-G.707
   ITU-T_G.709:
     title: Interfaces for the optical transport network
     author:
       org: International Telecommunication Union
-    date: June 2020
-    seriesinfo: ITU-T G.709
+    date: 2020-06
+    seriesinfo:
+      ITU-T: G.709/Y.1331 (2020)
     target: https://www.itu.int/rec/T-REC-G.709
   MEF_63:
-    title: Subscriber Layer1 Service Attributes Technical Specification
+    title: Subscriber Layer1 Service Attributes
     author:
       org: Metro Ethernet Forum
-    date: August 2018
-    seriesinfo: MEF 63
+    date: 2018-08
+    seriesinfo:
+      MEF: 63
     target: https://www.mef.net/wp-content/uploads/2018/08/MEF-63.pdf
 
 informative:
@@ -165,16 +174,17 @@ informative:
     title: Transport of IEEE 10GBASE-R in optical transport networks (OTN)
     author:
       org: International Telecommunication Union
-    date: November 2011
-    seriesinfo: ITU-T G.Sup43
+    date: 2011-02
+    seriesinfo:
+      ITU-T: G.Sup43 (2011)
     target: https://www.itu.int/rec/T-REC-G.Sup43
 
 
 --- abstract
 
-This document defines a collection of common common data types,
+This document defines a collection of common data types,
 identities, and groupings in the YANG data modeling language. These
-derived common common data types, identities, and groupings are
+derived common data types, identities, and groupings are
 intended to be imported by modules that model Layer 1 configuration
 and state capabilities. The Layer 1 types are representative of
 Layer 1 client signals applicable to transport networks, such as
@@ -203,11 +213,6 @@ to, {{?I-D.ietf-ccamp-otn-topo-yang}},
 The document is consistent with other specifications, including
 {{MEF_63}} for Layer 1 service attributes, {{ITU-T_G.709}} and
 {{ITU-T_G.Sup43}} for OTN data plane definitions.
-
-The YANG data model in this document only defines groupings, typedef,
-and identities. It does not define any configuration or state data,
-as specified in the Network Management Datastore Architecture defined
-in {{?RFC8342}}.
 
 # Terminology and Notations
 
@@ -481,7 +486,7 @@ describe these cases:
 
 The OPUflex payload rate can be expressed either in a floating point
 notation or a scientific notation, as defined in {{IEEE_754}} and
-{{ISO_IEC_9899_1999}}.
+{{ISO_IEC_9899}}.
 
 The 'generic' case has been added to allow the ODUflex nominal bit
 rate to be defined independently of the type of ODUflex. This could
@@ -603,7 +608,7 @@ a lower number of LSPs).
 ~~~~ yang
 {::include yang/ietf-layer1-types.yang}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-layer1-types@2024-02-22.yang"}
+{: sourcecode-markers="true" sourcecode-name="ietf-layer1-types@2026-06-12.yang"}
 
 # Security Considerations {#Security}
 
@@ -682,6 +687,8 @@ The JSON code examples provided in this appendix provides some
 embedded comments following the conventions in Section 3.2 of
 {{?I-D.ietf-ccamp-transport-nbi-app-statement}} and have been folded
 using the tool in {{?RFC8792}}.
+
+> Note that this JSON example has been simplified for readability and therefore cannot be validated against the reference YANG model.
 
 ~~~~ json
 {::include-fold yang/examples/odu-label-restrictions-examples.json}
