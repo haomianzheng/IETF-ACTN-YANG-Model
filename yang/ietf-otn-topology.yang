@@ -70,7 +70,7 @@ module ietf-otn-topology {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-06-10 {
+  revision 2026-06-12 {
     description
       "Initial Revision";
     reference
