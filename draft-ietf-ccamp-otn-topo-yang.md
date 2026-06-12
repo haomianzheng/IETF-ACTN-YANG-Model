@@ -101,7 +101,7 @@ normative:
       org: International Telecommunication Union
     date: 2020-06
     seriesinfo:
-      ITU-T: G.709/Y.1331
+      ITU-T: G.709/Y.1331 (2020)
     target: https://www.itu.int/rec/T-REC-G.709
 
 informative:

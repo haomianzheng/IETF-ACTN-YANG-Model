@@ -109,7 +109,8 @@ normative:
     author:
       org: American National Standards Institute
     date: 2001-05
-    seriesinfo: ANSI T1.105-2001
+    seriesinfo:
+      ANSI: T1.105-2001
     target: https://webstore.ansi.org/standards/atis/t11052001
   IEEE_754:
     title: IEEE Standard for Floating-Point Arithmetic
@@ -127,13 +128,13 @@ normative:
     seriesinfo:
       IEEE: 802.3-2022
     target: https://ieeexplore.ieee.org/document/9844436
-  ISO_IEC_9899_2024:
+  ISO_IEC_9899:
     title: Information technology -- Programming languages -- C
     author:
       org: International Organization for Standardization
     date: 2024-10
     seriesinfo:
-      ISO: ISO/IEC 9899:2024
+      ISO/IEC: 9899:2024
     target: https://www.iso.org/standard/82075.html
   ITU-T_G.7044:
     title: Hitless adjustment of ODUflex(GFP)
@@ -141,7 +142,7 @@ normative:
       org: International Telecommunication Union
     date: 2011-10
     seriesinfo:
-      ITU-T: G.7044/Y.1347
+      ITU-T: G.7044/Y.1347 (2011)
     target: https://www.itu.int/rec/T-REC-G.7044
   ITU-T_G.707:
     title: Network node interface for the synchronous digital hierarchy (SDH)
@@ -149,7 +150,7 @@ normative:
       org: International Telecommunication Union
     date: 2007-01
     seriesinfo:
-      ITU-T: G.707/Y.1322
+      ITU-T: G.707/Y.1322 (2007)
     target: https://www.itu.int/rec/T-REC-G.707
   ITU-T_G.709:
     title: Interfaces for the optical transport network
@@ -157,7 +158,7 @@ normative:
       org: International Telecommunication Union
     date: 2020-06
     seriesinfo:
-      ITU-T: G.709/Y.1331
+      ITU-T: G.709/Y.1331 (2020)
     target: https://www.itu.int/rec/T-REC-G.709
   MEF_63:
     title: Subscriber Layer1 Service Attributes
@@ -175,7 +176,7 @@ informative:
       org: International Telecommunication Union
     date: 2011-02
     seriesinfo:
-      ITU-T: G.Sup43
+      ITU-T: G.Sup43 (2011)
     target: https://www.itu.int/rec/T-REC-G.Sup43
 
 
@@ -485,7 +486,7 @@ describe these cases:
 
 The OPUflex payload rate can be expressed either in a floating point
 notation or a scientific notation, as defined in {{IEEE_754}} and
-{{ISO_IEC_9899_2024}}.
+{{ISO_IEC_9899}}.
 
 The 'generic' case has been added to allow the ODUflex nominal bit
 rate to be defined independently of the type of ODUflex. This could

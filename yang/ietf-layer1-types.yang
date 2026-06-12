@@ -244,7 +244,7 @@ module ietf-layer1-types {
     description
       "Client signal type of 1GbE.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 36
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 36
        RFC 7139: GMPLS Signaling Extensions for Control of
                  Evolving G.709 Optical Transport Networks
        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
@@ -256,7 +256,7 @@ module ietf-layer1-types {
     description
       "Client signal type of ETH-10Gb-LAN (10.3 Gb/s).";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 49
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 49
        RFC 7139: GMPLS Signaling Extensions for Control of
                  Evolving G.709 Optical Transport Networks
        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
@@ -268,7 +268,7 @@ module ietf-layer1-types {
     description
       "Client signal type of ETH-10Gb-WAN (9.95 Gb/s).";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 50
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 50
        RFC 7139: GMPLS Signaling Extensions for Control of
                  Evolving G.709 Optical Transport Networks
        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
@@ -280,7 +280,7 @@ module ietf-layer1-types {
     description
       "Client signal type of 40GbE.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 82
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 82
        RFC 7139: GMPLS Signaling Extensions for Control of
                  Evolving G.709 Optical Transport Networks
        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
@@ -292,7 +292,7 @@ module ietf-layer1-types {
     description
       "Client signal type of 100GbE.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 82
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 82
        RFC 7139: GMPLS Signaling Extensions for Control of
                  Evolving G.709 Optical Transport Networks
        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
@@ -568,14 +568,14 @@ module ietf-layer1-types {
     description
       "1000BASE-X PCS clause 36 coding function.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 36
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 36
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
   identity ETH-10GW {
     base coding-func;
     description
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 50
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 50
 
        10GBASE-W (WAN PHY) PCS clause 49 and WIS clause 50
        coding function.";
@@ -588,7 +588,7 @@ module ietf-layer1-types {
     description
       "10GBASE-R (LAN PHY) PCS clause 49 coding function.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 49
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 49
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -597,7 +597,7 @@ module ietf-layer1-types {
     description
       "40GBASE-R PCS clause 82 coding function.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 82
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 82
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -606,7 +606,7 @@ module ietf-layer1-types {
     description
       "100GBASE-R PCS clause 82 coding function.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 82
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 82
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -624,7 +624,7 @@ module ietf-layer1-types {
       "SX-PMD-clause-38 Optical Interface function for
        1000BASE-X PCS-36.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 38
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 38
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -634,7 +634,7 @@ module ietf-layer1-types {
       "LX-PMD-clause-38 Optical Interface function for
        1000BASE-X PCS-36.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 38
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 38
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -644,7 +644,7 @@ module ietf-layer1-types {
       "LX10-PMD-clause-59 Optical Interface function for
        1000BASE-X PCS-36.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 59
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 59
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -654,7 +654,7 @@ module ietf-layer1-types {
       "BX10-PMD-clause-59 Optical Interface function for
        1000BASE-X PCS-36.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 59
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 59
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -664,7 +664,7 @@ module ietf-layer1-types {
       "LW-PMD-clause-52 Optical Interface function for
        10GBASE-W PCS-49-WIS-50.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 52
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 52
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -674,7 +674,7 @@ module ietf-layer1-types {
       "EW-PMD-clause-52 Optical Interface function for
        10GBASE-W PCS-49-WIS-50.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 52
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 52
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -684,7 +684,7 @@ module ietf-layer1-types {
       "LR-PMD-clause-52 Optical Interface function for
        10GBASE-R PCS-49.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 52
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 52
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -694,7 +694,7 @@ module ietf-layer1-types {
       "ER-PMD-clause-52 Optical Interface function for
        10GBASE-R PCS-49.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 52
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 52
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -704,7 +704,7 @@ module ietf-layer1-types {
       "LR4-PMD-clause-87 Optical Interface function for
        40GBASE-R PCS-82.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 87
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 87
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -714,7 +714,7 @@ module ietf-layer1-types {
       "ER4-PMD-clause-87 Optical Interface function for
        40GBASE-R PCS-82.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 87
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 87
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -724,7 +724,7 @@ module ietf-layer1-types {
       "FR-PMD-clause-89 Optical Interface function for
        40GBASE-R PCS-82.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 89
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 89
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -734,7 +734,7 @@ module ietf-layer1-types {
       "LR4-PMD-clause-88 Optical Interface function for
        100GBASE-R PCS-82.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 88
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 88
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
@@ -744,7 +744,7 @@ module ietf-layer1-types {
       "ER4-PMD-clause-88 Optical Interface function for
        100GBASE-R PCS-82.";
     reference
-      "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 88
+      "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 88
        MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
