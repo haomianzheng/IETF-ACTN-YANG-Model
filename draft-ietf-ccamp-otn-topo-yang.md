@@ -23,7 +23,7 @@ author:
   -
     name: Haomian Zheng
     org: Huawei Technologies
-    street: H1, Huawei Industrial Base, Songshan Lake
+    street: H1, Huawei Xiliu Beipo Village, Songshan Lake
     city: Dongguan
     region: Guangdong
     code: 523808
