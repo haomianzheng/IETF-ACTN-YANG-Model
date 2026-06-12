@@ -269,7 +269,7 @@ corresponding YANG imported modules, as shown in {{tab-prefixes}}.
 
 | Prefix      | YANG module             | Reference
 | rt-types    | ietf-routing-types      | {{!RFC8294}}
-| l1-types    | ietf-layer1-types       | \[RFCYYYY]
+| l1-types    | ietf-layer1-types       | RFC XXXX
 {: #tab-prefixes title="Prefixes and Corresponding YANG Modules"}
 
 > RFC Editor Note:
@@ -283,8 +283,8 @@ This document defines one YANG module for common Layer 1 types. The
 aim is to specify common Layer 1 TE types (i.e., typedef, identity,
 grouping) that can be imported by layer 1 specific technology, for
 example, layer 1 OTN, in its technology-specific modules, such as
-topology and tunnels. It is worth noting that the generic traffic-
-engineering (TE) types module is specified as ietf-te-types in
+topology and tunnels. It is worth noting that the generic traffic-engineering (TE)
+types module is specified as ietf-te-types in
 {{!I-D.ietf-teas-rfc8776-update}}, and both YANG modules, ietf-te-types
 and ietf-layer1-types, will need importing when the OTN is
 configured. Generic attributes such as te-bandwidth and te-label,
@@ -325,8 +325,7 @@ specified in {{!RFC7139}}.
 otn-label-range-type:
 : The label range type of OTN is represented in one of two ways,
 tributary slots (TS) and tributary port number (TPN), as specified
-in {{!RFC7139}}. Two representations are enumerated in the otn-
-label-range-type.
+in {{!RFC7139}}. Two representations are enumerated in the otn-label-range-type.
 
 otn-link-bandwidth:
 : This grouping defines the link bandwidth information, usually as
@@ -358,8 +357,7 @@ path.
 
 otn-label-range-info:
 : This grouping is used to augment the label-restriction list,
-defined in {{!I-D.ietf-teas-rfc8776-update}}, with OTN technology-
-specific attributes, as defined in {{label}}.
+defined in {{!I-D.ietf-teas-rfc8776-update}}, with OTN technology-specific attributes, as defined in {{label}}.
 
 otn-label-start-end:
 : This grouping is used to augment the label-start and label-end
@@ -421,8 +419,7 @@ Each entry of the label-restriction list, as defined in
 label-step, and a range-bitmap. The label-start and label-end
 definitions for OTN SHOULD be augmented using the otn-label-start-end
 grouping. The label-step definition for OTN SHOULD be augmented
-using the otn-label-step grouping. It is expected that the otn-
-label-step will always be equal to its default value (i.e., 1), which
+using the otn-label-step grouping. It is expected that the otn-label-step will always be equal to its default value (i.e., 1), which
 is defined in {{!I-D.ietf-teas-rfc8776-update}}.
 
 As described in {{!RFC7139}}, in some cases, the TPN assignment rules
