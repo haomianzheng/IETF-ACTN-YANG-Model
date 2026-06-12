@@ -387,7 +387,7 @@ Table of Contents
 
    The OPUflex payload rate can be expressed either in a floating point
    notation or a scientific notation, as defined in [IEEE_754] and
-   [ISO_IEC_9899_2024].
+   [ISO_IEC_9899].
 
    The 'generic' case has been added to allow the ODUflex nominal bit
    rate to be defined independently of the type of ODUflex.  This could
@@ -798,7 +798,7 @@ Table of Contents
        description
          "Client signal type of 1GbE.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 36
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 36
           RFC 7139: GMPLS Signaling Extensions for Control of
                     Evolving G.709 Optical Transport Networks
           ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
@@ -810,7 +810,7 @@ Table of Contents
        description
          "Client signal type of ETH-10Gb-LAN (10.3 Gb/s).";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 49
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 49
           RFC 7139: GMPLS Signaling Extensions for Control of
                     Evolving G.709 Optical Transport Networks
           ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
@@ -822,7 +822,7 @@ Table of Contents
        description
          "Client signal type of ETH-10Gb-WAN (9.95 Gb/s).";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 50
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 50
           RFC 7139: GMPLS Signaling Extensions for Control of
                     Evolving G.709 Optical Transport Networks
           ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
@@ -834,7 +834,7 @@ Table of Contents
        description
          "Client signal type of 40GbE.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 82
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 82
           RFC 7139: GMPLS Signaling Extensions for Control of
                     Evolving G.709 Optical Transport Networks
           ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
@@ -846,7 +846,7 @@ Table of Contents
        description
          "Client signal type of 100GbE.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 82
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 82
           RFC 7139: GMPLS Signaling Extensions for Control of
                     Evolving G.709 Optical Transport Networks
           ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
@@ -1122,14 +1122,14 @@ Table of Contents
        description
          "1000BASE-X PCS clause 36 coding function.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 36
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 36
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
      identity ETH-10GW {
        base coding-func;
        description
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 50
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 50
 
           10GBASE-W (WAN PHY) PCS clause 49 and WIS clause 50
           coding function.";
@@ -1142,7 +1142,7 @@ Table of Contents
        description
          "10GBASE-R (LAN PHY) PCS clause 49 coding function.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 49
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 49
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1151,7 +1151,7 @@ Table of Contents
        description
          "40GBASE-R PCS clause 82 coding function.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 82
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 82
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1160,7 +1160,7 @@ Table of Contents
        description
          "100GBASE-R PCS clause 82 coding function.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 82
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 82
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1178,7 +1178,7 @@ Table of Contents
          "SX-PMD-clause-38 Optical Interface function for
           1000BASE-X PCS-36.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 38
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 38
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1188,7 +1188,7 @@ Table of Contents
          "LX-PMD-clause-38 Optical Interface function for
           1000BASE-X PCS-36.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 38
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 38
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1198,7 +1198,7 @@ Table of Contents
          "LX10-PMD-clause-59 Optical Interface function for
           1000BASE-X PCS-36.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 59
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 59
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1208,7 +1208,7 @@ Table of Contents
          "BX10-PMD-clause-59 Optical Interface function for
           1000BASE-X PCS-36.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 59
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 59
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1218,7 +1218,7 @@ Table of Contents
          "LW-PMD-clause-52 Optical Interface function for
           10GBASE-W PCS-49-WIS-50.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 52
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 52
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1228,7 +1228,7 @@ Table of Contents
          "EW-PMD-clause-52 Optical Interface function for
           10GBASE-W PCS-49-WIS-50.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 52
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 52
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1238,7 +1238,7 @@ Table of Contents
          "LR-PMD-clause-52 Optical Interface function for
           10GBASE-R PCS-49.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 52
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 52
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1248,7 +1248,7 @@ Table of Contents
          "ER-PMD-clause-52 Optical Interface function for
           10GBASE-R PCS-49.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 52
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 52
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1258,7 +1258,7 @@ Table of Contents
          "LR4-PMD-clause-87 Optical Interface function for
           40GBASE-R PCS-82.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 87
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 87
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1268,7 +1268,7 @@ Table of Contents
          "ER4-PMD-clause-87 Optical Interface function for
           40GBASE-R PCS-82.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 87
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 87
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1278,7 +1278,7 @@ Table of Contents
          "FR-PMD-clause-89 Optical Interface function for
           40GBASE-R PCS-82.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 89
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 89
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1288,7 +1288,7 @@ Table of Contents
          "LR4-PMD-clause-88 Optical Interface function for
           100GBASE-R PCS-82.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 88
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 88
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1298,7 +1298,7 @@ Table of Contents
          "ER4-PMD-clause-88 Optical Interface function for
           100GBASE-R PCS-82.";
        reference
-         "IEEE 802.3-2018: IEEE Standard for Ethernet, Clause 88
+         "IEEE 802.3-2022: IEEE Standard for Ethernet, Clause 88
           MEF 63: Subscriber Layer 1 Service Attributes";
      }
 
@@ -1926,16 +1926,16 @@ Table of Contents
    [ANSI_T1.105]
               American National Standards Institute, "Synchronous
               Optical Network (SONET) Basic Description including
-              Multiplex Structure, Rates, and Formats", ANSI
-              T1.105-2001 , May 2001,
+              Multiplex Structure, Rates, and Formats",
+              ANSI T1.105-2001, May 2001,
               <https://webstore.ansi.org/standards/atis/t11052001>.
 
    [I-D.ietf-teas-rfc8776-update]
               Busi, I., Guo, A., Liu, X., Saad, T., and I. Bryskin,
               "Common YANG Data Types for Traffic Engineering", Work in
               Progress, Internet-Draft, draft-ietf-teas-rfc8776-update-
-              23, 20 May 2026, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-teas-rfc8776-update-23>.
+              24, 12 June 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-teas-rfc8776-update-24>.
 
    [IEEE_754] Institute of Electrical and Electronics Engineers, "IEEE
               Standard for Floating-Point Arithmetic", IEEE 754-2019,
@@ -1946,27 +1946,27 @@ Table of Contents
               Standard for Ethernet", IEEE 802.3-2022, July 2022,
               <https://ieeexplore.ieee.org/document/9844436>.
 
-   [ISO_IEC_9899_2024]
+   [ISO_IEC_9899]
               International Organization for Standardization,
               "Information technology -- Programming languages -- C",
-              ISO ISO/IEC 9899:2024, October 2024,
+              ISO/IEC 9899:2024, October 2024,
               <https://www.iso.org/standard/82075.html>.
 
    [ITU-T_G.7044]
               International Telecommunication Union, "Hitless adjustment
-              of ODUflex(GFP)", ITU-T G.7044/Y.1347, October 2011,
-              <https://www.itu.int/rec/T-REC-G.7044>.
+              of ODUflex(GFP)", ITU-T G.7044/Y.1347 (2011), October
+              2011, <https://www.itu.int/rec/T-REC-G.7044>.
 
    [ITU-T_G.707]
               International Telecommunication Union, "Network node
               interface for the synchronous digital hierarchy (SDH)",
-              ITU-T G.707/Y.1322, January 2007,
+              ITU-T G.707/Y.1322 (2007), January 2007,
               <https://www.itu.int/rec/T-REC-G.707>.
 
    [ITU-T_G.709]
               International Telecommunication Union, "Interfaces for the
-              optical transport network", ITU-T G.709/Y.1331, June 2020,
-              <https://www.itu.int/rec/T-REC-G.709>.
+              optical transport network", ITU-T G.709/Y.1331 (2020),
+              June 2020, <https://www.itu.int/rec/T-REC-G.709>.
 
    [MEF_63]   Metro Ethernet Forum, "Subscriber Layer1 Service
               Attributes", MEF 63, August 2018, <https://www.mef.net/wp-
@@ -2072,7 +2072,7 @@ Table of Contents
    [ITU-T_G.Sup43]
               International Telecommunication Union, "Transport of IEEE
               10GBASE-R in optical transport networks (OTN)",
-              ITU-T G.Sup43, February 2011,
+              ITU-T G.Sup43 (2011), February 2011,
               <https://www.itu.int/rec/T-REC-G.Sup43>.
 
    [RFC7062]  Zhang, F., Ed., Li, D., Li, H., Belotti, S., and D.
