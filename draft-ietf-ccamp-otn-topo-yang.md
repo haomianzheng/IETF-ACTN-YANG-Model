@@ -10,9 +10,9 @@ date:
 consensus: true
 v: 3
 area: "Routing"
-workgroup: "Common Control and Measurement Plane"
+workgroup: "CCAMP Working Group"
 venue:
-  group: "Common Control and Measurement Plane"
+  group: "CCAMP Working Group"
   type: "Working Group"
   mail: "ccamp@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ccamp/"
@@ -23,7 +23,7 @@ author:
   -
     name: Haomian Zheng
     org: Huawei Technologies
-    street: H1, Huawei Industrial Base, Songshan Lake
+    street: H1, Huawei Xiliu Beipo Village, Songshan Lake
     city: Dongguan
     region: Guangdong
     code: 523808
@@ -35,7 +35,7 @@ author:
     email: italo.busi@huawei.com
   -
     name: Xufeng Liu
-    org: Alef Edge
+    org: Individual
     email: xufeng.liu.ietf@gmail.com
   -
     name: Sergio Belotti
@@ -71,7 +71,7 @@ contributor:
   -
     name: Xian Zhang
     org: Huawei Technologies
-    email: Huawei Technologies
+    email: zhang.xian@huawei.com
   -
     name: Huub van Helvoort
     ins: H. van Helvoort
@@ -90,15 +90,19 @@ contributor:
     org: Nokia
     email: dieter.beller@nokia.com
   -
-    name: TBD
+    name: Yanlei Zheng
+    org: China Unicom
+    email: zhengyanlei@chinaunicom.cn
 
 normative:
   ITU-T_G.709:
     title: Interfaces for the optical transport network
     author:
-      org: ITU-T Recommendation G.709
-    date: March 2020
-    seriesinfo: ITU-T G.709
+      org: International Telecommunication Union
+    date: 2020-06
+    seriesinfo:
+      ITU-T: G.709/Y.1331 (2020)
+    target: https://www.itu.int/rec/T-REC-G.709
 
 informative:
 
@@ -162,9 +166,6 @@ protocol extensions to support GMPLS and Path Computation Element
 
 {{Section 6 of !RFC8795}} provides guidelines for writing technology-
 specific TE topology augmentations.
-
-The YANG data model in this document conforms to the Network
-Management Datastore Architecture defined in {{!RFC8342}}.
 
 ## Terminology and Notations
 
@@ -359,7 +360,7 @@ This YANG module references {{!RFC8345}}, {{!RFC8795}},
 ~~~~ yang
 {::include yang/ietf-otn-topology.yang}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-otn-topology@2024-06-21.yang"}
+{: sourcecode-markers="true" sourcecode-name="ietf-otn-topology@2026-06-12.yang"}
 
 # IANA Considerations
 
@@ -388,7 +389,7 @@ RFC once this draft becomes an RFC.
 # Security Considerations
 
 This section is modeled after the template described in Section 3.7
-of {{?I-D.ietf-netmod-rfc8407bis}}.
+of {{?RFC9907}}.
 
 The "ietf-te-types" and the "ietf-te-packet-types" YANG modules define data models that are
 designed to be accessed via YANG-based management protocols, such as
