@@ -8,9 +8,9 @@
 <meta content="Haomian Zheng" name="author">
 <meta content="Italo Busi" name="author">
 <meta content="
-       This document defines a collection of common common data types,
+       This document defines a collection of common data types,
 identities, and groupings in the YANG data modeling language. These
-derived common common data types, identities, and groupings are
+derived common data types, identities, and groupings are
 intended to be imported by modules that model Layer 1 configuration
 and state capabilities. The Layer 1 types are representative of
 Layer 1 client signals applicable to transport networks, such as
@@ -1054,7 +1054,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Zheng &amp; Busi</td>
-<td class="center">Expires 14 December 2026</td>
+<td class="center">Expires 17 December 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1067,12 @@ svg {
 <dd class="internet-draft">draft-ietf-ccamp-layer1-types-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-06-12" class="published">12 June 2026</time>
+<time datetime="2026-06-15" class="published">15 June 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-12-14">14 December 2026</time></dd>
+<dd class="expires"><time datetime="2026-12-17">17 December 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1089,9 +1089,9 @@ svg {
 <h1 id="title">Common YANG Data Types for Layer 1 Networks</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document defines a collection of common common data types,
+<p id="section-abstract-1">This document defines a collection of common data types,
 identities, and groupings in the YANG data modeling language. These
-derived common common data types, identities, and groupings are
+derived common data types, identities, and groupings are
 intended to be imported by modules that model Layer 1 configuration
 and state capabilities. The Layer 1 types are representative of
 Layer 1 client signals applicable to transport networks, such as
@@ -1108,7 +1108,7 @@ Optical Transport Networks (OTN). The Optical Transport Network
         Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-ccamp-layer1-types/">https://datatracker.ietf.org/doc/draft-ietf-ccamp-layer1-types/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
-        Common Control and Measurement Plane Working Group mailing list (<span><a href="mailto:ccamp@ietf.org">mailto:ccamp@ietf.org</a></span>),
+        CCAMP Working Group Working Group mailing list (<span><a href="mailto:ccamp@ietf.org">mailto:ccamp@ietf.org</a></span>),
         which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/ccamp/">https://mailarchive.ietf.org/arch/browse/ccamp/</a></span>.
         Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/ccamp/">https://www.ietf.org/mailman/listinfo/ccamp/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
@@ -1133,7 +1133,7 @@ Optical Transport Networks (OTN). The Optical Transport Network
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 17 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1252,10 +1252,6 @@ to, <span>[<a href="#I-D.ietf-ccamp-otn-topo-yang" class="cite xref">I-D.ietf-cc
 <p id="section-1-3">The document is consistent with other specifications, including
 <span>[<a href="#MEF_63" class="cite xref">MEF_63</a>]</span> for Layer 1 service attributes, <span>[<a href="#ITU-T_G.709" class="cite xref">ITU-T_G.709</a>]</span> and
 <span>[<a href="#ITU-T_G.Sup43" class="cite xref">ITU-T_G.Sup43</a>]</span> for OTN data plane definitions.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The YANG data model in this document only defines groupings, typedef,
-and identities. It does not define any configuration or state data,
-as specified in the Network Management Datastore Architecture defined
-in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology-and-notations">
@@ -1630,7 +1626,7 @@ describe these cases:<a href="#section-4.4-3" class="pilcrow">¶</a></p>
 </div>
 <p id="section-4.4-5">The OPUflex payload rate can be expressed either in a floating point
 notation or a scientific notation, as defined in <span>[<a href="#IEEE_754" class="cite xref">IEEE_754</a>]</span> and
-<span>[<a href="#ISO_IEC_9899_1999" class="cite xref">ISO_IEC_9899_1999</a>]</span>.<a href="#section-4.4-5" class="pilcrow">¶</a></p>
+<span>[<a href="#ISO_IEC_9899" class="cite xref">ISO_IEC_9899</a>]</span>.<a href="#section-4.4-5" class="pilcrow">¶</a></p>
 <p id="section-4.4-6">The 'generic' case has been added to allow the ODUflex nominal bit
 rate to be defined independently of the type of ODUflex. This could
 be useful for forward compatibility in the transit domain/nodes where
@@ -1802,12 +1798,12 @@ module: ietf-layer1-types
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-yang-code-for-layer1-types" class="section-name selfRef">YANG Code for Layer1 Types</a>
       </h2>
 <div class="breakable lang-yang sourcecode" id="section-6-1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-layer1-types@2024-02-22.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-layer1-types@2026-06-12.yang"
 
 module ietf-layer1-types {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-layer1-types";
-  prefix "l1-types";
+  prefix l1-types;
 
   import ietf-routing-types {
     prefix rt-types;
@@ -1826,12 +1822,10 @@ module ietf-layer1-types {
 
      Editor: Italo Busi
              &lt;mailto:Italo.Busi@huawei.com&gt;";
-
   description
-    "This module defines Layer 1 YANG types. The model fully conforms
-     to the Network Management Datastore Architecture (NMDA).
+    "This module defines Layer 1 YANG types.
 
-     Copyright (c) 2024 IETF Trust and the persons
+     Copyright (c) 2026 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -1844,13 +1838,13 @@ module ietf-layer1-types {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.
 
-    The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
-    NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
-    'MAY', and 'OPTIONAL' in this document are to be interpreted as
-    described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
-    they appear in all capitals, as shown here.";
+     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
+     NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
+     'MAY', and 'OPTIONAL' in this document are to be interpreted as
+     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
+     they appear in all capitals, as shown here.";
 
-  revision "2024-02-22" {
+  revision 2026-06-12 {
     description
       "Initial Version";
     reference
@@ -1868,184 +1862,175 @@ module ietf-layer1-types {
       "Tributary Slot Granularity (TSG).";
     reference
       "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-       Transport Network (OTN)";
+                 Transport Network (OTN)";
   }
 
-    identity tsg-1.25G {
-      base tributary-slot-granularity;
-      description
-        "1.25G tributary slot granularity.";
-    }
+  identity tsg-1.25G {
+    base tributary-slot-granularity;
+    description
+      "1.25G tributary slot granularity.";
+  }
 
-    identity tsg-2.5G {
-      base tributary-slot-granularity;
-      description
-        "2.5G tributary slot granularity.";
-    }
+  identity tsg-2.5G {
+    base tributary-slot-granularity;
+    description
+      "2.5G tributary slot granularity.";
+  }
 
-    identity tsg-5G {
-      base tributary-slot-granularity;
-      description
-        "5G tributary slot granularity.";
-    }
+  identity tsg-5G {
+    base tributary-slot-granularity;
+    description
+      "5G tributary slot granularity.";
+  }
 
   identity odu-type {
     description
       "Base identity from which specific Optical Data Unit (ODU)
-      type is derived.";
+       type is derived.";
     reference
-      "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-       G.709 Optical Transport Networks
-
+      "RFC 7139: GMPLS Signaling Extensions for Control of Evolving
+                 G.709 Optical Transport Networks
        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-       Transport Network (OTN)";
+                 Transport Network (OTN)";
   }
 
-    identity ODU0 {
-      base odu-type;
-      description
-        "ODU0 type (1.24Gb/s).";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
+  identity ODU0 {
+    base odu-type;
+    description
+      "ODU0 type (1.24Gb/s).";
+    reference
+      "RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
 
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
+  identity ODU1 {
+    base odu-type;
+    description
+      "ODU1 type (2.49Gb/s).";
+    reference
+      "RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
 
-    identity ODU1 {
-      base odu-type;
-      description
-        "ODU1 type (2.49Gb/s).";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
+  identity ODU2 {
+    base odu-type;
+    description
+      "ODU2 type (10.03Gb/s).";
+    reference
+      "RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
 
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
+  identity ODU2e {
+    base odu-type;
+    description
+      "ODU2e type (10.39Gb/s).";
+    reference
+      "RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
 
-    identity ODU2 {
-      base odu-type;
-      description
-        "ODU2 type (10.03Gb/s).";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
+  identity ODU3 {
+    base odu-type;
+    description
+      "ODU3 type (40.31Gb/s).";
+    reference
+      "RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
 
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
+  identity ODU4 {
+    base odu-type;
+    description
+      "ODU4 type (104.79Gb/s).";
+    reference
+      "RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
 
-    identity ODU2e {
-      base odu-type;
-      description
-        "ODU2e type (10.39Gb/s).";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
+  identity ODUflex {
+    base odu-type;
+    description
+      "ODUflex type (flexible bit rate, not resizable).
 
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
+       It could be used for any type of ODUflex, including
+       ODUflex(CBR), ODUflex(GFP), ODUflex(GFP,n,k), ODUflex(IMP,s),
+       ODUflex(IMP) and ODUflex(FlexE-aware).";
+    reference
+      "RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
 
-    identity ODU3 {
-      base odu-type;
-      description
-        "ODU3 type (40.31Gb/s).";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
+  identity ODUflex-resizable {
+    base odu-type;
+    description
+      "ODUflex protocol (flexible bit rate, resizable).
 
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
-
-    identity ODU4 {
-      base odu-type;
-      description
-        "ODU4 type (104.79Gb/s).";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
-
-    identity ODUflex {
-      base odu-type;
-      description
-        "ODUflex type (flexible bit rate, not resizable).
-
-        It could be used for any type of ODUflex, including
-        ODUflex(CBR), ODUflex(GFP), ODUflex(GFP,n,k), ODUflex(IMP,s),
-        ODUflex(IMP) and ODUflex(FlexE-aware).";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
-
-    identity ODUflex-resizable {
-      base odu-type;
-      description
-        "ODUflex protocol (flexible bit rate, resizable).
-
-        It could be used only for ODUflex(GFP,n,k).";
-      reference
-        "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
+       It could be used only for ODUflex(GFP,n,k).";
+    reference
+      "RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
 
   identity protocol {
     description
       "Base identity from which specific protocol is derived.";
     reference
-      "MEF63: Subscriber Layer 1 Service Attributes";
+      "MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
-    identity Ethernet {
-      base protocol;
-      description
-        "Ethernet protocol.";
-      reference
-        "MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity Ethernet {
+    base protocol;
+    description
+      "Ethernet protocol.";
+    reference
+      "MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-    identity Fibre-Channel {
-      base protocol;
-      description
-        "Fibre-Channel (FC) protocol.";
-      reference
-        "MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity Fibre-Channel {
+    base protocol;
+    description
+      "Fibre-Channel (FC) protocol.";
+    reference
+      "MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-    identity SDH {
-      base protocol;
-      description
-        "SDH protocol.";
-      reference
-        "MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity SDH {
+    base protocol;
+    description
+      "SDH protocol.";
+    reference
+      "MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-    identity SONET {
-      base protocol;
-      description
-        "SONET protocol.";
-      reference
-        "MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity SONET {
+    base protocol;
+    description
+      "SONET protocol.";
+    reference
+      "MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
   identity client-signal {
     description
       "Base identity from which specific Constant Bit Rate (CBR)
-      client signal is derived";
+       client signal is derived";
   }
 
   identity coding-func {
@@ -2053,578 +2038,517 @@ module ietf-layer1-types {
       "Base identity from which specific coding function
        is derived.";
     reference
-      "MEF63: Subscriber Layer 1 Service Attributes";
+      "MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
-    identity ETH-1Gb {
-      base client-signal;
-      description
-        "Client signal type of 1GbE.";
-      reference
-        "IEEE 802.3-2018, Clause 36: IEEE Standard for Ethernet
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
-
-    identity ETH-10Gb-LAN {
-      base client-signal;
-      description
-        "Client signal type of ETH-10Gb-LAN (10.3 Gb/s).";
-      reference
-        "IEEE 802.3-2018, Clause 49: IEEE Standard for Ethernet
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
-
-    identity ETH-10Gb-WAN {
-      base client-signal;
-      description
-        "Client signal type of ETH-10Gb-WAN (9.95 Gb/s).";
-      reference
-        "IEEE 802.3-2018, Clause 50: IEEE Standard for Ethernet
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
-
-    identity ETH-40Gb {
-      base client-signal;
-      description
-        "Client signal type of 40GbE.";
-      reference
-        "IEEE 802.3-2018, Clause 82: IEEE Standard for Ethernet
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
-
-    identity ETH-100Gb {
-      base client-signal;
-      description
-        "Client signal type of 100GbE.";
-      reference
-        "IEEE 802.3-2018, Clause 82: IEEE Standard for Ethernet
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)";
-    }
-
-    identity STM-1 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of STM-1;
-        STM-1 G.707 (N=1) coding function.";
-      reference
-        "ITU-T G.707 v7.0 (01/2007): Network node interface for the
-        synchronous digital hierarchy (SDH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity STM-4 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of STM-4;
-        STM-4 G.707 (N=4) coding function.";
-      reference
-        "ITU-T G.707 v7.0 (01/2007): Network node interface for the
-        synchronous digital hierarchy (SDH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity STM-16 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of STM-16;
-        STM-16 G.707 (N=16) coding function.";
-      reference
-        "ITU-T G.707 v7.0 (01/2007): Network node interface for the
-        synchronous digital hierarchy (SDH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity STM-64 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of STM-64;
-        STM-64 G.707 (N=64) coding function.";
-      reference
-        "ITU-T G.707 v7.0 (01/2007): Network node interface for the
-        synchronous digital hierarchy (SDH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity STM-256 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of STM-256;
-        STM-256 G.707 (N=256) coding function.";
-      reference
-        "ITU-T G.707 v7.0 (01/2007): Network node interface for the
-        synchronous digital hierarchy (SDH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity OC-3 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of OC3;
-        OC-3 GR-253-CORE (N=3) coding function.";
-      reference
-        "ANSI T1.105-2001: Synchronous Optical Network (SONET)
-        Basic Description including Multiplex Structure, Rates,
-        and Formats
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity OC-12 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of OC12;
-        OC-12 GR-253-CORE (N=12) coding function.";
-      reference
-        "ANSI T1.105-2001: Synchronous Optical Network (SONET)
-        Basic Description including Multiplex Structure, Rates,
-        and Formats
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity OC-48 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of OC48;
-        OC-48 GR-253-CORE (N=48) coding function.";
-      reference
-        "ANSI T1.105-2001: Synchronous Optical Network (SONET)
-        Basic Description including Multiplex Structure, Rates,
-        and Formats
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity OC-192 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of OC192;
-        OC-192 GR-253-CORE (N=192) coding function.";
-      reference
-        "ANSI T1.105-2001: Synchronous Optical Network (SONET)
-        Basic Description including Multiplex Structure, Rates,
-        and Formats
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity OC-768 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of OC768;
-        OC-768 GR-253-CORE (N=768) coding function.";
-      reference
-        "ANSI T1.105-2001: Synchronous Optical Network (SONET)
-        Basic Description including Multiplex Structure, Rates,
-        and Formats
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity FC-100 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of Fibre Channel FC-100;
-        FC-100 FC-FS-2 (1.0625 Gb/s) coding function.";
-      reference
-        "ANSI INCITS 230-1994 R1999): Information Technology -
-        Fibre Channel - Physical and Signaling Interface (FC-PH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity FC-200 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of Fibre Channel FC-200;
-        FC-200 FC-FS-2 (2.125 Gb/s) coding function.";
-      reference
-        "ANSI INCITS 230-1994 R1999): Information Technology -
-        Fibre Channel - Physical and Signaling Interface (FC-PH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity FC-400 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of Fibre Channel FC-400;
-        FC-400 FC-FS-2 (4.250 Gb/s) coding function.";
-      reference
-        "ANSI INCITS 230-1994 R1999): Information Technology -
-        Fibre Channel - Physical and Signaling Interface (FC-PH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity FC-800 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of Fibre Channel FC-800;
-        FC-800 FC-FS-2 (8.500 Gb/s) coding function.";
-      reference
-        "ANSI INCITS 230-1994 R1999): Information Technology -
-        Fibre Channel - Physical and Signaling Interface (FC-PH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity FC-1200 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of Fibre Channel FC-1200;
-        FC-1200 FC-10GFC (10.51875 Gb/s) coding function.";
-      reference
-        "ANSI INCITS 230-1994 R1999): Information Technology -
-        Fibre Channel - Physical and Signaling Interface (FC-PH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity FC-1600 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of Fibre Channel FC-1600;
-        FC-1600 FC-FS-3 (14.025 Gb/s) coding function.";
-      reference
-        "ANSI INCITS 230-1994 R1999): Information Technology -
-        Fibre Channel - Physical and Signaling Interface (FC-PH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity FC-3200 {
-      base client-signal;
-      base coding-func;
-      description
-        "Client signal type of Fibre Channel FC-3200;
-        FC-3200 FC-FS-4 (28.05 Gb/s) coding function.";
-      reference
-        "ANSI INCITS 230-1994 R1999): Information Technology -
-        Fibre Channel - Physical and Signaling Interface (FC-PH)
-
-        RFC7139: GMPLS Signaling Extensions for Control of Evolving
-        G.709 Optical Transport Networks
-
-        ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-        Transport Network (OTN)
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity ETH-1000X {
-      base coding-func;
-      description
-        "1000BASE-X PCS clause 36 coding function.";
-      reference
-        "IEEE 802.3-2018, Clause 36: IEEE Standard for Ethernet
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity ETH-10GW {
-      base coding-func;
-      description
-        "IEEE 802.3-2018, Clause 50: IEEE Standard for Ethernet
-
-        10GBASE-W (WAN PHY) PCS clause 49 and WIS clause 50
-        coding function.";
-      reference
-        "MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity ETH-10GR {
-      base coding-func;
-      description
-        "10GBASE-R (LAN PHY) PCS clause 49 coding function.";
-      reference
-        "IEEE 802.3-2018, Clause 49: IEEE Standard for Ethernet
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity ETH-40GR {
-      base coding-func;
-      description
-        "40GBASE-R PCS clause 82 coding function.";
-      reference
-        "IEEE 802.3-2018, Clause 82: IEEE Standard for Ethernet
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity ETH-100GR {
-      base coding-func;
-      description
-        "100GBASE-R PCS clause 82 coding function.";
-      reference
-        "IEEE 802.3-2018, Clause 82: IEEE Standard for Ethernet
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity ETH-1Gb {
+    base client-signal;
+    description
+      "Client signal type of 1GbE.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 36
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
+
+  identity ETH-10Gb-LAN {
+    base client-signal;
+    description
+      "Client signal type of ETH-10Gb-LAN (10.3 Gb/s).";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 49
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
+
+  identity ETH-10Gb-WAN {
+    base client-signal;
+    description
+      "Client signal type of ETH-10Gb-WAN (9.95 Gb/s).";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 50
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
+
+  identity ETH-40Gb {
+    base client-signal;
+    description
+      "Client signal type of 40GbE.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 82
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
+
+  identity ETH-100Gb {
+    base client-signal;
+    description
+      "Client signal type of 100GbE.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 82
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)";
+  }
+
+  identity STM-1 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of STM-1;
+       STM-1 G.707 (N=1) coding function.";
+    reference
+      "ITU-T G.707 v7.0 (01/2007): Network node interface for the
+                 synchronous digital hierarchy (SDH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity STM-4 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of STM-4;
+       STM-4 G.707 (N=4) coding function.";
+    reference
+      "ITU-T G.707 v7.0 (01/2007): Network node interface for the
+                 synchronous digital hierarchy (SDH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity STM-16 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of STM-16;
+       STM-16 G.707 (N=16) coding function.";
+    reference
+      "ITU-T G.707 v7.0 (01/2007): Network node interface for the
+                 synchronous digital hierarchy (SDH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity STM-64 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of STM-64;
+       STM-64 G.707 (N=64) coding function.";
+    reference
+      "ITU-T G.707 v7.0 (01/2007): Network node interface for the
+                 synchronous digital hierarchy (SDH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity STM-256 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of STM-256;
+       STM-256 G.707 (N=256) coding function.";
+    reference
+      "ITU-T G.707 v7.0 (01/2007): Network node interface for the
+                 synchronous digital hierarchy (SDH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity OC-3 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of OC3;
+       OC-3 GR-253-CORE (N=3) coding function.";
+    reference
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET)
+                 Basic Description including Multiplex Structure,
+                 Rates,  and Formats
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity OC-12 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of OC12;
+       OC-12 GR-253-CORE (N=12) coding function.";
+    reference
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET)
+                 Basic Description including Multiplex Structure,
+                 Rates,  and Formats
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity OC-48 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of OC48;
+       OC-48 GR-253-CORE (N=48) coding function.";
+    reference
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET)
+                 Basic Description including Multiplex Structure,
+                 Rates,  and Formats
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity OC-192 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of OC192;
+       OC-192 GR-253-CORE (N=192) coding function.";
+    reference
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET)
+                 Basic Description including Multiplex Structure,
+                 Rates,  and Formats
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity OC-768 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of OC768;
+       OC-768 GR-253-CORE (N=768) coding function.";
+    reference
+      "ANSI T1.105-2001: Synchronous Optical Network (SONET)
+                 Basic Description including Multiplex Structure,
+                 Rates,  and Formats
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity FC-100 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of Fibre Channel FC-100;
+       FC-100 FC-FS-2 (1.0625 Gb/s) coding function.";
+    reference
+      "ANSI INCITS 230-1994 (R1999): Information Technology -
+                 Fibre Channel - Physical and Signaling Interface
+                 (FC-PH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity FC-200 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of Fibre Channel FC-200;
+       FC-200 FC-FS-2 (2.125 Gb/s) coding function.";
+    reference
+      "ANSI INCITS 230-1994 (R1999): Information Technology -
+                 Fibre Channel - Physical and Signaling Interface
+                 (FC-PH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity FC-400 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of Fibre Channel FC-400;
+       FC-400 FC-FS-2 (4.250 Gb/s) coding function.";
+    reference
+      "ANSI INCITS 230-1994 (R1999): Information Technology -
+                 Fibre Channel - Physical and Signaling Interface
+                 (FC-PH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity FC-800 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of Fibre Channel FC-800;
+       FC-800 FC-FS-2 (8.500 Gb/s) coding function.";
+    reference
+      "ANSI INCITS 230-1994 (R1999): Information Technology -
+                 Fibre Channel - Physical and Signaling Interface
+                 (FC-PH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity FC-1200 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of Fibre Channel FC-1200;
+       FC-1200 FC-10GFC (10.51875 Gb/s) coding function.";
+    reference
+      "ANSI INCITS 230-1994 (R1999): Information Technology -
+                 Fibre Channel - Physical and Signaling Interface
+                 (FC-PH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity FC-1600 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of Fibre Channel FC-1600;
+       FC-1600 FC-FS-3 (14.025 Gb/s) coding function.";
+    reference
+      "ANSI INCITS 230-1994 (R1999): Information Technology -
+                 Fibre Channel - Physical and Signaling Interface
+                 (FC-PH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity FC-3200 {
+    base client-signal;
+    base coding-func;
+    description
+      "Client signal type of Fibre Channel FC-3200;
+       FC-3200 FC-FS-4 (28.05 Gb/s) coding function.";
+    reference
+      "ANSI INCITS 230-1994 (R1999): Information Technology -
+                 Fibre Channel - Physical and Signaling Interface
+                 (FC-PH)
+       RFC 7139: GMPLS Signaling Extensions for Control of
+                 Evolving G.709 Optical Transport Networks
+       ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN)
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ETH-1000X {
+    base coding-func;
+    description
+      "1000BASE-X PCS clause 36 coding function.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 36
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ETH-10GW {
+    base coding-func;
+    description
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 50
+
+       10GBASE-W (WAN PHY) PCS clause 49 and WIS clause 50
+       coding function.";
+    reference
+      "MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ETH-10GR {
+    base coding-func;
+    description
+      "10GBASE-R (LAN PHY) PCS clause 49 coding function.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 49
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ETH-40GR {
+    base coding-func;
+    description
+      "40GBASE-R PCS clause 82 coding function.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 82
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
+
+  identity ETH-100GR {
+    base coding-func;
+    description
+      "100GBASE-R PCS clause 82 coding function.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 82
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
   identity optical-interface-func {
     description
       "Base identity from which optical-interface-function
        is derived.";
     reference
-      "MEF63: Subscriber Layer 1 Service Attributes";
+      "MEF 63: Subscriber Layer 1 Service Attributes";
   }
 
-    identity SX-PMD-1000 {
-      base optical-interface-func;
-      description
-        "SX-PMD-clause-38 Optical Interface function for
-        1000BASE-X PCS-36.";
-      reference
-        "IEEE 802.3-2018, Clause 38: IEEE Standard for Ethernet
+  identity SX-PMD-1000 {
+    base optical-interface-func;
+    description
+      "SX-PMD-clause-38 Optical Interface function for
+       1000BASE-X PCS-36.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 38
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity LX-PMD-1000 {
+    base optical-interface-func;
+    description
+      "LX-PMD-clause-38 Optical Interface function for
+       1000BASE-X PCS-36.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 38
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-    identity LX-PMD-1000 {
-      base optical-interface-func;
-      description
-        "LX-PMD-clause-38 Optical Interface function for
-        1000BASE-X PCS-36.";
-      reference
-        "IEEE 802.3-2018, Clause 38: IEEE Standard for Ethernet
+  identity LX10-PMD-1000 {
+    base optical-interface-func;
+    description
+      "LX10-PMD-clause-59 Optical Interface function for
+       1000BASE-X PCS-36.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 59
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity BX10-PMD-1000 {
+    base optical-interface-func;
+    description
+      "BX10-PMD-clause-59 Optical Interface function for
+       1000BASE-X PCS-36.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 59
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-    identity LX10-PMD-1000 {
-      base optical-interface-func;
-      description
-        "LX10-PMD-clause-59 Optical Interface function for
-        1000BASE-X PCS-36.";
-      reference
-        "IEEE 802.3-2018, Clause 59: IEEE Standard for Ethernet
+  identity LW-PMD-10G {
+    base optical-interface-func;
+    description
+      "LW-PMD-clause-52 Optical Interface function for
+       10GBASE-W PCS-49-WIS-50.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 52
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity EW-PMD-10G {
+    base optical-interface-func;
+    description
+      "EW-PMD-clause-52 Optical Interface function for
+       10GBASE-W PCS-49-WIS-50.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 52
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-    identity BX10-PMD-1000 {
-      base optical-interface-func;
-      description
-        "BX10-PMD-clause-59 Optical Interface function for
-        1000BASE-X PCS-36.";
-      reference
-        "IEEE 802.3-2018, Clause 59: IEEE Standard for Ethernet
+  identity LR-PMD-10G {
+    base optical-interface-func;
+    description
+      "LR-PMD-clause-52 Optical Interface function for
+       10GBASE-R PCS-49.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 52
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity ER-PMD-10G {
+    base optical-interface-func;
+    description
+      "ER-PMD-clause-52 Optical Interface function for
+       10GBASE-R PCS-49.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 52
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-    identity LW-PMD-10G {
-      base optical-interface-func;
-      description
-        "LW-PMD-clause-52 Optical Interface function for
-        10GBASE-W PCS-49-WIS-50.";
-      reference
-        "IEEE 802.3-2018, Clause 52: IEEE Standard for Ethernet
+  identity LR4-PMD-40G {
+    base optical-interface-func;
+    description
+      "LR4-PMD-clause-87 Optical Interface function for
+       40GBASE-R PCS-82.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 87
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity ER4-PMD-40G {
+    base optical-interface-func;
+    description
+      "ER4-PMD-clause-87 Optical Interface function for
+       40GBASE-R PCS-82.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 87
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-    identity EW-PMD-10G {
-      base optical-interface-func;
-      description
-        "EW-PMD-clause-52 Optical Interface function for
-        10GBASE-W PCS-49-WIS-50.";
-      reference
-        "IEEE 802.3-2018, Clause 52: IEEE Standard for Ethernet
+  identity FR-PMD-40G {
+    base optical-interface-func;
+    description
+      "FR-PMD-clause-89 Optical Interface function for
+       40GBASE-R PCS-82.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 89
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity LR4-PMD-100G {
+    base optical-interface-func;
+    description
+      "LR4-PMD-clause-88 Optical Interface function for
+       100GBASE-R PCS-82.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 88
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
-    identity LR-PMD-10G {
-      base optical-interface-func;
-      description
-        "LR-PMD-clause-52 Optical Interface function for
-        10GBASE-R PCS-49.";
-      reference
-        "IEEE 802.3-2018, Clause 52: IEEE Standard for Ethernet
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity ER-PMD-10G {
-      base optical-interface-func;
-      description
-        "ER-PMD-clause-52 Optical Interface function for
-        10GBASE-R PCS-49.";
-      reference
-        "IEEE 802.3-2018, Clause 52: IEEE Standard for Ethernet
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity LR4-PMD-40G {
-      base optical-interface-func;
-      description
-        "LR4-PMD-clause-87 Optical Interface function for
-        40GBASE-R PCS-82.";
-      reference
-        "IEEE 802.3-2018, Clause 87: IEEE Standard for Ethernet
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity ER4-PMD-40G {
-      base optical-interface-func;
-      description
-        "ER4-PMD-clause-87 Optical Interface function for
-        40GBASE-R PCS-82.";
-      reference
-        "IEEE 802.3-2018, Clause 87: IEEE Standard for Ethernet
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity FR-PMD-40G {
-      base optical-interface-func;
-      description
-        "FR-PMD-clause-89 Optical Interface function for
-        40GBASE-R PCS-82.";
-      reference
-        "IEEE 802.3-2018, Clause 89: IEEE Standard for Ethernet
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity LR4-PMD-100G {
-      base optical-interface-func;
-      description
-        "LR4-PMD-clause-88 Optical Interface function for
-        100GBASE-R PCS-82.";
-      reference
-        "IEEE 802.3-2018, Clause 88: IEEE Standard for Ethernet
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
-
-    identity ER4-PMD-100G {
-      base optical-interface-func;
-      description
-        "ER4-PMD-clause-88 Optical Interface function for
-        100GBASE-R PCS-82.";
-      reference
-        "IEEE 802.3-2018, Clause 88: IEEE Standard for Ethernet
-
-        MEF63: Subscriber Layer 1 Service Attributes";
-    }
+  identity ER4-PMD-100G {
+    base optical-interface-func;
+    description
+      "ER4-PMD-clause-88 Optical Interface function for
+       100GBASE-R PCS-82.";
+    reference
+      "IEEE Std 802.3-2022: IEEE Standard for Ethernet, Clause 88
+       MEF 63: Subscriber Layer 1 Service Attributes";
+  }
 
   /*
    * Typedefs
@@ -2637,8 +2561,8 @@ module ietf-layer1-types {
     description
       "Tributary Port Number (TPN) for OTN.";
     reference
-      "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-       G.709 Optical Transport Networks.";
+      "RFC 7139: GMPLS Signaling Extensions for Control of Evolving
+                 G.709 Optical Transport Networks.";
   }
 
   typedef otn-ts {
@@ -2648,8 +2572,8 @@ module ietf-layer1-types {
     description
       "Tributary Slot (TS) for OTN.";
     reference
-      "RFC7139: GMPLS Signaling Extensions for Control of Evolving
-       G.709 Optical Transport Networks.";
+      "RFC 7139: GMPLS Signaling Extensions for Control of Evolving
+                 G.709 Optical Transport Networks.";
   }
 
   typedef otn-label-range-type {
@@ -2688,19 +2612,19 @@ module ietf-layer1-types {
     description
       "The ODUk.ts used to compute the rate of an ODUflex(GFP,n,k).";
     reference
-      "ITU-T G.709 v6.0 (06/2020), Table 7-8 and L.7: Interfaces for
-       the Optical Transport Network (OTN)";
+      "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN), Tables 7-8 and L.7";
   }
 
   typedef flexe-client-rate {
     type union {
       type uint16;
       type enumeration {
-        enum "10G" {
+        enum 10G {
           description
             "Represents a 10G FlexE Client signal (s=2).";
         }
-        enum "40G" {
+        enum 40G {
           description
             "Represents a 40G FlexE Client signal (s=8).";
         }
@@ -2717,38 +2641,38 @@ module ietf-layer1-types {
        (either 10G or 40G) is used, while in the latter case
        the value of n is used.";
     reference
-      "ITU-T G.709 v6.0 (06/2020), Table 7-2: Interfaces for the
-       Optical Transport Network (OTN)";
+      "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN), Table 7-2";
   }
 
   typedef odtu-flex-type {
     type enumeration {
-      enum "2" {
+      enum 2 {
         description
           "The ODTU2.ts ODTU type.";
       }
-      enum "3" {
+      enum 3 {
         description
           "The ODTU3.ts ODTU type.";
       }
-      enum "4" {
+      enum 4 {
         description
           "The ODTU4.ts ODTU type.";
       }
-      enum "Cn" {
+      enum Cn {
         description
           "The ODTUCn.ts ODTU type.";
       }
     }
     description
       "The type of Optical Data Tributary Unit (ODTU),
-      whose nominal bitrate is used to compute the number of
-      Tributary Slots (TS) required by an ODUflex LSP, according to
-      the (19-1a) and (20-1a) formulas defined in G.709.";
+       whose nominal bitrate is used to compute the number of
+       Tributary Slots (TS) required by an ODUflex LSP, according to
+       the (19-1a) and (20-1a) formulas defined in G.709.";
     reference
-      "ITU-T G.709 v6.0 (06/2020), Table 7-7, clause 19.6 and
-      clause 20.5: Interfaces for the Optical Transport
-      Network (OTN)";
+      "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                 Transport Network (OTN), clauses 19.6 and 20.5,
+                 and Table 7-7";
   }
 
   typedef bandwidth-scientific-notation {
@@ -2760,29 +2684,28 @@ module ietf-layer1-types {
     units "bps";
     description
       "Bandwidth values, expressed using the scientific notation
-      in bits per second.
+       in bits per second.
 
-      The encoding format is the external decimal-significant
-      character sequences specified in IEEE 754 and ISO/IEC 9899:1999
-      for 32-bit decimal floating-point numbers:
-      (-1)**(S) * 10**(Exponent) * (Significant),
-      where Significant uses 7 digits.
+       The encoding format is the external decimal-significant
+       character sequences specified in IEEE 754 and
+       ISO/IEC 9899 for 32-bit decimal floating-point numbers:
+       (-1)**(S) * 10**(Exponent) * (Significant),
+       where Significant uses 7 digits.
 
-      An implementation for this representation MAY use decimal32
-      or binary32. The range of the Exponent is from -95 to +96
-      for decimal32, and from -38 to +38 for binary32.
-      As a bandwidth value, the format is restricted to be
-      normalized, non-negative, and non-fraction:
-      n.dddddde{+}dd, N.DDDDDDE{+}DD, 0e0 or 0E0,
-      where 'd' and 'D' are decimal digits; 'n' and 'N' are
-      non-zero decimal digits; 'e' and 'E' indicate a power of ten.
-      Some examples are 0e0, 1e10, and 9.953e9.";
+       An implementation for this representation MAY use decimal32
+       or binary32. The range of the Exponent is from -95 to +96
+       for decimal32, and from -38 to +38 for binary32.
+       As a bandwidth value, the format is restricted to be
+       normalized, non-negative, and non-fraction:
+       n.dddddde{+}dd, N.DDDDDDE{+}DD, 0e0 or 0E0,
+       where 'd' and 'D' are decimal digits; 'n' and 'N' are
+       non-zero decimal digits; 'e' and 'E' indicate a power of ten.
+       Some examples are 0e0, 1e10, and 9.953e9.";
     reference
-      "IEEE Std 754-2001: IEEE Standard for Floating-Point
-      Arithmetic
-
-      ISO/IEC 9899:1999: Information technology - Programming
-      Languages - C";
+      "IEEE Std 754-2019: IEEE Standard for Floating-Point
+                 Arithmetic
+       ISO/IEC 9899:2024: Information technology - Programming
+                 Languages - C";
   }
 
   /*
@@ -2803,26 +2726,28 @@ module ietf-layer1-types {
           type identityref {
             base odu-type;
           }
-          description "ODU type";
+          description
+            "ODU type";
         }
         leaf number {
           type uint16;
-          description "Number of ODUs.";
+          description
+            "Number of ODUs.";
         }
         leaf ts-number {
-          when 'derived-from-or-self(../odu-type,"ODUflex") or
-                derived-from-or-self(../odu-type,
-                "ODUflex-resizable")' {
+          when "derived-from-or-self(../odu-type,'l1-types:ODUflex')
+                or derived-from-or-self(../odu-type,
+                'l1-types:ODUflex-resizable')" {
             description
               "Applicable when odu-type is ODUflex or
-              ODUflex-resizable.";
+               ODUflex-resizable.";
           }
           type uint16 {
             range "1..4095";
           }
           description
             "The number of Tributary Slots (TS) that
-            could be used by all the ODUflex LSPs.";
+             could be used by all the ODUflex LSPs.";
         }
       }
     }
@@ -2838,12 +2763,13 @@ module ietf-layer1-types {
         type identityref {
           base odu-type;
         }
-        description "ODU type";
+        description
+          "ODU type";
       }
       choice oduflex-type {
-        when 'derived-from-or-self(./odu-type,"ODUflex") or
-              derived-from-or-self(./odu-type,
-              "ODUflex-resizable")' {
+        when "derived-from-or-self(./odu-type,'l1-types:ODUflex')
+              or derived-from-or-self(./odu-type,
+              'l1-types:ODUflex-resizable')" {
           description
             "Applicable when odu-type is ODUflex or
              ODUflex-resizable.";
@@ -2852,8 +2778,8 @@ module ietf-layer1-types {
           "Types of ODUflex used to compute the ODUflex
            nominal bit rate.";
         reference
-          "ITU-T G.709 v6.0 (06/2020), Table 7-2: Interfaces for the
-           Optical Transport Network (OTN)";
+          "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
+                     Transport Network (OTN), Table 7-2";
         case generic {
           leaf nominal-bit-rate {
             type union {
@@ -2873,7 +2799,7 @@ module ietf-layer1-types {
             mandatory true;
             description
               "The type of Constant Bit Rate (CBR) client signal
-              of an ODUflex(CBR).";
+               of an ODUflex(CBR).";
           }
         }
         case gfp-n-k {
@@ -2885,8 +2811,9 @@ module ietf-layer1-types {
             description
               "The value of n for an ODUflex(GFP,n,k).";
             reference
-              "ITU-T G.709 v6.0 (06/2020), Tables 7-8 and L.7:
-               Interfaces for the Optical Transport Network (OTN)";
+              "ITU-T G.709 v6.0 (06/2020): Interfaces for the
+                         Optical Transport Network (OTN),
+                         Tables 7-8 and L.7";
           }
           leaf gfp-k {
             type gfp-k;
@@ -2896,8 +2823,9 @@ module ietf-layer1-types {
                If omitted, it is calculated from the value of gfp-n
                as described in Table 7-8 of G.709.";
             reference
-              "ITU-T G.709 v6.0 (06/2020), Tables 7-8 and L.7:
-               Interfaces for the Optical Transport Network (OTN)";
+              "ITU-T G.709 v6.0 (06/2020): Interfaces for the
+                         Optical Transport Network (OTN),
+                         Tables 7-8 and L.7";
           }
         }
         case flexe-client {
@@ -2944,12 +2872,13 @@ module ietf-layer1-types {
         type identityref {
           base odu-type;
         }
-        description "ODU type.";
+        description
+          "ODU type.";
       }
       leaf max-ts-number {
-        when 'derived-from-or-self(../odu-type,"ODUflex") or
-              derived-from-or-self(../odu-type,
-              "ODUflex-resizable")' {
+        when "derived-from-or-self(../odu-type,'l1-types:ODUflex')
+              or derived-from-or-self(../odu-type,
+              'l1-types:ODUflex-resizable')" {
           description
             "Applicable when odu-type is ODUflex or
              ODUflex-resizable.";
@@ -2959,7 +2888,7 @@ module ietf-layer1-types {
         }
         description
           "The maximum number of Tributary Slots (TS) that could be
-          used by an ODUflex LSP.";
+           used by an ODUflex LSP.";
       }
     }
   }
@@ -2978,8 +2907,9 @@ module ietf-layer1-types {
         "Label range information for OTN.";
       leaf range-type {
         type otn-label-range-type;
-        description "The type of range (e.g., TPN or TS)
-          to which the label range applies";
+        description
+          "The type of range (e.g., TPN or TS)
+           to which the label range applies";
       }
       leaf tsg {
         type identityref {
@@ -2987,16 +2917,16 @@ module ietf-layer1-types {
         }
         description
           "Tributary slot granularity (TSG) to which the label range
-          applies.
+           applies.
 
-          This leaf MUST be present when the range-type is TS.
+           This leaf MUST be present when the range-type is TS.
 
-          This leaf MAY be omitted when mapping an ODUk over an OTUk
-          Link. In this case the range-type is tpn, with only one
-          entry (ODUk), and the tpn range has only one value (1).";
+           This leaf MAY be omitted when mapping an ODUk over an OTUk
+           Link. In this case the range-type is tpn, with only one
+           entry (ODUk), and the tpn range has only one value (1).";
         reference
           "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-          Transport Network (OTN)";
+                     Transport Network (OTN)";
       }
       leaf-list odu-type-list {
         type identityref {
@@ -3005,19 +2935,19 @@ module ietf-layer1-types {
         description
           "List of ODU types to which the label range applies.
 
-          An Empty odu-type-list means that the label range
-          applies to all the supported ODU types.";
+           An Empty odu-type-list means that the label range
+           applies to all the supported ODU types.";
       }
       leaf priority {
         type uint8 {
-          range 0..7;
+          range "0..7";
         }
         description
           "Priority in Interface Switching Capability
-          Descriptor (ISCD).";
+           Descriptor (ISCD).";
         reference
-          "RFC4203: OSPF Extensions in Support of Generalized
-          Multi-Protocol Label Switching (GMPLS)";
+          "RFC 4203: OSPF Extensions in Support of Generalized
+                     Multi-Protocol Label Switching (GMPLS)";
       }
     }
   }
@@ -3039,45 +2969,46 @@ module ietf-layer1-types {
       description
         "Label start or label end for OTN.
 
-        It is either a TPN or a TS depending on the OTN label range
-        type specified in the 'range-type' leaf defined in the
-        otn-label-range-info grouping.";
+         It is either a TPN or a TS depending on the OTN label range
+         type specified in the 'range-type' leaf defined in the
+         otn-label-range-info grouping.";
       leaf tpn {
         when "../../../../otn-label-range/range-type =
               'trib-port'" {
           description
             "Valid only when range-type represented by
-            trib-port.";
+             trib-port.";
         }
         type otn-tpn;
         description
           "Tributary Port Number (TPN).";
         reference
-          "RFC7139: GMPLS Signaling Extensions for Control of
-          Evolving G.709 Optical Transport Networks";
+          "RFC 7139: GMPLS Signaling Extensions for Control of
+                     Evolving G.709 Optical Transport Networks";
       }
       leaf ts {
         when "../../../../otn-label-range/range-type =
               'trib-slot'" {
           description
             "Valid only when range-type represented by
-            trib-slot.";
+             trib-slot.";
         }
         type otn-ts;
         description
           "Tributary Slot (TS) number.";
         reference
-          "RFC7139: GMPLS Signaling Extensions for Control of
-          Evolving G.709 Optical Transport Networks";
+          "RFC 7139: GMPLS Signaling Extensions for Control of
+                     Evolving G.709 Optical Transport Networks";
       }
     }
   }
 
   grouping otn-label-hop {
-    description "OTN Label";
+    description
+      "OTN Label";
     reference
-      "RFC7139, section 6: GMPLS Signaling Extensions for Control of
-       Evolving G.709 Optical Transport Networks";
+      "RFC 7139: GMPLS Signaling Extensions for Control of Evolving
+                 G.709 Optical Transport Networks, section 6";
     container otn-label {
       description
         "Label hop for OTN.";
@@ -3086,32 +3017,33 @@ module ietf-layer1-types {
         description
           "Tributary Port Number (TPN).";
         reference
-          "RFC7139: GMPLS Signaling Extensions for Control of
-          Evolving G.709 Optical Transport Networks";
+          "RFC 7139: GMPLS Signaling Extensions for Control of
+                     Evolving G.709 Optical Transport Networks";
       }
       leaf tsg {
         type identityref {
           base tributary-slot-granularity;
         }
-        description "Tributary Slot Granularity (TSG).";
+        description
+          "Tributary Slot Granularity (TSG).";
         reference
           "ITU-T G.709 v6.0 (06/2020): Interfaces for the Optical
-          Transport Network (OTN)";
+                     Transport Network (OTN)";
       }
       leaf ts-list {
         type string {
-            pattern "([1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?"
-                  + "(,[1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?)*)";
-          }
+          pattern '([1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?'
+                + '(,[1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?)*)';
+        }
         description
           "A list of available Tributary Slots (TS) ranging
-          between 1 and 4095. If multiple values or
-          ranges are given, they all MUST be disjoint
-          and MUST be in ascending order.
-          For example 1-20,25,50-1000.";
+           between 1 and 4095. If multiple values or
+           ranges are given, they all MUST be disjoint
+           and MUST be in ascending order.
+           For example 1-20,25,50-1000.";
         reference
           "RFC 7139: GMPLS Signaling Extensions for Control
-          of Evolving G.709 Optical Transport Networks";
+                     of Evolving G.709 Optical Transport Networks";
       }
     }
   }
@@ -3132,38 +3064,38 @@ module ietf-layer1-types {
       description
         "Label step for OTN.
 
-        It is either a TPN or a TS depending on the OTN label range
-        type specified in the 'range-type' leaf defined in the
-        otn-label-range-info grouping.";
+         It is either a TPN or a TS depending on the OTN label range
+         type specified in the 'range-type' leaf defined in the
+         otn-label-range-info grouping.";
       leaf tpn {
         when "../../../otn-label-range/range-type =
               'trib-port'" {
           description
             "Valid only when range-type represented by
-            trib-port.";
+             trib-port.";
         }
         type otn-tpn;
         description
           "Label step which represents possible increments for
-          Tributary Port Number (TPN).";
+           Tributary Port Number (TPN).";
         reference
-          "RFC7139: GMPLS Signaling Extensions for Control of
-          Evolving G.709 Optical Transport Networks";
+          "RFC 7139: GMPLS Signaling Extensions for Control of
+                     Evolving G.709 Optical Transport Networks";
       }
       leaf ts {
         when "../../../otn-label-range/range-type =
               'trib-slot'" {
           description
             "Valid only when range-type represented by
-            trib-slot";
+             trib-slot";
         }
         type otn-ts;
         description
           "Label step which represents possible increments for
-          Tributary Slot (TS) number.";
+           Tributary Slot (TS) number.";
         reference
-          "RFC7139: GMPLS Signaling Extensions for Control of
-          Evolving G.709 Optical Transport Networks";
+          "RFC 7139: GMPLS Signaling Extensions for Control of
+                     Evolving G.709 Optical Transport Networks";
       }
     }
   }
@@ -3256,43 +3188,43 @@ RFC once this draft becomes an RFC.<a href="#section-8-5.1.1" class="pilcrow">¶
 <dl class="references">
 <dt id="ANSI_INCITS_230">[ANSI_INCITS_230]</dt>
         <dd>
-<span class="refAuthor">American National Standards Institute</span>, <span class="refTitle">"Information Technology - Fibre Channel - Physical and Signaling Interface (FC-PH)."</span>, <span class="seriesInfo">ANSI INCITS 230-1994 (R1999) </span>, <time datetime="1994-01" class="refDate">January 1994</time>, <span>&lt;<a href="https://webstore.ansi.org/standards/incits/ansiincits2301994r1999">https://webstore.ansi.org/standards/incits/ansiincits2301994r1999</a>&gt;</span>. </dd>
+<span class="refAuthor">American National Standards Institute</span>, <span class="refTitle">"Information Technology - Fibre Channel - Physical and Signaling Interface (FC-PH)"</span>, <span class="seriesInfo">ANSI INCITS 230-1994 (R1999)</span>, <time datetime="1994-01" class="refDate">January 1994</time>, <span>&lt;<a href="https://webstore.ansi.org/standards/incits/ansiincits2301994r1999">https://webstore.ansi.org/standards/incits/ansiincits2301994r1999</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ANSI_T1.105">[ANSI_T1.105]</dt>
         <dd>
-<span class="refAuthor">American National Standards Institute</span>, <span class="refTitle">"Synchronous Optical Network (SONET) Basic Description including Multiplex Structure, Rates, and Formats"</span>, <span class="seriesInfo">ANSI T1.105-2001 </span>, <time datetime="2001-05" class="refDate">May 2001</time>, <span>&lt;<a href="https://webstore.ansi.org/standards/atis/t11052001">https://webstore.ansi.org/standards/atis/t11052001</a>&gt;</span>. </dd>
+<span class="refAuthor">American National Standards Institute</span>, <span class="refTitle">"Synchronous Optical Network (SONET) Basic Description including Multiplex Structure, Rates, and Formats"</span>, <span class="seriesInfo">ANSI T1.105-2001</span>, <time datetime="2001-05" class="refDate">May 2001</time>, <span>&lt;<a href="https://webstore.ansi.org/standards/atis/t11052001">https://webstore.ansi.org/standards/atis/t11052001</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-teas-rfc8776-update">[I-D.ietf-teas-rfc8776-update]</dt>
         <dd>
-<span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Guo, A.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">I. Bryskin</span>, <span class="refTitle">"Common YANG Data Types for Traffic Engineering"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-rfc8776-update-23</span>, <time datetime="2026-05-20" class="refDate">20 May 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-23">https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-23</a>&gt;</span>. </dd>
+<span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Guo, A.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">I. Bryskin</span>, <span class="refTitle">"Common YANG Data Types for Traffic Engineering"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-rfc8776-update-24</span>, <time datetime="2026-06-12" class="refDate">12 June 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-24">https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc8776-update-24</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IEEE_754">[IEEE_754]</dt>
         <dd>
-<span class="refAuthor">Institute of Electrical and Electronics Engineers</span>, <span class="refTitle">"IEEE Standard for Floating-Point Arithmetic"</span>, <span class="seriesInfo">IEEE 754-2019 </span>, <time datetime="2019-07" class="refDate">July 2019</time>, <span>&lt;<a href="https://ieeexplore.ieee.org/document/8766229">https://ieeexplore.ieee.org/document/8766229</a>&gt;</span>. </dd>
+<span class="refAuthor">Institute of Electrical and Electronics Engineers</span>, <span class="refTitle">"IEEE Standard for Floating-Point Arithmetic"</span>, <span class="seriesInfo">IEEE 754-2019</span>, <time datetime="2019-07" class="refDate">July 2019</time>, <span>&lt;<a href="https://ieeexplore.ieee.org/document/8766229">https://ieeexplore.ieee.org/document/8766229</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IEEE_802.3">[IEEE_802.3]</dt>
         <dd>
-<span class="refAuthor">Institute of Electrical and Electronics Engineers</span>, <span class="refTitle">"IEEE Standard for Ethernet"</span>, <span class="seriesInfo">IEEE 802.3-2018 </span>, <time datetime="2018-06" class="refDate">June 2018</time>, <span>&lt;<a href="https://ieeexplore.ieee.org/document/8457469">https://ieeexplore.ieee.org/document/8457469</a>&gt;</span>. </dd>
+<span class="refAuthor">Institute of Electrical and Electronics Engineers</span>, <span class="refTitle">"IEEE Standard for Ethernet"</span>, <span class="seriesInfo">IEEE 802.3-2022</span>, <time datetime="2022-07" class="refDate">July 2022</time>, <span>&lt;<a href="https://ieeexplore.ieee.org/document/9844436">https://ieeexplore.ieee.org/document/9844436</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="ISO_IEC_9899_1999">[ISO_IEC_9899_1999]</dt>
+<dt id="ISO_IEC_9899">[ISO_IEC_9899]</dt>
         <dd>
-<span class="refAuthor">International Organization for Standardization</span>, <span class="refTitle">"Programming Languages - C"</span>, <span class="seriesInfo">ISO/IEC 9899:1999 </span>, <time datetime="1999-12" class="refDate">December 1999</time>, <span>&lt;<a href="https://www.iso.org/standard/29237.">https://www.iso.org/standard/29237.</a>&gt;</span>. </dd>
+<span class="refAuthor">International Organization for Standardization</span>, <span class="refTitle">"Information technology -- Programming languages -- C"</span>, <span class="seriesInfo">ISO/IEC 9899:2024</span>, <time datetime="2024-10" class="refDate">October 2024</time>, <span>&lt;<a href="https://www.iso.org/standard/82075.html">https://www.iso.org/standard/82075.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ITU-T_G.7044">[ITU-T_G.7044]</dt>
         <dd>
-<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Hitless adjustment of ODUflex(GFP)"</span>, <span class="seriesInfo">ITU-T G.7044 </span>, <time datetime="2011-10" class="refDate">October 2011</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.7044">https://www.itu.int/rec/T-REC-G.7044</a>&gt;</span>. </dd>
+<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Hitless adjustment of ODUflex(GFP)"</span>, <span class="seriesInfo">ITU-T G.7044/Y.1347 (2011)</span>, <time datetime="2011-10" class="refDate">October 2011</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.7044">https://www.itu.int/rec/T-REC-G.7044</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ITU-T_G.707">[ITU-T_G.707]</dt>
         <dd>
-<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Network node interface for the synchronous digital hierarchy (SDH)"</span>, <span class="seriesInfo">ITU-T G.707 </span>, <time datetime="2007-01" class="refDate">January 2007</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.707">https://www.itu.int/rec/T-REC-G.707</a>&gt;</span>. </dd>
+<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Network node interface for the synchronous digital hierarchy (SDH)"</span>, <span class="seriesInfo">ITU-T G.707/Y.1322 (2007)</span>, <time datetime="2007-01" class="refDate">January 2007</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.707">https://www.itu.int/rec/T-REC-G.707</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ITU-T_G.709">[ITU-T_G.709]</dt>
         <dd>
-<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Interfaces for the optical transport network"</span>, <span class="seriesInfo">ITU-T G.709 </span>, <time datetime="2020-06" class="refDate">June 2020</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.709">https://www.itu.int/rec/T-REC-G.709</a>&gt;</span>. </dd>
+<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Interfaces for the optical transport network"</span>, <span class="seriesInfo">ITU-T G.709/Y.1331 (2020)</span>, <time datetime="2020-06" class="refDate">June 2020</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.709">https://www.itu.int/rec/T-REC-G.709</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="MEF_63">[MEF_63]</dt>
         <dd>
-<span class="refAuthor">Metro Ethernet Forum</span>, <span class="refTitle">"Subscriber Layer1 Service Attributes Technical Specification"</span>, <span class="seriesInfo">MEF 63 </span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.mef.net/wp-content/uploads/2018/08/MEF-63.pdf">https://www.mef.net/wp-content/uploads/2018/08/MEF-63.pdf</a>&gt;</span>. </dd>
+<span class="refAuthor">Metro Ethernet Forum</span>, <span class="refTitle">"Subscriber Layer1 Service Attributes"</span>, <span class="seriesInfo">MEF 63</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.mef.net/wp-content/uploads/2018/08/MEF-63.pdf">https://www.mef.net/wp-content/uploads/2018/08/MEF-63.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -3373,7 +3305,7 @@ RFC once this draft becomes an RFC.<a href="#section-8-5.1.1" class="pilcrow">¶
 <dd class="break"></dd>
 <dt id="ITU-T_G.Sup43">[ITU-T_G.Sup43]</dt>
         <dd>
-<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Transport of IEEE 10GBASE-R in optical transport networks (OTN)"</span>, <span class="seriesInfo">ITU-T G.Sup43 </span>, <time datetime="2011-11" class="refDate">November 2011</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.Sup43">https://www.itu.int/rec/T-REC-G.Sup43</a>&gt;</span>. </dd>
+<span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Transport of IEEE 10GBASE-R in optical transport networks (OTN)"</span>, <span class="seriesInfo">ITU-T G.Sup43 (2011)</span>, <time datetime="2011-02" class="refDate">February 2011</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.Sup43">https://www.itu.int/rec/T-REC-G.Sup43</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7062">[RFC7062]</dt>
         <dd>
@@ -3386,10 +3318,6 @@ RFC once this draft becomes an RFC.<a href="#section-8-5.1.1" class="pilcrow">¶
 <dt id="RFC7963">[RFC7963]</dt>
         <dd>
 <span class="refAuthor">Ali, Z.</span>, <span class="refAuthor">Bonfanti, A.</span>, <span class="refAuthor">Hartley, M.</span>, and <span class="refAuthor">F. Zhang</span>, <span class="refTitle">"RSVP-TE Extension for Additional Signal Types in G.709 Optical Transport Networks (OTNs)"</span>, <span class="seriesInfo">RFC 7963</span>, <span class="seriesInfo">DOI 10.17487/RFC7963</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7963">https://www.rfc-editor.org/rfc/rfc7963</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8342">[RFC8342]</dt>
-        <dd>
-<span class="refAuthor">Bjorklund, M.</span>, <span class="refAuthor">Schoenwaelder, J.</span>, <span class="refAuthor">Shafer, P.</span>, <span class="refAuthor">Watsen, K.</span>, and <span class="refAuthor">R. Wilton</span>, <span class="refTitle">"Network Management Datastore Architecture (NMDA)"</span>, <span class="seriesInfo">RFC 8342</span>, <span class="seriesInfo">DOI 10.17487/RFC8342</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8342">https://www.rfc-editor.org/rfc/rfc8342</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8792">[RFC8792]</dt>
         <dd>
@@ -3417,7 +3345,12 @@ represented in YANG using the groupings defined in this document.<a href="#appen
 embedded comments following the conventions in Section 3.2 of
 <span>[<a href="#I-D.ietf-ccamp-transport-nbi-app-statement" class="cite xref">I-D.ietf-ccamp-transport-nbi-app-statement</a>]</span> and have been folded
 using the tool in <span>[<a href="#RFC8792" class="cite xref">RFC8792</a>]</span>.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
-<div class="breakable lang-json sourcecode" id="appendix-A-4">
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="appendix-A-4.1">
+          <p id="appendix-A-4.1.1">Note that this JSON example has been simplified for readability and therefore cannot be validated against the reference YANG model.<a href="#appendix-A-4.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<div class="breakable lang-json sourcecode" id="appendix-A-5">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -3735,7 +3668,7 @@ ODUk with 5G TSG, the TPN assignment rule is flexible within a \
     }
   ]
 }
-</pre><a href="#appendix-A-4" class="pilcrow">¶</a>
+</pre><a href="#appendix-A-5" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -3785,7 +3718,7 @@ this document.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <div dir="auto" class="left"><span class="org">Futurewei</span></div>
 <div class="email">
 <span>Email:</span>
-<a href="mailto:aihuaguo@futurewei.com" class="email">aihuaguo@futurewei.com</a>
+<a href="mailto:aihuaguo.ietf@gmail.com" class="email">aihuaguo.ietf@gmail.com</a>
 </div>
 </address>
 <address class="vcard">
@@ -3814,7 +3747,7 @@ this document.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 </address>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Xufeng Liu</span></div>
-<div dir="auto" class="left"><span class="org">Volta Networks</span></div>
+<div dir="auto" class="left"><span class="org">Individual</span></div>
 <div class="email">
 <span>Email:</span>
 <a href="mailto:xufeng.liu.ietf@gmail.com" class="email">xufeng.liu.ietf@gmail.com</a>
@@ -3846,7 +3779,7 @@ this document.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 </address>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Victor Lopez</span></div>
-<div dir="auto" class="left"><span class="org">Telefonica</span></div>
+<div dir="auto" class="left"><span class="org">Nokia</span></div>
 <div class="email">
 <span>Email:</span>
 <a href="mailto:victor.lopez@nokia.com" class="email">victor.lopez@nokia.com</a>
