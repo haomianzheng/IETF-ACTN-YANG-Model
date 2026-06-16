@@ -42,7 +42,7 @@ contributor:
     org: Nokia
     email: dieter.beller@nokia.com
   -
-    name: Sergio Belotti
+    name: Sergio Belottis
     org: Nokia
     email: sergio.belotti@nokia.com
   -
@@ -55,7 +55,7 @@ contributor:
     email: aihuaguo.ietf@gmail.com
   -
     name: Young Lee
-    org: Samsung
+    org: CRU
     email: younglee.tx@gmail.com
   -
     name: Lei Wang
