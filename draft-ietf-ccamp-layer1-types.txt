@@ -5,7 +5,7 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 17 December 2026                                   15 June 2026
+Expires: 18 December 2026                                   16 June 2026
 
 
               Common YANG Data Types for Layer 1 Networks
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 December 2026.
+   This Internet-Draft will expire on 18 December 2026.
 
 Copyright Notice
 
@@ -2453,7 +2453,7 @@ Contributors
    Email: dieter.beller@nokia.com
 
 
-   Sergio Belotti
+   Sergio Belottis
    Nokia
    Email: sergio.belotti@nokia.com
 
@@ -2469,7 +2469,7 @@ Contributors
 
 
    Young Lee
-   Samsung
+   CRU
    Email: younglee.tx@gmail.com
 
 
