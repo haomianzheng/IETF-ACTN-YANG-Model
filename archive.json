@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-06-18T04:49:40.853296+00:00",
+  "timestamp": "2026-07-14T03:17:26.367592+00:00",
   "repo": "haomianzheng/IETF-ACTN-YANG-Model",
   "labels": [
     {
@@ -54,24 +54,19 @@
       "color": "fcc2d4"
     },
     {
-      "name": "client-pm",
-      "description": "",
-      "color": "511CAD"
-    },
-    {
       "name": "l1-types",
       "description": "",
-      "color": "d93f0b"
+      "color": "bfd4f2"
     },
     {
       "name": "otn-topo",
       "description": "",
-      "color": "006b75"
+      "color": "bfd4f2"
     },
     {
       "name": "otn-tunnel",
       "description": "",
-      "color": "b60205"
+      "color": "bfd4f2"
     },
     {
       "name": "agreed",
@@ -86,7 +81,7 @@
     {
       "name": "l1csm",
       "description": "",
-      "color": "977B3F"
+      "color": "bfd4f2"
     },
     {
       "name": "need-discussion",
@@ -3969,6 +3964,72 @@
           "updatedAt": "2026-06-15T09:34:26Z"
         }
       ]
+    },
+    {
+      "number": 198,
+      "id": "I_kwDOBwdyfM8AAAABIjtliw",
+      "title": "Rtgdir  early review of draft-ietf-ccamp-otn-tunnel-model-25",
+      "url": "https://github.com/haomianzheng/IETF-ACTN-YANG-Model/issues/198",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "editorial",
+        "otn-topo"
+      ],
+      "body": "> Document: draft-ietf-ccamp-otn-tunnel-model\n> Title: A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label\n> Switched Paths Reviewer: Dhruv Dhody Review result: Has Nits\n> \n> Hello\n> \n> I have been selected to do a routing directorate \u201cearly\u201d review of this draft.\n> https://datatracker.ietf.org/doc/draft-ietf-ccamp-otn-tunnel-model/\n> \n> The routing directorate will, on request from the working group chair, perform\n> an \u201cearly\u201d review of a draft before it is submitted for publication to the\n> IESG. The early review can be performed at any time during the draft\u2019s lifetime\n> as a working group document. The purpose of the early review depends on the\n> stage that the document has reached.\n> \n> As this document is in working group last call, my focus for the review was to\n> determine whether the document is ready to be published. Please consider my\n> comments along with the other working group last call comments.\n> \n> For more information about the Routing Directorate, please see\n> https://wiki.ietf.org/en/group/rtg/RtgDir\n> \n> Document: draft-ietf-ccamp-otn-tunnel-model\n> Reviewer: Dhruv Dhody\n> Review Date: 2026-07-12\n> Intended Status: Proposed Standards\n> \n> ## Summary:\n> This document is basically ready for publication, but has few nits that should\n> be considered prior to being submitted to the IESG.\n> \n> ## Comments:\n> \n> The document is generally well organized and readable. It clearly builds on the\n> existing TE Tunnel YANG model and limits itself to OTN-specific augmentations,\n> the document\u2019s structure and organization make it relatively easy to follow.\n> \n> RFC 9907 recommends usage examples for YANG modules, did the WG consider adding\n> it?\n> \n\nSee: #200 \n\n> ## Nits:\n> \n> - Dont use \"OTN network\", N is for Network.\n> - Dont use \"OTN transport networks\" either :)\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/kuyJvjDrOrPiGKwngQb7G5UJX2Q/\n\n> Thanks!\n> Dhruv\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/vnk_L7-zEbbjHyYYEjP3eDrdvEg/",
+      "createdAt": "2026-07-12T23:56:09Z",
+      "updatedAt": "2026-07-13T12:34:39Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 199,
+      "id": "I_kwDOBwdyfM8AAAABIjt4dg",
+      "title": "Rtgdir early review of draft-ietf-ccamp-otn-path-computation-yang-08",
+      "url": "https://github.com/haomianzheng/IETF-ACTN-YANG-Model/issues/199",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> Document: draft-ietf-ccamp-otn-path-computation-yang\n> Title: A YANG Data Model for requesting Path Computation in an Optical\n> Transport Network (OTN) Reviewer: Dhruv Dhody Review result: Has Nits\n> \n> Hello\n> \n> I have been selected to do a routing directorate \u201cearly\u201d review of this draft.\n> https://datatracker.ietf.org/doc/draft-ietf-ccamp-otn-path-computation-yang/\n> \n> The routing directorate will, on request from the working group chair, perform\n> an \u201cearly\u201d review of a draft before it is submitted for publication to the\n> IESG. The early review can be performed at any time during the draft\u2019s lifetime\n> as a working group document. The purpose of the early review depends on the\n> stage that the document has reached.\n> \n> As this document is in working group last call, my focus for the review was to\n> determine whether the document is ready to be published. Please consider my\n> comments along with the other working group last call comments.\n> \n> For more information about the Routing Directorate, please see\n> https://wiki.ietf.org/en/group/rtg/RtgDir\n> \n> Document: draft-ietf-ccamp-otn-path-computation-yang\n> Reviewer: Dhruv Dhody\n> Review Date: 2026-07-12\n> Intended Status: Standards\n> \n> ## Summary:\n> I have some minor concerns about this document that I think should be resolved\n> before it is submitted to the IESG.\n> \n> ## Comments:\n> \n> The document is generally well organized and readable. It clearly builds on the\n> existing TE Path Computation YANG model and limits itself to OTN-specific\n> augmentations. The structure follows that of the underlying model closely,\n> which makes the document relatively easy to follow for readers familiar with it.\n> \n> ## Minor:\n> \n> - Remove otn-link-bandwidth from this text - \"with the OTN technology-specific\n> attributes using the otn-link-bandwidth and otn-path-bandwidth groupings\", as I\n> did not find any use of that grouping in the YANG model.\n> \n> - This might be a copy-paste-error, where the description says 'end' but it\n> should be 'step' ````\n>   augment \"/te:tunnels-path-compute/te:input/te:path-compute-info/\"\n>         + \"te-pc:path-request/te-pc:path-out-segment/\"\n>         + \"te-pc:label-restrictions/te-pc:label-restriction/\"\n>         + \"te-pc:label-step/te-pc:technology\" {\n>     description\n>       \"Augment TE label range end for the egress segment\n>        of the requested path.\";\n>     case otn {\n>       uses l1-types:otn-label-step;\n>     }\n> ````\n> \n> - The security consideration says that the YANG module defined in this document\n> augments the \"tunnels-path-compute\" and the \"tunnel-actions\" RPCs; but i did\n> not find any \"tunnel-actions\" in the YANG.\n> \n> - RFC 9907 recommends usage examples for YANG modules, did the WG consider\n> adding it?\n> \n> Thanks!\n> Dhruv\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/aChbscem8uqPuLid9qHSlRCrJtA/",
+      "createdAt": "2026-07-12T23:57:51Z",
+      "updatedAt": "2026-07-13T12:25:27Z",
+      "closedAt": "2026-07-13T12:25:22Z",
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Wrong repository: https://github.com/ietf-ccamp-wg/ietf-ccamp-otn-path-computation/issues/11",
+          "createdAt": "2026-07-13T12:25:22Z",
+          "updatedAt": "2026-07-13T12:25:22Z"
+        }
+      ]
+    },
+    {
+      "number": 200,
+      "id": "I_kwDOBwdyfM8AAAABIn1rPQ",
+      "title": "Add JSON example for OTN tunnel",
+      "url": "https://github.com/haomianzheng/IETF-ACTN-YANG-Model/issues/200",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "enhancement",
+        "otn-tunnel"
+      ],
+      "body": "> RFC 9907 recommends usage examples for YANG modules, did the WG consider adding\n> it?\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/vnk_L7-zEbbjHyYYEjP3eDrdvEg/",
+      "createdAt": "2026-07-13T12:27:28Z",
+      "updatedAt": "2026-07-13T12:34:10Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
