@@ -107,7 +107,7 @@ the control plane protocols.
 
 # Introduction
 
-OTN transport networks, specified in {{ITU-T_G.709}}, can carry various
+OTN networks, specified in {{ITU-T_G.709}}, can carry various
 types of client signals.  In many cases, the client signal is carried
 over an OTN tunnel across connected domains in a multi-domain
 network.
