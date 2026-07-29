@@ -350,6 +350,8 @@ The example instantiates the "ietf-otn-tunnel" model to setup an protected ODU2 
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Yu Chaode for his comments and discussions.
+The authors would like to thank Yu Chaode for his comments and discussions during the development of this document.
 
-The authors would like to thank
+The authors would like to thank Radek Krejci for his YANG Doctor eview.
+
+The authors would like to thank Dhruv Dhody for his Routing Area Directorate review.
