@@ -5,7 +5,7 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 14 December 2026                                   12 June 2026
+Expires: 30 January 2027                                    29 July 2026
 
 
               Common YANG Data Types for Layer 1 Networks
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 December 2026.
+   This Internet-Draft will expire on 30 January 2027.
 
 Copyright Notice
 
@@ -1952,11 +1952,6 @@ Table of Contents
               ISO/IEC 9899:2024, October 2024,
               <https://www.iso.org/standard/82075.html>.
 
-   [ITU-T_G.7044]
-              International Telecommunication Union, "Hitless adjustment
-              of ODUflex(GFP)", ITU-T G.7044/Y.1347 (2011), October
-              2011, <https://www.itu.int/rec/T-REC-G.7044>.
-
    [ITU-T_G.707]
               International Telecommunication Union, "Network node
               interface for the synchronous digital hierarchy (SDH)",
@@ -1967,6 +1962,11 @@ Table of Contents
               International Telecommunication Union, "Interfaces for the
               optical transport network", ITU-T G.709/Y.1331 (2020),
               June 2020, <https://www.itu.int/rec/T-REC-G.709>.
+
+   [ITU-T_G.7044]
+              International Telecommunication Union, "Hitless adjustment
+              of ODUflex(GFP)", ITU-T G.7044/Y.1347 (2011), October
+              2011, <https://www.itu.int/rec/T-REC-G.7044>.
 
    [MEF_63]   Metro Ethernet Forum, "Subscriber Layer1 Service
               Attributes", MEF 63, August 2018, <https://www.mef.net/wp-
@@ -2041,17 +2041,17 @@ Table of Contents
               Lee, Y., Lee, K., Zheng, H., de Dios, O. G., and D.
               Ceccarelli, "A YANG Data Model for L1 Connectivity Service
               Model (L1CSM)", Work in Progress, Internet-Draft, draft-
-              ietf-ccamp-l1csm-yang-26, 11 April 2024,
+              ietf-ccamp-l1csm-yang-28, 17 June 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              l1csm-yang-26>.
+              l1csm-yang-28>.
 
    [I-D.ietf-ccamp-otn-topo-yang]
               Zheng, H., Busi, I., Liu, X., Belotti, S., and O. G. de
               Dios, "A YANG Data Model for Optical Transport Network
               Topology", Work in Progress, Internet-Draft, draft-ietf-
-              ccamp-otn-topo-yang-20, 7 November 2024,
+              ccamp-otn-topo-yang-21, 16 June 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              otn-topo-yang-20>.
+              otn-topo-yang-21>.
 
    [I-D.ietf-ccamp-otn-tunnel-model]
               Zheng, H., Busi, I., Belotti, S., Lopez, V., and Y. Xu, "A
@@ -2453,7 +2453,7 @@ Contributors
    Email: dieter.beller@nokia.com
 
 
-   Sergio Belotti
+   Sergio Belottis
    Nokia
    Email: sergio.belotti@nokia.com
 
@@ -2469,7 +2469,7 @@ Contributors
 
 
    Young Lee
-   Samsung
+   CRU
    Email: younglee.tx@gmail.com
 
 

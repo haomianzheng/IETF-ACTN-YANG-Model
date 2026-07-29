@@ -4,13 +4,13 @@
 
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
-Intended status: Informational                       Huawei Technologies
-Expires: 27 November 2026                                     S. Belotti
+Intended status: Standards Track                     Huawei Technologies
+Expires: 30 January 2027                                      S. Belotti
                                                                 V. Lopez
                                                                    Nokia
                                                                    Y. Xu
                                                                    CAICT
-                                                             26 May 2026
+                                                            29 July 2026
 
 
 A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label
@@ -34,10 +34,10 @@ About This Document
    found at https://datatracker.ietf.org/doc/draft-ietf-ccamp-otn-
    tunnel-model/.
 
-   Discussion of this document takes place on the Common Control and
-   Measurement Plane Working Group mailing list (mailto:ccamp@ietf.org),
-   which is archived at https://mailarchive.ietf.org/arch/browse/ccamp/.
-   Subscribe at https://www.ietf.org/mailman/listinfo/ccamp/.
+   Discussion of this document takes place on the CCAMP Working Group
+   Working Group mailing list (mailto:ccamp@ietf.org), which is archived
+   at https://mailarchive.ietf.org/arch/browse/ccamp/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/ccamp/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/haomianzheng/IETF-ACTN-YANG-Model.
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 November 2026.
+   This Internet-Draft will expire on 30 January 2027.
 
 Copyright Notice
 
@@ -91,16 +91,16 @@ Table of Contents
      6.1.  Normative References
      6.2.  Informative References
    Appendix A.  OTN Tunnel YANG Tree
+   Appendix B.  JSON Examples
    Acknowledgments
    Contributors
    Authors' Addresses
 
 1.  Introduction
 
-   OTN transport networks, specified in [ITU-T_G.709], can carry various
-   types of client signals.  In many cases, the client signal is carried
-   over an OTN tunnel across connected domains in a multi-domain
-   network.
+   OTN networks, specified in [ITU-T_G.709], can carry various types of
+   client signals.  In many cases, the client signal is carried over an
+   OTN tunnel across connected domains in a multi-domain network.
 
    This document provides YANG model for creating OTN tunnel.  The model
    augments the generic TE Tunnel model specified in
@@ -1404,17 +1404,17 @@ Table of Contents
    [I-D.ietf-ccamp-layer1-types]
               Zheng, H. and I. Busi, "Common YANG Data Types for Layer 1
               Networks", Work in Progress, Internet-Draft, draft-ietf-
-              ccamp-layer1-types-18, 23 February 2024,
+              ccamp-layer1-types-19, 16 June 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              layer1-types-18>.
+              layer1-types-19>.
 
    [I-D.ietf-ccamp-otn-topo-yang]
               Zheng, H., Busi, I., Liu, X., Belotti, S., and O. G. de
               Dios, "A YANG Data Model for Optical Transport Network
               Topology", Work in Progress, Internet-Draft, draft-ietf-
-              ccamp-otn-topo-yang-20, 7 November 2024,
+              ccamp-otn-topo-yang-21, 16 June 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              otn-topo-yang-20>.
+              otn-topo-yang-21>.
 
    [I-D.ietf-teas-yang-te]
               Saad, T., Gandhi, R., Liu, X., Beeram, V. P., and I.
@@ -1478,6 +1478,10 @@ Table of Contents
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
               January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
+
+   [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
+              RFC 7951, DOI 10.17487/RFC7951, August 2016,
+              <https://www.rfc-editor.org/rfc/rfc7951>.
 
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
@@ -2261,9 +2265,284 @@ Appendix A.  OTN Tunnel YANG Tree
 
                                   Figure 3
 
+Appendix B.  JSON Examples
+
+   This appendix contains an example of an instance data tree in JSON
+   encoding [RFC7951].
+
+   The example instantiates the "ietf-otn-tunnel" model to setup an
+   protected ODU2 tunnel between nodes D1 and D2 within the OTN topology
+   shown in Figure 2 of Appendix B of [I-D.ietf-ccamp-otn-topo-yang].
+   The protected ODU2 tunnel has a primary LSP, instatiating the D1-D2
+   primary TE and a secondary LSP, instantiating the D1-D3-D2 secondary
+   TE path.
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   {
+     "ietf-te:te": {
+       "tunnels": {
+         "tunnel": [
+           {
+             "name": "OTN Tunnel Example",
+             "encoding": "ietf-te-types:lsp-encoding-oduk",
+             "switching-type": "ietf-te-types:switching-otn",
+             "source": {
+               "node-id": "example:D1",
+               "te-node-id": "192.0.0.1"
+             },
+             "destination": {
+               "node-id": "example:D2",
+               "te-node-id": "192.0.0.2"
+             },
+             "bidirectional": true,
+             "protection": {
+               "protection-type": "ietf-te-types:lsp-protection-unidir-\
+                                                               1-plus-1"
+             },
+             "network-id": "example:otn-topology-example",
+             "te-topology-identifier": {
+               "topology-id": "otn-topology-example"
+             },
+             "te-bandwidth": {
+               "ietf-otn-tunnel:otn-bandwidth": {
+                 "odu-type": "ietf-layer1-types:ODU2"
+               }
+             },
+             "primary-paths": {
+               "primary-path": [
+                 {
+                   "name": "primary-path-1",
+                   "path-scope": "ietf-te-types:path-scope-end-to-end",
+                   "co-routed": true,
+                   "computed-paths-properties": {
+                     "computed-path-properties": [
+                       {
+                         "k-index": 1,
+                         "path-properties": {
+                           "path-route-objects": {
+                             "path-route-object": [
+                               {
+                                 "index": 1,
+                                 "unnumbered-link-hop": {
+                                   "node-id": "192.0.0.1",
+                                   "link-tp-id": 2,
+                                   "node-id-uri": "example:D1",
+                                   "link-tp-id-uri": "example:D1-2",
+                                   "hop-type": "strict",
+                                   "direction": "outgoing"
+                                 }
+                               },
+                               {
+                                 "index": 2,
+                                 "label-hop": {
+                                   "te-label": {
+                                     "ietf-otn-tunnel:otn-label": {
+                                       "tpn": 10,
+                                       "tsg": "ietf-layer1-types:tsg-1.\
+                                                                   25G",
+                                       "ts-list": "1-8"
+                                     }
+                                   }
+                                 }
+                               }
+                             ]
+                           }
+                         }
+                       }
+                     ]
+                   },
+                   "lsps": {
+                     "lsp": [
+                       {
+                         "tunnel-name": "OTN Tunnel Example",
+                         "node": "192.0.0.1",
+                         "lsp-id": 1
+                       }
+                     ]
+                   },
+                   "candidate-secondary-paths": {
+                     "candidate-secondary-path": [
+                       {
+                         "secondary-path": "secondary-path-1"
+                       }
+                     ]
+                   }
+                 }
+               ]
+             },
+             "secondary-paths": {
+               "secondary-path": [
+                 {
+                   "name": "secondary-path-1",
+                   "path-scope": "ietf-te-types:path-scope-end-to-end",
+                   "computed-paths-properties": {
+                     "computed-path-properties": [
+                       {
+                         "k-index": 1,
+                         "path-properties": {
+                           "path-route-objects": {
+                             "path-route-object": [
+                               {
+                                 "index": 1,
+                                 "unnumbered-link-hop": {
+                                   "node-id": "192.0.0.1",
+                                   "link-tp-id": 3,
+                                   "node-id-uri": "example:D1",
+                                   "link-tp-id-uri": "example:D1-3",
+                                   "hop-type": "strict",
+                                   "direction": "outgoing"
+                                 }
+                               },
+                               {
+                                 "index": 2,
+                                 "label-hop": {
+                                   "te-label": {
+                                     "ietf-otn-tunnel:otn-label": {
+                                       "tpn": 10,
+                                       "tsg": "ietf-layer1-types:tsg-1.\
+                                                                   25G",
+                                       "ts-list": "11-18"
+                                     }
+                                   }
+                                 }
+                               },
+                               {
+                                 "index": 3,
+                                 "unnumbered-link-hop": {
+                                   "node-id": "192.0.0.3",
+                                   "link-tp-id": 2,
+                                   "node-id-uri": "example:D3",
+                                   "link-tp-id-uri": "example:D3-2",
+                                   "hop-type": "strict",
+                                   "direction": "outgoing"
+                                 }
+                               },
+                               {
+                                 "index": 4,
+                                 "label-hop": {
+                                   "te-label": {
+                                     "ietf-otn-tunnel:otn-label": {
+                                       "tpn": 20,
+                                       "tsg": "ietf-layer1-types:tsg-1.\
+                                                                   25G",
+                                       "ts-list": "21-28"
+                                     }
+                                   }
+                                 }
+                               }
+                             ]
+                           }
+                         }
+                       }
+                     ]
+                   }
+                 }
+               ]
+             }
+           }
+         ]
+       },
+       "lsps": {
+         "lsp": [
+           {
+             "tunnel-name": "OTN Tunnel Example",
+             "lsp-id": 1,
+             "node": "192.0.0.1",
+             "origin-type": "ingress",
+             "lsp-actual-route-information": {
+               "lsp-actual-route-information": [
+                 {
+                   "index": 1,
+                   "unnumbered-link-hop": {
+                     "node-id": "192.0.0.1",
+                     "link-tp-id": 2,
+                     "node-id-uri": "example:D1",
+                     "link-tp-id-uri": "example:D1-2"
+                   }
+                 },
+                 {
+                   "index": 2,
+                   "label-hop": {
+                     "te-label": {
+                       "ietf-otn-tunnel:otn-label": {
+                         "tpn": 10,
+                         "tsg": "ietf-layer1-types:tsg-1.25G",
+                         "ts-list": "1-8"
+                       }
+                     }
+                   }
+                 }
+               ]
+             }
+           },
+           {
+             "tunnel-name": "OTN Tunnel Example",
+             "lsp-id": 2,
+             "node": "192.0.0.1",
+             "origin-type": "ingress",
+             "lsp-actual-route-information": {
+               "lsp-actual-route-information": [
+                 {
+                   "index": 1,
+                   "unnumbered-link-hop": {
+                     "node-id": "192.0.0.1",
+                     "link-tp-id": 3,
+                     "node-id-uri": "example:D1",
+                     "link-tp-id-uri": "example:D1-3"
+                   }
+                 },
+                 {
+                   "index": 2,
+                   "label-hop": {
+                     "te-label": {
+                       "ietf-otn-tunnel:otn-label": {
+                         "tpn": 10,
+                         "tsg": "ietf-layer1-types:tsg-1.25G",
+                         "ts-list": "11-18"
+                       }
+                     }
+                   }
+                 },
+                 {
+                   "index": 3,
+                   "unnumbered-link-hop": {
+                     "node-id": "192.0.0.3",
+                     "link-tp-id": 2,
+                     "node-id-uri": "example:D3",
+                     "link-tp-id-uri": "example:D3-2"
+                   }
+                 },
+                 {
+                   "index": 4,
+                   "label-hop": {
+                     "te-label": {
+                       "ietf-otn-tunnel:otn-label": {
+                         "tpn": 20,
+                         "tsg": "ietf-layer1-types:tsg-1.25G",
+                         "ts-list": "21-28"
+                       }
+                     }
+                   }
+                 }
+               ]
+             }
+           }
+         ]
+       }
+     }
+   }
+
 Acknowledgments
 
-   We would like to thank Yu Chaode for his comments and discussions.
+   The authors would like to thank Yu Chaode for his comments and
+   discussions during the development of this document.
+
+   The authors would like to thank Radek Krejci for his YANG Doctor
+   eview.
+
+   The authors would like to thank Dhruv Dhody for his Routing Area
+   Directorate review.
 
 Contributors
 
