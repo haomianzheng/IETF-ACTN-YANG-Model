@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-14T03:17:26.367592+00:00",
+  "timestamp": "2026-07-30T02:56:22.322775+00:00",
   "repo": "haomianzheng/IETF-ACTN-YANG-Model",
   "labels": [
     {
@@ -8782,6 +8782,32 @@
       "mergeCommit": {
         "oid": "323e41a91b19f53a2b38bb0c8c6433a40dc2548b"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 201,
+      "id": "PR_kwDOBwdyfM74OwfP",
+      "title": "Address Rtgdir early review comments for OTN tunnel",
+      "url": "https://github.com/haomianzheng/IETF-ACTN-YANG-Model/pull/201",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Address Rtgdir early review comments: see #198\r\n- Added JSON examples: fix #200 \r\n\r\n---\r\n\r\n[Diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://haomianzheng.github.io/IETF-ACTN-YANG-Model/draft-ietf-ccamp-otn-tunnel-model.txt&url_2=https://haomianzheng.github.io/IETF-ACTN-YANG-Model/otn-tnl-rtg-dir/draft-ietf-ccamp-otn-tunnel-model.txt)",
+      "createdAt": "2026-07-29T22:34:28Z",
+      "updatedAt": "2026-07-29T22:34:35Z",
+      "baseRepository": "haomianzheng/IETF-ACTN-YANG-Model",
+      "baseRefName": "main",
+      "baseRefOid": "fecf2b8580fc9273399a7db75f1da72837b6dea5",
+      "headRepository": "haomianzheng/IETF-ACTN-YANG-Model",
+      "headRefName": "otn-tnl-rtg-dir",
+      "headRefOid": "aa59b1cbef1fee0b649ae4ec3179a106c4912fac",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
