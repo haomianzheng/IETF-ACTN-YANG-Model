@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-30T02:56:22.322775+00:00",
+  "timestamp": "2026-08-04T03:24:54.070520+00:00",
   "repo": "haomianzheng/IETF-ACTN-YANG-Model",
   "labels": [
     {
@@ -3978,13 +3978,22 @@
       ],
       "labels": [
         "editorial",
-        "otn-topo"
+        "otn-topo",
+        "wait"
       ],
-      "body": "> Document: draft-ietf-ccamp-otn-tunnel-model\n> Title: A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label\n> Switched Paths Reviewer: Dhruv Dhody Review result: Has Nits\n> \n> Hello\n> \n> I have been selected to do a routing directorate \u201cearly\u201d review of this draft.\n> https://datatracker.ietf.org/doc/draft-ietf-ccamp-otn-tunnel-model/\n> \n> The routing directorate will, on request from the working group chair, perform\n> an \u201cearly\u201d review of a draft before it is submitted for publication to the\n> IESG. The early review can be performed at any time during the draft\u2019s lifetime\n> as a working group document. The purpose of the early review depends on the\n> stage that the document has reached.\n> \n> As this document is in working group last call, my focus for the review was to\n> determine whether the document is ready to be published. Please consider my\n> comments along with the other working group last call comments.\n> \n> For more information about the Routing Directorate, please see\n> https://wiki.ietf.org/en/group/rtg/RtgDir\n> \n> Document: draft-ietf-ccamp-otn-tunnel-model\n> Reviewer: Dhruv Dhody\n> Review Date: 2026-07-12\n> Intended Status: Proposed Standards\n> \n> ## Summary:\n> This document is basically ready for publication, but has few nits that should\n> be considered prior to being submitted to the IESG.\n> \n> ## Comments:\n> \n> The document is generally well organized and readable. It clearly builds on the\n> existing TE Tunnel YANG model and limits itself to OTN-specific augmentations,\n> the document\u2019s structure and organization make it relatively easy to follow.\n> \n> RFC 9907 recommends usage examples for YANG modules, did the WG consider adding\n> it?\n> \n\nSee: #200 \n\n> ## Nits:\n> \n> - Dont use \"OTN network\", N is for Network.\n> - Dont use \"OTN transport networks\" either :)\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/kuyJvjDrOrPiGKwngQb7G5UJX2Q/\n\n> Thanks!\n> Dhruv\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/vnk_L7-zEbbjHyYYEjP3eDrdvEg/",
+      "body": "> Document: draft-ietf-ccamp-otn-tunnel-model\n> Title: A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label\n> Switched Paths Reviewer: Dhruv Dhody Review result: Has Nits\n> \n> Hello\n> \n> I have been selected to do a routing directorate \u201cearly\u201d review of this draft.\n> https://datatracker.ietf.org/doc/draft-ietf-ccamp-otn-tunnel-model/\n> \n> The routing directorate will, on request from the working group chair, perform\n> an \u201cearly\u201d review of a draft before it is submitted for publication to the\n> IESG. The early review can be performed at any time during the draft\u2019s lifetime\n> as a working group document. The purpose of the early review depends on the\n> stage that the document has reached.\n> \n> As this document is in working group last call, my focus for the review was to\n> determine whether the document is ready to be published. Please consider my\n> comments along with the other working group last call comments.\n> \n> For more information about the Routing Directorate, please see\n> https://wiki.ietf.org/en/group/rtg/RtgDir\n> \n> Document: draft-ietf-ccamp-otn-tunnel-model\n> Reviewer: Dhruv Dhody\n> Review Date: 2026-07-12\n> Intended Status: Proposed Standards\n> \n> ## Summary:\n> This document is basically ready for publication, but has few nits that should\n> be considered prior to being submitted to the IESG.\n> \n> ## Comments:\n> \n> The document is generally well organized and readable. It clearly builds on the\n> existing TE Tunnel YANG model and limits itself to OTN-specific augmentations,\n> the document\u2019s structure and organization make it relatively easy to follow.\n> \n> RFC 9907 recommends usage examples for YANG modules, did the WG consider adding\n> it?\n> \n\n[Authors] We have added a JSON example in the latest draft update\n\nSee: #200 \n\n> ## Nits:\n> \n> - Dont use \"OTN network\", N is for Network.\n> - Dont use \"OTN transport networks\" either :)\n> \n\n[Authors]\n\nWe have updated the text in the draft based on the mailing list discussion:\n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/kuyJvjDrOrPiGKwngQb7G5UJX2Q/\n\n[/Authors]\n\n> Thanks!\n> Dhruv\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/vnk_L7-zEbbjHyYYEjP3eDrdvEg/",
       "createdAt": "2026-07-12T23:56:09Z",
-      "updatedAt": "2026-07-13T12:34:39Z",
+      "updatedAt": "2026-07-30T09:30:38Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "- [ ] Send reply after the update draft has been uploaded",
+          "createdAt": "2026-07-30T09:30:31Z",
+          "updatedAt": "2026-07-30T09:30:31Z"
+        }
+      ]
     },
     {
       "number": 199,
