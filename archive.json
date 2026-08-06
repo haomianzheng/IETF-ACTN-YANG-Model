@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-04T03:24:54.070520+00:00",
+  "timestamp": "2026-08-06T03:22:55.779269+00:00",
   "repo": "haomianzheng/IETF-ACTN-YANG-Model",
   "labels": [
     {
@@ -8806,7 +8806,7 @@
       "labels": [],
       "body": "Address Rtgdir early review comments: see #198\r\n- Added JSON examples: fix #200 \r\n\r\n---\r\n\r\n[Diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://haomianzheng.github.io/IETF-ACTN-YANG-Model/draft-ietf-ccamp-otn-tunnel-model.txt&url_2=https://haomianzheng.github.io/IETF-ACTN-YANG-Model/otn-tnl-rtg-dir/draft-ietf-ccamp-otn-tunnel-model.txt)",
       "createdAt": "2026-07-29T22:34:28Z",
-      "updatedAt": "2026-07-29T22:34:35Z",
+      "updatedAt": "2026-08-04T21:55:59Z",
       "baseRepository": "haomianzheng/IETF-ACTN-YANG-Model",
       "baseRefName": "main",
       "baseRefOid": "fecf2b8580fc9273399a7db75f1da72837b6dea5",
@@ -8818,7 +8818,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOBwdyfM8AAAABIaMFbA",
+          "commit": {
+            "abbreviatedOid": "aa59b1c"
+          },
+          "author": "agva123",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "example json looks good to me and I assume that it has been validated against yang model with yanglint/etc. tools.",
+          "createdAt": "2026-08-04T21:55:59Z",
+          "updatedAt": "2026-08-04T21:55:59Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
