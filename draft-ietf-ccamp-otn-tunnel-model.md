@@ -107,7 +107,7 @@ the control plane protocols.
 
 # Introduction
 
-OTN transport networks, specified in {{ITU-T_G.709}}, can carry various
+OTN networks, specified in {{ITU-T_G.709}}, can carry various
 types of client signals.  In many cases, the client signal is carried
 over an OTN tunnel across connected domains in a multi-domain
 network.
@@ -336,7 +336,22 @@ This appendix presents the complete tree of the YANG data model defined in modul
 ~~~~
 {: #fig-otn-tunnel-tree artwork-name="ietf-otn-tunnel.tree"}
 
+# JSON Examples
+
+This appendix contains an example of an instance data tree in JSON
+encoding {{?RFC7951}}.
+
+The example instantiates the "ietf-otn-tunnel" model to setup an protected ODU2 tunnel between nodes D1 and D2 within the OTN topology shown in Figure 2 of {{Appendix B of ?I-D.ietf-ccamp-otn-topo-yang}}. The protected ODU2 tunnel has a primary LSP, instatiating the D1-D2 primary TE and a secondary LSP, instantiating the D1-D3-D2 secondary TE path.
+
+~~~~ json
+{::include-fold yang/examples/otn-tunnel-example.json}
+~~~~
+
 # Acknowledgments
 {:numbered="false"}
 
-We would like to thank Yu Chaode for his comments and discussions.
+The authors would like to thank Yu Chaode for his comments and discussions during the development of this document.
+
+The authors would like to thank Radek Krejci for his YANG Doctor eview.
+
+The authors would like to thank Dhruv Dhody for his Routing Area Directorate review.
