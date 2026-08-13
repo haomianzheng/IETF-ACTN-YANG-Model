@@ -5,13 +5,13 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 18 December 2026                                         X. Liu
+Expires: 14 February 2027                                         X. Liu
                                                               Individual
                                                               S. Belotti
                                                                    Nokia
                                                      O. Gonzalez de Dios
                                                               Telefonica
-                                                            16 June 2026
+                                                          13 August 2026
 
 
         A YANG Data Model for Optical Transport Network Topology
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 December 2026.
+   This Internet-Draft will expire on 14 February 2027.
 
 Copyright Notice
 
@@ -2873,9 +2873,9 @@ Table of Contents
    [I-D.ietf-ccamp-layer1-types]
               Zheng, H. and I. Busi, "Common YANG Data Types for Layer 1
               Networks", Work in Progress, Internet-Draft, draft-ietf-
-              ccamp-layer1-types-18, 23 February 2024,
+              ccamp-layer1-types-19, 16 June 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              layer1-types-18>.
+              layer1-types-19>.
 
    [ITU-T_G.709]
               International Telecommunication Union, "Interfaces for the
