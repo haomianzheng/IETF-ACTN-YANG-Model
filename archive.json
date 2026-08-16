@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-06T03:22:55.779269+00:00",
+  "timestamp": "2026-08-16T01:48:20.455717+00:00",
   "repo": "haomianzheng/IETF-ACTN-YANG-Model",
   "labels": [
     {
@@ -3970,7 +3970,7 @@
       "id": "I_kwDOBwdyfM8AAAABIjtliw",
       "title": "Rtgdir  early review of draft-ietf-ccamp-otn-tunnel-model-25",
       "url": "https://github.com/haomianzheng/IETF-ACTN-YANG-Model/issues/198",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3983,15 +3983,22 @@
       ],
       "body": "> Document: draft-ietf-ccamp-otn-tunnel-model\n> Title: A YANG Data Model for Optical Transport Network (OTN) Tunnels and Label\n> Switched Paths Reviewer: Dhruv Dhody Review result: Has Nits\n> \n> Hello\n> \n> I have been selected to do a routing directorate \u201cearly\u201d review of this draft.\n> https://datatracker.ietf.org/doc/draft-ietf-ccamp-otn-tunnel-model/\n> \n> The routing directorate will, on request from the working group chair, perform\n> an \u201cearly\u201d review of a draft before it is submitted for publication to the\n> IESG. The early review can be performed at any time during the draft\u2019s lifetime\n> as a working group document. The purpose of the early review depends on the\n> stage that the document has reached.\n> \n> As this document is in working group last call, my focus for the review was to\n> determine whether the document is ready to be published. Please consider my\n> comments along with the other working group last call comments.\n> \n> For more information about the Routing Directorate, please see\n> https://wiki.ietf.org/en/group/rtg/RtgDir\n> \n> Document: draft-ietf-ccamp-otn-tunnel-model\n> Reviewer: Dhruv Dhody\n> Review Date: 2026-07-12\n> Intended Status: Proposed Standards\n> \n> ## Summary:\n> This document is basically ready for publication, but has few nits that should\n> be considered prior to being submitted to the IESG.\n> \n> ## Comments:\n> \n> The document is generally well organized and readable. It clearly builds on the\n> existing TE Tunnel YANG model and limits itself to OTN-specific augmentations,\n> the document\u2019s structure and organization make it relatively easy to follow.\n> \n> RFC 9907 recommends usage examples for YANG modules, did the WG consider adding\n> it?\n> \n\n[Authors] We have added a JSON example in the latest draft update\n\nSee: #200 \n\n> ## Nits:\n> \n> - Dont use \"OTN network\", N is for Network.\n> - Dont use \"OTN transport networks\" either :)\n> \n\n[Authors]\n\nWe have updated the text in the draft based on the mailing list discussion:\n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/kuyJvjDrOrPiGKwngQb7G5UJX2Q/\n\n[/Authors]\n\n> Thanks!\n> Dhruv\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/vnk_L7-zEbbjHyYYEjP3eDrdvEg/",
       "createdAt": "2026-07-12T23:56:09Z",
-      "updatedAt": "2026-07-30T09:30:38Z",
-      "closedAt": null,
+      "updatedAt": "2026-08-13T14:17:13Z",
+      "closedAt": "2026-08-13T14:17:13Z",
       "comments": [
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "- [ ] Send reply after the update draft has been uploaded",
+          "body": "- [x] Send reply after the update draft has been uploaded",
           "createdAt": "2026-07-30T09:30:31Z",
-          "updatedAt": "2026-07-30T09:30:31Z"
+          "updatedAt": "2026-08-13T14:17:02Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  Send reply after the update draft has been uploaded\n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/xx9wDLlAMFq6bMwFPy9UP4qMl7Y/",
+          "createdAt": "2026-08-13T14:17:13Z",
+          "updatedAt": "2026-08-13T14:17:13Z"
         }
       ]
     },
@@ -4024,7 +4031,7 @@
       "id": "I_kwDOBwdyfM8AAAABIn1rPQ",
       "title": "Add JSON example for OTN tunnel",
       "url": "https://github.com/haomianzheng/IETF-ACTN-YANG-Model/issues/200",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4036,9 +4043,35 @@
       ],
       "body": "> RFC 9907 recommends usage examples for YANG modules, did the WG consider adding\n> it?\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ccamp/vnk_L7-zEbbjHyYYEjP3eDrdvEg/",
       "createdAt": "2026-07-13T12:27:28Z",
-      "updatedAt": "2026-07-13T12:34:10Z",
-      "closedAt": null,
+      "updatedAt": "2026-08-13T13:33:51Z",
+      "closedAt": "2026-08-13T13:33:51Z",
       "comments": []
+    },
+    {
+      "number": 202,
+      "id": "I_kwDOBwdyfM8AAAABMoL_dA",
+      "title": "Yangdoctors last call review of draft-ietf-ccamp-otn-tunnel-model-11",
+      "url": "https://github.com/haomianzheng/IETF-ACTN-YANG-Model/issues/202",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "otn-tunnel"
+      ],
+      "body": "> Reviewer: Radek Krej\u010d\u00ed\n> Review result: Ready with Issues\n> \n> This is my yang doctor review of draft draft-ietf-ccamp-otn-tunnel-model-11\n> with the ietf-otn-tunnel@2020-03-09 YANG module.\n> \n> Despite the size of the module, its structure is very simple repeatedly following a pattern of augmenting ietf-te by groupings defined in ietf-layer1-types module (except the single grouping defined in the module itself).\n> \n> Validation tools report a number of errors in the module. The problem is, that the module references (in augments) /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths/ and /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths/ which are not present in current ietf-te@2020-07-12 module (the nodes were removed in draft-ietf-teas-yang-te-23, the reference in the Section 10 of the draft is to\n> draft-ietf-teas-yang-te-25 but the module is not in line with this revision).\n> So the module needs a crucial update. Also please consider if the grouping otn-tunnel-attributes is reusable in other modules. If the reusability is not the concern, I don't see any reason to define it instead of specifying the grouping content directly in the augment.\n> \n> Regarding the draft, as a reader, I would appreciate a more targeted description in section 3. Instead of just dumping the tree diagram in section 3.2, it would be useful to split it into several areas with some brief descriptions and examples.\n> \n> The list of paths is introduced in Section 6 as \"the subtrees and data nodes and their sensitivity/vulnerability\", but I don't see explained/described the mentioned sensitivity/vulnerability of those paths. Besides that, the paths include '..' as ellipsis, but '..' has its usual meaning in paths, please unify it with the format used in ietf-otn-topology and use '...'.\n> ",
+      "createdAt": "2026-08-13T14:21:15Z",
+      "updatedAt": "2026-08-13T14:25:23Z",
+      "closedAt": "2026-08-13T14:25:16Z",
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in draft-ietf-ccamp-otn-tunnel-model-13",
+          "createdAt": "2026-08-13T14:25:16Z",
+          "updatedAt": "2026-08-13T14:25:16Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -8799,24 +8832,26 @@
       "id": "PR_kwDOBwdyfM74OwfP",
       "title": "Address Rtgdir early review comments for OTN tunnel",
       "url": "https://github.com/haomianzheng/IETF-ACTN-YANG-Model/pull/201",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Address Rtgdir early review comments: see #198\r\n- Added JSON examples: fix #200 \r\n\r\n---\r\n\r\n[Diff with main](https://author-tools.ietf.org/api/iddiff?url_1=https://haomianzheng.github.io/IETF-ACTN-YANG-Model/draft-ietf-ccamp-otn-tunnel-model.txt&url_2=https://haomianzheng.github.io/IETF-ACTN-YANG-Model/otn-tnl-rtg-dir/draft-ietf-ccamp-otn-tunnel-model.txt)",
       "createdAt": "2026-07-29T22:34:28Z",
-      "updatedAt": "2026-08-04T21:55:59Z",
+      "updatedAt": "2026-08-13T13:33:50Z",
       "baseRepository": "haomianzheng/IETF-ACTN-YANG-Model",
       "baseRefName": "main",
       "baseRefOid": "fecf2b8580fc9273399a7db75f1da72837b6dea5",
       "headRepository": "haomianzheng/IETF-ACTN-YANG-Model",
       "headRefName": "otn-tnl-rtg-dir",
       "headRefOid": "aa59b1cbef1fee0b649ae4ec3179a106c4912fac",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-08-13T13:33:50Z",
+      "mergedAt": "2026-08-13T13:33:50Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "e66890710132aaeb438b5d951bd1714076920a95"
+      },
       "comments": [],
       "reviews": [
         {
