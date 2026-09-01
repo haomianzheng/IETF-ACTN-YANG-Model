@@ -24,5 +24,3 @@ draft-ietf-ccamp-otn-tunnel-model.xml
 package-lock.json
 report.xml
 !requirements.txt
-temp/
-*.bash
