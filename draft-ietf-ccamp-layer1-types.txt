@@ -5,7 +5,7 @@
 CCAMP Working Group                                             H. Zheng
 Internet-Draft                                                   I. Busi
 Intended status: Standards Track                     Huawei Technologies
-Expires: 14 February 2027                                 13 August 2026
+Expires: 5 March 2027                                   1 September 2026
 
 
               Common YANG Data Types for Layer 1 Networks
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 February 2027.
+   This Internet-Draft will expire on 5 March 2027.
 
 Copyright Notice
 
@@ -2057,9 +2057,9 @@ Table of Contents
               Zheng, H., Busi, I., Belotti, S., Lopez, V., and Y. Xu, "A
               YANG Data Model for Optical Transport Network (OTN)
               Tunnels and Label Switched Paths", Work in Progress,
-              Internet-Draft, draft-ietf-ccamp-otn-tunnel-model-25, 27
-              May 2026, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-ccamp-otn-tunnel-model-25>.
+              Internet-Draft, draft-ietf-ccamp-otn-tunnel-model-26, 13
+              August 2026, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-ccamp-otn-tunnel-model-26>.
 
    [I-D.ietf-ccamp-transport-nbi-app-statement]
               Busi, I., King, D., Zheng, H., and Y. Xu, "Transport
