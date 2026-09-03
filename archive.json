@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-16T01:48:20.455717+00:00",
+  "timestamp": "2026-09-03T04:06:20.373840+00:00",
   "repo": "haomianzheng/IETF-ACTN-YANG-Model",
   "labels": [
     {
@@ -4072,6 +4072,50 @@
           "updatedAt": "2026-08-13T14:25:16Z"
         }
       ]
+    },
+    {
+      "number": 203,
+      "id": "I_kwDOBwdyfM8AAAABPIlDFw",
+      "title": "Updating draft-ietf-ccamp-otn-topo-yang to align with YANG guidance in RFC 9907",
+      "url": "https://github.com/haomianzheng/IETF-ACTN-YANG-Model/issues/203",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi",
+        "haomianzheng"
+      ],
+      "labels": [
+        "otn-topo",
+        "need-discussion"
+      ],
+      "body": "Greetings Haomian, Italo, Xufeng, Sergio, and Oscar,\n\n\nThank you for the updates you have already made to align with RFC 9907 <https://www.rfc-editor.org/info/rfc9907/>, \u201cGuidelines for Authors and Reviewers of Documents Containing YANG Data Models\u201d.  Please review our questions below and let us know how to update the document.  \n\nNote that this set of questions is only about potential changes because of the updated YANG guidance; other questions may be sent after the document has been fully edited.  This is NOT the Final Review period for this document.  \n\n\na) Should these instances be updated to \u201cYANG data model\u201d (instead of YANG model)?\n\n- \"The YANG model defined in this document is independent of control plane protocols...\"\n\n- \"augments from the TE topology YANG model defined in RFC8795\"\n\n- \"Following TE topology YANG model, the YANG model defined in this document is interface independent.\"\n\n- \"typical usage of IETF YANG models in ACTN architecture\"\n\n\nb) We believe the text should reference RFC 6020 instead of RFC 7950. May we update the reference and the text to match what appears in RFC 9907? \n\nOriginal: \n   This document registers a YANG module in the YANG Module Names\n   registry [RFC7950].\n\nPer RFC 9907, we would expect: \n   This document registers a YANG module in the \u201cYANG\n   Module Names\" registry [RFC6020] within the \"YANG Parameters\u201d\n   registry group.\n\n\nc) Note that we will add this text to the ietf-otn-topology module, after the copyright notice.  Please let us know if you have any concerns.  \n\nAll revisions of IETF and IANA published modules can be found at the YANG Parameters registry group (https://www.iana.org/assignments/yang-parameters).\n\n\nd) In the Security Considerations, should the following text be updated to refer to ietf-otn-topology?  \n\nOriginal:\n   The \"ietf-te-types\" and the \"ietf-te-packet-types\" YANG modules\n   define data models that are designed to be accessed via YANG-based\n   management protocols, such as NETCONF [RFC6241] and RESTCONF\n   [RFC8040]. \n\nPerhaps:\n   The \"ietf-otn-topology\" YANG module\n   defines a data model that are designed to be accessed via YANG-based\n   management protocols, such as Network Configuration Protocol (NETCONF) [RFC6241] and RESTCONF [RFC8040].\n\n\ne) Please confirm that this paragraph is to remain in the Security Considerations section:\n\n   Finally, the YANG module described in this document augments the\n   \"ietf-network\" YANG module [RFC8345] and the \"ietf-te-topology\" YANG\n   module [RFC8795] by adding data nodes.  The security considerations\n   for the subtrees described in those RFCs apply equally to the new\n   data nodes that this module adds.\n\n\nf) Please note that there are some other minor differences that we will tweak to align more closely with the Security Considerations template defined at https://wiki.ietf.org/group/ops/yang-security-guidelines and ask you to review during Final Review. \n\nThank you,\nSandy Ginoza\nRFC Production Center \n\n\nTitle                  : A YANG Data Model for Optical Transport Network Topology\nAuthor(s)              : H. Zheng,\n                         I. Busi,\n                         X. Liu,\n                         S. Belotti,\n                         O. Gonzalez de Dios\nWorking Group Chair(s) : Fatai Zhang, Luis Contreras, Daniele Ceccarelli\nArea Director(s)       : Jim Guichard, Ketan Talaulikar, Gunter Van de Velde\n\n> \n\n> ",
+      "createdAt": "2026-09-01T10:15:01Z",
+      "updatedAt": "2026-09-01T10:15:01Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 204,
+      "id": "I_kwDOBwdyfM8AAAABPIn6dw",
+      "title": "Updating draft-ietf-ccamp-layer1-types to align with YANG guidance in RFC 9907",
+      "url": "https://github.com/haomianzheng/IETF-ACTN-YANG-Model/issues/204",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi",
+        "haomianzheng"
+      ],
+      "labels": [
+        "l1-types",
+        "need-discussion"
+      ],
+      "body": "> Greetings Haomian and Italo,\n> \n> RFC 9907 <https://www.rfc-editor.org/info/rfc9907/>, \u201cGuidelines for Authors and Reviewers of Documents Containing YANG Data Models\u201d, was published in March 2026.  Per the updated guidance, we believe several updates are needed.  Please review our questions below and let us know how to update the document. \n> \n> Note that this set of questions is only about potential changes because of the updated YANG guidance; other questions may be sent later after the document has been fully edited.  This is NOT the Final Review period for this document.  \n> \n> a) This document contains a yang tree. Should RFC 8340 be normatively referenced? If yes, please indicate how/where RFC 8340 should be cited within the text. \n> \n> \n> b) We believe the text should reference RFC 6020 instead of RFC 7950. May we update the reference? \n> \n> Original: \n> This document registers following YANG modules in the YANG Module\n> Names registry [RFC7950].\n\nPer RFC 9907, may we update the text as follows? \n\n   This document registers a YANG module in the \u201cYANG\n   Module Names\" registry [RFC6020] within the \"YANG Parameters\u201d\n   registry group.\n\n> \n> \n> c) Note that we intend to add the following paragraph to the ietf-layer1-types YANG module per RFC 9907. It will appear after the copyright within the module. Please let us know if you have any concerns. \n> \n> All revisions of IETF and IANA published modules can be found at the YANG Parameters registry group (https://www.iana.org/assignments/yang-parameters).\n> \n> \n> d) The Security Considerations require a major update.  Please compare the security considerations against the template at https://wiki.ietf.org/group/ops/yang-security-guidelines and provide us with the updated text.  We attempted an update, but the changes are not straightforward (see https://auth48-transition.rfc-editor.org/authors/draft-ietf-ccamp-layer1-types-19-9907security-diff.html).  While reviewing, please consider whether \n> \n> - the second and last paragraphs remain in the text, \n> - the \u201cThere are no particularly sensitive\u2026\u201d statements are needed, and\n> - any other changes are needed.\n> \n> As part of the updates, we believe we\u2019ll need to adjust the references as follows: \n> \n> - Add informative references to RFC 4252 (SSH Authentication Protocol) and RFC 9000 (QUIC) \n> - Remove the reference to RFC 6242, as it is no longer cited.\n> \n> \n> Thank you for attention.  We are hopeful that updating these items now will smooth the editorial and Final Review process. \n> \n> \n> Thank you,\n> Sandy Ginoza\n> RFC Production Center\n> \n> \n> \n> \n> Title                  : Common YANG Data Types for Layer 1 Networks\n> Author(s)              : H. Zheng,\n>                         I. Busi\n> Working Group Chair(s) : Fatai Zhang, Luis Contreras, Daniele Ceccarelli\n> Area Director(s)       : Jim Guichard, Ketan Talaulikar, Gunter Van de Velde\n> \n",
+      "createdAt": "2026-09-01T10:20:31Z",
+      "updatedAt": "2026-09-01T10:20:31Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
