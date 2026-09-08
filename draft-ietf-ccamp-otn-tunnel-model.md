@@ -266,8 +266,7 @@ registry group.
 
 # Security Considerations
 
-This section is modeled after the template described in {{Section 3.7
-of ?RFC9907}}.
+This section is modeled after the template described in {{Section 3.7 of ?RFC9907}}.
 
 The "ietf-otn-tunnel" YANG module defines a data model that is
 designed to be accessed via YANG-based management protocols, such as

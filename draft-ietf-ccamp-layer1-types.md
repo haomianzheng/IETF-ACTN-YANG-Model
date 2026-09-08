@@ -612,41 +612,31 @@ a lower number of LSPs).
 
 # Security Considerations {#Security}
 
-The YANG module specified in this document defines a schema for data
-that is designed to be accessed via network management protocols such
-as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}. The lowest NETCONF layer
-is the secure transport layer, and the mandatory-to-implement secure
-transport is Secure Shell (SSH) {{!RFC6242}}. The lowest RESTCONF layer
-is HTTPS, and the mandatory-to-implement secure transport is TLS
-{{!RFC8446}}.
+This section is modeled after the template described in {{Section 3.7.1 of ?RFC9907}}.
 
-If using secure channels, such as SSH for NETCONF or TLS for
-RESTCONF, an array of secure validation methods are availible. These
-methods range from public key and password authentication to host
-identity verification. It is strongly advised to not use options
-that require no authentication. However, it is important to
-acknowledge that not all authentication methods offer the same level
-of security. For instance, password-based authentication is notably
-susceptible to security threats such as phishing attacks and password
-reuse.
+The "ietf-layer1-types" YANG module defines a data model that is
+designed to be accessed via YANG-based management protocols, such as
+Network Configuration Protocol (NETCONF) {{?RFC6241}} and RESTCONF {{?RFC8040}}.
+These YANG-based management protocols (1) have to use a secure transport
+layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
+QUIC {{?RFC9000}}) and (2) have to use mutual authentication.
 
-The NETCONF access control model {{!RFC8341}} provides the means to
-restrict access for particular NETCONF or RESTCONF users to a
-preconfigured subset of all available NETCONF or RESTCONF protocol
-operations and content.
+The Network Configuration Access Control Model (NACM) {{!RFC8341}}
+provides the means to restrict access for particular NETCONF or
+RESTCONF users to a preconfigured subset of all available NETCONF or
+RESTCONF protocol operations and content.
 
-The YANG module in this document defines layer 1 type definitions
-(i.e., typedef, identity and grouping statements) in YANG data
-modeling language to be imported and used by other layer 1
-technology-specific modules. When imported and used, the resultant
-schema will have data nodes that can be writable, or readable. The
-access to such data nodes may be considered sensitive or vulnerable
-in some network environments. Write operations (e.g., edit-config)
-to these data nodes without proper protection can have a negative
-effect on network operations.
+The YANG module defines a set of identities, types, and
+groupings. These nodes are intended to be reused by other YANG
+modules. The module by itselft does not expose any data nodes that
+are writable, data nodes that contain read-only state, or RPCs.
+As such, there are no additional security issues related to
+the YANG module that need to be considered.
 
-The security considerations spelled out in the YANG 1.1 specification
-{{!RFC7950}} apply for this document as well.
+Modules that use the groupings that are defined in this document
+should identify the corresponding security considerations.
+For example using 'otn-link-bandwidth', 'otn-label-range-info' or 'otn-label-start-end' groupings
+may expose sensitive OTN topology information.
 
 # IANA Considerations {#IANA}
 
