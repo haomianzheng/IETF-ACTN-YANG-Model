@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-10T04:19:22.362727+00:00",
+  "timestamp": "2026-09-15T04:37:28.566834+00:00",
   "repo": "haomianzheng/IETF-ACTN-YANG-Model",
   "labels": [
     {
@@ -8946,24 +8946,26 @@
       "id": "PR_kwDOBwdyfM8AAAABCrcILQ",
       "title": "Update L1 Types Security",
       "url": "https://github.com/haomianzheng/IETF-ACTN-YANG-Model/pull/205",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Align Security Considerations with the template in RFC 9907 and in the OPS wiki",
       "createdAt": "2026-09-08T13:27:08Z",
-      "updatedAt": "2026-09-08T13:27:09Z",
+      "updatedAt": "2026-09-14T17:29:29Z",
       "baseRepository": "haomianzheng/IETF-ACTN-YANG-Model",
       "baseRefName": "main",
       "baseRefOid": "2ed5bd333acc02526780e283d2aeac752f251317",
       "headRepository": "haomianzheng/IETF-ACTN-YANG-Model",
       "headRefName": "l1-types-rpc-security",
       "headRefOid": "5f05955b15d4e0b4625a885810fe4a1af995a21f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-09-14T17:29:29Z",
+      "mergedAt": "2026-09-14T17:29:29Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "eef7def47b0f40e003f4152e2935bb560e314bf7"
+      },
       "comments": [],
       "reviews": []
     }
